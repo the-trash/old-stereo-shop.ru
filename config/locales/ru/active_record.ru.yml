@@ -1,0 +1,16 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one: Пользователь
+        other: Пользователи
+    attributes:
+      user:
+        birthday: 'День рождения'
+        phone: 'Номер телефона'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        middle_name: 'Отчество'
+        email: 'E-mail'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'

@@ -1,0 +1,23 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  host: "localhost"
+  pool: 5
+  username: postgres
+  # password: "userpassword"
+
+production:
+  <<: *common
+  database: database_name_production
+
+staging:
+  <<: *common
+  database: database_name_staging
+
+development:
+  <<: *common
+  database: database_name_development
+
+test:
+  <<: *common
+  database: database_name_test

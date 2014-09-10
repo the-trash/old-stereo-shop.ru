@@ -1,0 +1,12 @@
+ru:
+  simple_captcha:
+    placeholder: "Введите код с картинки"
+    label: "Введите код с картинки:"
+    message:
+      default: "Код не совпадает с картинкой"
+
+  support:
+    array:
+      last_word_connector: ! ' и '
+      two_words_connector: ! ' и '
+      words_connector: ! ', '
