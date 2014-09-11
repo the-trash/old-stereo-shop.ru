@@ -13,13 +13,16 @@
 
 public/system/uploads/
 public/uploads/
+/public/assets
 
 config/database.yml
 config/*.sphinx.conf
 
 db/sphinx
 db/structure.sql
-db/schema.rb
+
+/.foreman
+/.idea
 
 .DS_Store
 .DS_Store?

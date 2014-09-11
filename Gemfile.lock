@@ -16,6 +16,12 @@ GIT
       sass-rails
 
 GIT
+  remote: git://github.com/james2m/seedbank.git
+  revision: dcddd9672b7a84112bc8de7a9782cd1f5dfa5445
+  specs:
+    seedbank (0.3.0)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: cc21c87bb385831f2f3e4988428fffe0b5d3604c
   specs:
@@ -33,6 +39,14 @@ GIT
     errgent (2.0.0)
       actionpack (>= 3.0)
       railties (>= 3.0)
+
+GIT
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: 862dd7215a885a1fe90b545eb4776c08f652eef9
+  specs:
+    capistrano-sidekiq (0.3.7)
+      capistrano
+      sidekiq
 
 GEM
   remote: https://rubygems.org/
@@ -63,6 +77,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arbre (1.0.2)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
@@ -78,8 +96,33 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
+    brakeman (2.6.2)
+      erubis (~> 2.6)
+      fastercsv (~> 1.5)
+      haml (>= 3.0, < 5.0)
+      highline (~> 1.6.20)
+      multi_json (~> 1.2)
+      ruby2ruby (~> 2.1.1)
+      ruby_parser (~> 3.5.0)
+      sass (~> 3.0)
+      slim (>= 1.3.6, < 3.0)
+      terminal-table (~> 1.4)
     browser (0.6.0)
     builder (3.2.2)
+    callsite (0.0.11)
+    capistrano (3.2.1)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.2)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.1)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -99,6 +142,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colorize (0.7.3)
     connection_pool (2.0.0)
     countries (0.9.3)
       currencies (~> 0.4.2)
@@ -110,9 +154,9 @@ GEM
     devise-async (0.9.0)
       devise (~> 3.2)
     diff-lcs (1.2.5)
-    dotenv (0.11.1)
-      dotenv-deployment (~> 0.0.2)
-    dotenv-deployment (0.0.2)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
@@ -125,14 +169,24 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    foreman (0.75.0)
-      dotenv (~> 0.11.1)
-      thor (~> 0.19.1)
+    fastercsv (1.5.5)
+    ffi (1.9.3)
+    formatador (0.2.5)
     formtastic (2.3.1)
       actionpack (>= 3.0)
     fuubar (2.0.0)
       rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
+    guard (2.6.1)
+      formatador (>= 0.2.4)
+      listen (~> 2.7)
+      lumberjack (~> 1.0)
+      pry (>= 0.9.12)
+      thor (>= 0.18.1)
+    guard-livereload (2.3.0)
+      em-websocket (~> 0.5)
+      guard (~> 2.0)
+      multi_json (~> 1.8)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -144,8 +198,10 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (3.3.1)
+    highline (1.6.21)
     hike (1.2.3)
     hitimes (1.2.2)
+    http_parser.rb (0.6.0)
     i18n (0.6.11)
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -163,9 +219,22 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
+    listen (2.7.9)
+      celluloid (>= 0.15.2)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+    lumberjack (1.0.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.3.4)
+      callsite (~> 0.0, >= 0.0.11)
+      rack-contrib (~> 1.1)
+      railties (>= 3.0.0, < 5.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.8.0)
@@ -175,6 +244,9 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     nokogumbo (1.1.12)
@@ -217,11 +289,15 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.5)
@@ -248,6 +324,9 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
+    rb-fsevent (0.9.4)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
     redis (3.1.0)
@@ -296,6 +375,11 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.0)
     ruby-progressbar (1.5.1)
+    ruby2ruby (2.1.2)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.0)
+    ruby_parser (3.5.0)
+      sexp_processor (~> 4.1)
     sanitize (3.0.2)
       crass (~> 0.2.0)
       nokogiri (>= 1.4.4)
@@ -309,6 +393,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sexp_processor (4.4.4)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     sidekiq (3.2.4)
@@ -319,8 +404,13 @@ GEM
       redis-namespace (>= 1.3.1)
     simple_captcha2 (0.3.2)
       rails (>= 4.1)
+    slim (2.0.3)
+      temple (~> 0.6.6)
+      tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
     spring (1.1.3)
+    spring-commands-rspec (1.0.2)
+      spring (>= 0.9.1)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -330,8 +420,14 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sshkit (1.5.1)
+      colorize
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     subexec (0.2.3)
+    temple (0.6.8)
     terminal-notifier (1.6.1)
+    terminal-table (1.4.5)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -342,6 +438,8 @@ GEM
     timeliness (0.3.7)
     timers (4.0.0)
       hitimes
+    traceroute (0.4.0)
+      rails (>= 3.0.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -355,18 +453,23 @@ GEM
       timeliness (~> 0.3.6)
     warden (1.2.3)
       rack (>= 1.0)
-    zeus (0.15.1)
-      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   activeadmin!
+  annotate (>= 2.6.0)
   autoprefixer-rails
   better_errors
   binding_of_caller
+  brakeman
   browser
+  capistrano (~> 3.2.1)
+  capistrano-bundler (~> 1.1.3)
+  capistrano-rails (~> 1.1.2)
+  capistrano-rvm
+  capistrano-sidekiq!
   carrierwave
   carrierwave-size-validator
   ckeditor
@@ -377,12 +480,15 @@ DEPENDENCIES
   errgent!
   factory_girl_rails
   faker
-  foreman
   fuubar
+  guard
+  guard-livereload
   haml
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
+  meta_request
   mini_magick
   normalize-rails
   omniauth
@@ -392,6 +498,7 @@ DEPENDENCIES
   pg
   phony_rails
   pry
+  pry-rails
   pundit
   quiet_assets
   rails (= 4.1.5)
@@ -406,15 +513,18 @@ DEPENDENCIES
   rspec-mocks
   rspec-nc
   rspec-rails
+  ruby-progressbar
   sanitize
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  seedbank!
   shoulda-matchers
   sidekiq
   simple_captcha2
   spring
-  thin
+  spring-commands-rspec
+  thin (~> 1.6.2)
+  traceroute
   uglifier (>= 1.3.0)
   unicode
   validates_timeliness (~> 3.0)
-  zeus

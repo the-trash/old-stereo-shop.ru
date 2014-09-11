@@ -1,0 +1,15 @@
+---
+:verbose: true
+:concurrency: 5
+:namespace: stereo_shop
+
+:queues:
+  - [critical, 7]
+  - [default,  5]
+  - [single,   5]
+  - [mailer,   3]
+  - [low,      1]
+
+:limits:
+  single: 1
+  low: 1

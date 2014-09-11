@@ -36,6 +36,8 @@ gem 'redis-namespace', '>= 1.0'
 gem 'redis-rails'
 gem 'redis-store'
 
+gem 'ruby-progressbar'
+
 ## Template
 gem 'haml'
 gem 'haml-rails'
@@ -55,31 +57,44 @@ gem 'pundit'
 
 gem 'sidekiq'
 
+gem 'unicorn'
+
 group :development do
-  gem 'pry'
+  gem 'annotate', '>= 2.6.0'
   gem 'better_errors'
-  gem 'binding_of_caller'
-
-  gem 'thin'
-  gem 'foreman'
+  gem 'binding_of_caller' # need for better_errors
+  gem 'brakeman', require: false
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-bundler', '~> 1.1.3'
+  gem 'capistrano-rails', '~> 1.1.2'
+  gem 'capistrano-rvm'
+  gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq'
+  gem 'capistrano3-nginx'
+  gem 'capistrano3-unicorn'
+  gem 'guard'
+  gem 'guard-livereload', require: false
+  gem 'letter_opener'
+  gem 'meta_request'
+  gem 'pry'
+  gem 'pry-rails'
   gem 'quiet_assets'
-
-  gem 'spring'
+  gem 'thin'
+  gem 'traceroute'
 end
 
 group :development, :test do
-  gem 'zeus'
-
-  gem 'rspec'
-  gem 'rspec-core'
-  gem 'rspec-rails'
-  gem 'rspec-mocks'
-  gem 'rspec-expectations'
-  gem 'rspec-nc'
-  gem 'shoulda-matchers'
-
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'database_cleaner'
   gem 'fuubar'
+  gem 'rspec'
+  gem 'rspec-core'
+  gem 'rspec-expectations'
+  gem 'rspec-mocks'
+  gem 'rspec-nc'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'seedbank', github: 'james2m/seedbank'
 end
