@@ -14,6 +14,7 @@
 public/system/uploads/
 public/uploads/
 /public/assets
+icon-*.png
 
 config/database.yml
 config/*.sphinx.conf

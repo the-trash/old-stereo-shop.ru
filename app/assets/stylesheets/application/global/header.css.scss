@@ -11,6 +11,7 @@ header {
   }
 }
 
+// logotype
 #logo {
   position: relative;
   line-height: 16px;
@@ -20,19 +21,23 @@ header {
   }
 }
 
+// navigation menu
 #menu {
   padding-top: 20px;
+  padding-left: 10px;
 
   ul.menu {
     font-size: 16px;
   }
 
   .help-block {
-    font-size: 12px;
-    line-height: 16px;
+    padding-top: 2px;
+    font-size: 11px;
+    line-height: 14px;
   }
 }
 
+// button catalog
 #catalog {
   padding-top: 10px;
   padding-left: 15px;
@@ -40,29 +45,29 @@ header {
 
   .btn {
     position: relative;
-    padding-left: 20px;
     padding-right: 40px;
     background-color: $blue;
-    font-size: 20px;
+    font-size: 21px;
 
     &:after {
-      $width: 13px;
+      $height: icons-sprite-height('arrow-white-down');
+      $width: icons-sprite-width('arrow-white-down');
 
       content: '';
       display: block;
       position: absolute;
       width: $width;
-      height: $width;
+      height: $height;
       top: 50%;
-      right: 15px;
+      right: $width;
       margin-top: -$width/2;
-      background: image-url('application/arrow-white.png') 0 100% no-repeat;
+      @include icons-sprite('arrow-white-down');
     }
   }
 
   &.active {
     .btn:after {
-      background-position: 0 0;
+      @include icons-sprite('arrow-white-up');
     }
   }
 }

@@ -2,6 +2,11 @@
 
 @import "foundation/normalize";
 
+// sprites
+@import "compass/utilities/sprites";
+@import "icons/*.png";
+@include all-icons-sprites;
+
 @import "base/variables";
 @import "base/helpers";
 @import "base/theme";
