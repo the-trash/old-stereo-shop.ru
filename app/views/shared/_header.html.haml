@@ -1,0 +1,31 @@
+%header
+  #logo.item
+    = link_to '', root_path, class: 'full-block-link'
+    .image= image_tag 'application/logo.png'
+    Stereo-Shop
+    %br
+    %span.blue Звук как надо
+  #catalog.item
+    .btn
+      Продукция
+      %span.caret
+  #menu.item
+    %ul.menu
+      %li= link_to 'О нас', '#', class: 'active'
+      %li
+        = link_to 'Контакты', '#'
+        .help-block
+          %p +7 (812) 499-49-20
+          %p.dark-pink 10:00 - 18:00
+      %li= link_to 'Бренды', '#'
+      %li= link_to 'Оплата', '#'
+      %li
+        = link_to 'Доставка', '#'
+        .help-block
+          - %w(Санкт-Петербург Москва).each do |city|
+            %p= city
+      %li
+        = link_to 'Помощь и обратная связь', '#'
+        .help-block
+          %p.light-blue Безопасность
+          %p.light-blue Возврат денег

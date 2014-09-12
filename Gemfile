@@ -21,6 +21,7 @@ gem 'validates_timeliness', '~> 3.0'
 ## Assets
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
 gem 'jquery-rails'
 gem 'sass-rails', '~> 4.0.3'

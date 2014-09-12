@@ -1,0 +1,36 @@
+// be sure that parent block is relative!
+.full-block-link {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+ul.menu {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  @include clearfix();
+
+  li {
+    display: block;
+    float: left;
+    margin: 0 15px;
+  }
+
+  .help-block {
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.btn {
+  border: 1px solid #898989;
+  @include border-radius(7px);
+  cursor: pointer;
+  padding: 5px 15px;
+}

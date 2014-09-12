@@ -1,0 +1,68 @@
+header {
+  @extend .container;
+  @include clearfix();
+
+  position: relative;
+  clear: both;
+  padding-top: 10px;
+
+  .item {
+    float: left;
+  }
+}
+
+#logo {
+  position: relative;
+  line-height: 16px;
+
+  .image {
+    padding-left: 13px;
+  }
+}
+
+#menu {
+  padding-top: 20px;
+
+  ul.menu {
+    font-size: 16px;
+  }
+
+  .help-block {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+#catalog {
+  padding-top: 10px;
+  padding-left: 15px;
+  color: $white;
+
+  .btn {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 40px;
+    background-color: $blue;
+    font-size: 20px;
+
+    &:after {
+      $width: 13px;
+
+      content: '';
+      display: block;
+      position: absolute;
+      width: $width;
+      height: $width;
+      top: 50%;
+      right: 15px;
+      margin-top: -$width/2;
+      background: image-url('application/arrow-white.png') 0 100% no-repeat;
+    }
+  }
+
+  &.active {
+    .btn:after {
+      background-position: 0 0;
+    }
+  }
+}
