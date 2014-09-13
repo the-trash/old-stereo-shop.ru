@@ -2,7 +2,7 @@
   #logo.item
     = link_to '', root_path, class: 'full-block-link'
     .image= image_tag 'application/logo.png'
-    Stereo-Shop
+    = @settings[:shop_name]
     %br
     %span.blue Звук как надо
   #catalog.item
@@ -15,14 +15,14 @@
       %li
         = link_to 'Контакты', '#'
         .help-block
-          %p +7 (812) 499-49-20
-          %p.dark-pink 10:00 - 18:00
+          %p= @settings[:shop_phone]
+          %p.dark-pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
       %li= link_to 'Бренды', '#'
       %li= link_to 'Оплата', '#'
       %li
         = link_to 'Доставка', '#'
         .help-block
-          - %w(Санкт-Петербург Москва).each do |city|
+          - @settings[:delivery_cities].split(',').each do |city|
             %p= city
       %li
         = link_to 'Помощь и обратная связь', '#'

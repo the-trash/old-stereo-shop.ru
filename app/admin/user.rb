@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu label: "Пользователи", priority: 1
+  menu priority: 1
   permit_params :email, :birthday, :phone, :first_name, :last_name, :middle_name,
                 :password, :password_confirmation
 

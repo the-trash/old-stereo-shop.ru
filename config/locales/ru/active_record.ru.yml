@@ -1,16 +1,28 @@
 ru:
   activerecord:
     models:
+      setting:
+        one: Настройка
+        few: Настройки
+        many: Настройки
+        other: Настройки
       user:
         one: Пользователь
+        few: Пользователи
+        many: Пользователи
         other: Пользователи
     attributes:
+      setting:
+        description: Описание
+        group: Группа
+        key: Ключ
+        value: Значение
       user:
         birthday: 'День рождения'
-        phone: 'Номер телефона'
+        email: 'E-mail'
         first_name: 'Имя'
         last_name: 'Фамилия'
         middle_name: 'Отчество'
-        email: 'E-mail'
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
+        phone: 'Номер телефона'
