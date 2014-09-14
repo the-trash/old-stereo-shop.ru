@@ -61,6 +61,9 @@ gem 'sidekiq'
 
 gem 'unicorn'
 
+gem 'ruby-progressbar'
+gem 'activerecord-import'
+
 group :development do
   gem 'annotate', '>= 2.6.0'
   gem 'better_errors'

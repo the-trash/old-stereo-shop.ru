@@ -1,6 +1,6 @@
 class Setting < ActiveRecord::Base
-  validates_presence_of :key, :group
-  validates_uniqueness_of :key
+  validates :key, :group, presence: true
+  validates :key, uniqueness: true
 
   def self.make_hash
     self.all.inject({}) do |hash, setting|
