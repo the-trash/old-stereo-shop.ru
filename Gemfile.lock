@@ -201,6 +201,9 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
+    guard-spring (0.0.4)
+      guard
+      spring
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -509,6 +512,7 @@ DEPENDENCIES
   fuubar
   guard
   guard-livereload
+  guard-spring
   haml
   haml-rails
   jbuilder (~> 2.0)

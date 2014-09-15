@@ -1,1 +1,6 @@
-@@settings = Setting.make_hash
+$settings =
+  if defined?(Setting) == 'constant'
+    Setting.make_hash
+  else
+    nil
+  end
