@@ -187,6 +187,8 @@ GEM
     formatador (0.2.5)
     formtastic (2.3.1)
       actionpack (>= 3.0)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     fssm (0.2.10)
     fuubar (2.0.0)
       rspec (~> 3.0)
@@ -509,6 +511,7 @@ DEPENDENCIES
   errgent!
   factory_girl_rails
   faker
+  friendly_id (~> 5.0.4)
   fuubar
   guard
   guard-livereload

@@ -63,6 +63,7 @@ gem 'unicorn'
 
 gem 'ruby-progressbar'
 gem 'activerecord-import'
+gem 'friendly_id', '~> 5.0.4'
 
 group :development do
   gem 'annotate', '>= 2.6.0'
