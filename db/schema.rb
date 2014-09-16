@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20140916085555) do
 
   create_table "products", force: true do |t|
     t.string   "title"
-    t.string   "slug"
+    t.string   "sku"
     t.text     "description"
     t.integer  "state",                                        default: 1
     t.decimal  "price",               precision: 10, scale: 2, default: 0.0, null: false

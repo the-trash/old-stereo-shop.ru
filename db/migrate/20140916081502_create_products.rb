@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration
 
     create_table :products do |t|
       t.string :title
-      t.string :slug
+      t.string :sku
       t.text :description
       t.integer :state, default: 1
       t.decimal :price, precision: 10, scale: 2, default: 0.0, null: false
