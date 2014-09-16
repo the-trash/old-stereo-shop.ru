@@ -4,6 +4,6 @@ module Friendable
   included do
     extend FriendlyId
 
-    friendly_id :title, use: [:slugged, :finders]
+    friendly_id [:id, :title], use: [:slugged, :finders]
   end
 end
