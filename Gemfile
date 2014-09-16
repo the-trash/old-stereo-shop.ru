@@ -38,8 +38,6 @@ gem 'redis-namespace', '>= 1.0'
 gem 'redis-rails'
 gem 'redis-store'
 
-gem 'ruby-progressbar'
-
 ## Template
 gem 'haml'
 gem 'haml-rails'
@@ -60,6 +58,7 @@ gem 'pundit'
 gem 'activerecord-import'
 gem 'friendly_id', '~> 5.0.4'
 gem 'hstore_accessor'
+gem 'image_suckr'
 gem 'ruby-progressbar'
 gem 'sidekiq'
 gem 'unicorn'
