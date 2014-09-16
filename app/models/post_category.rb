@@ -1,5 +1,5 @@
 class PostCategory < ActiveRecord::Base
-  include Friendable
+  include Friendable, Seoble
 
   belongs_to :admin_user
 

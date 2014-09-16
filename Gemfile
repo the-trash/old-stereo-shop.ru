@@ -57,13 +57,12 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'pundit'
 
-gem 'sidekiq'
-
-gem 'unicorn'
-
-gem 'ruby-progressbar'
 gem 'activerecord-import'
 gem 'friendly_id', '~> 5.0.4'
+gem 'hstore_accessor'
+gem 'ruby-progressbar'
+gem 'sidekiq'
+gem 'unicorn'
 
 group :development do
   gem 'annotate', '>= 2.6.0'

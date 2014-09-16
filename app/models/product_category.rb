@@ -1,5 +1,5 @@
 class ProductCategory < ActiveRecord::Base
-  include Friendable
+  include Friendable, Seoble
 
   belongs_to :admin_user
 
