@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140916085555) do
 
   create_table "brands", force: true do |t|
     t.string   "title"
+    t.string   "slug"
     t.text     "description"
     t.string   "site_link"
     t.integer  "state",         default: 1
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140916085555) do
   end
 
   add_index "brands", ["admin_user_id"], name: "index_brands_on_admin_user_id", using: :btree
+  add_index "brands", ["slug"], name: "index_brands_on_slug", using: :btree
   add_index "brands", ["state"], name: "index_brands_on_state", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140916085555) do
 
   create_table "post_categories", force: true do |t|
     t.string   "title"
+    t.string   "slug"
     t.text     "description"
     t.integer  "state",         default: 1
     t.integer  "admin_user_id"
@@ -92,10 +95,12 @@ ActiveRecord::Schema.define(version: 20140916085555) do
   end
 
   add_index "post_categories", ["admin_user_id"], name: "index_post_categories_on_admin_user_id", using: :btree
+  add_index "post_categories", ["slug"], name: "index_post_categories_on_slug", using: :btree
   add_index "post_categories", ["state"], name: "index_post_categories_on_state", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
+    t.string   "slug"
     t.text     "description"
     t.text     "full_text"
     t.integer  "state",            default: 1
@@ -112,10 +117,12 @@ ActiveRecord::Schema.define(version: 20140916085555) do
 
   add_index "posts", ["admin_user_id"], name: "index_posts_on_admin_user_id", using: :btree
   add_index "posts", ["post_category_id"], name: "index_posts_on_post_category_id", using: :btree
+  add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
   add_index "posts", ["state"], name: "index_posts_on_state", using: :btree
 
   create_table "product_categories", force: true do |t|
     t.string   "title"
+    t.string   "slug"
     t.text     "description"
     t.integer  "state",         default: 1
     t.integer  "admin_user_id"
@@ -129,11 +136,13 @@ ActiveRecord::Schema.define(version: 20140916085555) do
   end
 
   add_index "product_categories", ["admin_user_id"], name: "index_product_categories_on_admin_user_id", using: :btree
+  add_index "product_categories", ["slug"], name: "index_product_categories_on_slug", using: :btree
   add_index "product_categories", ["state"], name: "index_product_categories_on_state", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "title"
     t.string   "sku"
+    t.string   "slug"
     t.text     "description"
     t.integer  "state",                                        default: 1
     t.decimal  "price",               precision: 10, scale: 2, default: 0.0, null: false
@@ -153,6 +162,7 @@ ActiveRecord::Schema.define(version: 20140916085555) do
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
+  add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
   add_index "products", ["state"], name: "index_products_on_state", using: :btree
 
   create_table "settings", force: true do |t|

@@ -2,6 +2,7 @@ class CreatePostCategories < ActiveRecord::Migration
   def change
     create_table :post_categories do |t|
       t.string :title
+      t.string :slug
       t.text :description
       t.integer :state, default: 1
 
@@ -19,5 +20,6 @@ class CreatePostCategories < ActiveRecord::Migration
 
     add_index :post_categories, :admin_user_id
     add_index :post_categories, :state
+    add_index :post_categories, :slug
   end
 end
