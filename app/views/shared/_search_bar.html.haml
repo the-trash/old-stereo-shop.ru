@@ -1,0 +1,6 @@
+.search-bar
+  = form_tag '/' do
+    %span.wrapper<
+      .icon
+      = text_field_tag :q, '', placeholder: 'Что вы ищете?'
+      = submit_tag 'Найти', class: 'btn btn-pink'

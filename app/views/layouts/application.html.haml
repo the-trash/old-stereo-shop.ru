@@ -17,18 +17,24 @@
     = favicon_link_tag 'favicon.png', type: 'image/png'
     = csrf_meta_tags
 
-    = stylesheet_link_tag "application"
+    /[if lt IE 9]>
+    = javascript_include_tag 'html5shiv-printshiv'
+    /[endif]
+    = stylesheet_link_tag 'application'
 
   %body
-    = render "shared/header"
+    = render 'shared/header'
+
+    .banner-wrapper
+      = render 'shared/banner'
 
     - unless current_page?(root_path)
       .breadcrumbs= render_breadcrumbs separator: ''
 
     = yield
 
-    - cache "static" do
-      = render "shared/footer"
+    - cache 'static' do
+      = render 'shared/footer'
 
     = javascript_include_tag "application"
     = render 'shared/metrics' if Rails.env.production?

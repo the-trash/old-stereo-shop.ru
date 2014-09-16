@@ -1,0 +1,47 @@
+.search-bar {
+  $spriteWidth: icons-sprite-width('magnifier');
+  $spriteHeight: icons-sprite-height('magnifier');
+
+  width: 770px;
+  padding: 6px;
+  margin: 0 auto;
+  @include box-sizing(border-box);
+  background-color: #e1e1e1;
+
+  input[type="text"] {
+    position: relative;
+    width: 587px;
+    border: 1px solid $btnBorderColor;
+    border-right: none;
+    @include box-sizing(border-box);
+    @include border-bottom-left-radius($btnBorderRadius);
+    @include border-top-left-radius($btnBorderRadius);
+    padding: 13px;
+    padding-left: $spriteWidth + 9*2; // plus sprite left
+  }
+
+  .wrapper {
+    position: relative;
+  }
+
+  .icon {
+    position: absolute;
+    z-index: 1;
+    width: $spriteWidth;
+    height: $spriteHeight;
+    left: 9px;
+    top: 50%;
+    margin-top: -$spriteWidth/2;
+    @include icons-sprite('magnifier');
+  }
+
+  .btn {
+    @include border-bottom-left-radius(0px);
+    @include border-top-left-radius(0px);
+    font-size: 24px;
+    padding: 4px 50px 10px;
+    margin-top: -1px;
+    position: relative;
+    top: 1px;
+  }
+}

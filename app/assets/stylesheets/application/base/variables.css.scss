@@ -1,8 +1,15 @@
+// VARS
+$btnBorderRadius: 7px;
+$btnBorderColor:  #898989;
+
 // COLORS
 $black:     #252525;
 $blue:      #004b8d;
+$darkGray:  #a1a1a1;
 $darkPink:  #b0276f;
+$gray:      #ccc;
 $lightBlue: #105b63;
+$lightGray: #e4e4e4;
 $lightPink: #ffccc2;
 $pink:      #c93482;
 $white:     #fff;
@@ -11,3 +18,6 @@ $white:     #fff;
 .dark-pink { color: $darkPink; }
 .pink { color: $pink; }
 .light-blue { color: $lightBlue; }
+
+.dark-gray-bg { background-color: $darkGray; }
+.light-gray-bg { background-color: $lightGray; }

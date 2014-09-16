@@ -29,8 +29,17 @@ ul.menu {
 }
 
 .btn {
-  border: 1px solid #898989;
-  @include border-radius(7px);
+  border: 1px solid $btnBorderColor;
+  @include border-radius($btnBorderRadius);
   cursor: pointer;
   padding: 2px 15px 5px;
+
+  &.btn-pink {
+    background-color: $pink;
+    color: $white;
+
+    &:hover {
+      background-color: $darkPink;
+    }
+  }
 }

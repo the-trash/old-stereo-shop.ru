@@ -6,6 +6,6 @@ class FrontController < ApplicationController
       description: 'Описание'
     }
 
-    @settings ||= @@settings
+    @settings ||= $settings
   end
 end

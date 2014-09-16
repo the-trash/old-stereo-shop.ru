@@ -1,6 +1,8 @@
-$settings =
-  if defined?(Setting) == 'constant'
-    Setting.make_hash
-  else
-    nil
-  end
+Rails.application.config.after_initialize do
+  $settings =
+    begin
+      Setting.make_hash
+    rescue
+      {}
+    end
+end

@@ -23,6 +23,7 @@ gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
+gem 'html5shiv-js-rails'
 gem 'jquery-rails'
 gem 'oily_png'
 gem 'sass-rails', '~> 4.0.3'
