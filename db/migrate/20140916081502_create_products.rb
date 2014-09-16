@@ -27,5 +27,6 @@ class CreateProducts < ActiveRecord::Migration
     add_index :products, :admin_user_id
     add_index :products, :brand_id
     add_index :products, :product_category_id
+    add_index :products, :state
   end
 end

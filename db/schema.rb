@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916081502) do
+ActiveRecord::Schema.define(version: 20140916083337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,23 @@ ActiveRecord::Schema.define(version: 20140916081502) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "product_categories", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "state",         default: 1
+    t.integer  "admin_user_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "parent_id"
+    t.integer  "depth"
+    t.hstore   "meta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_categories", ["admin_user_id"], name: "index_product_categories_on_admin_user_id", using: :btree
+  add_index "product_categories", ["state"], name: "index_product_categories_on_state", using: :btree
+
   create_table "products", force: true do |t|
     t.string   "title"
     t.string   "slug"
@@ -85,6 +102,7 @@ ActiveRecord::Schema.define(version: 20140916081502) do
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
+  add_index "products", ["state"], name: "index_products_on_state", using: :btree
 
   create_table "settings", force: true do |t|
     t.string   "key"
