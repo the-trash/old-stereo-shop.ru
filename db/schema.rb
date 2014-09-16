@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916083337) do
+ActiveRecord::Schema.define(version: 20140916084046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,26 @@ ActiveRecord::Schema.define(version: 20140916083337) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "full_text"
+    t.integer  "state",            default: 1
+    t.integer  "admin_user_id"
+    t.integer  "post_category_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "parent_id"
+    t.integer  "depth"
+    t.hstore   "meta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["admin_user_id"], name: "index_posts_on_admin_user_id", using: :btree
+  add_index "posts", ["post_category_id"], name: "index_posts_on_post_category_id", using: :btree
+  add_index "posts", ["state"], name: "index_posts_on_state", using: :btree
 
   create_table "product_categories", force: true do |t|
     t.string   "title"
