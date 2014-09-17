@@ -8,6 +8,7 @@ gem 'pg'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin-sortable-tree', github: 'nebirhos/activeadmin-sortable-tree', branch: 'master'
 gem 'carrierwave'
 gem 'carrierwave-size-validator'
 gem 'ckeditor'
@@ -57,6 +58,8 @@ gem 'omniauth-vkontakte'
 gem 'pundit'
 
 gem 'activerecord-import'
+gem 'acts_as_list'
+gem 'ancestry'
 gem 'friendly_id', '~> 5.0.4'
 gem 'hstore_accessor'
 gem 'image_suckr'

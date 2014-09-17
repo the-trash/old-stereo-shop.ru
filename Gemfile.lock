@@ -22,6 +22,15 @@ GIT
     seedbank (0.3.0)
 
 GIT
+  remote: git://github.com/nebirhos/activeadmin-sortable-tree.git
+  revision: 77a59c351e3f4d4ba2429188da3ff6f677092140
+  branch: master
+  specs:
+    activeadmin-sortable-tree (0.0.1)
+      activeadmin
+      rails (>= 3.2)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: cc21c87bb385831f2f3e4988428fffe0b5d3604c
   specs:
@@ -79,7 +88,11 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_list (0.4.0)
+      activerecord (>= 3.0)
     addressable (2.3.6)
+    ancestry (2.1.0)
+      activerecord (>= 3.0.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -492,7 +505,10 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activeadmin-sortable-tree!
   activerecord-import
+  acts_as_list
+  ancestry
   annotate (>= 2.6.0)
   autoprefixer-rails
   awesome_print

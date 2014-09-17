@@ -1,6 +1,10 @@
 class Post < ActiveRecord::Base
   include Friendable, Seoble
 
+  acts_as_list
+
+  enum state: [:draft, :published, :removed]
+
   %i(admin_user post_category).each do |m|
     belongs_to m
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916085555) do
+ActiveRecord::Schema.define(version: 20140917102517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,11 @@ ActiveRecord::Schema.define(version: 20140916085555) do
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",      default: 0
   end
 
   add_index "brands", ["admin_user_id"], name: "index_brands_on_admin_user_id", using: :btree
+  add_index "brands", ["position"], name: "index_brands_on_position", using: :btree
   add_index "brands", ["slug"], name: "index_brands_on_slug", using: :btree
   add_index "brands", ["state"], name: "index_brands_on_state", using: :btree
 
@@ -85,16 +87,15 @@ ActiveRecord::Schema.define(version: 20140916085555) do
     t.text     "description"
     t.integer  "state",         default: 1
     t.integer  "admin_user_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "parent_id"
-    t.integer  "depth"
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
+    t.integer  "depth"
   end
 
   add_index "post_categories", ["admin_user_id"], name: "index_post_categories_on_admin_user_id", using: :btree
+  add_index "post_categories", ["ancestry"], name: "index_post_categories_on_ancestry", using: :btree
   add_index "post_categories", ["slug"], name: "index_post_categories_on_slug", using: :btree
   add_index "post_categories", ["state"], name: "index_post_categories_on_state", using: :btree
 
@@ -106,16 +107,14 @@ ActiveRecord::Schema.define(version: 20140916085555) do
     t.integer  "state",            default: 1
     t.integer  "admin_user_id"
     t.integer  "post_category_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "parent_id"
-    t.integer  "depth"
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",         default: 0
   end
 
   add_index "posts", ["admin_user_id"], name: "index_posts_on_admin_user_id", using: :btree
+  add_index "posts", ["position"], name: "index_posts_on_position", using: :btree
   add_index "posts", ["post_category_id"], name: "index_posts_on_post_category_id", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
   add_index "posts", ["state"], name: "index_posts_on_state", using: :btree
@@ -126,16 +125,15 @@ ActiveRecord::Schema.define(version: 20140916085555) do
     t.text     "description"
     t.integer  "state",         default: 1
     t.integer  "admin_user_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "parent_id"
-    t.integer  "depth"
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
+    t.integer  "depth"
   end
 
   add_index "product_categories", ["admin_user_id"], name: "index_product_categories_on_admin_user_id", using: :btree
+  add_index "product_categories", ["ancestry"], name: "index_product_categories_on_ancestry", using: :btree
   add_index "product_categories", ["slug"], name: "index_product_categories_on_slug", using: :btree
   add_index "product_categories", ["state"], name: "index_product_categories_on_state", using: :btree
 
@@ -150,17 +148,15 @@ ActiveRecord::Schema.define(version: 20140916085555) do
     t.integer  "admin_user_id"
     t.integer  "brand_id"
     t.integer  "product_category_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "parent_id"
-    t.integer  "depth"
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",                                     default: 0
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
   add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
+  add_index "products", ["position"], name: "index_products_on_position", using: :btree
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
   add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
   add_index "products", ["state"], name: "index_products_on_state", using: :btree
