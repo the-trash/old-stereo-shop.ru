@@ -7,12 +7,11 @@ gem 'rails_config', '0.2.5'
 gem 'pg'
 
 ## ActiveAdmin
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'activeadmin-sortable-tree', github: 'nebirhos/activeadmin-sortable-tree', branch: 'master'
 gem 'carrierwave'
 gem 'carrierwave-size-validator'
 gem 'ckeditor'
-gem 'mini_magick'
 gem 'normalize-rails'
 gem 'paper_trail'
 gem 'phony_rails'

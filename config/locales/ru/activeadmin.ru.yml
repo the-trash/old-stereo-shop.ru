@@ -124,3 +124,9 @@ ru:
       block: "Список"
       grid: "Сетка"
       blog: "Блог"
+    custom_menu:
+      users: Пользователи
+      products: Товары
+      posts: Новости
+      back_to_site: Сайт
+      admin: Админка

@@ -1,5 +1,8 @@
 ActiveAdmin.register User do
-  menu priority: 1
+  menu parent: I18n.t('active_admin.custom_menu.users'), priority: 2
+
+  actions :all, except: :show
+
   permit_params :email, :birthday, :phone, :first_name, :last_name, :middle_name,
                 :password, :password_confirmation
 

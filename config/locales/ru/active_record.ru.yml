@@ -11,31 +11,36 @@ ru:
         few: Пользователи
         many: Пользователи
         other: Пользователи
+      admin_user:
+        one: Админ
+        few: Админы
+        many: Админов
+        other: Админы
       brand:
         one: Бренд
         few: Бренды
         many: Брендов
-        other: Брендов
+        other: Бренды
       product:
         one: Продукт
         few: Продукты
         many: Продуктов
-        other: Продуктов
+        other: Продукты
       product_category:
         one: Продуктовая категория
         few: Продуктовые категории
         many: Продуктовых категорий
-        other: Продуктовых категорий
+        other: Продуктовые категории
       post:
         one: Пост
         few: Посты
         many: Постов
-        other: Постов
+        other: Посты
       post_category:
         one: Категория постов
         few: Категории постов
         many: Категорий постов
-        other: Категорий постов
+        other: Категории постов
     attributes:
       setting:
         description: Описание
@@ -51,6 +56,11 @@ ru:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         phone: 'Номер телефона'
+      admin_user:
+        email: 'E-mail'
+        current_sign_in_at: Последний раз авторизован
+        sign_in_count: Авторизовывался
+        created_at: Создан
 
       meta: &meta
         keywords: Ключевые слова
@@ -66,12 +76,17 @@ ru:
         title: Заголовок
         description: Описание
         slug: Алиас
+        state: Статус
+        created_at: Дата создания
+        updated_at: Дата обновления
         <<: *meta
 
       post:
-        <<: *states
         <<: *main
         full_text: Полное описание
+        admin_user: Создатель
+        post_category: Категория постов
+        position: Позиция
       post_category:
         <<: *states
         <<: *main

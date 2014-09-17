@@ -1,4 +1,8 @@
 ActiveAdmin.register AdminUser do
+  menu parent: I18n.t('active_admin.custom_menu.users'), priority: 1
+
+  actions :all, except: :show
+
   permit_params :email, :password, :password_confirmation
 
   index do
