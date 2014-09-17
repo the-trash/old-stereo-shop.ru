@@ -11,6 +11,31 @@ ru:
         few: Пользователи
         many: Пользователи
         other: Пользователи
+      brand:
+        one: Бренд
+        few: Бренды
+        many: Брендов
+        other: Брендов
+      product:
+        one: Продукт
+        few: Продукты
+        many: Продуктов
+        other: Продуктов
+      product_category:
+        one: Продуктовая категория
+        few: Продуктовые категории
+        many: Продуктовых категорий
+        other: Продуктовых категорий
+      post:
+        one: Пост
+        few: Посты
+        many: Постов
+        other: Постов
+      post_category:
+        one: Категория постов
+        few: Категории постов
+        many: Категорий постов
+        other: Категорий постов
     attributes:
       setting:
         description: Описание
@@ -26,3 +51,40 @@ ru:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         phone: 'Номер телефона'
+
+      meta: &meta
+        keywords: Ключевые слова
+        description: Описание
+        title: Заголовок
+      states: &states
+        state:
+          draft: Черновик
+          published: Опубликовано
+          removed: Удалено
+          moderated: На модерации
+      main: &main
+        title: Заголовок
+        description: Описание
+        slug: Алиас
+        <<: *meta
+
+      post:
+        <<: *states
+        <<: *main
+        full_text: Полное описание
+      post_category:
+        <<: *states
+        <<: *main
+      product:
+        <<: *states
+        <<: *main
+        sku: Артикул
+        price: Цена
+        discount: Скидка
+      product_category:
+        <<: *states
+        <<: *main
+      brand:
+        <<: *states
+        <<: *main
+        site_link: Ссылка на сайт
