@@ -1,5 +1,5 @@
 ActiveAdmin.register Brand do
-  menu parent: I18n.t('active_admin.custom_menu.products'), priority: 2
+  menu parent: I18n.t('active_admin.custom_menu.products'), priority: 1
 
   actions :all, except: :show
 
@@ -30,6 +30,8 @@ ActiveAdmin.register Brand do
   filter :created_at
   filter :position
 
+  Brand::STATES.each { |st| scope st }
+
   form do |f|
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
@@ -37,7 +39,7 @@ ActiveAdmin.register Brand do
         f.input :description
         f.input :site_link
         f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :state, as: :select, collection: Post.states
+        f.input :state, as: :select, collection: Brand.states
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

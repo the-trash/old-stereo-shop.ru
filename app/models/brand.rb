@@ -1,9 +1,7 @@
 class Brand < ActiveRecord::Base
-  include Friendable, Seoble
+  include Friendable, Seoble, Statable
 
   acts_as_list
-
-  enum state: [:draft, :published, :removed]
 
   belongs_to :admin_user
 

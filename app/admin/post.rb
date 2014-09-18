@@ -22,6 +22,8 @@ ActiveAdmin.register Post do
   filter :created_at
   filter :position
 
+  Post::STATES.each { |st| scope st }
+
   form do |f|
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do

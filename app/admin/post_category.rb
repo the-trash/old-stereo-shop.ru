@@ -20,6 +20,8 @@ ActiveAdmin.register PostCategory do
   filter :admin_user, collection: AdminUser.for_select
   filter :created_at
 
+  PostCategory::STATES.each { |st| scope st }
+
   form do |f|
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
