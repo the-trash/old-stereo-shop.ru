@@ -79,27 +79,24 @@ ru:
         state: Статус
         created_at: Дата создания
         updated_at: Дата обновления
+        admin_user: Создатель
         <<: *meta
 
       post:
         <<: *main
         full_text: Полное описание
-        admin_user: Создатель
         post_category: Категория постов
         position: Позиция
       post_category:
-        <<: *states
         <<: *main
+        posts: Посты
       product:
-        <<: *states
         <<: *main
         sku: Артикул
         price: Цена
         discount: Скидка
       product_category:
-        <<: *states
         <<: *main
       brand:
-        <<: *states
         <<: *main
         site_link: Ссылка на сайт
