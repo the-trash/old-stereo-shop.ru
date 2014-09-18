@@ -80,13 +80,13 @@ ru:
         created_at: Дата создания
         updated_at: Дата обновления
         admin_user: Создатель
+        position: Позиция
         <<: *meta
 
       post:
         <<: *main
         full_text: Полное описание
         post_category: Категория постов
-        position: Позиция
       post_category:
         <<: *main
         posts: Посты

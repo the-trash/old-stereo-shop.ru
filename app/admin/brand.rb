@@ -1,15 +1,24 @@
-ActiveAdmin.register Post do
-  menu parent: I18n.t('active_admin.custom_menu.posts'), priority: 2
+ActiveAdmin.register Brand do
+  menu parent: I18n.t('active_admin.custom_menu.products'), priority: 2
 
   actions :all, except: :show
 
-  permit_params :title, :description, :full_text, :state, :post_category_id,
-    :admin_user_id, :position, meta: [:keywords, :seo_description, :seo_title]
+  permit_params :title, :description, :site_link, :state, :admin_user_id,
+    :position, meta: [:keywords, :seo_description, :seo_title]
 
   index do
     selectable_column
     column :id
-    column :title
+    column :title do |brand|
+      link =
+        if brand.site_link?
+          link_to(I18n.t('active_admin.views.site'), brand.site_link, target: '_blank')
+        else
+          ''
+        end
+
+      content_tag(:h4, brand.title) + link
+    end
     column :description
     column :created_at
     actions
@@ -18,7 +27,6 @@ ActiveAdmin.register Post do
   filter :id
   filter :title
   filter :admin_user, collection: AdminUser.for_select
-  filter :post_category, collection: PostCategory.for_select
   filter :created_at
   filter :position
 
@@ -27,9 +35,8 @@ ActiveAdmin.register Post do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
         f.input :description
-        f.input :full_text
+        f.input :site_link
         f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :post_category, as: :select, collection: PostCategory.for_select
         f.input :state, as: :select, collection: Post.states
       end
 

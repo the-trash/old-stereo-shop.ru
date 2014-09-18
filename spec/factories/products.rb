@@ -4,10 +4,10 @@ FactoryGirl.define do
     product_category
     brand
     sequence(:title) { Faker::Commerce.product_name }
-    sku Faker::Code.isbn(Random.new.rand(5..8))
-    description Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n")
-    price Random.new.rand(10..100)
-    discount Random.new.rand(0..9)
+    sku { Faker::Code.isbn(Random.new.rand(5..8)) }
+    description { Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n") }
+    price { Random.new.rand(10..100) }
+    discount { Random.new.rand(0..9) }
     meta {
       {
         keywords: Faker::Lorem.words(Random.new.rand(4..10)).join(','),
