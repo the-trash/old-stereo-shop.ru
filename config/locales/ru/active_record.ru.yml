@@ -64,8 +64,8 @@ ru:
 
       meta: &meta
         keywords: Ключевые слова
-        description: Описание
-        title: Заголовок
+        seo_description: Описание
+        seo_title: Заголовок
       states: &states
         state:
           draft: Черновик

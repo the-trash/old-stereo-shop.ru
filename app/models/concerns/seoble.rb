@@ -4,7 +4,7 @@ module Seoble
   included do
     hstore_accessor :meta,
       keywords: :string,
-      title: :string,
-      description: :string
+      seo_title: :string,
+      seo_description: :string
   end
 end

@@ -5,9 +5,9 @@ class FrontController < ApplicationController
 
   def set_variables
     @meta = {
-      title: 'Стерео шоп',
+      seo_title: 'Стерео шоп',
       keywords: 'Ключевики',
-      description: 'Описание'
+      seo_description: 'Описание'
     }
 
     @settings ||= $settings

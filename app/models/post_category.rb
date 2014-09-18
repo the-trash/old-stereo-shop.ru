@@ -10,4 +10,8 @@ class PostCategory < ActiveRecord::Base
   has_many :posts, dependent: :destroy
 
   validates :title, :admin_user_id, presence: true
+
+  def self.for_select
+    PostCategory.all.map{ |pc| [pc.title, pc.id] }
+  end
 end

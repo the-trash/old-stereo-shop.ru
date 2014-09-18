@@ -130,3 +130,6 @@ ru:
       posts: Новости
       back_to_site: Сайт
       admin: Админка
+    views:
+      meta: Meta информация
+      main: Основаня информация

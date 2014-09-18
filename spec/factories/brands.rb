@@ -1,14 +1,14 @@
 FactoryGirl.define do
   factory :brand do
     admin_user
-    title Faker::Lorem.word
+    sequence(:title) { Faker::Lorem.sentence }
     description Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n")
     site_link Faker::Internet.url
     meta {
       {
         keywords: Faker::Lorem.words(Random.new.rand(4..10)).join(','),
-        title: Faker::Lorem.sentence,
-        description: Faker::Lorem.sentence
+        seo_title: Faker::Lorem.sentence,
+        seo_description: Faker::Lorem.sentence
       }
     }
 

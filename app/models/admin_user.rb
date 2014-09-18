@@ -11,4 +11,8 @@ class AdminUser < ActiveRecord::Base
   %i(products product_categories posts post_categories).each do |m|
     has_many m, dependent: :destroy
   end
+
+  def self.for_select
+    AdminUser.all.map { |u| [u.email, u.id] }
+  end
 end
