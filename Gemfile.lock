@@ -22,6 +22,15 @@ GIT
     seedbank (0.3.0)
 
 GIT
+  remote: git://github.com/mfairburn/activeadmin-select2.git
+  revision: e2c2bd12cd4ecf50c2826b4dc423e9fcaca633cb
+  specs:
+    activeadmin-select2 (0.1.5)
+      activeadmin
+      jquery-rails
+      select2-rails
+
+GIT
   remote: git://github.com/nebirhos/activeadmin-sortable-tree.git
   revision: 77a59c351e3f4d4ba2429188da3ff6f677092140
   branch: master
@@ -433,6 +442,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    select2-rails (3.5.9.1)
+      thor (~> 0.14)
     sexp_processor (4.4.4)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
@@ -502,6 +513,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activeadmin-select2!
   activeadmin-sortable-tree!
   activerecord-import
   acts_as_list
@@ -574,6 +586,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   seedbank!
+  select2-rails
   shoulda-matchers
   sidekiq
   simple_captcha2

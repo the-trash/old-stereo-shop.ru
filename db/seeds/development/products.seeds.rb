@@ -1,5 +1,5 @@
 after 'development:brands' do
-  PRODUCT_COUNT = 50
+  PRODUCT_COUNT = 500
   admins = AdminUser.all
   product_categories = ProductCategory.all
   brands = Brand.all

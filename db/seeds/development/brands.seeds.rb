@@ -1,5 +1,5 @@
 after 'development:product_categories' do
-  BRAND_COUNT = 10
+  BRAND_COUNT = 100
   admins = AdminUser.all
 
   progressbar =

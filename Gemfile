@@ -8,6 +8,7 @@ gem 'pg'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 gem 'activeadmin-sortable-tree', github: 'nebirhos/activeadmin-sortable-tree', branch: 'master'
 gem 'carrierwave'
 gem 'carrierwave-size-validator'
@@ -63,6 +64,7 @@ gem 'friendly_id', '~> 5.0.4'
 gem 'hstore_accessor'
 gem 'image_suckr'
 gem 'ruby-progressbar'
+gem 'select2-rails'
 gem 'sidekiq'
 gem 'unicorn'
 

@@ -1,4 +1,4 @@
-USERS_COUNT  = 5
+USERS_COUNT  = 100
 ADMINS_COUNT = 2
 
 admin_progressbar =

@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
 
   index do
     selectable_column
+    sortable_handle_column
     column :id
     column :title do |product|
       category =

@@ -1,5 +1,5 @@
 after 'development:post_categories' do
-  POST_COUNT = 50
+  POST_COUNT = 250
   admins = AdminUser.all
   post_categories = PostCategory.all
 
