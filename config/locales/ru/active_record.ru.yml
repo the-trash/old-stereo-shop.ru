@@ -95,6 +95,7 @@ ru:
         sku: Артикул
         price: Цена
         discount: Скидка
+        product_category: Категория продуктов
       product_category:
         <<: *main
       brand:

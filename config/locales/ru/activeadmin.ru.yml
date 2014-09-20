@@ -134,3 +134,6 @@ ru:
       meta: Meta информация
       main: Основаня информация
       site: Ссылка на сайт производителя
+      price: "Цена: %{price}"
+      discount: "Скидка: %{discount}"
+      product_category: "Категория: %{category}"

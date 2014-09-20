@@ -13,6 +13,6 @@ class AdminUser < ActiveRecord::Base
   end
 
   def self.for_select
-    AdminUser.all.map { |u| [u.email, u.id] }
+    all.map { |u| [u.email, u.id] }
   end
 end

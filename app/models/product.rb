@@ -9,4 +9,6 @@ class Product < ActiveRecord::Base
 
   validates :title, :description, :product_category_id, :admin_user_id,
     :brand_id, presence: true
+
+  delegate :title, to: :product_category, prefix: true
 end

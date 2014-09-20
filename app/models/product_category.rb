@@ -8,4 +8,8 @@ class ProductCategory < ActiveRecord::Base
   has_many :products, dependent: :destroy
 
   validates :title, :admin_user_id, presence: true
+
+  def self.for_select
+    all.map { |u| [u.title, u.id] }
+  end
 end
