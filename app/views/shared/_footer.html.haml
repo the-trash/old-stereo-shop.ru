@@ -1,11 +1,55 @@
 %footer
-  .row
+  .row.our-products
     .container
-      наша продукция
+      %h2
+        Наша продукция
+        %span.icons-arrow-black-down
+      %ul.menu
+        %li= link_to 'Sale', '#', class: 'pink'
+        - ["MC-головки звукоснимателя", "ММ-звукосниматели", "МС-трансформаторы", "Фонокорректоры", "Предварительные усилители", "Усилители для наушников", "Согласующие трансформаторы", "Кабели", "ЦАПы", "Розетка 6-местная (сетевая колодка 220В)", "Аксессуары", "Пневмоплатформа"].each do |title|
+          %li= link_to title, '#'
   .row.dark-gray-bg
     .container
-      поиск
+      %h2.pull-left
+        Поиск
+        %span.icons-arrow-black-right
       = render 'shared/search_bar'
-  .row
+  .row.who-are-we
     .container
-      кто мы
+      .pull-left
+        %h2
+          Кто мы
+          %span.icons-arrow-black-down
+        %ul.menu.left-menu
+          %li= link_to 'О нас', '#'
+          %li= link_to 'Бренды', '#'
+          %li
+            = link_to 'Контакты', '#'
+            .help-block
+              %p= @settings[:shop_phone]
+              %p.pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
+          %li= link_to 'Новости', '#'
+          %li.pull-right= link_to 'Полезная информация', '#'
+      .pull-left.right-block
+        .gray-block
+          %h2
+            Удобство и безопасность
+            %span.icons-arrow-black-down
+          %ul.menu.right-menu
+            %li= link_to 'Оплата', '#'
+            %li
+              = link_to 'Доставка', '#'
+              .help-block
+                - @settings[:delivery_cities].split(',').each do |city|
+                  %p= city
+            %li
+              = link_to 'Помощь и обратная связь', '#'
+              .help-block
+                %p.light-blue Безопасность
+                %p.light-blue Возврат денег
+        .gray-block.subscribe
+          %p Получить рассылку на новинки и т.д.
+          = form_tag '/', class: 'inline-one-input' do
+            %span.wrapper<
+              = text_field_tag :email, '', placeholder: 'Укажите вашу почту'
+              = submit_tag 'Подписаться', class: 'btn btn-pink'

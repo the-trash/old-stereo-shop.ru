@@ -19,8 +19,39 @@ a {
   }
 }
 
+h1 {
+
+}
+
+h2 {
+  font-size: 37px;
+  font-weight: normal;
+  color: $lightBlack;
+
+  [class^="icons-"] {
+    display: inline-block;
+  }
+
+  .icons-arrow-black-right {
+    position: relative;
+    top: -6px;
+    margin-left: 15px;
+    width: icons-sprite-width('arrow-black-right');
+    height: icons-sprite-height('arrow-black-right');
+  }
+
+  .icons-arrow-black-down {
+    position: relative;
+    top: 12px;
+    margin-left: 5px;
+    width: icons-sprite-width('arrow-black-down');
+    height: icons-sprite-height('arrow-black-down');
+  }
+}
+
 //CONTAINER
 .container {
   margin: 0 auto;
   width: 1168px;
+  @include clearfix();
 }

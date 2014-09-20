@@ -1,9 +1,9 @@
 module Statable
   extend ActiveSupport::Concern
 
-  included do
-    STATES = %i(draft published removed moderated)
+  STATES = %i(draft published removed moderated).freeze
 
+  included do
     enum state: STATES
 
     self.states.each do |st, i|

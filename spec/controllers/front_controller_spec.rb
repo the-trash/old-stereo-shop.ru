@@ -15,7 +15,7 @@ RSpec.describe FrontController, :type => :controller do
 
     it "assigns @meta" do
       get :index
-      expect(assigns(:meta).keys.sort).to eq %i(description keywords title)
+      expect(assigns(:meta).keys.sort).to eq %i(keywords seo_description seo_title)
     end
   end
 
