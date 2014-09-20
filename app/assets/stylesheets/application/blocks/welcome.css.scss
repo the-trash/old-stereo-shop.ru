@@ -1,0 +1,39 @@
+.categories-list {
+  ul {
+    display: block;
+    @extend .unstyled;
+    @include clearfix();
+
+    li {
+      display: block;
+      float: left;
+      width: 270px;
+      min-height: 238px;
+      margin-right: 27px;
+      font-size: 24px;
+
+      &:nth-of-type(4n){
+        margin-right: 0;
+      }
+
+      img {
+        width: 260px;
+        max-width: 260px;
+        border: 5px solid $gray;
+      }
+
+      // grayscale fix
+      a:hover img {
+        -webkit-filter: grayscale(0%);
+        filter: none;
+      }
+      a svg {
+        opacity: 1;
+        @include transition(opacity .5s ease);
+      }
+      a:hover svg {
+        opacity: 0;
+      }
+    }
+  }
+}

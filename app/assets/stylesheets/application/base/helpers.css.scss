@@ -8,11 +8,15 @@
   cursor: pointer;
 }
 
-ul.menu {
-  display: block;
+.unstyled {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+ul.menu {
+  display: block;
+  @extend .unstyled;
   @include clearfix();
 
   li {
