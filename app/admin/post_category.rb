@@ -3,15 +3,16 @@ ActiveAdmin.register PostCategory do
 
   actions :all, except: :show
 
+  sortable tree: true,
+    collapsible: true,
+    start_collapsed: true,
+    max_levels: 3
+
   permit_params :title, :descriton, :state, :admin_user_id,
     meta: [:keywords, :description, :title]
 
-  index do
-    selectable_column
-    column :id
-    column :title
-    column :description
-    column :created_at
+  index as: :sortable do
+    label :title
     actions
   end
 

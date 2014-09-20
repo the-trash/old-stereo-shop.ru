@@ -90,12 +90,14 @@ ActiveRecord::Schema.define(version: 20140917102517) do
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",      default: 0
     t.string   "ancestry"
     t.integer  "depth"
   end
 
   add_index "post_categories", ["admin_user_id"], name: "index_post_categories_on_admin_user_id", using: :btree
   add_index "post_categories", ["ancestry"], name: "index_post_categories_on_ancestry", using: :btree
+  add_index "post_categories", ["position"], name: "index_post_categories_on_position", using: :btree
   add_index "post_categories", ["slug"], name: "index_post_categories_on_slug", using: :btree
   add_index "post_categories", ["state"], name: "index_post_categories_on_state", using: :btree
 
@@ -128,12 +130,14 @@ ActiveRecord::Schema.define(version: 20140917102517) do
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",      default: 0
     t.string   "ancestry"
     t.integer  "depth"
   end
 
   add_index "product_categories", ["admin_user_id"], name: "index_product_categories_on_admin_user_id", using: :btree
   add_index "product_categories", ["ancestry"], name: "index_product_categories_on_ancestry", using: :btree
+  add_index "product_categories", ["position"], name: "index_product_categories_on_position", using: :btree
   add_index "product_categories", ["slug"], name: "index_product_categories_on_slug", using: :btree
   add_index "product_categories", ["state"], name: "index_product_categories_on_state", using: :btree
 

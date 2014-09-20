@@ -3,14 +3,16 @@ ActiveAdmin.register ProductCategory do
 
   actions :all, except: :show
 
+  sortable tree: true,
+    collapsible: true,
+    start_collapsed: true,
+    max_levels: 3
+
   permit_params :title, :description, :state, :admin_user_id,
     meta: [:keywords, :seo_description, :seo_title]
 
-  index do
-    selectable_column
-    column :id
-    column :title
-    column :description
+  index as: :sortable do
+    label :title
     actions
   end
 
@@ -27,7 +29,7 @@ ActiveAdmin.register ProductCategory do
         f.input :title
         f.input :description
         f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :state, as: :select, collection: Brand.states
+        f.input :state, as: :select, collection: ProductCategory.states
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

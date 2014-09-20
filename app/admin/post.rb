@@ -9,6 +9,7 @@ ActiveAdmin.register Post do
   index do
     selectable_column
     column :id
+    column :position
     column :title
     column :description
     column :created_at

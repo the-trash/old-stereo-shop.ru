@@ -6,7 +6,7 @@ class AddNeedsColumnsAndRemoveExcess < ActiveRecord::Migration
       end
     end
 
-    %i(posts products brands).each do |t|
+    %i(posts products brands post_categories product_categories).each do |t|
       add_column t, :position, :integer, default: 0
       add_index t, :position
     end

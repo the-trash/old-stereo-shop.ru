@@ -15,7 +15,9 @@ after 'development:post_categories' do
       POST_COUNT.times do |n|
         a << FactoryGirl.build(:post, {
           admin_user: admins.sample,
-          post_category: post_categories.sample
+          post_category: post_categories.sample,
+          state: rand(0..(Post::STATES.count - 1)),
+          position: n
         })
         progressbar.increment
       end
