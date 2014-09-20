@@ -12,6 +12,7 @@ set :deploy_to, "/srv/www/#{ fetch :application }/#{ fetch :stage }"
 
 set :unicorn_rack_env, "#{ fetch(:stage) }"
 set :unicorn_pid, "#{ shared_path }/tmp/pids/unicorn.#{ fetch :stage }.pid"
+set :unicorn_restart_sleep_time, 1
 
 set :assets_roles, [:web, :app]
 
@@ -24,4 +25,4 @@ set :keep_releases, 3
 
 set :bundle_path, -> { shared_path.join('vendor/bundle') }
 
-after  'deploy:publishing', 'unicorn:restart'
+after  'deploy:publishing', 'unicorn:legacy_restart'
