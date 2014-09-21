@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:title) { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n") }
     site_link { Faker::Internet.url(Faker::Lorem.word + Faker::Internet.domain_name) }
+    state 1
     meta {
       {
         keywords: Faker::Lorem.words(Random.new.rand(4..10)).join(','),

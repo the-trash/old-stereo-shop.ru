@@ -34,7 +34,6 @@ after 'development:users' do
         rand(3..10).times do |n|
           a << FactoryGirl.build(:product_category, {
             admin_user: admins.sample,
-            state: rand(0..(Brand::STATES.count - 1)),
             parent: all_cats.sample
           })
         end

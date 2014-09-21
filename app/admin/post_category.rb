@@ -8,7 +8,7 @@ ActiveAdmin.register PostCategory do
     start_collapsed: true,
     max_levels: 3
 
-  permit_params :title, :descriton, :state, :admin_user_id,
+  permit_params :title, :descriton, :state, :admin_user_id, :parent_id,
     meta: [:keywords, :description, :title]
 
   index as: :sortable do
@@ -21,6 +21,7 @@ ActiveAdmin.register PostCategory do
   filter :admin_user, collection: AdminUser.for_select
   filter :created_at
 
+  scope :all
   PostCategory::STATES.each { |st| scope st }
 
   form do |f|
@@ -28,8 +29,9 @@ ActiveAdmin.register PostCategory do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
         f.input :description
-        f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :state, as: :select, collection: PostCategory.states
+        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
+        f.input :parent_id, as: :select2, collection: PostCategory.for_select, selected: resource.parent.try(:id)
+        f.input :state, as: :select2, collection: PostCategory.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

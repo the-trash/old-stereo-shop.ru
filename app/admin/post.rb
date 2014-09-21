@@ -25,6 +25,7 @@ ActiveAdmin.register Post do
   filter :created_at
   filter :position
 
+  scope :all
   Post::STATES.each { |st| scope st }
 
   form do |f|
@@ -33,9 +34,9 @@ ActiveAdmin.register Post do
         f.input :title
         f.input :description
         f.input :full_text
-        f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :post_category, as: :select, collection: PostCategory.for_select
-        f.input :state, as: :select, collection: Post.states
+        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
+        f.input :post_category, as: :select2, collection: PostCategory.for_select, selected: resource.post_category_id
+        f.input :state, as: :select2, collection: Post.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

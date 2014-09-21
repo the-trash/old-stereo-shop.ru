@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :product_category do
     admin_user
     sequence(:title) { Faker::Lorem.sentence }
+    state 1
     description { Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n") }
     meta {
       {

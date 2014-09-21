@@ -5,7 +5,6 @@ module ActiveAdmin
         column '', class: 'activeadmin_sortable_list' do |resource|
           opts_list = {
             class: 'handle',
-            content: '&#x2195;'.html_safe,
             data: {
               sort_url: url_for([:sort_list, :admin, resource]),
               position: resource.position

@@ -18,7 +18,6 @@ after 'development:brands' do
           admin_user: admins.sample,
           product_category: product_categories.sample,
           brand: brands.sample,
-          state: rand(0..(Product::STATES.count - 1)),
           position: n
         })
         progressbar.increment

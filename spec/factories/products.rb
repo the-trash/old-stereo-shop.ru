@@ -3,6 +3,7 @@ FactoryGirl.define do
     admin_user
     product_category
     brand
+    state 1
     sequence(:title) { Faker::Commerce.product_name }
     sku { Faker::Code.isbn(Random.new.rand(5..8)) }
     description { Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n") }

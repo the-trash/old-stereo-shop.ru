@@ -18,7 +18,7 @@ ActiveAdmin.register Product do
       content_tag(:h4, product.title) +
       content_tag(:p, category)
     end
-    # column :description
+    column :description
     column :price do |product|
       content_tag(:p, I18n.t('active_admin.views.price', price: product.price)) +
       content_tag(:p, I18n.t('active_admin.views.discount', discount: product.discount))
@@ -44,9 +44,9 @@ ActiveAdmin.register Product do
         f.input :description
         f.input :price
         f.input :discount
-        f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :product_category, as: :select, collection: ProductCategory.for_select
-        f.input :state, as: :select, collection: Brand.states
+        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
+        f.input :product_category, as: :select2, collection: ProductCategory.for_select, selected: resource.product_category_id
+        f.input :state, as: :select2, collection: Product.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

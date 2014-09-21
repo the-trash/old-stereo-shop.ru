@@ -33,6 +33,7 @@ ActiveAdmin.register Brand do
   filter :created_at
   filter :position
 
+  scope :all
   Brand::STATES.each { |st| scope st }
 
   form do |f|
@@ -41,8 +42,8 @@ ActiveAdmin.register Brand do
         f.input :title
         f.input :description
         f.input :site_link
-        f.input :admin_user, as: :select, collection: AdminUser.for_select
-        f.input :state, as: :select, collection: Brand.states
+        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
+        f.input :state, as: :select2, collection: Brand.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

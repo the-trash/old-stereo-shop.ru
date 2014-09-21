@@ -90,6 +90,7 @@ ru:
       post_category:
         <<: *main
         posts: Посты
+        parent_id: Родительская категория
       product:
         <<: *main
         sku: Артикул
@@ -98,6 +99,8 @@ ru:
         product_category: Категория продуктов
       product_category:
         <<: *main
+        products: Продукты
+        parent_id: Родительская категория
       brand:
         <<: *main
         site_link: Ссылка на сайт
