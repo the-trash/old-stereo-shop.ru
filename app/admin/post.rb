@@ -2,14 +2,16 @@ ActiveAdmin.register Post do
   menu parent: I18n.t('active_admin.custom_menu.posts'), priority: 2
 
   actions :all, except: :show
+  sortable_list
+  config.sort_order = 'position_asc'
 
   permit_params :title, :description, :full_text, :state, :post_category_id,
     :admin_user_id, :position, meta: [:keywords, :seo_description, :seo_title]
 
   index do
     selectable_column
+    sortable_handle_column
     column :id
-    column :position
     column :title
     column :description
     column :created_at

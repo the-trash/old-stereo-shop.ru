@@ -2,12 +2,15 @@ ActiveAdmin.register Brand do
   menu parent: I18n.t('active_admin.custom_menu.products'), priority: 1
 
   actions :all, except: :show
+  sortable_list
+  config.sort_order = 'position_asc'
 
   permit_params :title, :description, :site_link, :state, :admin_user_id,
     :position, meta: [:keywords, :seo_description, :seo_title]
 
   index do
     selectable_column
+    sortable_handle_column
     column :id
     column :title do |brand|
       link =

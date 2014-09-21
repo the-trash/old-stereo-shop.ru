@@ -2,6 +2,8 @@ ActiveAdmin.register Product do
   menu parent: I18n.t('active_admin.custom_menu.products'), priority: 3
 
   actions :all, except: :show
+  sortable_list
+  config.sort_order = 'position_asc'
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount,
     :product_category_id, :position, meta: [:keywords, :seo_description, :seo_title]
@@ -16,7 +18,7 @@ ActiveAdmin.register Product do
       content_tag(:h4, product.title) +
       content_tag(:p, category)
     end
-    column :description
+    # column :description
     column :price do |product|
       content_tag(:p, I18n.t('active_admin.views.price', price: product.price)) +
       content_tag(:p, I18n.t('active_admin.views.discount', discount: product.discount))
@@ -32,6 +34,7 @@ ActiveAdmin.register Product do
   filter :product_category, collection: ProductCategory.for_select
   filter :created_at
 
+  scope :all
   Product::STATES.each { |st| scope st }
 
   form do |f|
