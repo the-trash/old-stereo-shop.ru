@@ -1,7 +1,15 @@
 ActiveAdmin.register Product do
   menu parent: I18n.t('active_admin.custom_menu.products'), priority: 3
 
-  actions :all, except: :show
+  Product::states.each do |st, i|
+    batch_action :"#{ st }" do |ids|
+      Product.where(id: ids).update_all(state: i)
+      redirect_to collection_path, notice: I18n.t('active_admin.views.batch_action', count: ids.size)
+    end
+  end
+
+  actions :all, except: [:show, :destroy]
+
   sortable_list
   config.sort_order = 'position_asc'
 
@@ -46,7 +54,7 @@ ActiveAdmin.register Product do
         f.input :discount
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
         f.input :product_category, as: :select2, collection: ProductCategory.for_select, selected: resource.product_category_id
-        f.input :state, as: :select2, collection: Product.states.keys, selected: resource.state
+        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

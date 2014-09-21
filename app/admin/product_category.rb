@@ -1,7 +1,14 @@
 ActiveAdmin.register ProductCategory do
   menu parent: I18n.t('active_admin.custom_menu.products'), priority: 2
 
-  actions :all, except: :show
+  ProductCategory::states.each do |st, i|
+    batch_action :"#{ st }" do |ids|
+      ProductCategory.where(id: ids).update_all(state: i)
+      redirect_to collection_path, notice: I18n.t('active_admin.views.batch_action', count: ids.size)
+    end
+  end
+
+  actions :all, except: [:show, :destroy]
 
   sortable tree: true,
     collapsible: true,
@@ -30,8 +37,8 @@ ActiveAdmin.register ProductCategory do
         f.input :title
         f.input :description
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
-        f.input :parent_id, as: :select2, collection: ProductCategory.for_select, selected: resource.parent.try(:id)
-        f.input :state, as: :select2, collection: ProductCategory.states.keys, selected: resource.state
+        f.input :parent_id, as: :select2, collection: resource_class.for_select, selected: resource.parent.try(:id)
+        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

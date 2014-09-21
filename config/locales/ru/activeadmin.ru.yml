@@ -72,6 +72,10 @@ ru:
       action_label: "%{title} выбранное"
       labels:
         destroy: "Удалить"
+        draft: Сделать черновиками
+        published: Опубликовать
+        removed: Удалить
+        moderated: Отправить на модерацию
     comments:
       resource_type: "Тип ресурса"
       author_type: "Тип автора"
@@ -137,3 +141,8 @@ ru:
       price: "Цена: %{price}"
       discount: "Скидка: %{discount}"
       product_category: "Категория: %{category}"
+      batch_action:
+        zero: Не одной записи не было выбранное
+        one: "(1) запись успешно обновлена"
+        few: "(%{count}) записи успешно обновлено"
+        other: "(%{count}) записей успешно обновлено"
