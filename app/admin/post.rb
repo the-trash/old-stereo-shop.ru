@@ -16,6 +16,16 @@ ActiveAdmin.register Post do
   permit_params :title, :description, :full_text, :state, :post_category_id,
     :admin_user_id, :position, meta: [:keywords, :seo_description, :seo_title]
 
+  controller do
+    def update
+      update! do |format|
+        format.html {
+          redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
+        }
+      end
+    end
+  end
+
   index do
     selectable_column
     sortable_handle_column
@@ -40,7 +50,7 @@ ActiveAdmin.register Post do
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
-        f.input :description
+        f.input :description, as: :wysihtml5
         f.input :full_text
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
         f.input :post_category, as: :select2, collection: PostCategory.for_select, selected: resource.post_category_id

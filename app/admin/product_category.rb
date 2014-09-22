@@ -18,6 +18,16 @@ ActiveAdmin.register ProductCategory do
   permit_params :title, :description, :state, :admin_user_id, :parent_id,
     meta: [:keywords, :seo_description, :seo_title]
 
+  controller do
+    def update
+      update! do |format|
+        format.html {
+          redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
+        }
+      end
+    end
+  end
+
   index as: :sortable do
     label :title
     actions
@@ -35,7 +45,7 @@ ActiveAdmin.register ProductCategory do
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
-        f.input :description
+        f.input :description, as: :wysihtml5
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
         f.input :parent_id, as: :select2, collection: resource_class.for_select, selected: resource.parent.try(:id)
         f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state

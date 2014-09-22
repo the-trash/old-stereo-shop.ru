@@ -66,6 +66,23 @@ GIT
       capistrano
       sidekiq
 
+GIT
+  remote: git://github.com/stefanoverna/activeadmin-dragonfly.git
+  revision: 89a47f9124b1c4ee4ae79f6c32aa999d2566c5d1
+  specs:
+    activeadmin-dragonfly (0.0.2)
+      activeadmin
+      dragonfly (= 0.9.15)
+      rack-cache
+
+GIT
+  remote: git://github.com/stefanoverna/activeadmin-wysihtml5.git
+  revision: 38bca2986d116bb6459d3f5cafd4479a73eb51cd
+  specs:
+    activeadmin-wysihtml5 (1.0.0)
+      activeadmin
+      activeadmin-dragonfly
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -190,6 +207,9 @@ GEM
     devise-async (0.9.0)
       devise (~> 3.2)
     diff-lcs (1.2.5)
+    dragonfly (0.9.15)
+      multi_json (~> 1.0)
+      rack
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -344,6 +364,8 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
     rack-test (0.6.2)
@@ -513,8 +535,10 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activeadmin-dragonfly!
   activeadmin-select2!
   activeadmin-sortable-tree!
+  activeadmin-wysihtml5!
   activerecord-import
   acts_as_list
   ancestry

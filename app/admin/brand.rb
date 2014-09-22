@@ -16,6 +16,16 @@ ActiveAdmin.register Brand do
   permit_params :title, :description, :site_link, :state, :admin_user_id,
     :position, meta: [:keywords, :seo_description, :seo_title]
 
+  controller do
+    def update
+      update! do |format|
+        format.html {
+          redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
+        }
+      end
+    end
+  end
+
   index do
     selectable_column
     sortable_handle_column
@@ -48,7 +58,7 @@ ActiveAdmin.register Brand do
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
-        f.input :description
+        f.input :description, as: :wysihtml5
         f.input :site_link
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
         f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state

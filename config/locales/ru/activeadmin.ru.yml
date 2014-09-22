@@ -134,6 +134,9 @@ ru:
       posts: Новости
       back_to_site: Сайт
       admin: Админка
+    controller:
+      actions:
+        update: Запись успешно обновлена
     views:
       meta: Meta информация
       main: Основаня информация

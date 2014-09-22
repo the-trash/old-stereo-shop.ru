@@ -8,8 +8,11 @@ gem 'pg'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin-dragonfly', github: 'stefanoverna/activeadmin-dragonfly'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 gem 'activeadmin-sortable-tree', github: 'nebirhos/activeadmin-sortable-tree', branch: 'master'
+gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
+
 gem 'carrierwave'
 gem 'carrierwave-size-validator'
 gem 'ckeditor'

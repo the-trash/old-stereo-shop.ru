@@ -1,0 +1,61 @@
+ru:
+  formtastic:
+    wysihtml5:
+      command:
+        bold: Жирный
+        italic: Курсив
+        link: Ссылка
+        image: Изображение
+        video: Видео
+        ul: Список
+        ol: Нумерованный список
+        source: Показать HTML
+        underline: Подчеркнуть
+        outdent: Уменьшить отступ
+        indent: Отступ
+      block_style: Стиль блока
+      blocks:
+        h1: Заголовок 1
+        h2: Заголовок 2
+        h3: Заголовок 3
+        h4: Заголовок 4
+        h5: Заголовок 5
+        h6: Заголовок 6
+        p: Параграф
+
+      dialog:
+        cancel: Отмена
+        ok: OK
+        image:
+          dialog_title: Вставить новое изображение
+          url_title: Внешнее изображение
+          gallery_title: Галлерея
+          upload_title: Загрузить
+          url: "URL:"
+          alignment: "Выравнивание:"
+          default: "None"
+          left: Слева
+          right: Справа
+          scale: "Масштаб:"
+          alt: "Альтернативный текст:"
+          title: "<code>title</code> field:"
+        link:
+          dialog_title: Вставить новую ссылку
+          url_title: "URL"
+          email_title: "Email"
+          anchor_title: "Anchor"
+          url: "URL:"
+          text: "Текст:"
+          rel: "<code>rel</code> field:"
+          title: "<code>title</code> field:"
+          email: "Email:"
+          anchor: "Anchor name:"
+          blank: "Ссылка будет открыта в новой странице (page/tab)"
+          your_text_here: "Ваш текст"
+        video:
+          dialog_title: Вставить новое видео с youtube или vimeo
+          url: "URL:"
+          title: "Title:"
+          width: "Width:"
+          height: "Height:"
+          your_text_here: Ваш текст
