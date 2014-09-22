@@ -14,7 +14,8 @@ ActiveAdmin.register Product do
   config.sort_order = 'position_asc'
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount,
-    :product_category_id, :position, meta: [:keywords, :seo_description, :seo_title]
+    :product_category_id, :position, :keywords, :seo_description, :seo_title,
+    photos_attributes: [:id, :file, :state]
 
   controller do
     def update
@@ -71,6 +72,10 @@ ActiveAdmin.register Product do
         f.input :seo_title
         f.input :seo_description
         f.input :keywords
+      end
+
+      f.inputs I18n.t('active_admin.views.photo') do
+        f.has_many_photos
       end
     end
 

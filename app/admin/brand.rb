@@ -14,7 +14,7 @@ ActiveAdmin.register Brand do
   config.sort_order = 'position_asc'
 
   permit_params :title, :description, :site_link, :state, :admin_user_id,
-    :position, meta: [:keywords, :seo_description, :seo_title]
+    :position, :keywords, :seo_description, :seo_title
 
   controller do
     def update

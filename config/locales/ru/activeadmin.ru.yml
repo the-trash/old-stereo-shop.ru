@@ -144,6 +144,7 @@ ru:
       price: "Цена: %{price}"
       discount: "Скидка: %{discount}"
       product_category: "Категория: %{category}"
+      photo: Изображения
       batch_action:
         zero: Не одной записи не было выбранное
         one: "(1) запись успешно обновлена"

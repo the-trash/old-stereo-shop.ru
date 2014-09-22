@@ -16,7 +16,7 @@ ActiveAdmin.register ProductCategory do
     max_levels: 3
 
   permit_params :title, :description, :state, :admin_user_id, :parent_id,
-    meta: [:keywords, :seo_description, :seo_title]
+    :keywords, :seo_description, :seo_title, photos_attributes: [:id, :file, :state]
 
   controller do
     def update
@@ -55,6 +55,10 @@ ActiveAdmin.register ProductCategory do
         f.input :seo_title
         f.input :seo_description
         f.input :keywords
+      end
+
+      f.inputs I18n.t('active_admin.views.photo') do
+        f.has_many_photos
       end
     end
 

@@ -30,6 +30,7 @@ module Stereoshop
     end
 
     config.autoload_paths += Dir["#{ config.root }/lib/**/"]
+    config.autoload_paths += Dir["#{ config.root }/app/uploaders/**/"]
 
     CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
   end

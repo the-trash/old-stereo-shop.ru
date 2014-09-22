@@ -1,5 +1,5 @@
 class PostCategory < ActiveRecord::Base
-  include Friendable, Seoble, Statable
+  include Friendable, Seoble, Statable, Photoable
 
   has_ancestry cache_depth: true, depth_cache_column: :depth
 

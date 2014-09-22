@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  include Friendable, Seoble, Statable
+  include Friendable, Seoble, Statable, Photoable
 
   acts_as_list
 

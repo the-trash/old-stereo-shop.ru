@@ -41,6 +41,11 @@ ru:
         few: Категории постов
         many: Категорий постов
         other: Категории постов
+      photo:
+        one: Изображение
+        few: Изображения
+        many: Изображений
+        other: Изображений
     attributes:
       setting:
         description: Описание
@@ -104,3 +109,7 @@ ru:
       brand:
         <<: *main
         site_link: Ссылка на сайт
+      photo:
+        state: Статус
+        file: Файл
+        position: Позиция

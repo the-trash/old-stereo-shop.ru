@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922143639) do
+ActiveRecord::Schema.define(version: 20140922151733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(version: 20140922143639) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.integer  "photoable_id"
+    t.string   "photoable_type"
+    t.string   "file"
+    t.integer  "state",          default: 1
+    t.integer  "position",       default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["photoable_id", "photoable_type", "position"], name: "index_photos_on_photoable_id_and_photoable_type_and_position", using: :btree
+  add_index "photos", ["photoable_id", "photoable_type", "state"], name: "index_photos_on_photoable_id_and_photoable_type_and_state", using: :btree
+  add_index "photos", ["photoable_id", "photoable_type"], name: "index_photos_on_photoable_id_and_photoable_type", using: :btree
 
   create_table "post_categories", force: true do |t|
     t.string   "title"
