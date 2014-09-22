@@ -12,6 +12,7 @@
 /tmp
 
 public/system/uploads/
+public/system/dragonfly/
 public/uploads/
 /public/assets
 icon-*.png
