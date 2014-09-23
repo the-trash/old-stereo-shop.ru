@@ -25,6 +25,10 @@ ActiveAdmin.register Post do
         }
       end
     end
+
+    def scoped_collection
+      Post.includes(:photos)
+    end
   end
 
   index do

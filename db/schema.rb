@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923135336) do
+ActiveRecord::Schema.define(version: 20140923152807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(version: 20140923135336) do
 
   add_index "characteristics", ["characteristic_category_id", "position"], name: "characteristic_category_position", using: :btree
   add_index "characteristics", ["characteristic_category_id"], name: "index_characteristics_on_characteristic_category_id", using: :btree
+
+  create_table "characteristics_products", force: true do |t|
+    t.integer "product_id"
+    t.integer "characteristic_id"
+    t.string  "value"
+  end
+
+  add_index "characteristics_products", ["characteristic_id"], name: "index_characteristics_products_on_characteristic_id", using: :btree
+  add_index "characteristics_products", ["product_id", "characteristic_id"], name: "composite_product_characteristic", unique: true, using: :btree
+  add_index "characteristics_products", ["product_id"], name: "index_characteristics_products_on_product_id", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false

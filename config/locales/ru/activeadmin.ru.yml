@@ -145,6 +145,8 @@ ru:
       discount: "Скидка: %{discount}"
       product_category: "Категория: %{category}"
       photo: Изображения
+      characteristics: Характеристики
+      characteristic_category: Категория характеристик
       batch_action:
         zero: Не одной записи не было выбранное
         one: "(1) запись успешно обновлена"

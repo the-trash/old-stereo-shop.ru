@@ -7,8 +7,13 @@ class Product < ActiveRecord::Base
     belongs_to m
   end
 
+  has_many :characteristics_products, dependent: :destroy
+  has_many :characteristics, through: :characteristics_products
+
   validates :title, :description, :product_category_id, :admin_user_id,
     :brand_id, presence: true
 
   delegate :title, to: :product_category, prefix: true
+
+  accepts_nested_attributes_for :characteristics_products, allow_destroy: true, reject_if: :all_blank
 end

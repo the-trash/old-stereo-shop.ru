@@ -15,7 +15,7 @@ ActiveAdmin.register Product do
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount,
     :product_category_id, :position, :keywords, :seo_description, :seo_title,
-    photos_attributes: [:id, :file, :state]
+    photos_attributes: [:id, :file, :state], characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy]
 
   controller do
     def update
@@ -24,6 +24,10 @@ ActiveAdmin.register Product do
           redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
         }
       end
+    end
+
+    def scoped_collection
+      Product.includes(:photos, characteristics: :characteristic_category)
     end
   end
 
@@ -76,6 +80,20 @@ ActiveAdmin.register Product do
 
       f.inputs I18n.t('active_admin.views.photo') do
         f.has_many_photos
+      end
+
+      f.inputs I18n.t('active_admin.views.characteristics') do
+        f.has_many :characteristics_products, allow_destroy: true, heading: false do |char|
+          unless char.object.new_record?
+            char.form_buffers.last <<
+              char.template.content_tag(:li, class: 'string input stringish') do
+                char.template.content_tag(:label, I18n.t('active_admin.views.characteristic_category'), class: 'label') +
+                char.template.content_tag(:p, char.object.characteristic_characteristic_category_title)
+              end
+          end
+          char.input :characteristic, as: :select2, collection: option_groups_from_collection_for_select(CharacteristicCategory.includes(:characteristics).all, :characteristics, :title, :id, :title, char.object.characteristic_id)
+          char.input :value
+        end
       end
     end
 

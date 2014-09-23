@@ -56,6 +56,8 @@ ru:
         few: Характеристики
         many: Характеристик
         other: Характеристики
+      characteristics_product:
+        one: Характеристику
     attributes:
       setting:
         description: Описание
@@ -129,3 +131,7 @@ ru:
         <<: *main
         characteristic_category: Категория характеристик
         unit: Единица измерения
+      characteristics_product:
+        characteristic_category: Категория характеристик
+        value: Значение
+        characteristic: Характеристика

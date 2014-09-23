@@ -26,6 +26,10 @@ ActiveAdmin.register ProductCategory do
         }
       end
     end
+
+    def scoped_collection
+      ProductCategory.includes(:photos)
+    end
   end
 
   index as: :sortable do

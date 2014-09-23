@@ -26,6 +26,10 @@ ActiveAdmin.register PostCategory do
         }
       end
     end
+
+    def scoped_collection
+      PostCategory.includes(:photos)
+    end
   end
 
   index as: :sortable do
