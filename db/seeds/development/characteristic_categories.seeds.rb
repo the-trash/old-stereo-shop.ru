@@ -1,5 +1,6 @@
 after 'development:products' do
   CHAR_CATEGORY_COUNT = 10
+  UNITS = %w(кг г мм Гц Ом)
   admins = AdminUser.all
 
   progressbar =
@@ -37,7 +38,8 @@ after 'development:products' do
         rand(3..10).times do |n|
           a << FactoryGirl.build(:characteristic, {
             characteristic_category: cat,
-            position: n
+            position: n,
+            unit: UNITS.sample
           })
         end
 
@@ -46,4 +48,40 @@ after 'development:products' do
     end
 
   Characteristic.import(characteristics)
+
+  products  = Product.all
+  char_cats = char_cats.includes(:characteristics)
+
+  progressbar_char_product =
+    ProgressBar.create({
+      title: 'Generate characteristics for products',
+      total: products.size,
+      format: '%t %B %p%% %e'
+    })
+
+  char_products =
+    [].tap do |a|
+      products.find_each do |product|
+        tmp =
+          [].tap do |b|
+            rand(3..5).times do |n|
+              char = char_cats.sample.characteristics.sample
+
+              b << CharacteristicsProduct.new({
+                product: product,
+                characteristic: char,
+                value: rand(10.1..500.9)
+              })
+            end
+
+            b.uniq! { |c_p| c_p.characteristic_id }
+          end
+
+        a << tmp
+
+        progressbar_char_product.increment
+      end
+    end
+
+  CharacteristicsProduct.import(char_products.flatten)
 end
