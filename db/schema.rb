@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922151733) do
+ActiveRecord::Schema.define(version: 20140923135336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,29 @@ ActiveRecord::Schema.define(version: 20140922151733) do
   add_index "brands", ["position"], name: "index_brands_on_position", using: :btree
   add_index "brands", ["slug"], name: "index_brands_on_slug", using: :btree
   add_index "brands", ["state"], name: "index_brands_on_state", using: :btree
+
+  create_table "characteristic_categories", force: true do |t|
+    t.string   "title"
+    t.integer  "admin_user_id"
+    t.integer  "position",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "characteristic_categories", ["admin_user_id"], name: "index_characteristic_categories_on_admin_user_id", using: :btree
+  add_index "characteristic_categories", ["position"], name: "index_characteristic_categories_on_position", using: :btree
+
+  create_table "characteristics", force: true do |t|
+    t.string   "title"
+    t.integer  "position",                   default: 0
+    t.integer  "characteristic_category_id"
+    t.string   "unit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "characteristics", ["characteristic_category_id", "position"], name: "characteristic_category_position", using: :btree
+  add_index "characteristics", ["characteristic_category_id"], name: "index_characteristics_on_characteristic_category_id", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false

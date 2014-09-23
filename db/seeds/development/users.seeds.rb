@@ -32,4 +32,4 @@ users =
   end
 
 AdminUser.import(admins, validate: false)
-User.import(users, validate: false)
+User.import(users.uniq, validate: false)

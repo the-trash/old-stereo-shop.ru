@@ -27,10 +27,10 @@ ru:
         many: Продуктов
         other: Продукты
       product_category:
-        one: Продуктовая категория
-        few: Продуктовые категории
-        many: Продуктовых категорий
-        other: Продуктовые категории
+        one: Категория продуктов
+        few: Категории продуктов
+        many: Категорий продуктов
+        other: Категории продуктов
       post:
         one: Пост
         few: Посты
@@ -46,6 +46,16 @@ ru:
         few: Изображения
         many: Изображений
         other: Изображений
+      characteristic_category:
+        one: Категория характеристик
+        few: Категории характеристик
+        many: Категорий характеристик
+        other: Категории характеристик
+      characteristic:
+        one: Характеристика
+        few: Характеристики
+        many: Характеристик
+        other: Характеристики
     attributes:
       setting:
         description: Описание
@@ -113,3 +123,9 @@ ru:
         state: Статус
         file: Файл
         position: Позиция
+      characteristic_category:
+        <<: *main
+      characteristic:
+        <<: *main
+        characteristic_category: Категория характеристик
+        unit: Единица измерения

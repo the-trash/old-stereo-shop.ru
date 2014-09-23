@@ -8,7 +8,9 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  %i(products product_categories posts post_categories).each do |m|
+  %i(
+    products product_categories posts post_categories characteritic_categories
+  ).each do |m|
     has_many m, dependent: :destroy
   end
 
