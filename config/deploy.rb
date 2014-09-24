@@ -25,4 +25,10 @@ set :keep_releases, 3
 
 set :bundle_path, -> { shared_path.join('vendor/bundle') }
 
-after  'deploy:publishing', 'unicorn:legacy_restart'
+after 'deploy:publishing', 'deploy:restart'
+
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:legacy_restart'
+  end
+end
