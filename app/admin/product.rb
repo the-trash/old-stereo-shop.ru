@@ -27,7 +27,7 @@ ActiveAdmin.register Product do
     end
 
     def scoped_collection
-      Product.includes(:photos, characteristics: :characteristic_category)
+      Product.includes(:product_category, :photos, characteristics: :characteristic_category)
     end
   end
 
