@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  include Friendable, Seoble, Statable, Photoable
+  include Friendable, Seoble, Statable, Photoable, Ratable
 
   acts_as_list
 

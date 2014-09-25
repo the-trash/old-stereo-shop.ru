@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923152807) do
+ActiveRecord::Schema.define(version: 20140925172656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,8 @@ ActiveRecord::Schema.define(version: 20140923152807) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position",                                     default: 0
+    t.integer  "score_weight",                                 default: 5
+    t.integer  "average_score",                                default: 0
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
@@ -225,6 +227,20 @@ ActiveRecord::Schema.define(version: 20140923152807) do
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
   add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
   add_index "products", ["state"], name: "index_products_on_state", using: :btree
+
+  create_table "ratings", force: true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "user_id"
+    t.integer  "score",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+  add_index "ratings", ["votable_id", "votable_type", "score"], name: "index_ratings_on_votable_id_and_votable_type_and_score", using: :btree
+  add_index "ratings", ["votable_id", "votable_type", "user_id"], name: "index_ratings_on_votable_id_and_votable_type_and_user_id", using: :btree
+  add_index "ratings", ["votable_id", "votable_type"], name: "index_ratings_on_votable_id_and_votable_type", using: :btree
 
   create_table "settings", force: true do |t|
     t.string   "key"

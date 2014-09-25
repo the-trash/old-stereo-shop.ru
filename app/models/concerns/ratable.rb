@@ -1,0 +1,29 @@
+module Ratable
+  extend ActiveSupport::Concern
+
+  included do
+    has_many :ratings,
+      as: :votable,
+      dependent: :destroy,
+      after_add: :recalculate_average_score
+
+    before_save :remove_ratings_and_recalculate_score, if: :score_weight_changed?
+
+    def can_vote?(user_id)
+      !ratings.find_by(user_id: user_id).present?
+    end
+
+    private
+
+    def recalculate_average_score(rating = nil)
+      update_column(:average_score, ratings.average(:score).to_i)
+    end
+
+    def remove_ratings_and_recalculate_score
+      transaction do
+        ratings.for_removing(score_weight).delete_all
+        recalculate_average_score
+      end
+    end
+  end
+end
