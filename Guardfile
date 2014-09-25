@@ -1,5 +1,6 @@
 guard 'spring', rspec_cli: '--color' do
   watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^spec/factories\.rb$})
   watch(%r{^spec/spec_helper\.rb$})                   { 'spec' }
   watch(%r{^spec/rails_helper\.rb$})                  { 'spec' }
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }

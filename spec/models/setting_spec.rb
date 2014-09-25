@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Setting, type: :model do
   let(:settings) { create_list :setting, 10 }
   let(:setting)  { create :setting }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "Factory Girl" do
   FactoryGirl.factories.map(&:name).each do |factory_name|
     describe "#{factory_name} factory" do
@@ -24,7 +22,6 @@ RSpec.describe "Factory Girl" do
           end
         end
       end
-
     end
   end
 end
