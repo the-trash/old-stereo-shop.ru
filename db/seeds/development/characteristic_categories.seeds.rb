@@ -62,7 +62,7 @@ after 'development:products' do
   char_products =
     [].tap do |a|
       products.find_each do |product|
-        tmp =
+        a <<
           [].tap do |b|
             rand(3..5).times do |n|
               char = char_cats.sample.characteristics.sample
@@ -76,8 +76,6 @@ after 'development:products' do
 
             b.uniq! { |c_p| c_p.characteristic_id }
           end
-
-        a << tmp
 
         progressbar_char_product.increment
       end

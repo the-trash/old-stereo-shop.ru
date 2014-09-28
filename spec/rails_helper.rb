@@ -20,4 +20,18 @@ RSpec.configure do |config|
   config.include MailerHelper, type: :mailer
   Sidekiq::Testing.fake!
   config.infer_spec_type_from_file_location!
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:deletion)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+    Sidekiq::Worker.clear_all
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

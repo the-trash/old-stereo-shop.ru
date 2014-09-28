@@ -17,12 +17,10 @@ FactoryGirl.define do
       }
     }
 
-    trait :draft do
-      state 0
-    end
-
-    trait :removed do
-      state 2
+    Product::STATES.each_with_index do |s, i|
+      trait s do
+        state i
+      end
     end
   end
 end

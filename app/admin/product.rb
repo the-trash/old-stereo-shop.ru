@@ -39,7 +39,8 @@ ActiveAdmin.register Product do
       category =
         link_to I18n.t('active_admin.views.product_category', category: product.product_category_title), [:edit, :admin, product.product_category]
       content_tag(:h4, product.title) +
-      content_tag(:p, category)
+      content_tag(:p, category) +
+      content_tag(:p, '', class: 'ratable read_only', data: { score: product.average_score })
     end
     column :description
     column :price do |product|

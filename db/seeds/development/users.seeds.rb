@@ -29,7 +29,9 @@ users =
       a << FactoryGirl.build(:user)
       user_progressbar.increment
     end
+
+    a.uniq!{ |u| u.email }
   end
 
 AdminUser.import(admins, validate: false)
-User.import(users.uniq, validate: false)
+User.import(users, validate: false)
