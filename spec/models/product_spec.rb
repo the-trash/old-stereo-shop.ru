@@ -1,6 +1,8 @@
 describe Product do
-  %w(photoable ratable friendable statable).each do |concern|
-    it_behaves_like(concern)
+  context 'concerns' do
+    %w(photoable ratable friendable statable).each do |concern|
+      it_behaves_like(concern)
+    end
   end
 
   context 'relations' do

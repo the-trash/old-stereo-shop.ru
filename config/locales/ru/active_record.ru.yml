@@ -114,6 +114,7 @@ ru:
         price: Цена
         discount: Скидка
         product_category: Категория продуктов
+        average_score: Рейтинг
       product_category:
         <<: *main
         products: Продукты

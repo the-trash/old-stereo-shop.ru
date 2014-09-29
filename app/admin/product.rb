@@ -54,6 +54,7 @@ ActiveAdmin.register Product do
   filter :title
   filter :price
   filter :discount
+  filter :average_score
   filter :admin_user, collection: AdminUser.for_select
   filter :product_category, collection: ProductCategory.for_select
   filter :created_at
