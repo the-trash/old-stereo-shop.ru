@@ -9,7 +9,8 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   %i(
-    products product_categories posts post_categories characteritic_categories
+    products product_categories posts post_categories
+    characteritic_categories stores
   ).each do |m|
     has_many m, dependent: :destroy
   end

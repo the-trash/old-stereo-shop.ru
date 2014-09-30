@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925172656) do
+ActiveRecord::Schema.define(version: 20140930160347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,16 @@ ActiveRecord::Schema.define(version: 20140925172656) do
   add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
   add_index "products", ["state"], name: "index_products_on_state", using: :btree
 
+  create_table "products_stores", force: true do |t|
+    t.integer "product_id"
+    t.integer "store_id"
+    t.integer "count",      null: false
+  end
+
+  add_index "products_stores", ["product_id", "store_id"], name: "composite_product_store", unique: true, using: :btree
+  add_index "products_stores", ["product_id"], name: "index_products_stores_on_product_id", using: :btree
+  add_index "products_stores", ["store_id"], name: "index_products_stores_on_store_id", using: :btree
+
   create_table "ratings", force: true do |t|
     t.integer  "votable_id"
     t.string   "votable_type"
@@ -250,6 +260,25 @@ ActiveRecord::Schema.define(version: 20140925172656) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "stores", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "description"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.boolean  "happens",       default: true
+    t.integer  "state",         default: 1
+    t.integer  "position",      default: 0
+    t.integer  "admin_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stores", ["admin_user_id"], name: "index_stores_on_admin_user_id", using: :btree
+  add_index "stores", ["position"], name: "index_stores_on_position", using: :btree
+  add_index "stores", ["slug"], name: "index_stores_on_slug", using: :btree
+  add_index "stores", ["state"], name: "index_stores_on_state", using: :btree
 
   create_table "users", force: true do |t|
     t.date     "birthday"

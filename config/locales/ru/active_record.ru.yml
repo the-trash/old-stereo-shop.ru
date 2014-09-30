@@ -58,6 +58,13 @@ ru:
         other: Характеристики
       characteristics_product:
         one: Характеристику
+      store:
+        one: Магазин
+        few: Магазины
+        many: Магазинов
+        other: Магазины
+      products_store:
+        one: Магазин
     attributes:
       setting:
         description: Описание
@@ -136,3 +143,11 @@ ru:
         characteristic_category: Категория характеристик
         value: Значение
         characteristic: Характеристика
+      store:
+        <<: *main
+        happens: Бывает в наличии
+        latitude: Широта
+        longitude: Долгота
+      products_store:
+        count: Количество продуктов
+        store: Магазин

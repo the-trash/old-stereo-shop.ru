@@ -10,8 +10,13 @@ describe Product do
       it { should belong_to(m) }
     end
 
-    it { should have_many(:characteristics_products).dependent(:destroy) }
-    it { should have_many(:characteristics).through(:characteristics_products) }
+    {
+      :"characteristics" => :characteristics_products,
+      :"stores" => :products_stores
+    }.each do |k, v|
+      it { should have_many(v).dependent(:destroy) }
+      it { should have_many(k).through(v) }
+    end
   end
 
   context 'validates' do
@@ -19,7 +24,9 @@ describe Product do
       it { should validate_presence_of(f) }
     end
 
-    it { should accept_nested_attributes_for(:characteristics_products).allow_destroy(true) }
+    %i(products_stores characteristics_products).each do |r|
+      it { should accept_nested_attributes_for(r).allow_destroy(true) }
+    end
   end
 
   it { should delegate(:title).to(:product_category).with_prefix }
