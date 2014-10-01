@@ -3,7 +3,7 @@ class Store < ActiveRecord::Base
 
   acts_as_list
 
-  scope :all_happens, -> { where(happens: true) }
+  scope :products_are, -> { where(happens: true) }
 
   belongs_to :admin_user
 

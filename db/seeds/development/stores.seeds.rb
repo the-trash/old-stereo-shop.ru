@@ -19,45 +19,43 @@ after 'development:posts' do
       format: '%t %B %p%% %e'
     })
 
+  i = 0
   [true, false].each do |happens|
     stores =
       [].tap do |a|
         STORE_COUNT.times do |n|
           a << FactoryGirl.build(:store, {
               admin_user: admins.sample,
-              position: n,
+              position: i,
               happens: happens
             })
 
           progressbar.increment
+          i += 1
         end
       end
 
     Store.import(stores)
   end
 
-  # stores = Store.all_happens
+  products = Product.all
 
-  # PRODUCTS_FACTOR.times do |n|
-  #   products_stores =
-  #     [].tap do |a|
-  #       Product.limit(PRODUCTS_COUNT).offset(n * PRODUCTS_FACTOR).each do |product|
-  #         a <<
-  #           [].tap do |b|
-  #             rand(0..5).times do |n|
-  #               b << ProductsStore.new({
-  #                 product: product,
-  #                 store: stores.sample,
-  #                 count: rand(0..50)
-  #               })
-  #             end
-  #           end
-  #       end
+  Store.products_are.find_each do |store|
+    product_ids = products.sample(rand((products.size / (2 * STORE_COUNT))..products.size)).map(&:id)
+    products_stores_product_ids = ProductsStore.where(store_id: store.id).map(&:product_id)
 
-  #       a.flatten.uniq! { |p_s| p_s.store_id }
-  #     end
+    products_stores =
+      [].tap do |a|
+        (product_ids - products_stores_product_ids).each do |p_id|
+          a << ProductsStore.new({
+              product_id: p_id,
+              store: store,
+              count: rand(0..50)
+            })
+        end
+      end
 
-  #   ProductsStore.import(products_stores.flatten)
-  #   progressbar_products_stores.increment
-  # end
+    ProductsStore.import(products_stores)
+    progressbar_products_stores.increment
+  end
 end

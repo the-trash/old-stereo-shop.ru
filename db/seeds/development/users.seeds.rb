@@ -1,5 +1,5 @@
-USERS_COUNT  = 100
-ADMINS_COUNT = 2
+USERS_COUNT  = 30
+ADMINS_COUNT = 15
 
 admin_progressbar =
   ProgressBar.create({
