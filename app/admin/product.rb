@@ -15,7 +15,8 @@ ActiveAdmin.register Product do
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount,
     :product_category_id, :position, :keywords, :seo_description, :seo_title,
-    photos_attributes: [:id, :file, :state], characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy]
+    photos_attributes: [:id, :file, :state], characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
+    products_stores_attributes: [:id, :count, :store_id, :_destroy]
 
   controller do
     def update
@@ -95,6 +96,13 @@ ActiveAdmin.register Product do
           end
           char.input :characteristic, as: :select2, collection: option_groups_from_collection_for_select(CharacteristicCategory.includes(:characteristics).all, :characteristics, :title, :id, :title, char.object.characteristic_id)
           char.input :value
+        end
+      end
+
+      f.inputs I18n.t('active_admin.views.stores') do
+        f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
+          pr_store.input :store, as: :select2, collection: options_from_collection_for_select(Store.products_are, :id, :title, pr_store.object.store_id)
+          pr_store.input :count
         end
       end
     end
