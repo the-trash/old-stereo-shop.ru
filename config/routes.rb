@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root 'welcome#index'
+
+  resources :product_categories, only: :show
+  resources :products, only: [:index, :show]
 end

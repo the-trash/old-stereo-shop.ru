@@ -1,0 +1,9 @@
+%h3= resource.title
+= price_with_discount(resource)
+
+- if @stores.present?
+  %ol
+    - @stores.each do |store|
+      %li
+        %p= store.store_title
+        %p= store.count

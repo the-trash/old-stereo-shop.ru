@@ -29,7 +29,7 @@
       = render 'shared/banner'
 
     - unless current_page?(root_path)
-      .breadcrumbs= render_breadcrumbs separator: ''
+      .breadcrumbs= render_breadcrumbs separator: ' > '
 
     = yield
 

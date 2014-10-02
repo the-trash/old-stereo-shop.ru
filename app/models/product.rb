@@ -20,4 +20,8 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :products_stores, :characteristics_products,
     allow_destroy: true, reject_if: :all_blank
+
+  def price_with_discount
+    price - discount
+  end
 end
