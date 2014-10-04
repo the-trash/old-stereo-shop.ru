@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 
   resources :product_categories, only: :show
   resources :products, only: [:index, :show]
+
+  resources :users, except: [:destroy] do
+    collection do
+      get :authentification
+    end
+  end
 end

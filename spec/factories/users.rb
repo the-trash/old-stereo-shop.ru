@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :user do
     sequence(:email) { Faker::Internet.free_email }
-    password Faker::Internet.password
+    password 12345678
     sequence(:birthday) { Random.new.rand(40.years).seconds.ago }
     phone Faker::PhoneNumber.cell_phone
     first_name Faker::Name.first_name
