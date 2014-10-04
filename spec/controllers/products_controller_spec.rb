@@ -28,6 +28,14 @@ describe ProductsController do
       expect(assigns(:characteristics)).to eq(product.make_characteristics_tree)
     end
 
+    it 'assigns @related_products' do
+      expect(assigns(:related_products)).to eq(product.related_products)
+    end
+
+    it 'assigns @similar_products' do
+      expect(assigns(:similar_products)).to eq(product.similar_products)
+    end
+
     it 'render show template' do
       expect(response).to render_template('show')
     end

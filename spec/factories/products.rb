@@ -34,5 +34,13 @@ FactoryGirl.define do
         product.products_stores << create_list(:products_store, 3, product: product)
       end
     end
+
+    trait :with_related do
+      association :related_products, factory: :product
+    end
+
+    trait :with_similar do
+      association :similar_products, factory: :product
+    end
   end
 end

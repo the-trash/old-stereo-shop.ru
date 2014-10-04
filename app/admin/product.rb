@@ -18,7 +18,7 @@ ActiveAdmin.register Product do
     photos_attributes: [:id, :file, :state],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
-    related_products_attributes: [:id, :_destroy]
+    related_product_ids: []
 
   controller do
     def update
@@ -31,7 +31,7 @@ ActiveAdmin.register Product do
 
     def scoped_collection
       Product.includes(
-        :product_category, :photos,
+        :photos,
         characteristics: :characteristic_category,
         stores: :products_stores
       )
@@ -44,7 +44,8 @@ ActiveAdmin.register Product do
     column :id
     column :title do |product|
       category =
-        link_to I18n.t('active_admin.views.product_category', category: product.product_category_title), [:edit, :admin, product.product_category]
+        link_to I18n.t('active_admin.views.product_category',
+          category: product.product_category_title), [:edit, :admin, product.product_category]
       content_tag(:h4, product.title) +
       content_tag(:p, category) +
       content_tag(:p, '', class: 'ratable read_only', data: { score: product.average_score })
@@ -76,9 +77,14 @@ ActiveAdmin.register Product do
         f.input :description
         f.input :price
         f.input :discount, as: :wysihtml5
-        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
-        f.input :product_category, as: :select2, collection: ProductCategory.for_select, selected: resource.product_category_id
-        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
+        f.input :admin_user, as: :select2,
+          collection: AdminUser.for_select,
+          selected: resource.admin_user_id
+        f.input :product_category, as: :select2,
+          collection: ProductCategory.for_select,
+          selected: resource.product_category_id
+        f.input :state, as: :select2,
+          collection: resource_class.states.keys, selected: resource.state
       end
 
       f.inputs I18n.t('active_admin.views.meta') do
@@ -100,34 +106,27 @@ ActiveAdmin.register Product do
                 char.template.content_tag(:p, char.object.characteristic_characteristic_category_title)
               end
           end
-          char.input :characteristic, as: :select2, collection: option_groups_from_collection_for_select(CharacteristicCategory.includes(:characteristics).all, :characteristics, :title, :id, :title, char.object.characteristic_id)
+          char.input :characteristic, as: :select2,
+            collection: option_groups_from_collection_for_select(
+                CharacteristicCategory.includes(:characteristics).all,
+                :characteristics, :title, :id, :title, char.object.characteristic_id
+              )
           char.input :value
         end
       end
 
       f.inputs I18n.t('active_admin.views.stores') do
         f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
-          pr_store.input :store, as: :select2, collection: options_from_collection_for_select(Store.products_are, :id, :title, pr_store.object.store_id)
+          pr_store.input :store, as: :select2,
+            collection: options_from_collection_for_select(
+              Store.products_are, :id, :title, pr_store.object.store_id
+            )
           pr_store.input :count
         end
       end
 
-      # TODO: need fix for save and add new related products
-      f.inputs I18n.t('active_admin.views.related_products') do
-        f.has_many :related_products, allow_destroy: true, heading: false do |related|
-          if related.object.new_record?
-            r_pr_ids = related.object.related_products.map(&:id)
-            related.input :id, name: :related_product_id, as: :select2,
-              collection: options_from_collection_for_select(Product.published.without_ids(r_pr_ids), :id, :title)
-          else
-            related.form_buffers.last <<
-              related.template.content_tag(:li, class: 'string input stringish') do
-                related.template.content_tag(:label, '', class: 'label') +
-                related.template.content_tag(:p, related.object.title)
-              end
-          end
-        end
-      end
+      f.input :related_products
+      f.input :similar_products
     end
 
     f.actions

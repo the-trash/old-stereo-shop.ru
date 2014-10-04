@@ -22,3 +22,15 @@
             %li
               %strong= cat_char[:characteristic].title
               %p= cat_char[:characteristic_value].value
+
+- if @related_products.present?
+  %h4 Товары в комплект
+  %ol
+    - @related_products.each do |related|
+      %li= related.title
+
+- if @similar_products.present?
+  %h4 Вам может понравиться
+  %ol
+    - @similar_products.each do |similar|
+      %li= similar.title

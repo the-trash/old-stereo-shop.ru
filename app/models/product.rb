@@ -22,13 +22,20 @@ class Product < ActiveRecord::Base
     foreign_key: :product_id,
     association_foreign_key: :related_product_id
 
+  has_and_belongs_to_many :similar_products,
+    -> { uniq },
+    class_name: 'Product',
+    join_table: 'products_similar_products',
+    foreign_key: :product_id,
+    association_foreign_key: :similar_product_id
+
   validates :title, :description, :product_category_id, :admin_user_id,
     :brand_id, presence: true
 
   delegate :title, to: :product_category, prefix: true
 
   accepts_nested_attributes_for :products_stores, :characteristics_products,
-    :related_products, allow_destroy: true, reject_if: :all_blank
+    allow_destroy: true, reject_if: :all_blank
 
   def price_with_discount
     price - discount

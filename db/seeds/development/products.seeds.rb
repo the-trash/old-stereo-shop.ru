@@ -14,7 +14,7 @@ after 'development:brands' do
 
   progressbar_related_products =
     ProgressBar.create({
-      title: 'Generate related products',
+      title: 'Generate related and similar products',
       total: PRODUCT_FACTOR * PRODUCT_COUNT,
       format: '%t %B %p%% %e'
     })
@@ -42,8 +42,12 @@ after 'development:brands' do
   products = Product.all
 
   products.find_each do |product|
-    products.sample(rand(1..4)).each do |related|
+    products.sample(rand(0..4)).each do |related|
       product.related_products << related
+    end
+
+    products.sample(rand(0..4)).each do |similar|
+      product.similar_products << similar
     end
 
     progressbar_related_products.increment
