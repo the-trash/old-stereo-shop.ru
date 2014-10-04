@@ -5,5 +5,20 @@
   %ol
     - @stores.each do |store|
       %li
-        %p= store.store_title
-        %p= store.count
+        %p= store[:store].title
+        %p= store[:store_count].count
+
+%h4 О товаре
+%p= raw resource.description
+
+- if @characteristics.present?
+  %h4 Технические детали
+  %ol
+    - @characteristics.each do |char|
+      %li= char[:category].title
+      - if char[:characteristics].any?
+        %ul
+          - char[:characteristics].each do |cat_char|
+            %li
+              %strong= cat_char[:characteristic].title
+              %p= cat_char[:characteristic_value].value

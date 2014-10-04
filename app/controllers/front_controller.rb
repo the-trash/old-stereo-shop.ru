@@ -15,11 +15,12 @@ class FrontController < ApplicationController
     @settings ||= $settings
   end
 
-  def breadcrumbs_with_ancestors(obj)
+  def breadcrumbs_with_ancestors(obj, resource)
     obj.ancestors.each do |parent_obj|
       add_breadcrumb parent_obj.title, parent_obj
     end
 
     add_breadcrumb obj.title, obj
+    add_breadcrumb resource.title, resource if resource.present?
   end
 end

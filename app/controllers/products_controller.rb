@@ -5,8 +5,10 @@ class ProductsController < FrontController
 
   def show
     @product_category = resource.product_category
-    @stores = resource.products_stores
-    breadcrumbs_with_ancestors(@product_category)
+    @stores           = resource.make_stores
+    @characteristics  = resource.make_characteristics_tree
+
+    breadcrumbs_with_ancestors(@product_category, resource)
 
     show!
   end

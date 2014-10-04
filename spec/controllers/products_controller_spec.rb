@@ -20,6 +20,14 @@ describe ProductsController do
       expect(assigns(:product)).to eq(product)
     end
 
+    it 'assigns @stores' do
+      expect(assigns(:stores)).to eq(product.make_stores)
+    end
+
+    it 'assigns @characteristics' do
+      expect(assigns(:characteristics)).to eq(product.make_characteristics_tree)
+    end
+
     it 'render show template' do
       expect(response).to render_template('show')
     end

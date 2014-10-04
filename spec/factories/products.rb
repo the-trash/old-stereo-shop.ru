@@ -22,5 +22,17 @@ FactoryGirl.define do
         state i
       end
     end
+
+    trait :with_caracteristics do
+      after(:create) do |product|
+        product.characteristics_products << create_list(:characteristics_product, 3, product: product)
+      end
+    end
+
+    trait :with_stores do
+      after(:create) do |product|
+        product.products_stores << create_list(:products_store, 3, product: product)
+      end
+    end
   end
 end

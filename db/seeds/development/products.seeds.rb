@@ -1,5 +1,6 @@
 after 'development:brands' do
-  PRODUCT_COUNT = 500
+  PRODUCT_FACTOR = 5
+  PRODUCT_COUNT  = 100
   admins = AdminUser.all
   product_categories = ProductCategory.all
   brands = Brand.all
@@ -7,22 +8,44 @@ after 'development:brands' do
   progressbar =
     ProgressBar.create({
       title: 'Create products',
-      total: PRODUCT_COUNT,
+      total: PRODUCT_FACTOR * PRODUCT_COUNT,
       format: '%t %B %p%% %e'
     })
 
-  products =
-    [].tap do |a|
-      PRODUCT_COUNT.times do |n|
-        a << FactoryGirl.build(:product, {
-          admin_user: admins.sample,
-          product_category: product_categories.sample,
-          brand: brands.sample,
-          position: n
-        })
-        progressbar.increment
+  progressbar_related_products =
+    ProgressBar.create({
+      title: 'Generate related products',
+      total: PRODUCT_FACTOR * PRODUCT_COUNT,
+      format: '%t %B %p%% %e'
+    })
+
+  i = 0
+  PRODUCT_FACTOR.times do |n|
+    products =
+      [].tap do |a|
+        PRODUCT_COUNT.times do |n|
+          a << FactoryGirl.build(:product, {
+            admin_user: admins.sample,
+            product_category: product_categories.sample,
+            brand: brands.sample,
+            position: i
+          })
+
+          progressbar.increment
+          i += 1
+        end
       end
+
+    Product.import(products)
+  end
+
+  products = Product.all
+
+  products.find_each do |product|
+    products.sample(rand(1..4)).each do |related|
+      product.related_products << related
     end
 
-  Product.import(products)
+    progressbar_related_products.increment
+  end
 end

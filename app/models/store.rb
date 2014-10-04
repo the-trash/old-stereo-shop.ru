@@ -4,6 +4,9 @@ class Store < ActiveRecord::Base
   acts_as_list
 
   scope :products_are, -> { where(happens: true) }
+  scope :order_by, -> (field = 'id', how_to_sort = 'asc') {
+    order("#{ field } #{ how_to_sort }")
+  }
 
   belongs_to :admin_user
 

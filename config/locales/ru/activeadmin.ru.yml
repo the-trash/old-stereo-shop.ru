@@ -148,6 +148,7 @@ ru:
       characteristics: Характеристики
       characteristic_category: Категория характеристик
       stores: Магазины
+      related_products: Товары в комплект
       batch_action:
         zero: Не одной записи не было выбранное
         one: "(1) запись успешно обновлена"

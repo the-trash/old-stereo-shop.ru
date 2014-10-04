@@ -15,8 +15,10 @@ ActiveAdmin.register Product do
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount,
     :product_category_id, :position, :keywords, :seo_description, :seo_title,
-    photos_attributes: [:id, :file, :state], characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
-    products_stores_attributes: [:id, :count, :store_id, :_destroy]
+    photos_attributes: [:id, :file, :state],
+    characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
+    products_stores_attributes: [:id, :count, :store_id, :_destroy],
+    related_products_attributes: [:id, :_destroy]
 
   controller do
     def update
@@ -28,7 +30,11 @@ ActiveAdmin.register Product do
     end
 
     def scoped_collection
-      Product.includes(:product_category, :photos, characteristics: :characteristic_category)
+      Product.includes(
+        :product_category, :photos,
+        characteristics: :characteristic_category,
+        stores: :products_stores
+      )
     end
   end
 
@@ -103,6 +109,23 @@ ActiveAdmin.register Product do
         f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
           pr_store.input :store, as: :select2, collection: options_from_collection_for_select(Store.products_are, :id, :title, pr_store.object.store_id)
           pr_store.input :count
+        end
+      end
+
+      # TODO: need fix for save and add new related products
+      f.inputs I18n.t('active_admin.views.related_products') do
+        f.has_many :related_products, allow_destroy: true, heading: false do |related|
+          if related.object.new_record?
+            r_pr_ids = related.object.related_products.map(&:id)
+            related.input :id, name: :related_product_id, as: :select2,
+              collection: options_from_collection_for_select(Product.published.without_ids(r_pr_ids), :id, :title)
+          else
+            related.form_buffers.last <<
+              related.template.content_tag(:li, class: 'string input stringish') do
+                related.template.content_tag(:label, '', class: 'label') +
+                related.template.content_tag(:p, related.object.title)
+              end
+          end
         end
       end
     end

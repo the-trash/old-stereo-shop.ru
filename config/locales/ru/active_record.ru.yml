@@ -122,6 +122,7 @@ ru:
         discount: Скидка
         product_category: Категория продуктов
         average_score: Рейтинг
+        related_product_id: Товар в комплект
       product_category:
         <<: *main
         products: Продукты
