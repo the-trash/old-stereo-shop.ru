@@ -6,5 +6,7 @@ class Rating < ActiveRecord::Base
     inverse_of: :votes,
     class_name: 'User'
 
+  has_one :review
+
   validates :votable, :user_id, :score, presence: true
 end

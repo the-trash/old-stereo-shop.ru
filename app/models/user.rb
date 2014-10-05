@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
     class_name: 'Rating',
     foreign_key: :user_id,
     inverse_of: :user
+
+  has_many :reviews, dependent: :destroy
 end

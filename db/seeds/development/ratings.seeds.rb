@@ -1,6 +1,6 @@
 after 'development:posts' do
   products = Product.all
-  users = User.all
+  users    = User.all
 
   progressbar =
     ProgressBar.create({

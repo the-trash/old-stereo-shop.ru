@@ -1,8 +1,6 @@
 describe Photo do
   # context 'concerns' do
-  #   %w(statable).each do |concern|
-  #     it_behaves_like(concern)
-  #   end
+  #   it_behaves_like('statable')
   # end
 
   context 'relations' do

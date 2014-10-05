@@ -15,6 +15,8 @@ class Product < ActiveRecord::Base
   has_many :products_stores, dependent: :destroy
   has_many :stores, -> { order(position: :desc) }, through: :products_stores
 
+  has_many :reviews, dependent: :destroy, as: :recallable
+
   has_and_belongs_to_many :related_products,
     -> { uniq },
     class_name: 'Product',

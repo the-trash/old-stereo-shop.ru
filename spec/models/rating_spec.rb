@@ -2,6 +2,7 @@ describe Rating do
   context 'relations' do
     it { should belong_to(:votable) }
     it { should belong_to(:user).class_name('User').inverse_of(:votes) }
+    it { should have_one(:review) }
   end
 
   context 'validates' do

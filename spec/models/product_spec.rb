@@ -17,6 +17,8 @@ describe Product do
       it { should have_many(v).dependent(:destroy) }
       it { should have_many(k).through(v) }
     end
+
+    it { should have_many(:reviews).dependent(:destroy) }
   end
 
   context 'validates' do
