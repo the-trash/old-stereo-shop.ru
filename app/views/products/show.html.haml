@@ -23,6 +23,31 @@
               %strong= cat_char[:characteristic].title
               %p= cat_char[:characteristic_value].value
 
+%h3= "Отзывы (#{ resource.reviews_count })"
+
+- if current_user.present? && resource.can_vote?(current_user.id)
+  %h4 Ваш отзыв
+  .rating
+    %p Рейтинг
+    %p.ratable
+
+  = form_for(Review.new, url: [:add_review, resource], method: :post) do |f|
+    = hidden_field_tag 'review[rating_score]'
+    = f.hidden_field :user_id, { value: current_user.id }
+    %p
+      = f.label :pluses, t('pluses', scope: [:activerecord, :attributes, :review])
+      = f.text_field :pluses
+
+    %p
+      = f.label :cons, t('cons', scope: [:activerecord, :attributes, :review])
+      = f.text_field :cons
+
+    %p
+      = f.label :body, t('body', scope: [:activerecord, :attributes, :review])
+      = f.text_field :body
+
+    %p= f.submit 'Оставить отзыв'
+
 - if @related_products.present?
   %h4 Товары в комплект
   %ol

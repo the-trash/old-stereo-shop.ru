@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :product_categories, only: :show
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    member do
+      post :add_review
+    end
+  end
 
   resources :users, except: [:destroy] do
     collection do

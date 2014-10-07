@@ -153,3 +153,7 @@ ru:
       products_store:
         count: Количество продуктов
         store: Магазин
+      review:
+        pluses: Плюсы
+        cons: Минусы
+        body: Отзыв

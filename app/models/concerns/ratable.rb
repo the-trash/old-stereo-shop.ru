@@ -10,7 +10,11 @@ module Ratable
     before_save :remove_ratings_and_recalculate_score, if: :score_weight_changed?
 
     def can_vote?(user_id)
-      !ratings.find_by(user_id: user_id).present?
+      user_id.present? && !ratings.find_by(user_id: user_id).present?
+    end
+
+    def generate_vote(user, score)
+      ratings.create(user: user, score: score)
     end
 
     private

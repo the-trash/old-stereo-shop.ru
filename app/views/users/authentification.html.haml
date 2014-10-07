@@ -13,3 +13,6 @@
 
   .buttons
     = f.submit 'Авторизоваться'
+
+- if current_user.present?
+  = link_to 'Sing out', [:destroy, :user_session], method: :delete
