@@ -148,8 +148,11 @@ ru:
       characteristics: Характеристики
       characteristic_category: Категория характеристик
       stores: Магазины
+      additional_info: Дополнительная информация
       batch_action:
         zero: Не одной записи не было выбранное
         one: "(1) запись успешно обновлена"
         few: "(%{count}) записи успешно обновлено"
         other: "(%{count}) записей успешно обновлено"
+      products:
+        reviews: Отзывы

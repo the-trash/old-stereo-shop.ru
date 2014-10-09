@@ -65,6 +65,11 @@ ru:
         other: Магазины
       products_store:
         one: Магазин
+      review:
+        one: Отзыв
+        few: Отзывы
+        many: Отзывов
+        other: Отзывы
     attributes:
       setting:
         description: Описание
@@ -157,3 +162,4 @@ ru:
         pluses: Плюсы
         cons: Минусы
         body: Отзыв
+        state: Статус

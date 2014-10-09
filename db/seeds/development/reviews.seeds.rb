@@ -40,15 +40,32 @@ after 'development:ratings' do
 
   Review.import(reviews)
 
+  reviews = Review.all
+
+  progressbar_statable =
+    ProgressBar.create({
+      title: 'Random state for reviews',
+      total: reviews.size,
+      format: '%t %B %p%% %e'
+    })
+
+  reviews.find_each do |review|
+    review.update_column(:state, rand(0..3))
+    progressbar_statable.increment
+  end
+
   Product.reset_column_information
   products.each do |product|
-    product.update_column(:reviews_count, product.reviews.size)
+    %i(reviews published_reviews removed_reviews moderated_reviews).each do |st|
+      Product.reset_counters(product.id, st)
+    end
+
     progressbar_product.increment
   end
 
-  # User.reset_column_information
-  # users.each do |user|
-  #   user.update_column(:reviews_count, user.reviews.size)
-  #   progressbar_user.increment
-  # end
+  User.reset_column_information
+  users.each do |user|
+    User.reset_counters(user.id, :reviews)
+    progressbar_user.increment
+  end
 end

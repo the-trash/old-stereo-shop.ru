@@ -23,7 +23,7 @@
               %strong= cat_char[:characteristic].title
               %p= cat_char[:characteristic_value].value
 
-%h3= "Отзывы (#{ resource.reviews_count })"
+%h3= "Отзывы (#{ resource.published_reviews_count })"
 
 - if current_user.present? && resource.can_vote?(current_user.id)
   %h4 Ваш отзыв

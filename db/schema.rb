@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005132905) do
+ActiveRecord::Schema.define(version: 20141009135402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,14 +186,17 @@ ActiveRecord::Schema.define(version: 20141005132905) do
     t.string   "title"
     t.string   "slug"
     t.text     "description"
-    t.integer  "state",         default: 1
+    t.integer  "state",                    default: 1
     t.integer  "admin_user_id"
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position",      default: 0
+    t.integer  "position",                 default: 0
     t.string   "ancestry"
     t.integer  "depth"
+    t.integer  "published_products_count", default: 0
+    t.integer  "removed_products_count",   default: 0
+    t.integer  "products_count",           default: 0
   end
 
   add_index "product_categories", ["admin_user_id"], name: "index_product_categories_on_admin_user_id", using: :btree
@@ -207,19 +210,22 @@ ActiveRecord::Schema.define(version: 20141005132905) do
     t.string   "sku"
     t.string   "slug"
     t.text     "description"
-    t.integer  "state",                                        default: 1
-    t.decimal  "price",               precision: 10, scale: 2, default: 0.0, null: false
-    t.decimal  "discount",            precision: 10, scale: 2, default: 0.0, null: false
+    t.integer  "state",                                            default: 1
+    t.decimal  "price",                   precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "discount",                precision: 10, scale: 2, default: 0.0, null: false
     t.integer  "admin_user_id"
     t.integer  "brand_id"
     t.integer  "product_category_id"
     t.hstore   "meta"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position",                                     default: 0
-    t.integer  "score_weight",                                 default: 5
-    t.integer  "average_score",                                default: 0
-    t.integer  "reviews_count",                                default: 0
+    t.integer  "position",                                         default: 0
+    t.integer  "score_weight",                                     default: 5
+    t.integer  "average_score",                                    default: 0
+    t.integer  "reviews_count",                                    default: 0
+    t.integer  "published_reviews_count",                          default: 0
+    t.integer  "removed_reviews_count",                            default: 0
+    t.integer  "moderated_reviews_count",                          default: 0
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
@@ -277,7 +283,7 @@ ActiveRecord::Schema.define(version: 20141005132905) do
     t.string  "cons"
     t.integer "recallable_id"
     t.string  "recallable_type"
-    t.integer "state",           default: 1
+    t.integer "state",           default: 3
   end
 
   add_index "reviews", ["rating_id"], name: "index_reviews_on_rating_id", using: :btree

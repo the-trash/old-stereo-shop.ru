@@ -31,10 +31,16 @@ ActiveAdmin.register Product do
 
     def scoped_collection
       Product.includes(
-        :photos,
+        :photos, :product_category,
         characteristics: :characteristic_category,
         stores: :products_stores
       )
+    end
+  end
+
+  sidebar I18n.t('active_admin.views.additional_info'), only: :edit do
+    ul do
+      li link_to I18n.t('active_admin.views.products.reviews'), [:admin, resource, :reviews]
     end
   end
 

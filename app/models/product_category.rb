@@ -6,6 +6,14 @@ class ProductCategory < ActiveRecord::Base
   belongs_to :admin_user
 
   has_many :products, dependent: :destroy
+  has_many :published_products,
+    -> { where(state: 1) },
+    class_name: 'Product',
+    dependent: :destroy
+  has_many :removed_products,
+    -> { where(state: 2) },
+    class_name: 'Product',
+    dependent: :destroy
 
   validates :title, :admin_user_id, presence: true
 

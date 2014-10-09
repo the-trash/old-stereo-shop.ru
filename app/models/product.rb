@@ -5,8 +5,15 @@ class Product < ActiveRecord::Base
 
   acts_as_list
 
-  %i(admin_user product_category brand).each do |m|
+  %i(admin_user brand).each do |m|
     belongs_to m
+  end
+
+  belongs_to :product_category, counter_cache: true
+  %w(published removed).each do |st|
+    belongs_to :product_category,
+      counter_cache: :"#{ st }_products_count",
+      inverse_of: :published_products
   end
 
   has_many :characteristics_products, dependent: :destroy
@@ -16,6 +23,13 @@ class Product < ActiveRecord::Base
   has_many :stores, -> { order(position: :desc) }, through: :products_stores
 
   has_many :reviews, dependent: :destroy, as: :recallable
+  %w(published removed moderated).each_with_index do |st, i|
+    has_many :"#{ st }_reviews",
+      -> { where(state: i + 1) },
+      class_name: 'Review',
+      dependent: :destroy,
+      as: :recallable
+  end
 
   has_and_belongs_to_many :related_products,
     -> { uniq },

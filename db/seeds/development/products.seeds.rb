@@ -1,6 +1,6 @@
 after 'development:brands' do
   PRODUCT_FACTOR = 5
-  PRODUCT_COUNT  = 100
+  PRODUCT_COUNT  = 20
   admins = AdminUser.all
   product_categories = ProductCategory.all
   brands = Brand.all
@@ -16,6 +16,13 @@ after 'development:brands' do
     ProgressBar.create({
       title: 'Generate related and similar products',
       total: PRODUCT_FACTOR * PRODUCT_COUNT,
+      format: '%t %B %p%% %e'
+    })
+
+  progressbar_counters =
+    ProgressBar.create({
+      title: 'Update cache counters for categories',
+      total: product_categories.size,
       format: '%t %B %p%% %e'
     })
 
@@ -50,6 +57,17 @@ after 'development:brands' do
       product.similar_products << similar
     end
 
+    product.update_column(:state, rand(0..3))
+
     progressbar_related_products.increment
+  end
+
+  ProductCategory.reset_column_information
+  product_categories.find_each do |category|
+    %i(products published_products).each do |st|
+      ProductCategory.reset_counters(category.id, st)
+    end
+
+    progressbar_counters.increment
   end
 end
