@@ -3,17 +3,24 @@ class ProductCategory < ActiveRecord::Base
 
   has_ancestry cache_depth: true, depth_cache_column: :depth
 
+  scope :for_front, -> {
+    joins(:products).published.
+    where(products: { state: 1 })
+  }
+  scope :sale, -> {
+    joins(:products).published.
+    where('products.discount > 0 AND products.state = 1')
+  }
+
   belongs_to :admin_user
 
   has_many :products, dependent: :destroy
-  has_many :published_products,
-    -> { where(state: 1) },
-    class_name: 'Product',
-    dependent: :destroy
-  has_many :removed_products,
-    -> { where(state: 2) },
-    class_name: 'Product',
-    dependent: :destroy
+  %w(published removed moderated).each_with_index do |st, i|
+    has_many :"#{ st }_products",
+      -> { where(state: i + 1) },
+      class_name: 'Product',
+      dependent: :destroy
+  end
 
   validates :title, :admin_user_id, presence: true
 

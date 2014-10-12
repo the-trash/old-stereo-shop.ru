@@ -2,8 +2,8 @@ after 'development:brands' do
   PRODUCT_FACTOR = 5
   PRODUCT_COUNT  = 20
   admins = AdminUser.all
-  product_categories = ProductCategory.all
-  brands = Brand.all
+  product_categories = ProductCategory.includes(:products).published
+  brands = Brand.published
 
   progressbar =
     ProgressBar.create({
@@ -64,9 +64,11 @@ after 'development:brands' do
 
   ProductCategory.reset_column_information
   product_categories.find_each do |category|
-    %i(products published_products).each do |st|
-      ProductCategory.reset_counters(category.id, st)
-    end
+    ProductCategory.reset_counters(category.id, :products)
+    category.update_attributes!({
+      published_products_count: category.published_products.count,
+      removed_products_count: category.removed_products.count
+    })
 
     progressbar_counters.increment
   end

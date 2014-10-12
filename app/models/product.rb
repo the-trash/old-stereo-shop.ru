@@ -5,16 +5,14 @@ class Product < ActiveRecord::Base
 
   acts_as_list
 
+  after_create :increment_product_category_cache_counters
+  after_destroy :decrement_product_category_cache_counters
+
   %i(admin_user brand).each do |m|
     belongs_to m
   end
 
   belongs_to :product_category, counter_cache: true
-  %w(published removed).each do |st|
-    belongs_to :product_category,
-      counter_cache: :"#{ st }_products_count",
-      inverse_of: :published_products
-  end
 
   has_many :characteristics_products, dependent: :destroy
   has_many :characteristics, through: :characteristics_products
@@ -94,5 +92,15 @@ class Product < ActiveRecord::Base
         }
       end
     end
+  end
+
+  private
+
+  def update_product_category_cache_counters
+    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
+  end
+
+  def decrement_product_category_cache_counters
+    ProductCategory.decrement_counter(:"#{ state }_products_count", product_category.id)
   end
 end

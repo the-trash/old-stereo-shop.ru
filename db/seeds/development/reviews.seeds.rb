@@ -56,9 +56,12 @@ after 'development:ratings' do
 
   Product.reset_column_information
   products.each do |product|
-    %i(reviews published_reviews removed_reviews moderated_reviews).each do |st|
-      Product.reset_counters(product.id, st)
-    end
+    Product.reset_counters(product.id, :reviews)
+    product.update_attributes!({
+      published_reviews_count: product.published_reviews.count,
+      removed_reviews_count: product.removed_reviews.count,
+      moderated_reviews_count: product.moderated_reviews.count
+    })
 
     progressbar_product.increment
   end

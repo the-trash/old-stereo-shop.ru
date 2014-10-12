@@ -21,4 +21,8 @@ after 'development:product_categories' do
     end
 
   Brand.import(brands)
+
+  Brand.find_each do |brand|
+    brand.update_column(:state, rand(0..3))
+  end
 end

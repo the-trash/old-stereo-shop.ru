@@ -42,4 +42,8 @@ after 'development:users' do
     ProductCategory.import(new_cats)
     progressbar_tree.increment
   end
+
+  ProductCategory.find_each do |category|
+    category.update_column(:state, rand(0..3))
+  end
 end
