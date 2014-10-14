@@ -2,11 +2,13 @@ class Product < ActiveRecord::Base
   include Friendable, Seoble, Statable, Photoable, Ratable
 
   scope :without_ids, -> (ids) { where.not(id: ids) }
+  scope :with_discount, -> { where('discount > 0.0') }
 
   acts_as_list
 
   after_create :increment_product_category_cache_counters
   after_destroy :decrement_product_category_cache_counters
+  before_save :recalculate_product_category_cache_counters, if: :state_changed?
 
   %i(admin_user brand).each do |m|
     belongs_to m
@@ -96,11 +98,16 @@ class Product < ActiveRecord::Base
 
   private
 
-  def update_product_category_cache_counters
+  def increment_product_category_cache_counters
     ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
   end
 
   def decrement_product_category_cache_counters
     ProductCategory.decrement_counter(:"#{ state }_products_count", product_category.id)
+  end
+
+  def recalculate_product_category_cache_counters
+    ProductCategory.decrement_counter(:"#{ state_was }_products_count", product_category.id)
+    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
   end
 end

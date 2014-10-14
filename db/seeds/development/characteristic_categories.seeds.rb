@@ -1,7 +1,7 @@
 after 'development:products' do
   CHAR_CATEGORY_COUNT = 10
   UNITS = %w(кг г мм Гц Ом)
-  admins = AdminUser.all
+  admins = AdminUser.all.to_a
 
   progressbar =
     ProgressBar.create({

@@ -1,10 +1,24 @@
 .container
   %h1 Каталог
 
-  .categories-list
-    %ul
-      - ["MC-головки звукоснимателя", "ММ-звукосниматели", "МС-трансформаторы", "Фонокорректоры", "Предварительные усилители", "Усилители для наушников", "Согласующие трансформаторы", "Кабели", "ЦАПы", "Розетка 6-местная (сетевая колодка 220В)", "Аксессуары", "Пневмоплатформа"].each do |title|
-        %li
-          = link_to '#' do
-            = image_tag 'category.jpg', class: 'grayscale grayscale-fade'
-            %span= title
+  - if @roots_product_categories.present?
+    .categories-list
+      %ul
+        - @roots_product_categories.each do |product_category|
+          -# ["MC-головки звукоснимателя", "ММ-звукосниматели", "МС-трансформаторы", "Фонокорректоры", "Предварительные усилители", "Усилители для наушников", "Согласующие трансформаторы", "Кабели", "ЦАПы", "Розетка 6-местная (сетевая колодка 220В)", "Аксессуары", "Пневмоплатформа"].each do |title|
+          %li
+            = link_to product_category do
+              = image_tag 'category.jpg', class: 'grayscale grayscale-fade'
+              %span= product_category.title
+
+  - if @news.present? || @useful_information.present?
+    .b-news
+      - if @news.present?
+        %h3 Новости
+        %ul.news
+          = render partial: 'posts/includes/main_news_list', collection: @news, as: :post
+
+      - if @useful_information.present?
+        %h3 Полезная информация
+        %ul.useful_information
+          = render partial: 'posts/includes/main_news_list', collection: @useful_information, as: :post

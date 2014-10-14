@@ -5,11 +5,8 @@ class ProductCategory < ActiveRecord::Base
 
   scope :for_front, -> {
     joins(:products).published.
-    where(products: { state: 1 })
-  }
-  scope :sale, -> {
-    joins(:products).published.
-    where('products.discount > 0 AND products.state = 1')
+    where(products: { state: 1 }).
+    group('product_categories.id')
   }
 
   belongs_to :admin_user

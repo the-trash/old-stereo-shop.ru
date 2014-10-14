@@ -1,5 +1,5 @@
 after 'development:users' do
-  PRODUCT_CATEGORY_COUNT = 40
+  PRODUCT_CATEGORY_COUNT = 10
   admins = AdminUser.all
 
   progressbar =

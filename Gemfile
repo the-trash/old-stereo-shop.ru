@@ -70,6 +70,7 @@ gem 'image_suckr'
 gem 'ruby-progressbar'
 gem 'select2-rails'
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'unicorn'
 
 group :development do

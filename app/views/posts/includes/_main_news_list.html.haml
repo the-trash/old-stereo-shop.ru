@@ -1,0 +1,4 @@
+%li
+  %p.date= l(post.created_at, format: :default)
+  %h4= link_to post.title, post
+  %p.description= post.description.html_safe

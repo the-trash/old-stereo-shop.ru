@@ -1,5 +1,5 @@
 after 'development:post_categories' do
-  POST_COUNT = 250
+  POST_COUNT = 1000
   admins = AdminUser.all
   post_categories = PostCategory.all
 
@@ -23,4 +23,8 @@ after 'development:post_categories' do
     end
 
   Post.import(posts)
+
+  Post.all.find_each do |post|
+    post.update_column(:state, rand(0..3))
+  end
 end

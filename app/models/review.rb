@@ -3,6 +3,7 @@ class Review < ActiveRecord::Base
 
   after_create :increment_recallable_cache_counters
   after_destroy :decrement_recallable_cache_counters
+  before_save :recalculate_product_category_cache_counters, if: :state_changed?
 
   belongs_to :recallable, polymorphic: true, counter_cache: true
 
@@ -19,5 +20,12 @@ class Review < ActiveRecord::Base
 
   def decrement_recallable_cache_counters
     Product.decrement_counter(:"#{ state }_reviews_count", recallable_id) if recallable_type == 'Product'
+  end
+
+  def recalculate_product_category_cache_counters
+    if recallable_type == 'Product'
+      Product.decrement_counter(:"#{ state_was }_reviews_count", recallable_id)
+      Product.increment_counter(:"#{ state }_reviews_count", recallable_id)
+    end
   end
 end

@@ -3,6 +3,14 @@ class Post < ActiveRecord::Base
 
   acts_as_list
 
+  scope :by_category, -> (category_title) {
+    includes(:post_category).where(post_categories: { title: category_title })
+  }
+
+  scope :for_front, -> (category_title, limit = 10) {
+    by_category(category_title).order(id: :desc).limit(limit)
+  }
+
   %i(admin_user post_category).each do |m|
     belongs_to m
   end

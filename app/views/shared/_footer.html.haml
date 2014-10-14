@@ -5,9 +5,10 @@
         Наша продукция
         %span.icons-arrow-black-down
       %ul.menu
-        %li= link_to 'Sale', '#', class: 'pink'
-        - ["MC-головки звукоснимателя", "ММ-звукосниматели", "МС-трансформаторы", "Фонокорректоры", "Предварительные усилители", "Усилители для наушников", "Согласующие трансформаторы", "Кабели", "ЦАПы", "Розетка 6-местная (сетевая колодка 220В)", "Аксессуары", "Пневмоплатформа"].each do |title|
-          %li= link_to title, '#'
+        %li= link_to 'Sale', [:sale, :product_categories], class: 'pink'
+        - if @roots_product_categories.present?
+          - @roots_product_categories.each do |category|
+            %li= link_to category.title, category
   .row.dark-gray-bg
     .container
       %h2.pull-left

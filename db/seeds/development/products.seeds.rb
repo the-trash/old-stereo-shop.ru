@@ -1,8 +1,8 @@
 after 'development:brands' do
   PRODUCT_FACTOR = 5
-  PRODUCT_COUNT  = 20
+  PRODUCT_COUNT  = 200
   admins = AdminUser.all
-  product_categories = ProductCategory.includes(:products).published
+  product_categories = ProductCategory.includes(:products)
   brands = Brand.published
 
   progressbar =

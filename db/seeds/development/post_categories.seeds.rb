@@ -1,5 +1,5 @@
 after 'development:products' do
-  POST_CATEGORY_COUNT = 20
+  POST_CATEGORY_COUNT = 5
   admins = AdminUser.all
 
   progressbar =
@@ -11,8 +11,13 @@ after 'development:products' do
 
   post_categories =
     [].tap do |a|
-      POST_CATEGORY_COUNT.times do |n|
+      (POST_CATEGORY_COUNT - 2).times do |n|
         a << FactoryGirl.build(:post_category, admin_user: admins.sample)
+        progressbar.increment
+      end
+
+      ['Новости', 'Полезная информация'].each do |custom_title|
+        a << FactoryGirl.build(:post_category, admin_user: admins.sample, title: custom_title)
         progressbar.increment
       end
     end
@@ -41,5 +46,9 @@ after 'development:products' do
 
     PostCategory.import(new_cats)
     progressbar_tree.increment
+  end
+
+  PostCategory.all.find_each do |category|
+    category.update_column(:state, rand(0..3))
   end
 end
