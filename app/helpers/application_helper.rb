@@ -12,6 +12,7 @@ module ApplicationHelper
   end
 
   def build_product_category_ancestry_tree(collection)
+    # = image_tag 'category.jpg', class: 'grayscale grayscale-fade'
     collection.map { |item, sub_items|
       "<li>#{ link_to(item.title, [item], data: { id: item.id }) } #{ product_category_nested_tree(sub_items) }</li>"
     }.join.html_safe

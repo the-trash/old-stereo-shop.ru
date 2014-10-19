@@ -15,6 +15,7 @@ class FrontController < ApplicationController
     @settings ||= $settings
 
     @roots_product_categories = ProductCategory.for_front.roots
+    @product_categories = ProductCategory.for_front.arrange(order: :position)
   end
 
   def breadcrumbs_with_ancestors(obj, resource)

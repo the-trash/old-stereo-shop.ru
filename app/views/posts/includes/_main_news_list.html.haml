@@ -1,4 +1,7 @@
+- with_author ||= false
 %li
-  %p.date= l(post.created_at, format: :default)
+  %p.date= l(post.created_at, format: :short)
   %h4= link_to post.title, post
   %p.description= post.description.html_safe
+  - if with_author
+    %p.author= "Автор: #{ post.admin_user.email }"

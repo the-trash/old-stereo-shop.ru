@@ -1,0 +1,41 @@
+.b-news {
+  padding: 20px 115px;
+  h3 {
+    font-size: 1.875em;
+    text-decoration: underline;
+    margin: 0 0 12px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      margin: 0 0 35px;
+    }
+  }
+  .b-news-one {
+    width: 450px;
+    float: left;
+    &.margin-right {
+      margin-right: 38px;
+    }
+    p {
+      margin: 0 0 0.563em;
+      &:last-child { margin: 0; }
+      &.date {
+        color: $dullGray;
+        font-size: 0.750em;
+      }
+      &.author {
+        color: $lightBlack;
+        font-weight: bold;
+      }
+    }
+    h4 {
+      color: $blue;
+      font-size: 1.125em;
+      margin: 0 0 0.563em;
+      padding: 0;
+    }
+  }
+}
