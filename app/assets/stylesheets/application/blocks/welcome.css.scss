@@ -1,5 +1,5 @@
 .categories-list {
-  ul {
+  ul.menu {
     display: block;
     @extend .unstyled;
     @include clearfix();
@@ -8,9 +8,10 @@
       display: block;
       float: left;
       width: 270px;
-      min-height: 238px;
-      margin-right: 27px;
+      margin: 0 27px 50px 0;
       font-size: 24px;
+      max-height: 190px;
+      color: $deathlyIndigo;
 
       &:nth-of-type(4n){
         margin-right: 0;

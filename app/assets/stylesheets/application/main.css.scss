@@ -18,3 +18,31 @@
 
 @import "blocks/welcome";
 @import "blocks/news";
+
+ul.menu {
+  li {
+    &.with-children {
+      & > a {
+        text-decoration: none;
+        border-bottom: 1px dashed $blue;
+      }
+      span {
+        &.arrow {
+          color: $blue;
+          font-size: 0.625em;
+          cursor: pointer;
+        }
+      }
+      .children {
+        display: none;
+        .with-children {
+          &:hover {
+            & > .children {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

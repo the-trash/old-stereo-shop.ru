@@ -3,8 +3,8 @@
 
   - if @product_categories.present?
     .categories-list
-      %ul
-        = build_product_category_ancestry_tree(@product_categories)
+      %ul.menu
+        = build_product_category_ancestry_tree(@product_categories, { with_image: true })
 
   - if @news.present? || @useful_information.present?
     %hr

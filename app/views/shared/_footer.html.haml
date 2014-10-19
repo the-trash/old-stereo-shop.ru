@@ -5,10 +5,9 @@
         Наша продукция
         %span.icons-arrow-black-down
       - if @product_categories.present?
-        .categories-list.footer
-          %ul.menu
-            %li= link_to 'Sale', [:sale, :product_categories], class: 'pink'
-            = build_product_category_ancestry_tree(@product_categories)
+        %ul.menu
+          %li= link_to 'Sale', [:sale, :product_categories], class: 'pink'
+          = build_product_category_ancestry_tree(@product_categories)
 
   .row.dark-gray-bg
     .container
