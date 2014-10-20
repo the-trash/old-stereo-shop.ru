@@ -128,6 +128,17 @@ ActiveRecord::Schema.define(version: 20141014115503) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
   create_table "photos", force: true do |t|
     t.integer  "photoable_id"
     t.string   "photoable_type"
@@ -340,6 +351,7 @@ ActiveRecord::Schema.define(version: 20141014115503) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "full_name"
     t.integer  "reviews_count",          default: 0
   end
 
