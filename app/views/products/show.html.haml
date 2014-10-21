@@ -1,61 +1,54 @@
-%h3= resource.title
-= price_with_discount(resource)
+.b-product
+  %h3= resource.title
 
-- if @stores.present?
-  %ol
-    - @stores.each do |store|
-      %li
-        %p= store[:store].title
-        %p= store[:store_count].count
+  = render 'products/includes/image_gallery_show_product_page', resource: resource if resource.photos.any?
 
-%h4 О товаре
-%p= raw resource.description
+  .b-product-short-info
+    = price_with_discount(resource)
+    .ratable.read_only{ data: { score: resource.average_score } }
+    = link_to [resource.published_reviews_count, t('views.product.reviews_count', count: resource.published_reviews_count)].join(' '), '#', class: 'reviews-count'
 
-- if @characteristics.present?
-  %h4 Технические детали
-  %ol
-    - @characteristics.each do |char|
-      %li= char[:category].title
-      - if char[:characteristics].any?
-        %ul
-          - char[:characteristics].each do |cat_char|
-            %li
-              %strong= cat_char[:characteristic].title
-              %p= cat_char[:characteristic_value].value
+    = render 'products/includes/stores', stores: @stores if @stores.present?
 
-%h3= "Отзывы (#{ resource.published_reviews_count })"
+  .b-product-description
+    %h4 О товаре
+    %p= raw resource.description
 
-- if current_user.present? && resource.can_vote?(current_user.id)
-  %h4 Ваш отзыв
-  .rating
-    %p Рейтинг
-    %p.ratable
+  = render 'products/includes/characteristics', characteristics: @characteristics if @characteristics.present?
 
-  = form_for(Review.new, url: [:add_review, resource], method: :post) do |f|
-    = hidden_field_tag 'review[rating_score]'
-    = f.hidden_field :user_id, { value: current_user.id }
-    %p
-      = f.label :pluses, t('pluses', scope: [:activerecord, :attributes, :review])
-      = f.text_field :pluses
+  %h3= "Отзывы (#{ resource.published_reviews_count })"
 
-    %p
-      = f.label :cons, t('cons', scope: [:activerecord, :attributes, :review])
-      = f.text_field :cons
+  - if current_user.present? && resource.can_vote?(current_user.id)
+    %h4 Ваш отзыв
+    .rating
+      %p Рейтинг
+      %p.ratable
 
-    %p
-      = f.label :body, t('body', scope: [:activerecord, :attributes, :review])
-      = f.text_field :body
+    = form_for(Review.new, url: [:add_review, resource], method: :post) do |f|
+      = hidden_field_tag 'review[rating_score]'
+      = f.hidden_field :user_id, { value: current_user.id }
+      %p
+        = f.label :pluses, t('pluses', scope: [:activerecord, :attributes, :review])
+        = f.text_field :pluses
 
-    %p= f.submit 'Оставить отзыв'
+      %p
+        = f.label :cons, t('cons', scope: [:activerecord, :attributes, :review])
+        = f.text_field :cons
 
-- if @related_products.present?
-  %h4 Товары в комплект
-  %ol
-    - @related_products.each do |related|
-      %li= related.title
+      %p
+        = f.label :body, t('body', scope: [:activerecord, :attributes, :review])
+        = f.text_field :body
 
-- if @similar_products.present?
-  %h4 Вам может понравиться
-  %ol
-    - @similar_products.each do |similar|
-      %li= similar.title
+      %p= f.submit 'Оставить отзыв'
+
+  - if @related_products.present?
+    %h4 Товары в комплект
+    %ol
+      - @related_products.each do |related|
+        %li= related.title
+
+  - if @similar_products.present?
+    %h4 Вам может понравиться
+    %ol
+      - @similar_products.each do |similar|
+        %li= similar.title

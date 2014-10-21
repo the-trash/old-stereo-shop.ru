@@ -10,9 +10,10 @@
 
 $(document).ready ->
   $('body').find('.ratable').each ->
-    $(@).raty
-      click: (score, evt) ->
-        $('#review_rating_score').val(score)
+    new Ratable(this)
+
+  if ('.b-product').length
+    new ProductShowPage()
 
   $('body').on 'click', '.with-children > span.arrow', (e) ->
     if $(this).hasClass('down')

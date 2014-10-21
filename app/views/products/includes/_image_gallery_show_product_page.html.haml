@@ -1,0 +1,6 @@
+.b-product-images
+  - resource.photos.each_with_index do |photo, i|
+    - if i == 0
+      .e-main-image{ style: "background-image: url(#{ photo.file_url(:product) });" }
+
+    .e-thumb-image{ style: "background-image: url(#{ photo.file_url(:product, :thumb) });", data: { big_img_url: photo.file_url(:product) } }

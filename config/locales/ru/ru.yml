@@ -10,3 +10,11 @@ ru:
       last_word_connector: ! ' и '
       two_words_connector: ! ' и '
       words_connector: ! ', '
+
+  views:
+    product:
+      reviews_count:
+        one: отзыв
+        few: отзыва
+        many: отзывов
+        other: отзывов

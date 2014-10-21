@@ -23,10 +23,11 @@
     .banner-wrapper
       = render 'shared/banner'
 
-    - unless current_page?(root_path)
-      .breadcrumbs= render_breadcrumbs separator: ' > '
+    .container
+      - unless current_page?(root_path)
+        .breadcrumbs= render_breadcrumbs separator: ' > '
 
-    = yield
+      = yield
 
     - cache 'static' do
       = render 'shared/footer'

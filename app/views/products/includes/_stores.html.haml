@@ -1,0 +1,5 @@
+%ul.stores_list
+  - stores.each do |store|
+    %li
+      %p= store[:store].title
+      %p= store[:store_count].count
