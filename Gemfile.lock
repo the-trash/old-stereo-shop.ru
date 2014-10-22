@@ -1,12 +1,13 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 0c83cfe0b9b43a4a27a63c13f27d6682b0ff6cae
+  revision: b794f4b7550dc4756bd76c31221ae3bde6185e5e
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
       bourbon
       coffee-rails
       formtastic (~> 3.0)
+      formtastic_i18n
       inherited_resources (~> 1.4.1)
       jquery-rails
       jquery-ui-rails (~> 5.0)
@@ -17,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/james2m/seedbank.git
-  revision: dcddd9672b7a84112bc8de7a9782cd1f5dfa5445
+  revision: 18efb3835c9c23ceadc95b1919b3b8ed93290d6d
   specs:
     seedbank (0.3.0)
 
@@ -41,7 +42,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: f246f62b106e14e0e123d823f5ad5496d8641c83
+  revision: dae49f836ace1210bbcb433ee0c68626fd507d37
   specs:
     devise (3.4.0)
       bcrypt (~> 3.0)
@@ -77,7 +78,7 @@ GIT
 
 GIT
   remote: git://github.com/stefanoverna/activeadmin-wysihtml5.git
-  revision: 38bca2986d116bb6459d3f5cafd4479a73eb51cd
+  revision: 35d1a9411a1c0af61882ef04dcb7cd10600fbdb5
   specs:
     activeadmin-wysihtml5 (1.0.0)
       activeadmin
@@ -106,7 +107,7 @@ GEM
       activemodel (= 4.1.5)
       activesupport (= 4.1.5)
       arel (~> 5.0.0)
-    activerecord-import (0.5.0)
+    activerecord-import (0.6.0)
       activerecord (>= 3.0)
     activesupport (4.1.5)
       i18n (~> 0.6, >= 0.6.9)
@@ -125,7 +126,7 @@ GEM
     arbre (1.0.2)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (3.1.0.20140911)
+    autoprefixer-rails (3.1.2.20141016)
       execjs
     awesome_print (1.2.0)
     bcrypt (3.1.7)
@@ -138,7 +139,7 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
-    brakeman (2.6.2)
+    brakeman (2.6.3)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)
@@ -163,7 +164,7 @@ GEM
     capistrano-rails (1.1.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano-rvm (0.1.1)
+    capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
     capistrano3-nginx (2.0.2)
@@ -178,7 +179,7 @@ GEM
     carrierwave-size-validator (0.1.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    chunky_png (1.3.1)
+    chunky_png (1.3.2)
     ckeditor (4.1.0)
       mime-types
       orm_adapter (~> 0.5.0)
@@ -216,21 +217,22 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.2.1)
-    factory_girl (4.4.0)
+    execjs (2.2.2)
+    factory_girl (4.5.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.4.1)
-      factory_girl (~> 4.4.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
-    ffi (1.9.5)
+    ffi (1.9.6)
     formatador (0.2.5)
     formtastic (3.0.0)
       actionpack (>= 3.2.13)
+    formtastic_i18n (0.1.1)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     fssm (0.2.10)
@@ -275,13 +277,13 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (2.1.3)
+    jbuilder (2.2.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (5.0.0)
+    jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
     json (1.8.1)
     jwt (1.0.0)
@@ -343,12 +345,12 @@ GEM
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
     orm_adapter (0.5.0)
-    paper_trail (3.0.5)
+    paper_trail (3.0.6)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
     pg (0.17.1)
     phony (2.4.3)
-    phony_rails (0.7.1)
+    phony_rails (0.7.2)
       activesupport (>= 3.0)
       countries (>= 0.8.2)
       phony (~> 2.4.3)
@@ -428,12 +430,12 @@ GEM
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
       rspec-mocks (~> 3.1.0)
-    rspec-core (3.1.5)
+    rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.1.0)
-    rspec-mocks (3.1.2)
+    rspec-mocks (3.1.3)
       rspec-support (~> 3.1.0)
     rspec-nc (0.2.0)
       rspec (>= 2.9)
@@ -446,7 +448,7 @@ GEM
       rspec-expectations (~> 3.1.0)
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
-    rspec-support (3.1.1)
+    rspec-support (3.1.2)
     ruby-progressbar (1.6.0)
     ruby2ruby (2.1.3)
       ruby_parser (~> 3.1)
@@ -483,8 +485,8 @@ GEM
       sidekiq (>= 3.0.0)
     simple_captcha2 (0.3.2)
       rails (>= 4.1)
-    slim (2.0.3)
-      temple (~> 0.6.6)
+    slim (2.1.0)
+      temple (~> 0.6.9)
       tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
     spring (1.1.3)
@@ -495,15 +497,15 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.1.4)
+    sprockets-rails (2.2.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
-      sprockets (~> 2.8)
+      sprockets (>= 2.8, < 4.0)
     sshkit (1.5.1)
       colorize
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    temple (0.6.8)
+    temple (0.6.9)
     terminal-notifier (1.6.1)
     terminal-table (1.4.5)
     thin (1.6.3)

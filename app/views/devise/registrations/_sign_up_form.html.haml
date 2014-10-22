@@ -1,0 +1,19 @@
+%h3 Регистрация
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }) do |f|
+  = devise_error_messages!
+  .form-group
+    = f.label :email, 'Логин (электронная почта)'
+    = f.email_field :email, autofocus: true
+    .help-block
+      Например, anna123@mail.ru
+  .form-group
+    = f.label :password
+    = f.password_field :password, autocomplete: "off"
+    .help-block
+      Не менее 6 символов
+
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off"
+  %div= f.submit "Зарегистрироваться"
+= render "devise/shared/links"

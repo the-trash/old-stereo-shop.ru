@@ -15,10 +15,12 @@
 @import "global/banner";
 @import "global/header";
 @import "global/footer";
+@import "global/form";
 
 @import "blocks/welcome";
 @import "blocks/news";
 @import "blocks/product";
+@import "blocks/sessions";
 
 ul.menu {
   li {

@@ -1,0 +1,12 @@
+%h3 Вход
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form' }) do |f|
+  .form-group
+    = f.label :email, 'Логин (электронная почта)'
+    = f.email_field :email, autofocus: true
+  .form-group
+    = f.label :password
+    = f.password_field :password, autocomplete: "off"
+  - if devise_mapping.rememberable?
+    = f.hidden_field :remember_me
+  %div= f.submit "Войти"
+= render "devise/shared/links"
