@@ -18,6 +18,7 @@ ru:
         few: '%{count} отзыва'
         many: '%{count} отзывов'
         other: '%{count} отзывов'
+      review: 'Отзывы (%{count})'
       in_store:
         prefix: Осталось
         not_heppens: Не бывает
