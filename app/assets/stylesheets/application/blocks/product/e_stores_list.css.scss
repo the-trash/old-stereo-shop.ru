@@ -1,0 +1,37 @@
+.e-stores_list {
+  margin: 20px 0 0;
+  padding: 0;
+  li {
+    width: 100%;
+    list-style: none;
+    margin-bottom: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.in_store {
+      p { color: $persianGreen; }
+    }
+    &.not_in_store {
+      p { color: $telegram; }
+    }
+    &.not_heppens {
+      p {
+        color: $telegram;
+        &:first-child {
+          font-size: 20px;
+        }
+      }
+    }
+    p {
+      margin: 0 0 5px;
+      font-size: 16px;
+      &:last-child {
+        margin: 0;
+      }
+      a {
+        color: $blue;
+        font-size: 20px;
+      }
+    }
+  }
+}

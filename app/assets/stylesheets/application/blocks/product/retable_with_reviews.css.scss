@@ -1,0 +1,13 @@
+.b-product-ratable-with-reviews {
+  display: table;
+  .ratable, .reviews-count { float: left; }
+  .ratable {
+    min-width: 145px;
+  }
+  .reviews-count {
+    text-decoration: none;
+    border-bottom: 1px dotted $deathlyIndigo;
+    color: $deathlyIndigo;
+    font-size: 20px;
+  }
+}

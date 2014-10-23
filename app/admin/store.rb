@@ -54,6 +54,7 @@ ActiveAdmin.register Store do
         f.input :description, as: :wysihtml5
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
         f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
+        f.input :happens
       end
     end
 

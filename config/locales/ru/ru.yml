@@ -14,7 +14,16 @@ ru:
   views:
     product:
       reviews_count:
-        one: отзыв
-        few: отзыва
-        many: отзывов
-        other: отзывов
+        one: 1 отзыв
+        few: '%{count} отзыва'
+        many: '%{count} отзывов'
+        other: '%{count} отзывов'
+      in_store:
+        prefix: Осталось
+        not_heppens: Не бывает
+        products_count:
+          one: 1 штука
+          few: '%{count} штуки'
+          many: '%{count} штук'
+      not_in_store: Нет в наличии
+      with_currency: '%{coust} руб.'

@@ -40,7 +40,9 @@ after 'development:posts' do
 
   products = Product.all
 
-  Store.products_are.find_each do |store|
+  Store.find_each { |store| store.update_column(:state, rand(0..3)) }
+
+  Store.products_are.published.find_each do |store|
     product_ids = products.sample(rand((products.size / (2 * STORE_COUNT))..products.size)).map(&:id)
     products_stores_product_ids = ProductsStore.where(store_id: store.id).map(&:product_id)
 

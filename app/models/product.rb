@@ -84,7 +84,7 @@ class Product < ActiveRecord::Base
 
   def make_stores
     prod_stores = products_stores.index_by(&:store_id)
-    _stores     = Store.where(id: prod_stores.keys).order_by
+    _stores     = Store.where(id: prod_stores.keys).published.order_by
 
     [].tap do |a|
       _stores.each do |store|

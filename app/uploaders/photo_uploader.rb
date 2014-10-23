@@ -8,14 +8,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :small do
-    process resize_and_pad: [100, 100]
+    process resize_to_fill: [100, 100]
   end
 
   version :product, if: :is_product? do
-    process resize_and_pad: [570, 370]
+    process resize_to_fill: [570, 370]
 
     version :thumb do
-      process resize_and_pad: [70, 45]
+      process resize_to_fill: [70, 45]
     end
   end
 

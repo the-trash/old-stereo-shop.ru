@@ -125,7 +125,7 @@ ActiveAdmin.register Product do
         f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
           pr_store.input :store, as: :select2,
             collection: options_from_collection_for_select(
-              Store.products_are, :id, :title, pr_store.object.store_id
+              Store.published, :id, :title, pr_store.object.store_id
             )
           pr_store.input :count
         end
