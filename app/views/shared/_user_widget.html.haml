@@ -2,7 +2,10 @@
   .user-widget
     .panel.wishes
       .icon
-      = link_to '', '#'
+      - if current_user.present?
+        = link_to '', wishlist_users_path
+      - else
+        = link_to '', new_user_session_path
     .panel.cart
       .icon
       .cart-items-counter 5

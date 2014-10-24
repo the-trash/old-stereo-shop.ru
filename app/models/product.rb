@@ -22,6 +22,8 @@ class Product < ActiveRecord::Base
   has_many :products_stores, dependent: :destroy
   has_many :stores, -> { order(position: :desc) }, through: :products_stores
 
+  has_many :wishes, dependent: :destroy
+
   has_many :reviews, dependent: :destroy, as: :recallable
   %w(published removed moderated).each_with_index do |st, i|
     has_many :"#{ st }_reviews",

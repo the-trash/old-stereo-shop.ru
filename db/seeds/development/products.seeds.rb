@@ -26,6 +26,13 @@ after 'development:brands' do
       format: '%t %B %p%% %e'
     })
 
+  progressbar_wishes =
+    ProgressBar.create({
+      title: 'Generate wishes for users',
+      total: User.count,
+      format: '%t %B %p%% %e'
+    })
+
   i = 0
   PRODUCT_FACTOR.times do |n|
     products =
@@ -60,6 +67,16 @@ after 'development:brands' do
     product.update_column(:state, rand(0..3))
 
     progressbar_related_products.increment
+  end
+
+  users = User.all
+
+  users.find_each do |user|
+    products.sample(rand(1..5)).each do |product|
+      user.wishes << Wish.new(product: product)
+    end
+
+    progressbar_wishes.increment
   end
 
   ProductCategory.reset_column_information

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show] do
     member do
       post :add_review
+      post :add_to_wishlist
     end
   end
 
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       get :authentification
       get :profile, action: :edit
       post :profile, action: :update
+      get :wishlist, action: :wishlist
     end
   end
 end

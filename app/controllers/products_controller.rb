@@ -28,6 +28,12 @@ class ProductsController < FrontController
     end
   end
 
+  def add_to_wishlist
+    if current_user.present?
+      current_user.wishes << Wish.new(product: resource)
+    end
+  end
+
   private
 
   def permit_review

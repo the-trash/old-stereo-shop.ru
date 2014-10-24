@@ -46,14 +46,16 @@
       top: 8px;
       left: 10px;
     }
+
+    &:hover .icon {
+      @include icons-sprite('heart-pink-big');
+    }
   }
 
   .cart {
     &.panel {
-      background-color: #898989;
-
       &:hover {
-        background-color: darken(#898989, 5%);
+        background-color: #898989;
       }
     }
 
@@ -61,11 +63,21 @@
     border-left: 2px solid $white;
 
     .icon {
-      @include icons-sprite('cart-white-big');
-      width: icons-sprite-width('cart-white-big');
-      height: icons-sprite-height('cart-white-big');
-      top: 0;
-      left: 3px;
+      @include icons-sprite('cart-blue-big');
+      width: icons-sprite-width('cart-blue-big');
+      height: icons-sprite-height('cart-blue-big');
+      top: 3px;
+      left: 6px;
+    }
+
+    &:hover {
+      .icon {
+        @include icons-sprite('cart-white-big');
+        width: icons-sprite-width('cart-white-big');
+        height: icons-sprite-height('cart-white-big');
+        top: 0;
+        left: 3px;
+      }
     }
 
     .cart-items-counter {

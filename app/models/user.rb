@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
     inverse_of: :user
 
   has_many :reviews, dependent: :destroy
+  has_many :wishes, dependent: :destroy
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 

@@ -10,6 +10,8 @@
         .ratable.read_only{ data: { score: resource.average_score } }
         = link_to I18n.t('views.product.reviews_count', count: resource.published_reviews_count), '#', class: 'reviews-count'
 
+      - if user_signed_in?
+        = link_to 'Мне нравится', [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' }
       = render 'products/includes/stores', stores: @stores if @stores.present?
 
   .b-product-description

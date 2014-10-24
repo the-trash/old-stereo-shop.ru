@@ -1,0 +1,13 @@
+.container
+  %h2 Список желаний
+
+  - if @wishes.present?
+    %table
+      %tbody
+        - @wishes.each do |product|
+          %tr
+            %td= link_to product.title, product
+            %td= product.price
+            %td= product.sku
+  - else
+    Ваш список желаний пока пуст

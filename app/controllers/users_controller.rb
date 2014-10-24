@@ -30,6 +30,14 @@ class UsersController < FrontController
     end
   end
 
+  def wishlist
+    authorize current_user, :update?
+    @user   = current_user
+    @wishes = Product.where(id: current_user.wishes.map(&:product_id))
+
+    add_breadcrumb 'Мой список желаний'
+  end
+
   private
 
   def set_user
