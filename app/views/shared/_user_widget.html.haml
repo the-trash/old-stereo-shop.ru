@@ -1,0 +1,15 @@
+.user-widget-wrapper
+  .user-widget
+    .panel.wishes
+      .icon
+      = link_to '', '#'
+    .panel.cart
+      .icon
+      .cart-items-counter 5
+      = link_to '', '#'
+    .panel.profile
+      .icon
+        - if current_user.present?
+          = link_to '', '#'
+        - else
+          = link_to '', new_user_session_path

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.5'
+gem 'rails'
 gem 'rails_config', '0.2.5'
 
 ## Database adapter
