@@ -1,0 +1,18 @@
+= form_for :user, url: profile_users_path, html: { class: 'form' } do |f|
+  .form-group
+    = f.label :email, 'Логин (электронная почта)'
+    = f.email_field :email, autofocus: true
+  .form-group
+    = f.label :full_name, 'Полное имя'
+    = f.text_field :full_name
+    .help-block Например, Иван Петров
+
+  %h3 Смена пароля
+  .form-group
+    = f.label :password
+    = f.password_field :password, autocomplete: "off"
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off"
+
+  %div= f.submit "Сохранить"

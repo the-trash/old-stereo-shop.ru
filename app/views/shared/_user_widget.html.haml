@@ -10,6 +10,6 @@
     .panel.profile
       .icon
         - if current_user.present?
-          = link_to '', '#'
+          = link_to '', profile_users_path
         - else
           = link_to '', new_user_session_path
