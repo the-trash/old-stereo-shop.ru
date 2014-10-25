@@ -1,7 +1,7 @@
 %table
   - characteristics.each do |char|
     - if char[:characteristics].any?
-      %tr
-        - char[:characteristics].each do |cat_char|
+      - char[:characteristics].each do |cat_char|
+        %tr
           %td= cat_char[:characteristic].title
           %td= cat_char[:characteristic_value].value

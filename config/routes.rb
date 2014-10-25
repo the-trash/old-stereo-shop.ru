@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       post :add_review
       post :add_to_wishlist
+      get :new_review
     end
   end
 

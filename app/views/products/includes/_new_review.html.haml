@@ -1,21 +1,26 @@
-%h4 Ваш отзыв
-.rating
-  %p Рейтинг
-  %p.ratable
+.b-review-new
+  %h4 Ваш отзыв
+  .rating
+    %p Рейтинг
+    %p.ratable.new-review
 
-= form_for(Review.new, url: [:add_review, resource], method: :post) do |f|
-  = hidden_field_tag 'review[rating_score]'
-  = f.hidden_field :user_id, { value: current_user.id }
-  %p
-    = f.label :pluses, t('pluses', scope: [:activerecord, :attributes, :review])
-    = f.text_field :pluses
+  = form_for(Review.new, url: [:add_review, resource], method: :post, html: { class: 'form new-review-form' }) do |f|
+    = hidden_field_tag 'review[rating_score]'
+    = f.hidden_field :user_id, { value: current_user.id }
+    %p
+      = f.label :pluses, t('pluses', scope: [:activerecord, :attributes, :review])
+      = f.text_field :pluses
+      %span= t('views.product.new_review_examples.pluses')
 
-  %p
-    = f.label :cons, t('cons', scope: [:activerecord, :attributes, :review])
-    = f.text_field :cons
+    %p
+      = f.label :cons, t('cons', scope: [:activerecord, :attributes, :review])
+      = f.text_field :cons
+      %span= t('views.product.new_review_examples.cons')
 
-  %p
-    = f.label :body, t('body', scope: [:activerecord, :attributes, :review])
-    = f.text_field :body
+    %p
+      = f.label :body, t('body', scope: [:activerecord, :attributes, :review])
+      = f.text_field :body, required: true
+      %span= t('views.product.new_review_examples.body')
 
-  %p= f.submit 'Оставить отзыв'
+    %p= f.submit 'Оставить отзыв'
+    %p= link_to 'Отмена', '#', class: 'cancel-btn'

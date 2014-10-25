@@ -1,4 +1,6 @@
 class ProductsController < FrontController
+  before_filter :check_product_state
+
   inherit_resources
 
   actions :index, :show
@@ -29,6 +31,10 @@ class ProductsController < FrontController
     end
   end
 
+  def new_review
+    render partial: 'products/includes/new_review', layout: false
+  end
+
   def add_to_wishlist
     if current_user.present?
       current_user.wishes << Wish.new(product: resource)
@@ -41,5 +47,9 @@ class ProductsController < FrontController
     params.require(:review).permit(
       :pluses, :cons, :body, :user_id
     )
+  end
+
+  def check_product_state
+    redirect_to [:root], alert: I18n.t('controllers.products.product_not_found') unless resource.published?
   end
 end

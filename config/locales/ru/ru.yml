@@ -30,6 +30,10 @@ ru:
       with_currency: '%{coust} руб.'
       new_review: Написать отзыв
       more_reviews: Показать еще отзывы
+      new_review_examples:
+        pluses: 'Например: Хорошее качество звука'
+        cons: 'Например: Плохое качество звука'
+        body: 'Максимум 500 символов'
     reviews:
       pluses: 'Плюсы: '
       cons: 'Минусы: '
@@ -38,3 +42,4 @@ ru:
     products:
       tanks_for_your_vote: Спасибо за Ваш голос
       you_have_already_voted: Вы уже голосовали
+      product_not_found: 'Продукт не найден'

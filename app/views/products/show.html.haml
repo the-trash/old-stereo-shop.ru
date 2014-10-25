@@ -28,8 +28,11 @@
       .b-product-characteristics.tab.active#characteristics
         = render 'products/includes/characteristics', characteristics: @characteristics if @characteristics.present?
       .b-product-review.tab#reviews
-        = link_to t('views.product.new_review'), '#' if current_user.present? && resource.can_vote?(current_user.id)
+        = link_to t('views.product.new_review'), [:new_review, resource],
+            class: 'new-review-link' if user_signed_in? && resource.can_vote?(current_user.id)
+
         = render partial: 'products/includes/review', collection: @last_reviews, as: :review
+
         - # TODO: models/review.rb:4 related reviews limit
         = link_to t('views.product.more_reviews'), '#' if resource.published_reviews_count > 5
 

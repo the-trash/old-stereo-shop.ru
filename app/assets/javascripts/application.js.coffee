@@ -17,7 +17,10 @@ $(document).ready ->
     new ProductShowPage()
 
   $('body').find('.tabs').each ->
-    $(this).tabs()
+    $(this).tabs
+      activate: (event, ui) ->
+        ui.oldTab.removeClass('active')
+        ui.newTab.addClass('active')
 
   $('body').on 'click', '.with-children > span.arrow', (e) ->
     if $(this).hasClass('down')
