@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024213614) do
+ActiveRecord::Schema.define(version: 20141025104527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 20141024213614) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -289,14 +292,16 @@ ActiveRecord::Schema.define(version: 20141024213614) do
   add_index "ratings", ["votable_id", "votable_type"], name: "index_ratings_on_votable_id_and_votable_type", using: :btree
 
   create_table "reviews", force: true do |t|
-    t.integer "user_id"
-    t.integer "rating_id"
-    t.text    "body"
-    t.string  "pluses"
-    t.string  "cons"
-    t.integer "recallable_id"
-    t.string  "recallable_type"
-    t.integer "state",           default: 3
+    t.integer  "user_id"
+    t.integer  "rating_id"
+    t.text     "body"
+    t.string   "pluses"
+    t.string   "cons"
+    t.integer  "recallable_id"
+    t.string   "recallable_type"
+    t.integer  "state",           default: 3
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "reviews", ["rating_id"], name: "index_reviews_on_rating_id", using: :btree
@@ -351,8 +356,8 @@ ActiveRecord::Schema.define(version: 20141024213614) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "full_name"
     t.integer  "reviews_count",          default: 0
+    t.string   "full_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

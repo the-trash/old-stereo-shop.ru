@@ -1,0 +1,13 @@
+.b-review {
+  font-size: 14px;
+  p {
+    font-weight: bold;
+    &.author_name {
+      span {
+        margin-left: 20px;
+        color: $dullGray;
+      }
+    }
+    span {  font-weight: normal; }
+  }
+}

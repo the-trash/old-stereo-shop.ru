@@ -5,6 +5,7 @@
   = require_directory ./application/helpers
   = require_directory ./application/blocks
   = require jquery.raty
+  = require jquery-ui/tabs
   = require_self
 ###
 
@@ -14,6 +15,9 @@ $(document).ready ->
 
   if ('.b-product').length
     new ProductShowPage()
+
+  $('body').find('.tabs').each ->
+    $(this).tabs()
 
   $('body').on 'click', '.with-children > span.arrow', (e) ->
     if $(this).hasClass('down')

@@ -28,3 +28,13 @@ ru:
           many: '%{count} штук'
       not_in_store: Нет в наличии
       with_currency: '%{coust} руб.'
+      new_review: Написать отзыв
+      more_reviews: Показать еще отзывы
+    reviews:
+      pluses: 'Плюсы: '
+      cons: 'Минусы: '
+      body: 'Отзыв: '
+  controllers:
+    products:
+      tanks_for_your_vote: Спасибо за Ваш голос
+      you_have_already_voted: Вы уже голосовали

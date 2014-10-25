@@ -9,6 +9,7 @@ class ProductsController < FrontController
     @characteristics  = resource.make_characteristics_tree
     @related_products = resource.related_products
     @similar_products = resource.similar_products
+    @last_reviews     = resource.reviews.includes(:rating, :user).published.related
 
     breadcrumbs_with_ancestors(@product_category, resource)
 
@@ -22,9 +23,9 @@ class ProductsController < FrontController
         resource.reviews.create!(permit_review.merge!(rating_id: vote.id))
       end
 
-      redirect_to :back, notice: 'Спасибо за Ваш голос'
+      redirect_to :back, notice: I18n.t('controllers.products.tanks_for_your_vote')
     else
-      redirect_to :back, alert: 'Вы уже голосовали'
+      redirect_to :back, alert: I18n.t('controllers.products.you_have_already_voted')
     end
   end
 

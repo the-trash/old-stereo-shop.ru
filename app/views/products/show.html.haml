@@ -8,7 +8,7 @@
       = price_with_discount(resource)
       .b-product-ratable-with-reviews
         .ratable.read_only{ data: { score: resource.average_score } }
-        = link_to I18n.t('views.product.reviews_count', count: resource.published_reviews_count), '#', class: 'reviews-count'
+        = link_to t('views.product.reviews_count', count: resource.published_reviews_count), '#', class: 'reviews-count'
 
       - if user_signed_in?
         = link_to 'Мне нравится', [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' }
@@ -18,18 +18,20 @@
     %h4 О товаре
     %p= raw resource.description
 
-  .b-product-tabs
-    .nav-tabs
-      %ul
-        %li.active= link_to 'Технические детали', '#characteristics', data: { block: 'b-product-characteristics' }
-        %li
-          = link_to t('views.product.review', count: resource.published_reviews_count),
-            '#reviews', data: { block: 'b-product-review' }
+  .b-product-tabs.tabs
+    %ul
+      %li.active= link_to 'Технические детали', '#characteristics'
+      %li
+        = link_to t('views.product.review', count: resource.published_reviews_count),
+            '#reviews'
     .tab-content
-      .b-product-characteristics.tab.active
+      .b-product-characteristics.tab.active#characteristics
         = render 'products/includes/characteristics', characteristics: @characteristics if @characteristics.present?
-      .b-product-review.tab
-        = render 'products/includes/reviews' if current_user.present? && resource.can_vote?(current_user.id)
+      .b-product-review.tab#reviews
+        = link_to t('views.product.new_review'), '#' if current_user.present? && resource.can_vote?(current_user.id)
+        = render partial: 'products/includes/review', collection: @last_reviews, as: :review
+        - # TODO: models/review.rb:4 related reviews limit
+        = link_to t('views.product.more_reviews'), '#' if resource.published_reviews_count > 5
 
   - if @related_products.present?
     %h4 Товары в комплект
