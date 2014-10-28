@@ -1,0 +1,15 @@
+.b-related-product.b-single-product
+  - photo = product.photos.first
+  - if photo
+    .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
+  .b-info
+    %p= link_to product.title, product
+    %p.price= I18n.t('views.product.with_currency', coust: product.price_with_discount)
+    .b-product-ratable-with-reviews.smal
+      .ratable.read_only{ data: { score: resource.average_score } }
+      = link_to t('views.product.reviews_count', count: resource.published_reviews_count), '#', class: 'reviews-count'
+    .b-commerce
+      - if user_signed_in?
+        = link_to [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' } do
+          %span icon
+          = t('i_like')

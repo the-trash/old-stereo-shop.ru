@@ -11,7 +11,7 @@
         = link_to t('views.product.reviews_count', count: resource.published_reviews_count), '#', class: 'reviews-count'
 
       - if user_signed_in?
-        = link_to 'Мне нравится', [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' }
+        = link_to t('i_like'), [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' }
       = render 'products/includes/stores', stores: @stores if @stores.present?
 
   .b-product-description
@@ -38,12 +38,11 @@
 
   - if @related_products.present?
     %h4 Товары в комплект
-    %ol
-      - @related_products.each do |related|
-        %li= related.title
+    - @related_products.in_groups(Settings.product.related_group, false) do |group|
+      .b-related-products
+        = render partial: 'products/includes/related', collection: group, as: :product
 
   - if @similar_products.present?
-    %h4 Вам может понравиться
-    %ol
-      - @similar_products.each do |similar|
-        %li= similar.title
+    .b-similar-products
+      %h4 Вам может понравиться
+      = render partial: 'products/includes/similar', collection: @similar_products, as: :product

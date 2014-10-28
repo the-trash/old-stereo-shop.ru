@@ -1,0 +1,29 @@
+.b-single-product {
+  display: table;
+  float: left;
+  margin-right: 90px;
+  width: 500px;
+  height: 110px;
+  &:last-child { margin-right: 0; }
+  .e-image, .b-info { float: left; }
+  .e-image {
+    border: 1px solid $gainsborough;
+    width: 168px;
+    height: 108px;
+    margin-right: 25px;
+  }
+  .b-info {
+    p {
+      font-size: 18px;
+      &.price {
+        color: $moderateReddishOrange;
+      }
+    }
+  }
+  .b-commerce {
+    a {
+      text-decoration: none;
+      border-bottom: 1px dotted $blue;
+    }
+  }
+}

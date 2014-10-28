@@ -11,7 +11,7 @@
 
   @import "product/top_information";
 
-  .b-product-description {
+  .b-product-description, .b-related-products, .b-similar-products {
     width: 100%;
     display: table;
     p {
@@ -19,5 +19,12 @@
     }
   }
 
+  .b-related-products {
+    margin-bottom: 45px;
+    &:last-child { margin-bottom: 0; }
+  }
+
   @import "product/tabs";
+  @import "product/retable_with_reviews";
+  @import "product/single_product";
 }
