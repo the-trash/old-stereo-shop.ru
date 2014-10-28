@@ -9,18 +9,21 @@
     = f.hidden_field :user_id, { value: current_user.id }
     %p
       = f.label :pluses, t('pluses', scope: [:activerecord, :attributes, :review])
-      = f.text_field :pluses
+      = f.text_field :pluses, class: 'big'
       %span= t('views.product.new_review_examples.pluses')
 
     %p
       = f.label :cons, t('cons', scope: [:activerecord, :attributes, :review])
-      = f.text_field :cons
+      = f.text_field :cons, class: 'big'
       %span= t('views.product.new_review_examples.cons')
 
     %p
-      = f.label :body, t('body', scope: [:activerecord, :attributes, :review])
-      = f.text_field :body, required: true
+      = f.label :body do
+        = t('body', scope: [:activerecord, :attributes, :review])
+        %span.required *
+      = f.text_area :body, required: true, class: 'big'
       %span= t('views.product.new_review_examples.body')
 
-    %p= f.submit 'Оставить отзыв'
-    %p= link_to 'Отмена', '#', class: 'cancel-btn'
+    %p
+      = f.submit 'Оставить отзыв'
+      = link_to 'Отмена', '#', class: 'cancel-btn'

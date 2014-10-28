@@ -1,0 +1,30 @@
+.b-review-new {
+  h4 {
+    font-size: 24px;
+  }
+  p {
+    margin: 5px 0;
+  }
+  .rating {
+    margin-bottom: 25px;
+    p { font-size: 16px; }
+  }
+  .new-review-form {
+    p {
+      margin-bottom: 20px;
+      span {
+        color: $telegram;
+        font-size: 12px;
+        display: block;
+        &.required {
+          display: inline;
+          color: $moderateReddishOrange;
+        }
+      }
+      .cancel-btn {
+        margin-left: 20px;
+        font-size: 18px;
+      }
+    }
+  }
+}

@@ -12,6 +12,10 @@
     width: 270px;
     padding: 5px;
     @include box-sizing(border-box);
+    &.big {
+      width: $bigInputsWidth;
+      height: 28px;
+    }
   }
 
   input[type="submit"] {
@@ -22,6 +26,16 @@
     top: 1px;
     font-weight: bold;
     font-size: 20px;
+  }
+
+  textarea {
+    resize: none;
+    @include box-sizing(border-box);
+    border: 1px inset;
+    &.big {
+      width: $bigInputsWidth;
+      height: 185px;
+    }
   }
 
   .form-group {

@@ -11,7 +11,7 @@ class ProductsController < FrontController
     @characteristics  = resource.make_characteristics_tree
     @related_products = resource.related_products
     @similar_products = resource.similar_products
-    @last_reviews     = resource.reviews.includes(:rating, :user).published.related
+    @last_reviews     = last_reviews
 
     breadcrumbs_with_ancestors(@product_category, resource)
 
@@ -41,12 +41,22 @@ class ProductsController < FrontController
     end
   end
 
+  def more_review
+    render partial: 'products/includes/review',
+      collection: last_reviews.offset(params[:more].to_i),
+      as: :review, layout: false
+  end
+
   private
 
   def permit_review
     params.require(:review).permit(
       :pluses, :cons, :body, :user_id
     )
+  end
+
+  def last_reviews
+    resource.reviews.includes(:rating, :user).published.related
   end
 
   def check_product_state

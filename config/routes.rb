@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post :add_review
       post :add_to_wishlist
       get :new_review
+      get :more_review
     end
   end
 

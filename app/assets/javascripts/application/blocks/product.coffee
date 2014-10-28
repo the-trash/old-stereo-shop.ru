@@ -2,6 +2,7 @@ class ProductShowPage
   constructor: ->
     @initGallery()
     @newReview()
+    @moreReview()
 
   initGallery: ->
     imagesBlock = $('.b-product-images')
@@ -27,5 +28,26 @@ class ProductShowPage
 
             $('.new-review-link').show()
             $('.b-review-new').remove()
+
+  moreReview: ->
+    $('body').on 'click', '.more-review', (e) ->
+      _this        = $(this)
+      dataMore     = parseInt _this.attr('data-more')
+      reviewsCount = parseInt _this.data('count')
+      e.preventDefault()
+
+      $.ajax
+        url: _this.attr('href')
+        type: 'GET'
+        data:
+          more: reviewsCount + dataMore
+        success: (data) ->
+          if data.length == 1
+            _this.remove()
+            false
+
+          $(data).insertBefore(_this)
+          _this.attr 'data-more', reviewsCount + dataMore
+
 
 @ProductShowPage = ProductShowPage

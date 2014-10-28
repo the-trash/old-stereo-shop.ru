@@ -1,7 +1,9 @@
 class Review < ActiveRecord::Base
   include Statable
 
-  scope :related, -> (limit = 5) { where(updated_at: [7.days.ago..DateTime.now] ) }
+  scope :related, -> (limit = Settings.product.reviews_count) {
+    where(updated_at: [7.days.ago..DateTime.now] ).order(id: :desc).limit(limit)
+  }
 
   after_create :increment_recallable_cache_counters
   after_destroy :decrement_recallable_cache_counters
