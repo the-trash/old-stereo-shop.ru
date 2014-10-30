@@ -40,9 +40,11 @@
     %h4 Товары в комплект
     - @related_products.in_groups(Settings.product.related_group, false) do |group|
       .b-related-products
-        = render partial: 'products/includes/related', collection: group, as: :product
+        = render partial: 'products/includes/single_product',
+          collection: group, as: :product, locals: { main_class: 'related' }
 
   - if @similar_products.present?
     .b-similar-products
       %h4 Вам может понравиться
-      = render partial: 'products/includes/similar', collection: @similar_products, as: :product
+      = render partial: 'products/includes/single_product',
+        collection: @similar_products, as: :product, locals: { main_class: 'similar' }

@@ -1,17 +1,9 @@
 .b-single-product {
   display: table;
   float: left;
-  margin-right: 90px;
-  width: 500px;
-  height: 110px;
   &:last-child { margin-right: 0; }
   .e-image, .b-info { float: left; }
-  .e-image {
-    border: 1px solid $gainsborough;
-    width: 168px;
-    height: 108px;
-    margin-right: 25px;
-  }
+  .e-image { border: 1px solid $gainsborough; }
   .b-info {
     p {
       font-size: 18px;
@@ -24,6 +16,30 @@
     a {
       text-decoration: none;
       border-bottom: 1px dotted $blue;
+    }
+  }
+  &.related {
+    width: 500px;
+    height: 110px;
+    margin-right: 80px;
+    .e-image {
+      width: 168px;
+      height: 108px;
+      margin-right: 25px;
+    }
+  }
+  &.similar {
+    width: 270px;
+    margin-right: 30px;
+    .e-image {
+      width: 268px;
+      height: 175px;
+    }
+    .b-info {
+      p {
+        &.title { font-size: 22px; }
+        &.price { font-size: 20px; }
+      }
     }
   }
 }

@@ -1,9 +1,11 @@
-.b-related-product.b-single-product
+- main_class ||= 'single'
+
+.b-single-product{ class: main_class }
   - photo = product.photos.first
   - if photo
-    .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
+    .e-image{ style: "background-image: url(#{ photo.file_url(:product, main_class.to_sym) })" }
   .b-info
-    %p= link_to product.title, product
+    %p.title= link_to product.title, product
     %p.price= I18n.t('views.product.with_currency', coust: product.price_with_discount)
     .b-product-ratable-with-reviews.smal
       .ratable.read_only{ data: { score: resource.average_score } }
