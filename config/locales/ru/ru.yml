@@ -44,4 +44,10 @@ ru:
       you_have_already_voted: Вы уже голосовали
       product_not_found: 'Продукт не найден'
 
-  i_like: 'Мне нравится'
+  all_brands: Все бренды
+  brands: Бренды
+  i_like: Мне нравится
+  new_products: Новинки
+  popular: Популярные
+  product_price: Цена
+  show: Показать

@@ -17,7 +17,7 @@ class FrontController < ApplicationController
     @product_categories = ProductCategory.for_front.arrange(order: :position)
   end
 
-  def breadcrumbs_with_ancestors(obj, resource)
+  def breadcrumbs_with_ancestors(obj, resource = nil)
     obj.ancestors.each do |parent_obj|
       add_breadcrumb parent_obj.title, parent_obj
     end

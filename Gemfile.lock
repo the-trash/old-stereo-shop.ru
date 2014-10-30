@@ -540,6 +540,7 @@ GEM
       timeliness (~> 0.3.6)
     warden (1.2.3)
       rack (>= 1.0)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -638,3 +639,4 @@ DEPENDENCIES
   unicode
   unicorn
   validates_timeliness (~> 3.0)
+  will_paginate

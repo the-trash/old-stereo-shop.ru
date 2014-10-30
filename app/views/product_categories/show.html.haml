@@ -1,0 +1,24 @@
+.b-product-category
+  %h3 #{ resource.title } (#{ resource.published_products_count })
+
+  .b-filters
+    = form_tag([resource], method: :get) do
+      = hidden_field_tag 'filter[brand_id]', 0
+      = hidden_field_tag 'filter[sort_by]', 'popular'
+
+    %p= t('brands')
+    %ul.brands
+      %li= link_to t('all_brands'), '#', data: { id: 0 }
+      = render partial: 'product_categories/includes/brand', collection: @brands, as: :brand
+
+    %p= t('show')
+    %ul.show
+      %li= link_to t('popular'), '#', data: { sort_by: 'popular' }
+      %li= link_to t('new_products'), '#', data: { sort_by: 'new_products' }
+      %li= link_to t('product_price'), '#', class: 'reduction', data: { sort_by: 'popular' }
+      %li= link_to t('product_price'), '#', class: 'increase', data: { sort_by: 'popular' }
+
+  .b-products
+    = render partial: 'product_categories/includes/product', collection: @products, as: :product
+
+= will_paginate @products

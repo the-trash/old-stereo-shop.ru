@@ -75,6 +75,7 @@ gem 'select2-rails'
 gem 'sidekiq'
 gem 'sidetiq'
 gem 'unicorn'
+gem 'will_paginate'
 
 group :development do
   gem 'annotate', '>= 2.6.0'
