@@ -1,1 +1,24 @@
-= product.title
+.b-single-product.catalog
+  - photo = product.photos.first
+  - if photo
+    .e-image{ style: "background-image: url(#{ photo.file_url(:product, :similar) })" }
+
+  .b-info
+    .b-info-main
+      %p.title= link_to product.title, product
+      - if product.characteristics_products.present?
+        %ul.characteristics-list
+          = render partial: 'product_categories/includes/characteristic',
+            collection: product.characteristics_products, as: :characteristic
+
+    .b-info-short
+      = price_with_discount(product)
+      .b-product-ratable-with-reviews.smal
+        .ratable.read_only{ data: { score: product.average_score } }
+        = link_to t('views.product.reviews_count', count: product.published_reviews_count), '#', class: 'reviews-count'
+
+    .b-commerce
+      - if user_signed_in?
+        = link_to [:add_to_wishlist, product], remote: true, method: :post, data: { role: 'add-to-wish' } do
+          %span icon
+          = t('i_like')

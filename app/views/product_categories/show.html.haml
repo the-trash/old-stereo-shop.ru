@@ -6,17 +6,19 @@
       = hidden_field_tag 'filter[brand_id]', 0
       = hidden_field_tag 'filter[sort_by]', 'popular'
 
-    %p= t('brands')
-    %ul.brands
-      %li= link_to t('all_brands'), '#', data: { id: 0 }
-      = render partial: 'product_categories/includes/brand', collection: @brands, as: :brand
+    .b-filter-brands
+      %ul.brands
+        %span= t('brands')
+        %li.active= link_to t('all_brands'), '#', data: { id: 0 }
+        = render partial: 'product_categories/includes/brand', collection: @brands, as: :brand
 
-    %p= t('show')
-    %ul.show
-      %li= link_to t('popular'), '#', data: { sort_by: 'popular' }
-      %li= link_to t('new_products'), '#', data: { sort_by: 'new_products' }
-      %li= link_to t('product_price'), '#', class: 'reduction', data: { sort_by: 'popular' }
-      %li= link_to t('product_price'), '#', class: 'increase', data: { sort_by: 'popular' }
+    .b-filter-show
+      %ul.show
+        %span= t('show')
+        %li.active= link_to t('popular'), '#', data: { sort_by: 'popular' }
+        %li= link_to t('new_products'), '#', data: { sort_by: 'new_products' }
+        %li= link_to t('product_price'), '#', class: 'reduction', data: { sort_by: 'popular' }
+        %li= link_to t('product_price'), '#', class: 'increase', data: { sort_by: 'popular' }
 
   .b-products
     = render partial: 'product_categories/includes/product', collection: @products, as: :product

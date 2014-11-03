@@ -3,8 +3,11 @@ class ProductCategoriesController < FrontController
   actions :show
 
   def show
-    @products = resource.products.published.paginate(page: params[:page], per_page: Settings.pagination.products)
-    @brands   = Brand.published
+    @products =
+      resource.products.includes(characteristics_products: :characteristic).published
+        .paginate(page: params[:page], per_page: Settings.pagination.products)
+
+    @brands = Brand.published
 
     breadcrumbs_with_ancestors(resource)
   end

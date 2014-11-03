@@ -5,4 +5,5 @@ class CharacteristicsProduct < ActiveRecord::Base
   validates :value, :product, :characteristic, presence: true
 
   delegate :characteristic_category_title, to: :characteristic, prefix: :characteristic
+  delegate :title, :unit, to: :characteristic, prefix: true
 end
