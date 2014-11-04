@@ -17,8 +17,12 @@
         %span= t('show')
         %li.active= link_to t('popular'), '#', data: { sort_by: 'popular' }
         %li= link_to t('new_products'), '#', data: { sort_by: 'new_products' }
-        %li= link_to t('product_price'), '#', class: 'reduction', data: { sort_by: 'popular' }
-        %li= link_to t('product_price'), '#', class: 'increase', data: { sort_by: 'popular' }
+        %li
+          %i.reduction
+          = link_to t('product_price'), '#', data: { sort_by: 'price_reduction' }
+        %li
+          %i.increase
+          = link_to t('product_price'), '#', data: { sort_by: 'price_increase' }
 
   .b-products
     = render partial: 'product_categories/includes/product', collection: @products, as: :product
