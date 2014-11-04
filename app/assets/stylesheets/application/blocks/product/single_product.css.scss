@@ -42,4 +42,27 @@
       }
     }
   }
+  &.catalog {
+    width: 100%;
+    margin-bottom: 50px;
+    &:last-child {
+      margin-bottom: 20px;
+    }
+    .e-image {
+      width: 268px;
+      height: 175px;
+      margin-right: 25px;
+    }
+    .b-info {
+      .b-info-main {
+        p {
+          margin: 0;
+          &.title {
+            margin-bottom: 10px;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
 }
