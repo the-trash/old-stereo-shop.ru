@@ -21,8 +21,9 @@
     = render 'shared/user_widget'
     = render 'shared/header'
 
-    .banner-wrapper
-      = render 'shared/banner'
+    - if current_page?(root_path)
+      .banner-wrapper
+        = render 'shared/banner'
 
     .container
       - unless current_page?(root_path)

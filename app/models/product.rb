@@ -6,8 +6,8 @@ class Product < ActiveRecord::Base
 
   acts_as_list
 
-  after_create :increment_product_category_cache_counters
-  after_destroy :decrement_product_category_cache_counters
+  after_create :increment_product_category_cache_counters, if: :need_change_counter?
+  after_destroy :decrement_product_category_cache_counters, if: :need_change_counter?
   before_save :recalculate_product_category_cache_counters, if: :state_changed?
 
   %i(admin_user brand).each do |m|
@@ -100,6 +100,14 @@ class Product < ActiveRecord::Base
 
   private
 
+  def need_change_counter?
+    published? || removed?
+  end
+
+  def accepted_state_was
+    ['published', 'removed'].include?(state_was)
+  end
+
   def increment_product_category_cache_counters
     ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
   end
@@ -109,7 +117,7 @@ class Product < ActiveRecord::Base
   end
 
   def recalculate_product_category_cache_counters
-    ProductCategory.decrement_counter(:"#{ state_was }_products_count", product_category.id)
-    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
+    ProductCategory.decrement_counter(:"#{ state_was }_products_count", product_category.id) if accepted_state_was
+    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id) if need_change_counter?
   end
 end

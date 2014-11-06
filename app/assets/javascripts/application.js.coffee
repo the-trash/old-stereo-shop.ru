@@ -16,6 +16,9 @@ $(document).ready ->
   if ('.b-product').length
     new ProductShowPage()
 
+  if ('.b-product-category').length
+    new ProductCategoryShowPage()
+
   $('body').find('.tabs').each ->
     $(this).tabs
       activate: (event, ui) ->

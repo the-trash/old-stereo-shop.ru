@@ -61,7 +61,7 @@ h3 {
 //CONTAINER
 .container {
   margin: 0 auto;
-  width: 1168px;
+  width: $containerWidth;
   padding-bottom: 30px;
   @include clearfix();
   ul {

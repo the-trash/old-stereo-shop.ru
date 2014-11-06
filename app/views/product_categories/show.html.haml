@@ -2,9 +2,9 @@
   %h3 #{ resource.title } (#{ resource.published_products_count })
 
   .b-filters
-    = form_tag([resource], method: :get) do
-      = hidden_field_tag 'filter[brand_id]', 0
-      = hidden_field_tag 'filter[sort_by]', 'popular'
+    = form_tag([resource], method: :get, class: 'filter-products-form') do
+      = hidden_field_tag 'filter[brand_id]', 0, class: 'filter-by-brand'
+      = hidden_field_tag 'filter[sort_by]', 'popular', class: 'filter-by-show'
 
     .b-filter-brands
       %ul.brands
