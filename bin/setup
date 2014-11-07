@@ -8,7 +8,7 @@ bundle install
 
 # Database connection configuration
 if [ ! -f config/database.yml ]; then
-  cp config/_database.sample.yml config/database.yml
+  cp config/database.sample.yml config/database.yml
 fi
 
 # Set up database and add any development seed data

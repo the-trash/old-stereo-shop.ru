@@ -3,6 +3,17 @@ class Product < ActiveRecord::Base
 
   scope :without_ids, -> (ids) { where.not(id: ids) }
   scope :with_discount, -> { where('discount > 0.0') }
+  scope :popular, -> { order(average_score: :desc) }
+  scope :new_products, -> { order(created_at: :desc) }
+  scope :price_reduction, -> { order_by_price('ASC') }
+  scope :price_increase, -> { order_by_price('DESC') }
+  scope :order_by_price, -> (how_order) { order("SUM(price - discount) #{ how_order }").group('products.id') }
+  scope :sort_by, -> (how_sort) {
+    if %w(popular new_products price_reduction price_increase).include?(how_sort)
+      send(:"#{ how_sort }")
+    end
+  }
+  scope :by_brand, -> (brand_id) { joins(:brand).where(brands: { id: brand_id }) }
 
   acts_as_list
 

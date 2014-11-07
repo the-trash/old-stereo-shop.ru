@@ -22,6 +22,6 @@ class ProductCategory < ActiveRecord::Base
   validates :title, :admin_user_id, presence: true
 
   def self.for_select
-    all.map { |u| [u.title, u.id] }
+    all.map { |u| [u.title, u.id] } if connection.table_exists?(table_name)
   end
 end

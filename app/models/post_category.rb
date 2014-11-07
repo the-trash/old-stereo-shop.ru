@@ -10,6 +10,6 @@ class PostCategory < ActiveRecord::Base
   validates :title, :admin_user_id, presence: true
 
   def self.for_select
-    all.map{ |pc| [pc.title, pc.id] }
+    all.map{ |pc| [pc.title, pc.id] } if connection.table_exists?(table_name)
   end
 end

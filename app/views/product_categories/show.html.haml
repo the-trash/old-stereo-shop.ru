@@ -3,8 +3,8 @@
 
   .b-filters
     = form_tag([resource], method: :get, class: 'filter-products-form') do
-      = hidden_field_tag 'filter[brand_id]', 0, class: 'filter-by-brand'
-      = hidden_field_tag 'filter[sort_by]', 'popular', class: 'filter-by-show'
+      = hidden_field_tag 'brand_id', params[:brand_id], class: 'filter-by-brand'
+      = hidden_field_tag 'sort_by', params[:sort_by], class: 'filter-by-show'
 
     .b-filter-brands
       %ul.brands

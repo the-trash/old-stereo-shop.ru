@@ -16,6 +16,6 @@ class AdminUser < ActiveRecord::Base
   end
 
   def self.for_select
-    all.map { |u| [u.email, u.id] }
+    all.map { |u| [u.email, u.id] } if connection.table_exists?(table_name)
   end
 end
