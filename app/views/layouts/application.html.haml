@@ -27,7 +27,7 @@
 
     .container
       - unless current_page?(root_path)
-        .breadcrumbs= render_breadcrumbs separator: ' > '
+        = render_breadcrumbs builder: ::BootstrapBreadcrumbsBuilder, separator: ' > '
 
       = yield
 

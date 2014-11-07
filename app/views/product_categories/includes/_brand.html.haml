@@ -1,1 +1,2 @@
-%li= link_to brand.title, '#', data: { id: brand.id }
+%li{ class: active_class_by_params(brand.id, params[:brand_id].to_i) }
+  = link_to brand.title, '#', data: { id: brand.id }

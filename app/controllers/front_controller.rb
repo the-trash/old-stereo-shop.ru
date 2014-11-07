@@ -1,7 +1,7 @@
 class FrontController < ApplicationController
   before_filter :set_variables
 
-  add_breadcrumb 'Главная', :root_path
+  add_breadcrumb '', :root_path
 
   protected
 

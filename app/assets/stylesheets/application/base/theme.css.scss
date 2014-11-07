@@ -63,6 +63,7 @@ h3 {
   margin: 0 auto;
   width: $containerWidth;
   padding-bottom: 30px;
+  @import "../blocks/breadcrumbs";
   @include clearfix();
   ul {
     margin: 0;
