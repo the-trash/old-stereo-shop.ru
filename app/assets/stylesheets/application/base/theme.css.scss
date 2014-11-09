@@ -64,6 +64,7 @@ h3 {
   width: $containerWidth;
   padding-bottom: 30px;
   @import "../blocks/breadcrumbs";
+  @import "../blocks/pagination";
   @include clearfix();
   ul {
     margin: 0;

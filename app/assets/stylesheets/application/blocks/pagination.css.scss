@@ -1,0 +1,21 @@
+.b-pagination {
+  ul {
+    li {
+      display: inline-block;
+      background-color: $smokyWhite;
+      a {
+        padding: 0 10px;
+        line-height: 30px;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      &.active, &:hover {
+        background-color: $veryPaleBlue;
+        a { color: $black; }
+      }
+      &.next_page {
+        background: none;
+      }
+    }
+  }
+}
