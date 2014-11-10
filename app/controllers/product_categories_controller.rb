@@ -1,6 +1,6 @@
 class ProductCategoriesController < FrontController
   inherit_resources
-  actions :show
+  actions :show, :sale_product_category
 
   def show
     @products = resource.products.includes(:photos, characteristics_products: :characteristic).published
@@ -13,5 +13,13 @@ class ProductCategoriesController < FrontController
     @brands = Brand.published
 
     breadcrumbs_with_ancestors(resource)
+  end
+
+  def sale
+    add_breadcrumb I18n.t('controllers.product_categories.sale.all_products', count: Product.published.with_discount.size), [:sale, :product_categories]
+  end
+
+  def sale_product_category
+
   end
 end

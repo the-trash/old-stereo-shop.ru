@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :product_categories, only: :show do
     get :sale, on: :collection
+    get :sale, on: :member, action: :sale_product_category
   end
 
   resources :products, only: [:index, :show] do
