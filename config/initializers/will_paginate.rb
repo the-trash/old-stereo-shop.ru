@@ -37,9 +37,8 @@ module WillPaginate
         tag :li, link(text, page || '#'),
           class: [
             (classname[0..3] if  @options[:page_links]),
-            (classname if @options[:page_links]),
-            ('disabled' unless page)
-          ].join(' ')
+            (classname if @options[:page_links])
+          ].join(' ') if page
       end
     end
   end

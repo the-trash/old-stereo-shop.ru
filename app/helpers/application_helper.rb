@@ -32,7 +32,7 @@ module ApplicationHelper
     return if items.empty?
 
     result = items.map { |item, sub_items|
-      "<li>#{ link_to(item.title, [item], data: { id: item.id }) }#{ product_category_nested_tree(sub_items) }</li>"
+      "<li>#{ link_to(item.title, [item], data: { id: item.id }) }#{ product_category_nested_tree(sub_items, options) }</li>"
     }.join
 
     "<ul class=\"#{ 'children' + options[:child_ul_class] }\">#{ result }</ul>".html_safe

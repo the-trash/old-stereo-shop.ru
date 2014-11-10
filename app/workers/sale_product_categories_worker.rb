@@ -8,7 +8,7 @@ class SaleProductCategoriesWorker
 
   def perform
     ProductCategory.published.includes(:products).find_each do |category|
-      sale_products = category.products.with_discount
+      sale_products = category.products.published.with_discount
 
       category.update_columns({
         sale: sale_products.present?,

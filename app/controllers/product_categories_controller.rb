@@ -16,10 +16,21 @@ class ProductCategoriesController < FrontController
   end
 
   def sale
-    add_breadcrumb I18n.t('controllers.product_categories.sale.all_products', count: Product.published.with_discount.size), [:sale, :product_categories]
+    @products_without_paginate = Product.published.with_discount
+
+    add_breadcrumb I18n.t('controllers.product_categories.sale.all_products', count: @products_without_paginate.size), [:sale, :product_categories]
+
+    @products = @products_without_paginate.paginate(page: params[:page], per_page: Settings.pagination.products)
   end
 
   def sale_product_category
+    @products_without_paginate = Product.published.with_discount
+    add_breadcrumb I18n.t('controllers.product_categories.sale.all_products', count: @products_without_paginate.size), [:sale, :product_categories]
 
+    @products_without_paginate_by_category = resource.products.published.with_discount
+    add_breadcrumb "#{ resource.title } (#{ @products_without_paginate_by_category.size })", [:sale, resource]
+
+    @products = @products_without_paginate_by_category.paginate(page: params[:page], per_page: Settings.pagination.products)
+    render :sale, locales: { with_resource: true }
   end
 end
