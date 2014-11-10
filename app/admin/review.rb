@@ -13,11 +13,13 @@ ActiveAdmin.register Review do
 
   actions :all, except: [:show, :destroy]
 
+  permit_params :pluses, :cons, :body, :state
+
   controller do
     def update
       update! do |format|
         format.html {
-          redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
+          redirect_to [:edit, :admin, parent, resource], notice: I18n.t('active_admin.controller.actions.update')
         }
       end
     end
