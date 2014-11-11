@@ -31,6 +31,6 @@ class ProductCategoriesController < FrontController
     add_breadcrumb "#{ resource.title } (#{ @products_without_paginate_by_category.size })", [:sale, resource]
 
     @products = @products_without_paginate_by_category.paginate(page: params[:page], per_page: Settings.pagination.products)
-    render :sale, locales: { with_resource: true }
+    render :sale
   end
 end

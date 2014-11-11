@@ -8,7 +8,7 @@ ActiveAdmin.register ProductCategory do
     end
   end
 
-  actions :all, except: [:show, :destroy]
+  actions :all, except: :destroy
 
   sortable tree: true,
     collapsible: true,
@@ -25,6 +25,10 @@ ActiveAdmin.register ProductCategory do
           redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
         }
       end
+    end
+
+    def show
+      redirect_to [:edit, :admin, resource]
     end
 
     def scoped_collection

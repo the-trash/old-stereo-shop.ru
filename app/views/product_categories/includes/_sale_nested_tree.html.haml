@@ -1,4 +1,4 @@
-.categories-list.sale
-  %ul.menu
+.sale-categories-list
+  %ul.menu.sale
     %li{ class: current_page?(sale_product_categories_path) ? 'active' : nil }= link_to t('all_products'), [:sale, :product_categories]
     = build_sale_product_categories_ancestry_tree(product_categories, { active: params[:id] })

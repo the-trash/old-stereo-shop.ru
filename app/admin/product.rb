@@ -8,7 +8,7 @@ ActiveAdmin.register Product do
     end
   end
 
-  actions :all, except: [:show, :destroy]
+  actions :all, except: :destroy
 
   sortable_list
   config.sort_order = 'position_asc'
@@ -27,6 +27,10 @@ ActiveAdmin.register Product do
           redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
         }
       end
+    end
+
+    def show
+      redirect_to [:edit, :admin, resource]
     end
 
     def scoped_collection

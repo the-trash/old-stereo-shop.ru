@@ -120,6 +120,7 @@ ru:
         <<: *main
         posts: Посты
         parent_id: Родительская категория
+        page_position: Позиция для вывода на страницу
       product:
         <<: *main
         sku: Артикул

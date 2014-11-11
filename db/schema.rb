@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025104527) do
+ActiveRecord::Schema.define(version: 20141111132729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20141025104527) do
     t.integer  "position",      default: 0
     t.string   "ancestry"
     t.integer  "depth"
+    t.integer  "page_position"
   end
 
   add_index "post_categories", ["admin_user_id"], name: "index_post_categories_on_admin_user_id", using: :btree

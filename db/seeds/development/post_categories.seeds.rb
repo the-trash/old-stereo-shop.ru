@@ -51,4 +51,8 @@ after 'development:products' do
   PostCategory.all.find_each do |category|
     category.update_column(:state, rand(0..3))
   end
+
+  PostCategory.published.sample(5).each do |category|
+    category.update_column(:page_position, rand(0..3))
+  end
 end
