@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111132729) do
+ActiveRecord::Schema.define(version: 20141112153409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,27 @@ ActiveRecord::Schema.define(version: 20141111132729) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "pages", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "short_text"
+    t.text     "full_text"
+    t.integer  "state",            default: 1
+    t.integer  "position",         default: 0
+    t.hstore   "meta"
+    t.integer  "admin_user_id"
+    t.integer  "post_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["admin_user_id"], name: "index_pages_on_admin_user_id", using: :btree
+  add_index "pages", ["position"], name: "index_pages_on_position", using: :btree
+  add_index "pages", ["post_category_id", "position"], name: "index_pages_on_post_category_id_and_position", using: :btree
+  add_index "pages", ["post_category_id"], name: "index_pages_on_post_category_id", using: :btree
+  add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
+  add_index "pages", ["state"], name: "index_pages_on_state", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "photoable_id"

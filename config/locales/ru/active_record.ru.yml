@@ -36,6 +36,11 @@ ru:
         few: Посты
         many: Постов
         other: Посты
+      page:
+        one: Страница
+        few: Страницы
+        many: Страниц
+        other: Страницы
       post_category:
         one: Категория постов
         few: Категории постов
@@ -115,6 +120,11 @@ ru:
       post:
         <<: *main
         full_text: Полное описание
+        post_category: Категория постов
+      page:
+        <<: *main
+        full_text: Полное описание
+        short_text: Краткое описание
         post_category: Категория постов
       post_category:
         <<: *main

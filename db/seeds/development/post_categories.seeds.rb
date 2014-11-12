@@ -11,13 +11,13 @@ after 'development:products' do
 
   post_categories =
     [].tap do |a|
-      (POST_CATEGORY_COUNT - 2).times do |n|
+      (POST_CATEGORY_COUNT - 3).times do |n|
         a << FactoryGirl.build(:post_category, admin_user: admins.sample)
         progressbar.increment
       end
 
-      ['Новости', 'Полезная информация'].each do |custom_title|
-        a << FactoryGirl.build(:post_category, admin_user: admins.sample, title: custom_title)
+      ['Новости', 'Полезная информация', 'Кто мы'].each_with_index do |custom_title, index|
+        a << FactoryGirl.build(:post_category, admin_user: admins.sample, title: custom_title, page_position: index)
         progressbar.increment
       end
     end
@@ -50,9 +50,5 @@ after 'development:products' do
 
   PostCategory.all.find_each do |category|
     category.update_column(:state, rand(0..3))
-  end
-
-  PostCategory.published.sample(5).each do |category|
-    category.update_column(:page_position, rand(0..3))
   end
 end

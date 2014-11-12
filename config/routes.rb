@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :post_categories, only: :show
   resources :posts, only: :show
+  resources :pages, only: :show
 
   resources :users, except: [:destroy, :edit, :update] do
     collection do

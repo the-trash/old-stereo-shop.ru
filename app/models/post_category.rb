@@ -9,7 +9,9 @@ class PostCategory < ActiveRecord::Base
 
   belongs_to :admin_user
 
-  has_many :posts, dependent: :destroy
+  %i(posts pages).each do |r|
+    has_many r, dependent: :destroy
+  end
 
   validates :title, :admin_user_id, presence: true
 
