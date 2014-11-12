@@ -10,11 +10,8 @@ ActiveAdmin.register Page do
 
   actions :all, except: [:show, :destroy]
 
-  sortable_list
-  config.sort_order = 'position_asc'
-
-  permit_params :title, :short_text, :full_text, :state, :post_category_id,
-    :admin_user_id, :position, :keywords, :seo_description, :seo_title
+  permit_params :title, :short_text, :full_text, :state,
+    :admin_user_id, :keywords, :seo_description, :seo_title
 
   controller do
     def update
@@ -28,7 +25,6 @@ ActiveAdmin.register Page do
 
   index do
     selectable_column
-    sortable_handle_column
     column :id
     column :title
     column :short_text
@@ -39,9 +35,7 @@ ActiveAdmin.register Page do
   filter :id
   filter :title
   filter :admin_user, collection: AdminUser.for_select
-  filter :post_category, collection: PostCategory.for_select
   filter :created_at
-  filter :position
 
   scope :all
   Page::STATES.each { |st| scope st }

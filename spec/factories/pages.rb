@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :page do
     admin_user
-    post_category
     state 1
     sequence(:title) { Faker::Lorem.sentence }
     short_text { Faker::Lorem.word }

@@ -125,7 +125,6 @@ ru:
         <<: *main
         full_text: Полное описание
         short_text: Краткое описание
-        post_category: Категория постов
       post_category:
         <<: *main
         posts: Посты

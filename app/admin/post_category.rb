@@ -15,7 +15,7 @@ ActiveAdmin.register PostCategory do
     start_collapsed: true,
     max_levels: 3
 
-  permit_params :title, :description, :state, :admin_user_id, :parent_id, :page_position,
+  permit_params :title, :description, :state, :admin_user_id, :parent_id,
     :keywords, :seo_description, :seo_title, photos_attributes: [:id, :file, :state]
 
   controller do
@@ -45,7 +45,6 @@ ActiveAdmin.register PostCategory do
   filter :title
   filter :admin_user, collection: AdminUser.for_select
   filter :created_at
-  filter :page_position, as: :select, collection: PostCategory.page_position_for_select
 
   scope :all
   PostCategory::STATES.each { |st| scope st }
@@ -61,8 +60,6 @@ ActiveAdmin.register PostCategory do
           collection: resource_class.for_select, selected: resource.parent.try(:id)
         f.input :state, as: :select2,
           collection: resource_class.states.keys, selected: resource.state
-        f.input :page_position, as: :select2,
-          collection: resource_class.page_positions.keys, selected: resource.page_position
       end
 
       f.inputs I18n.t('active_admin.views.meta') do
