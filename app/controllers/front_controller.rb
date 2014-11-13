@@ -14,7 +14,10 @@ class FrontController < ApplicationController
 
     @settings ||= $settings
 
-    @product_categories = ProductCategory.for_front.arrange(order: :position)
+    # TODO: add cache
+    @product_categories = ProductCategory.includes(:photos).for_front.arrange(order: :position)
+    @news = PostCategory.find_by(title: I18n.t('news'))
+    @useful_information = PostCategory.find_by(title: I18n.t('useful_information'))
   end
 
   def breadcrumbs_with_ancestors(obj, resource = nil)

@@ -20,6 +20,7 @@ after 'development:stores' do
 
   products.find_each do |product|
     rand(2..4).times do |n|
+        tries ||= 3
       begin
         Photo.create({
           photoable: product,
@@ -27,10 +28,32 @@ after 'development:stores' do
           position: n
         })
       rescue
-        retry
+        retry unless (tries -= 1).zero?
       end
     end
 
     progressbar_photo_for_products.increment
+  end
+
+  product_categories = ProductCategory.published
+
+  progressbar_photo_for_product_categories =
+    ProgressBar.create({
+      title: 'Create photos for product_categories',
+      total: product_categories.size,
+      format: '%t %B %p%% %e'
+    })
+
+  product_categories.find_each do |product_category|
+    tries ||= 3
+    begin
+      Photo.create({
+        photoable: product_category,
+        remote_file_url: product_pictures.sample
+      })
+    rescue
+      retry unless (tries -= 1).zero?
+    end
+    progressbar_photo_for_product_categories.increment
   end
 end

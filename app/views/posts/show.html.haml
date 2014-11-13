@@ -1,0 +1,5 @@
+.b-post
+  %p.date= l(resource.created_at, format: :short)
+  %h3= resource.title
+  .description
+    = resource.full_text.html_safe

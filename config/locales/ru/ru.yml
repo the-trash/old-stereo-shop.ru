@@ -38,6 +38,12 @@ ru:
       pluses: 'Плюсы: '
       cons: 'Минусы: '
       body: 'Отзыв: '
+    pages:
+      about: О нас
+      payment: Оплата
+      contacts: Контакты
+      delivery: Доставка
+      help: Помощь и обратная связь
   controllers:
     products:
       tanks_for_your_vote: Спасибо за Ваш голос
@@ -54,7 +60,10 @@ ru:
   goods_supplied: Товары в комплект
   i_like: Мне нравится
   new_products: Новинки
+  news: Новости
+  page_not_found: Страница не найдена
   popular: Популярные
   product_price: Цена
   show: Показать
+  useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится

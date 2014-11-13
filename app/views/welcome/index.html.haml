@@ -1,22 +1,24 @@
 .container
   %h1 Каталог
 
-  - if @product_categories.present?
+  - if @product_categories.any?
     .categories-list
       %ul.menu
         = build_product_category_ancestry_tree(@product_categories, { with_image: true })
 
-  - if @news.present? || @useful_information.present?
+  - if @news || @useful_information
     %hr
     .b-news.main-page
-      - if @news.present?
+      - if @news
         .b-news-one.margin-right
-          %h3.blue Новости
+          %h3.blue
+            = link_to @news.title, @news
           %ul
-            = render partial: 'posts/includes/main_news_list', collection: @news, as: :post
+            = render partial: 'posts/includes/main_news_list', collection: @news.posts.published.limit(3), as: :post
 
-      - if @useful_information.present?
+      - if @useful_information
         .b-news-one
-          %h3.blue Полезная информация
+          %h3.blue
+            = link_to @useful_information.title, @useful_information
           %ul
-            = render partial: 'posts/includes/main_news_list', collection: @useful_information, as: :post, locals: { with_author: true }
+            = render partial: 'posts/includes/main_news_list', collection: @useful_information.posts.published.limit(3), as: :post, locals: { with_author: true }

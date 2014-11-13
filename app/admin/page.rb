@@ -8,7 +8,7 @@ ActiveAdmin.register Page do
     end
   end
 
-  actions :all, except: [:show, :destroy]
+  actions :all, except: :destroy
 
   permit_params :title, :short_text, :full_text, :state,
     :admin_user_id, :keywords, :seo_description, :seo_title
@@ -20,6 +20,10 @@ ActiveAdmin.register Page do
           redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
         }
       end
+    end
+
+    def show
+      redirect_to [:edit, :admin, resource]
     end
   end
 
@@ -39,4 +43,24 @@ ActiveAdmin.register Page do
 
   scope :all
   Page::STATES.each { |st| scope st }
+
+  form do |f|
+    f.inputs do
+      f.inputs I18n.t('active_admin.views.main') do
+        f.input :title
+        f.input :short_text
+        f.input :full_text, as: :wysihtml5
+        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
+        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
+      end
+
+      f.inputs I18n.t('active_admin.views.meta') do
+        f.input :seo_title
+        f.input :seo_description
+        f.input :keywords
+      end
+    end
+
+    f.actions
+  end
 end

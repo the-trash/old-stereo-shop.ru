@@ -19,9 +19,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :post_categories, only: :show
-  resources :posts, only: :show
-  resources :pages, only: :show
+  %i(post_categories posts pages).each do |resource|
+    resources resource, only: :show
+  end
+
+  resources :brands, only: [:index, :show]
 
   resources :users, except: [:destroy, :edit, :update] do
     collection do

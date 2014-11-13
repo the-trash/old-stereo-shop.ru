@@ -28,8 +28,8 @@ after 'development:post_categories' do
     post.update_column(:state, rand(0..3))
   end
 
-  pages_title = ['О нас', 'Контакты', 'Оплата', 'Доставка', 'Помощь и обратная связь']
-  PAGES_COUNT = pages_title.size
+  slugs_pages = %w(about payment contacts delivery help)
+  PAGES_COUNT = slugs_pages.size
 
   progressbar_page =
     ProgressBar.create({
@@ -40,12 +40,20 @@ after 'development:post_categories' do
 
   pages =
     [].tap do |a|
-      pages_title.each do |title|
-        a << FactoryGirl.build(:page, admin_user: admins.sample, title: title)
+      slugs_pages.each do |slug|
+        a << FactoryGirl.build(:page, {
+            admin_user: admins.sample,
+            slug: slug,
+            title: I18n.t("views.pages.#{ slug }")
+          })
 
         progressbar_page.increment
       end
     end
 
   Page.import(pages)
+  Page.update_all(state: 1)
+
+  # TODO: need for generate slug
+  Post.find_each(&:save)
 end

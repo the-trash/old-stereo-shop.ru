@@ -1,0 +1,6 @@
+.b-post-category
+  %h3= resource.title
+  %ul
+    = render partial: 'posts/includes/main_news_list', collection: @posts, as: :post
+
+  = will_paginate @posts

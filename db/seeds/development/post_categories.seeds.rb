@@ -49,6 +49,6 @@ after 'development:products' do
   end
 
   PostCategory.all.find_each do |category|
-    category.update_column(:state, rand(0..3))
+    category.update_attributes(state: rand(0..3))
   end
 end

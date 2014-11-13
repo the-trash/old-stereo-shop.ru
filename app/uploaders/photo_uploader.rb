@@ -27,9 +27,17 @@ class PhotoUploader < CarrierWave::Uploader::Base
     end
   end
 
+  version :product_category, if: :is_product_category? do
+    process resize_to_fill: [260, 115]
+  end
+
   protected
 
   def is_product?(picture)
     model.photoable_type == 'Product'
+  end
+
+  def is_product_category?(picture)
+    model.photoable_type == 'ProductCategory'
   end
 end

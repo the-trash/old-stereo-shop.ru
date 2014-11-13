@@ -4,3 +4,4 @@ product:
 
 pagination:
   products: 10
+  posts: 10

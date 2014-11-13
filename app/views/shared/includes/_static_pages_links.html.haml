@@ -1,0 +1,18 @@
+%li
+  = link_to I18n.t('views.pages.payment'),
+    page_path(:payment),
+    class: active_class_for_page(params, 'payment')
+%li
+  = link_to I18n.t('views.pages.delivery'),
+    page_path(:delivery),
+    class: active_class_for_page(params, 'delivery')
+  .help-block
+    - @settings[:delivery_cities].split(',').each do |city|
+      %p= city
+%li
+  = link_to I18n.t('views.pages.help'),
+    page_path(:help),
+    class: active_class_for_page(params, 'help')
+  .help-block
+    %p.light-blue Безопасность
+    %p.light-blue Возврат денег
