@@ -34,8 +34,8 @@
             .help-block
               %p= @settings[:shop_phone]
               %p.pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
-          %li= link_to @news.title, @news
-          %li.pull-right= link_to @useful_information.title, @useful_information
+          %li= link_to @news.title, @news if @news
+          %li.pull-right= link_to @useful_information.title, @useful_information if @useful_information
       .pull-left.right-block
         .gray-block
           %h2
