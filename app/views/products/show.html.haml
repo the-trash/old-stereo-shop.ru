@@ -12,7 +12,7 @@
 
       - if user_signed_in?
         = link_to t('i_like'), [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' }
-      = render 'products/includes/stores', stores: @stores if @stores.present?
+      = render 'products/includes/stores', stores: @stores, product: resource if @stores.present?
 
   .b-product-description
     %h4= t('about_good')

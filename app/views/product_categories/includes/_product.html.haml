@@ -16,6 +16,8 @@
       .b-product-ratable-with-reviews.smal
         .ratable.read_only{ data: { score: product.average_score } }
         = link_to t('views.product.reviews_count', count: product.published_reviews_count), '#', class: 'reviews-count'
+        %p
+          %i.icon.in-stock.small
 
     .b-commerce
       - if user_signed_in?

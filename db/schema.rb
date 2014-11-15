@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112183136) do
+ActiveRecord::Schema.define(version: 20141115122214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -243,8 +243,8 @@ ActiveRecord::Schema.define(version: 20141112183136) do
     t.string   "slug"
     t.text     "description"
     t.integer  "state",                                            default: 1
-    t.decimal  "price",                   precision: 10, scale: 2, default: 0.0, null: false
-    t.decimal  "discount",                precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "price",                   precision: 10, scale: 2, default: 0.0,  null: false
+    t.decimal  "discount",                precision: 10, scale: 2, default: 0.0,  null: false
     t.integer  "admin_user_id"
     t.integer  "brand_id"
     t.integer  "product_category_id"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20141112183136) do
     t.integer  "published_reviews_count",                          default: 0
     t.integer  "removed_reviews_count",                            default: 0
     t.integer  "moderated_reviews_count",                          default: 0
+    t.boolean  "in_stock",                                         default: true
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
