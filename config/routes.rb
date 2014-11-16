@@ -27,7 +27,6 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy, :edit, :update] do
     collection do
-      get :authentification
       get :profile, action: :edit
       post :profile, action: :update
       get :wishlist, action: :wishlist

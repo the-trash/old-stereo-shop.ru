@@ -1,7 +1,6 @@
 class Product < ActiveRecord::Base
   include Friendable, Seoble, Statable, Photoable, Ratable
 
-  scope :without_ids, -> (ids) { where.not(id: ids) }
   scope :with_discount, -> { where('discount > 0.0') }
   scope :popular, -> { order(average_score: :desc) }
   scope :new_products, -> { order(created_at: :desc) }
