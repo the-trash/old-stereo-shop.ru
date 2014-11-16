@@ -73,6 +73,9 @@ gem 'rabl'
 gem 'ruby-progressbar'
 gem 'select2-rails'
 gem 'sidekiq'
+# For sidekiq
+gem 'sinatra', require: false
+gem 'slim'
 gem 'sidetiq'
 gem 'unicorn'
 gem 'will_paginate'
