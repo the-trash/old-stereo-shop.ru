@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115122214) do
+ActiveRecord::Schema.define(version: 20141117193212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -335,6 +335,15 @@ ActiveRecord::Schema.define(version: 20141115122214) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "simple_captcha_data", force: true do |t|
+    t.string   "key",        limit: 40
+    t.string   "value",      limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], name: "idx_key", using: :btree
 
   create_table "stores", force: true do |t|
     t.string   "title"

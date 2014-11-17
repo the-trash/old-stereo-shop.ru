@@ -20,7 +20,12 @@ module ApplicationHelper
 
     collection.map { |item, sub_items|
       child_class, arrow = sub_items.empty? ? ['', nil] : ['with-children', content_tag(:span, '&#x25BC;'.html_safe, class: 'arrow down')]
-      image = opts[:with_image] ? image_tag(item.photos.first.file_url(:product_category), class: 'grayscale grayscale-fade').html_safe : ''
+      image =
+        if opts[:with_image]
+          item.photos.any? ? image_tag(item.photos.first.file_url(:product_category), class: 'grayscale grayscale-fade').html_safe : ''
+        else
+          ''
+        end
 
       "<li class=\"#{ child_class + opts[:li_with_child_class] }\">" + image +
       "#{ link_to(item.title, [item], data: { id: item.id }) } #{ arrow }" +

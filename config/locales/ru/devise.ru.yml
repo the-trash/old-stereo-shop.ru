@@ -18,7 +18,7 @@ ru:
     sign_in: "Войти"
     sign_out: "Выйти"
     auth_exception: "Доступ запрещен"
-    
+
     failure:
       already_authenticated: "Вы уже вошли в систему."
       unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
@@ -31,6 +31,7 @@ ru:
     sessions:
       signed_in: "Приветствуем!"
       signed_out: "До свидания!"
+      remember: Запомнить
     passwords:
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
       updated: "Ваш пароль изменён. Теперь вы вошли в систему."

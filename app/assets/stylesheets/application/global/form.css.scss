@@ -48,4 +48,23 @@
     color: $darkGray;
     font-size: 10px;
   }
+  &.sign-in {
+    width: 268px;
+    .form-group {
+      &.forgot-password {
+        position: relative;
+        a {
+          position: absolute;
+          right: 0;
+          top: 3px;
+        }
+      }
+      &.remember {
+        label {
+          display: inline-block;
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }

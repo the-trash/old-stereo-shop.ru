@@ -44,6 +44,11 @@ ru:
       contacts: Контакты
       delivery: Доставка
       help: Помощь и обратная связь
+    users:
+      password:
+        forgot: Напомнить пароль
+        recover: Восстановлене пароля
+      profile: Профиль
   controllers:
     products:
       tanks_for_your_vote: Спасибо за Ваш голос
@@ -56,6 +61,7 @@ ru:
   about_good: О товаре
   all_brands: Все бренды
   all_products: Все товары
+  authentication: Авторизация
   brands: Бренды
   goods_supplied: Товары в комплект
   i_like: Мне нравится
@@ -64,6 +70,7 @@ ru:
   page_not_found: Страница не найдена
   popular: Популярные
   product_price: Цена
+  registration: Регистрация
   show: Показать
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится

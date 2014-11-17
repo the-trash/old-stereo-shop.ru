@@ -1,12 +1,15 @@
 %h3 Вход
-= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form' }) do |f|
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form sign-in' }) do |f|
   .form-group
     = f.label :email, 'Логин (электронная почта)'
     = f.email_field :email, autofocus: true
-  .form-group
+  .form-group.forgot-password
     = f.label :password
+    = link_to t('views.users.password.forgot'), new_password_path(resource_name)
     = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    = f.hidden_field :remember_me
+  .form-group.remember
+    = f.check_box :remember_me
+    = f.label t('devise.sessions.remember')
+    - if devise_mapping.rememberable?
+      = f.hidden_field :remember_me
   %div= f.submit "Войти"
-= render "devise/shared/links"
