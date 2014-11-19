@@ -17,5 +17,5 @@
     = f.password_field :password_confirmation, autocomplete: "off"
 
   .form-group
-    = show_simple_captcha(object: 'user')
+    = show_simple_captcha(object: 'user', refresh_button_text: content_tag(:i, '', class: 'icon icon-refresh-captcha').html_safe)
   %div= f.submit "Зарегистрироваться"

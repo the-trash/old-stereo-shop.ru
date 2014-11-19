@@ -58,20 +58,7 @@ h3 {
   margin: 10px 0;
 }
 
-.icon {
-  display: inline-block;
-}
-
-.in-stock {
-  width: icons-sprite-width('in-stock-big');
-  height: icons-sprite-height('in-stock-big');
-  @include icons-sprite('in-stock-big');
-  &.small {
-    width: icons-sprite-width('in-stock-small');
-    height: icons-sprite-height('in-stock-small');
-    @include icons-sprite('in-stock-small');
-  }
-}
+@import "icons";
 
 //CONTAINER
 .container {

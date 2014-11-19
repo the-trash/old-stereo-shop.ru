@@ -1,0 +1,20 @@
+.icon {
+  display: inline-block;
+}
+
+.in-stock {
+  width: icons-sprite-width('in-stock-big');
+  height: icons-sprite-height('in-stock-big');
+  @include icons-sprite('in-stock-big');
+  &.small {
+    width: icons-sprite-width('in-stock-small');
+    height: icons-sprite-height('in-stock-small');
+    @include icons-sprite('in-stock-small');
+  }
+}
+
+.icon-refresh-captcha {
+  width: icons-sprite-width('refresh-captcha');
+  height: icons-sprite-height('refresh-captcha');
+  @include icons-sprite('refresh-captcha');
+}
