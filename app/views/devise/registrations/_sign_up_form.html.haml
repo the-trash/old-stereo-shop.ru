@@ -2,20 +2,21 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }) do |f|
   = devise_error_messages!
   .form-group
-    = f.label :email, 'Логин (электронная почта)'
-    = f.email_field :email, autofocus: true
+    = f.label :email, 'Логин (электронная почта)', class: 'required'
+    = f.email_field :email, autofocus: true, required: true
     .help-block
       Например, anna123@mail.ru
   .form-group
-    = f.label :password
-    = f.password_field :password, autocomplete: "off"
+    = f.label :password, class: 'required'
+    = f.password_field :password, autocomplete: "off", required: true
     .help-block
       Не менее 6 символов
 
   .form-group
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.label :password_confirmation, class: 'required'
+    = f.password_field :password_confirmation, autocomplete: "off", required: true
 
   .form-group
-    = show_simple_captcha(object: 'user', refresh_button_text: content_tag(:i, '', class: 'icon icon-refresh-captcha').html_safe)
+    = show_simple_captcha(refresh_button_text: content_tag(:i, '', class: 'icon icon-refresh-captcha').html_safe)
+
   %div= f.submit "Зарегистрироваться"

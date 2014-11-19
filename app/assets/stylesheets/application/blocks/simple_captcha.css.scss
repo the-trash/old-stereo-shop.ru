@@ -1,0 +1,18 @@
+.b-simple-captcha {
+  .simple-captcha-label {
+    @extend label;
+  }
+  .simple-captcha-image {
+    display: inline-block;
+    margin-bottom: 10px;
+    .simple-captcha-refresh-button, img { float: left; }
+    img {
+      width: 155px;
+      height: 50px;
+      border: 1px solid #83636b;
+    }
+    .simple-captcha-refresh-button {
+      margin: 10px 0 0 20px;
+    }
+  }
+}
