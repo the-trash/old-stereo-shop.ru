@@ -69,6 +69,7 @@ h3 {
   @import "../blocks/breadcrumbs";
   @import "../blocks/pagination";
   @include clearfix();
+  clear: both;
   ul {
     margin: 0;
     padding: 0;

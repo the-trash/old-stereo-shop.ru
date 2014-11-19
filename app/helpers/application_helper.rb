@@ -15,11 +15,12 @@ module ApplicationHelper
     opts = {
       with_image: false,
       child_ul_class: '',
-      li_with_child_class: ''
+      li_with_child_class: nil,
+      with_arrow: true
     }.merge!(options)
 
     collection.map { |item, sub_items|
-      child_class, arrow = sub_items.empty? ? ['', nil] : ['with-children', content_tag(:span, '&#x25BC;'.html_safe, class: 'arrow down')]
+      child_class, arrow = sub_items.empty? ? [nil, nil] : ['with-children', (content_tag(:span, '&#x25BC;'.html_safe, class: 'arrow down') if opts[:with_arrow])]
       image =
         if opts[:with_image]
           item.photos.any? ? image_tag(item.photos.first.file_url(:product_category), class: 'grayscale grayscale-fade').html_safe : ''
@@ -27,9 +28,14 @@ module ApplicationHelper
           ''
         end
 
-      "<li class=\"#{ child_class + opts[:li_with_child_class] }\">" + image +
-      "#{ link_to(item.title, [item], data: { id: item.id }) } #{ arrow }" +
-      "#{ product_category_nested_tree(sub_items, opts) }</li>"
+      content_tag :li, class: [child_class, opts[:li_with_child_class]].compact.join('').presence do
+        [
+          image,
+          link_to(item.title, [item], data: { id: item.id }),
+          arrow,
+          product_category_nested_tree(sub_items, opts)
+        ].compact.join('').html_safe
+      end.html_safe
     }.join.html_safe
   end
 

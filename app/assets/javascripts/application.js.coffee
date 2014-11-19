@@ -32,3 +32,8 @@ $(document).ready ->
     else
       $(this).next('.children').hide()
       $(this).html('&#x25BC;').removeClass('up').addClass('down')
+
+  $('body').on 'click', '#catalog', (e) ->
+    e.preventDefault()
+    $('.main-catalog').toggle()
+    $(@).toggleClass('active')

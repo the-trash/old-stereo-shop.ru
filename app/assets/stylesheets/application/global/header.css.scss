@@ -1,6 +1,7 @@
 header {
   @extend .container;
-  @include clearfix();
+  // @include clearfix();
+  overflow: inherit;
 
   position: relative;
   clear: both;
@@ -42,6 +43,7 @@ header {
   padding-top: 10px;
   padding-left: 15px;
   color: $white;
+  position: relative;
 
   .btn {
     position: relative;
@@ -66,8 +68,12 @@ header {
   }
 
   &.active {
-    .btn:after {
-      @include icons-sprite('arrow-white-up');
+    .btn {
+      color: $black;
+      background-color: $gray;
+      &:after {
+        @include icons-sprite('arrow-white-up');
+      }
     }
   }
 }
