@@ -25,9 +25,9 @@ class ProductsController < FrontController
         resource.reviews.create!(permit_review.merge!(rating_id: vote.id))
       end
 
-      redirect_to :back, notice: I18n.t('controllers.products.tanks_for_your_vote')
+      redirect_to :back, flash: :success
     else
-      redirect_to :back, alert: I18n.t('controllers.products.you_have_already_voted')
+      redirect_to :back, flash: :error
     end
   end
 
@@ -36,9 +36,12 @@ class ProductsController < FrontController
   end
 
   def add_to_wishlist
-    if current_user.present?
-      current_user.wishes << Wish.new(product: resource)
-    end
+    current_user.wishes << Wish.new(product: resource) if current_user
+  end
+
+  def remove_from_wishlist
+    current_user.wishes.find_by(product: resource).destroy if current_user
+    redirect_to :back, flash: :success
   end
 
   def more_review
@@ -60,6 +63,6 @@ class ProductsController < FrontController
   end
 
   def check_product_state
-    redirect_to [:root], alert: I18n.t('controllers.products.product_not_found') unless resource.published?
+    redirect_to [:root], flash: { error: I18n.t('controllers.products.product_not_found') } unless resource.published?
   end
 end

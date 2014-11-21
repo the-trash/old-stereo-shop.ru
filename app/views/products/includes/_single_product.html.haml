@@ -1,4 +1,4 @@
-- main_class ||= 'single'
+- main_class ||= 'wishlist'
 
 .b-single-product{ class: main_class }
   - photo = product.photos.first
@@ -9,9 +9,9 @@
     %p.price= I18n.t('views.product.with_currency', coust: product.price_with_discount)
     .b-product-ratable-with-reviews.smal
       .ratable.read_only{ data: { score: product.average_score } }
-      = link_to t('views.product.reviews_count', count: product.published_reviews_count), '#', class: 'reviews-count'
+      = link_to t('views.product.reviews_count', count: product.published_reviews_count), product_path(product, anchor: 'reviews'), class: 'reviews-count'
     .b-commerce
-      - if user_signed_in?
-        = link_to [:add_to_wishlist, product], remote: true, method: :post, data: { role: 'add-to-wish' } do
-          %span icon
-          = t('i_like')
+      - if main_class != 'wishlist'
+        = add_to_wishlist(product) if user_signed_in?
+      - else
+        = link_to t('delete'), [:remove_from_wishlist, product]

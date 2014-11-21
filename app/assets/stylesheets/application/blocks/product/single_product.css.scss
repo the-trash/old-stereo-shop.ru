@@ -80,4 +80,25 @@
       }
     }
   }
+  &.wishlist {
+    @extend .related;
+    margin-bottom: 10px;
+    .e-image {
+      width: 168px;
+      height: 108px;
+      margin-right: 25px;
+    }
+    .b-info {
+      p {
+        margin: 0;
+        &.title, &.price {
+          margin-bottom: 10px;
+        }
+      }
+      @import "retable_with_reviews";
+      .b-product-ratable-with-reviews {
+        margin-top: 10px;
+      }
+    }
+  }
 }

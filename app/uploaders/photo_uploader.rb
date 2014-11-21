@@ -25,6 +25,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
     version :similar do
       process resize_to_fill: [270, 175]
     end
+
+    version :wishlist do
+      process resize_to_fill: [170, 110]
+    end
   end
 
   version :product_category, if: :is_product_category? do

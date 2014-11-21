@@ -32,3 +32,9 @@
     color: $blue;
   }
 }
+
+.icon-i-like {
+  width: icons-sprite-width('heart-blue-micro');
+  height: icons-sprite-height('heart-blue-micro');
+  @include icons-sprite('heart-blue-micro');
+}

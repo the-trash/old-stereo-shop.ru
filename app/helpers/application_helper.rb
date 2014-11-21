@@ -52,4 +52,19 @@ module ApplicationHelper
   def active_class_for_page(params, slug)
     params[:page] == slug ? 'active' : nil
   end
+
+  def add_to_wishlist product, opts = {}
+    options = opts.merge!({
+      remote: true,
+      method: :post,
+      data: {
+        role: 'add-to-wish'
+      }
+    })
+
+    i = content_tag :i, '', class: 'icon icon-i-like'
+    link = link_to(I18n.t('i_like'), [:add_to_wishlist, product], options)
+
+    (i + link).html_safe
+  end
 end

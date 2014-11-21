@@ -51,9 +51,7 @@ ru:
       profile: Профиль
   controllers:
     products:
-      tanks_for_your_vote: Спасибо за Ваш голос
-      you_have_already_voted: Вы уже голосовали
-      product_not_found: 'Продукт не найден'
+      product_not_found: Продукт не найден
     product_categories:
       sale:
         all_products: 'Sale. Все продукты (%{count})'
@@ -67,8 +65,10 @@ ru:
   cities:
     spb: Санкт-Петербург
     moscow: Москва
+  delete: Удалить
   goods_supplied: Товары в комплект
   i_like: Мне нравится
+  my_wishlist: Мой список желаний
   new_products: Новинки
   news: Новости
   page_not_found: Страница не найдена

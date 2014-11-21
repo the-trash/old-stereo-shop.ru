@@ -1,13 +1,10 @@
-.container
-  %h2 Список желаний
+.b-user-wishlist
+  %h2= t('my_wishlist')
 
   - if @wishes.present?
-    %table
-      %tbody
-        - @wishes.each do |product|
-          %tr
-            %td= link_to product.title, product
-            %td= product.price
-            %td= product.sku
+    .b-products
+      = render partial: 'products/includes/single_product', collection: @wishes, as: :product
+
+      = will_paginate @wishes
   - else
     Ваш список желаний пока пуст
