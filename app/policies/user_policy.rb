@@ -1,8 +1,9 @@
 class UserPolicy
-  attr_reader :user
+  attr_reader :user, :obj_user
 
   def initialize(user, obj_user)
-    @user = user
+    @user     = user
+    @obj_user = obj_user
   end
 
   def update?

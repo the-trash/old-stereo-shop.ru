@@ -3,7 +3,7 @@ class UsersController < FrontController
 
   # GET /users/:id.:format
   def show
-    redirect_to profile_users_path
+    redirect_to [:profile, :users]
   end
 
   # GET /users/profile
@@ -11,16 +11,26 @@ class UsersController < FrontController
     authorize current_user
     @user = current_user
 
-    add_breadcrumb 'Мой профиль'
+    add_breadcrumb I18n.t('my_profile')
+  end
+
+  def you_watched
+    add_breadcrumb I18n.t('my_profile'), [:profile, :users]
+    add_breadcrumb I18n.t('you_watched')
+
+    @products =
+      Product.where(id: session[:user]['product_ids'].uniq.map(&:to_i)).popular.
+        paginate(page: params[:page], per_page: Settings.pagination.products)
   end
 
   # POST /users/profile
   def update
     authorize current_user
+
     @user = current_user
     respond_to do |format|
       if @user.update(user_params)
-        sign_in(@user == current_user ? @user : current_user, :bypass => true)
+        sign_in(@user == current_user ? @user : current_user, bypass: true)
         format.html { redirect_to profile_users_path, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else

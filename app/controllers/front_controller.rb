@@ -4,6 +4,18 @@ class FrontController < ApplicationController
 
   add_breadcrumb '', :root_path
 
+  def after_sign_in_path_for(resource)
+    session[:user] = {
+      product_ids: []
+    }
+    super
+  end
+
+  def after_sign_out_path_for(resource)
+    session[:user] = nil
+    super
+  end
+
   protected
 
   def set_variables

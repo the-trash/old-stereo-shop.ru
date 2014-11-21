@@ -12,6 +12,18 @@
   z-index: 100;
   overflow: visible;
 
+  .you_watched {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    a {
+     &.active, &:hover {
+      text-decoration: none;
+      color: $black;
+     }
+    }
+  }
+
   .panel {
     width: 53px;
     height: 40px;

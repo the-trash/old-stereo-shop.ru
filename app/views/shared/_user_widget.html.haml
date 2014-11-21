@@ -2,7 +2,7 @@
   .user-widget
     .panel.wishes
       .icon
-      - if current_user.present?
+      - if current_user
         = link_to '', wishlist_users_path
       - else
         = link_to '', new_user_session_path
@@ -12,7 +12,11 @@
       = link_to '', '#'
     .panel.profile
       .icon
-        - if current_user.present?
+        - if current_user
           = link_to '', profile_users_path
         - else
           = link_to '', new_user_session_path
+
+    .you_watched
+      - if current_user && session[:user]['product_ids'].any?
+        = link_to t('you_watched'), [:you_watched, current_user], class: ('active' if current_page?([:you_watched, current_user]))

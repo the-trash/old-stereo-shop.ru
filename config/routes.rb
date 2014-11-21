@@ -47,5 +47,7 @@ Rails.application.routes.draw do
       post :profile, action: :update
       get :wishlist, action: :wishlist
     end
+
+    get :you_watched, on: :member
   end
 end

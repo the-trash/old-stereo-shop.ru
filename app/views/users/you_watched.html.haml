@@ -1,0 +1,7 @@
+.b-user-watched
+  %h3= t('you_watched')
+
+  .b-products
+    = render partial: 'product_categories/includes/product', collection: @products, as: :product
+
+= will_paginate @products
