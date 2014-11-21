@@ -52,6 +52,8 @@ ru:
   controllers:
     products:
       product_not_found: Продукт не найден
+    front:
+      user_not_authorized: Вы не авторизованы или не имеете доступа к данной странице
     product_categories:
       sale:
         all_products: 'Sale. Все продукты (%{count})'

@@ -1,4 +1,4 @@
-= form_for :user, url: profile_users_path, html: { class: 'form' } do |f|
+= form_for @user, html: { class: 'form' } do |f|
   .form-group
     = f.label :email, 'Логин (электронная почта)'
     = f.email_field :email, autofocus: true

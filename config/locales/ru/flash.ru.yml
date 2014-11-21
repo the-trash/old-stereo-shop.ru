@@ -6,3 +6,6 @@ ru:
       add_review:
         success: Спасибо за Ваш голос
         error: Вы уже голосовали
+    users:
+      update:
+        success: Ваш профиль успешно обновлен

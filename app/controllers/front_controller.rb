@@ -1,4 +1,6 @@
 class FrontController < ApplicationController
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_variables
 
@@ -46,5 +48,11 @@ class FrontController < ApplicationController
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:city, :index, :address, :birthday, :phone, :email, :password, :password_confirmation)
     end
+  end
+
+  private
+
+  def user_not_authorized
+    redirect_to [:root], flash: { error: I18n.t('controllers.front.user_not_authorized') }
   end
 end

@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users,
     controllers: {
-      omniauth_callbacks: 'omniauth_callbacks',
+      omniauth_callbacks: 'users/omniauth_callbacks',
       sessions: 'users/sessions',
       registrations: 'users/registrations',
       passwords: 'users/passwords'
@@ -41,13 +41,17 @@ Rails.application.routes.draw do
 
   resources :brands, only: [:index, :show]
 
-  resources :users, except: [:destroy, :edit, :update] do
-    collection do
-      get :profile, action: :edit
-      post :profile, action: :update
-      get :wishlist, action: :wishlist
-    end
+  resources :users, except: [:destroy, :edit] do
+    member do
+      get :you_watched
+      get :wishlist
 
-    get :you_watched, on: :member
+      scope :settings, controller: 'users/settings', path: :settings do
+        get :profile, as: :settings_profile
+        get :mail, as: :settings_mail
+        get :password, as: :settings_password
+        get :subscriptions, as: :settings_subscriptions
+      end
+    end
   end
 end

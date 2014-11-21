@@ -1,21 +1,17 @@
 class UsersController < FrontController
-  before_action :set_user, only: :show
+  before_filter :set_user, :authenticate_user!
+  after_action :verify_authorized
 
-  # GET /users/:id.:format
   def show
-    redirect_to [:profile, :users]
-  end
-
-  # GET /users/profile
-  def edit
-    authorize current_user
-    @user = current_user
+    authorize @user
 
     add_breadcrumb I18n.t('my_profile')
   end
 
   def you_watched
-    add_breadcrumb I18n.t('my_profile'), [:profile, :users]
+    authorize @user, :show?
+
+    add_breadcrumb I18n.t('my_profile'), @user
     add_breadcrumb I18n.t('you_watched')
 
     @products =
@@ -23,15 +19,13 @@ class UsersController < FrontController
         paginate(page: params[:page], per_page: Settings.pagination.products)
   end
 
-  # POST /users/profile
   def update
-    authorize current_user
+    authorize @user
 
-    @user = current_user
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, bypass: true)
-        format.html { redirect_to profile_users_path, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to @user, flash: :success }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -41,14 +35,16 @@ class UsersController < FrontController
   end
 
   def wishlist
-    authorize current_user, :update?
+    authorize @user, :update?
 
     @wishes =
-      Product.where(id: current_user.wishes.map(&:product_id)).
+      Product.where(id: @user.wishes.map(&:product_id)).
         paginate(page: params[:page], per_page: Settings.pagination.products)
 
     add_breadcrumb I18n.t('my_wishlist')
   end
+
+  private
 
   private
 

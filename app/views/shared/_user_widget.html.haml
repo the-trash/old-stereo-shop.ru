@@ -3,7 +3,7 @@
     .panel.wishes
       .icon
       - if current_user
-        = link_to '', wishlist_users_path
+        = link_to '', [:wishlist, current_user]
       - else
         = link_to '', new_user_session_path
     .panel.cart
@@ -13,7 +13,7 @@
     .panel.profile
       .icon
         - if current_user
-          = link_to '', profile_users_path
+          = link_to '', current_user
         - else
           = link_to '', new_user_session_path
 
