@@ -15,8 +15,9 @@
   input[type="text"],
   input[type="select"],
   input[type="password"],
-  input[type="email"] {
-    width: 270px;
+  input[type="email"],
+  input[type="date"] {
+    width: $inputsWidth;
     padding: 5px;
     @include box-sizing(border-box);
     &.big {
@@ -43,6 +44,10 @@
       width: $bigInputsWidth;
       height: 185px;
     }
+  }
+
+  select {
+    width: $inputsWidth;
   }
 
   .form-group {

@@ -1,4 +1,5 @@
 class FrontController < ApplicationController
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_variables
 
   add_breadcrumb '', :root_path
@@ -27,5 +28,11 @@ class FrontController < ApplicationController
 
     add_breadcrumb obj.title, obj
     add_breadcrumb resource.title, resource if resource.present?
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:city, :index, :address, :birthday, :phone, :email, :password, :password_confirmation)
+    end
   end
 end

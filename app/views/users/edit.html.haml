@@ -1,3 +1,7 @@
-.container
-  %h2 Редактор личного профиля
+.container.b-user-profile
+  %ul.user-profile
+    %li
+      %h2 Редактор личного профиля
+    %li
+      = link_to t('devise.sign_out'), [:destroy, :user, :session], method: :delete
   = render 'form', user: @user

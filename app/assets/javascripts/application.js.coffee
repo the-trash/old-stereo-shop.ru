@@ -33,7 +33,15 @@ $(document).ready ->
       $(this).next('.children').hide()
       $(this).html('&#x25BC;').removeClass('up').addClass('down')
 
-  $('body').on 'click', '#catalog', (e) ->
+  $('body').on 'click', '#catalog > .btn', (e) ->
     e.preventDefault()
     $('.main-catalog').toggle()
     $(@).toggleClass('active')
+
+  $('body').on 'click', '.e-additional-fields', (e) ->
+    e.preventDefault()
+
+    $('.b-additional-fields-for-sign-up').toggle()
+
+    $(@).children('i').toggleClass('icon-arrow-bottom icon-arrow-top')
+

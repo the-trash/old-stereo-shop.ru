@@ -59,10 +59,14 @@ ru:
         all_products: 'Sale. Все продукты (%{count})'
 
   about_good: О товаре
+  addition: Дополнительно
   all_brands: Все бренды
   all_products: Все товары
   authentication: Авторизация
   brands: Бренды
+  cities:
+    spb: Санкт-Петербург
+    moscow: Москва
   goods_supplied: Товары в комплект
   i_like: Мне нравится
   new_products: Новинки

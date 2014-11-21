@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'stereoshop@ru'
   TEMP_EMAIL_REGEX = /\Astereoshop@ru/
 
+  enum city: %i(spb moscow)
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :omniauthable,

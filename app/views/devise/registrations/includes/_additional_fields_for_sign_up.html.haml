@@ -1,0 +1,24 @@
+= link_to '#', class: 'e-additional-fields' do
+  = t('addition')
+  %i.icon-arrow-bottom
+
+.b-additional-fields-for-sign-up
+  .form-group
+    = f.label :birthday, t('birthday', scope: [:activerecord, :attributes, :user])
+    = f.date_field :birthday
+
+  .form-group
+    = f.label :phone, t('phone', scope: [:activerecord, :attributes, :user])
+    = f.text_field :phone
+
+  .form-group
+    = f.label :city, t('city', scope: [:activerecord, :attributes, :user])
+    = f.select :city, User.cities.map { |k, v| [t("cities.#{ k }"), k] }
+
+  .form-group
+    = f.label :address, t('address', scope: [:activerecord, :attributes, :user])
+    = f.text_field :address
+
+  .form-group
+    = f.label :index, t('index', scope: [:activerecord, :attributes, :user])
+    = f.text_field :index

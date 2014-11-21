@@ -3,5 +3,15 @@
 }
 
 .sign-up {
-
+  .e-additional-fields {
+    font-size: 16px;
+    display: inline-block;
+    margin:0 0 10px;
+    &:hover {
+      color: $blue;
+    }
+  }
+  .b-additional-fields-for-sign-up {
+    display: none;
+  }
 }

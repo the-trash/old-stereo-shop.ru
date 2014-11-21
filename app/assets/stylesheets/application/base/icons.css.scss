@@ -18,3 +18,17 @@
   height: icons-sprite-height('refresh-captcha');
   @include icons-sprite('refresh-captcha');
 }
+
+.icon-arrow-bottom {
+  &:before {
+    content: '\25BC';
+    color: $blue;
+  }
+}
+
+.icon-arrow-top {
+  &:before {
+    content: '\25B2';
+    color: $blue;
+  }
+}

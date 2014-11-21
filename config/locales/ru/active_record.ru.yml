@@ -90,6 +90,9 @@ ru:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         phone: 'Номер телефона'
+        city: Город
+        address: Адрес доставки
+        index: Индекс
       admin_user:
         email: 'E-mail'
         current_sign_in_at: Последний раз авторизован
