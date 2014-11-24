@@ -1,0 +1,14 @@
+.b-user-profile
+  = render 'users/includes/header_menu'
+  .b-user-settings-menu
+    = render 'users/includes/menu', user: @user
+  .b-user-settings-content
+    = form_for [:settings, @user], method: :patch, html: { class: 'form' } do |f|
+      .form-group
+        = f.label :full_name, t('full_name', scope: [:activerecord, :attributes, :user])
+        = f.text_field :full_name
+        .help-block
+          Например: Иван Васильевич Петров
+
+      = render 'devise/registrations/includes/additional_fields_for_sign_up', f: f
+      = f.submit t('save')

@@ -18,6 +18,9 @@
 @import "global/footer";
 @import "global/form";
 
+@import "blocks/product/single_product";
+@import "blocks/product/retable_with_reviews";
+
 @import "blocks/welcome";
 @import "blocks/news";
 @import "blocks/product";
@@ -26,7 +29,6 @@
 @import "blocks/product_category";
 @import "blocks/simple_captcha";
 @import "blocks/user_profile";
-@import "blocks/user_wishlist";
 @import "blocks/user_watched";
 
 @import "blocks/menu";

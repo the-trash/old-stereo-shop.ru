@@ -14,8 +14,4 @@ class UserPolicy
   def show?
     update?
   end
-
-  %i(profile? mail? password? subscriptions?).each do |method|
-    alias_method method, :show?
-  end
 end

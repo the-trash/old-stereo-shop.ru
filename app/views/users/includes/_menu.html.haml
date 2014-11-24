@@ -1,0 +1,9 @@
+%ul.profile-menu
+  %li.active= link_to t('views.users.order_history'), '#'
+  %li.active
+    = link_to t('views.users.settings.self'), '#'
+    %ul.profile-menu.settings
+      %li= link_to t('views.users.settings.profile'), [:settings, :profile, user]
+      %li= link_to t('views.users.settings.mail'), [:settings, :mail, user]
+      %li= link_to t('views.users.settings.password'), [:settings, :password, user]
+      %li= link_to t('views.users.settings.subscriptions'), [:settings, :subscriptions, user]

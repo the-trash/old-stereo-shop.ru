@@ -73,7 +73,6 @@
       }
       .b-info-short {
         @import "_price";
-        @import "retable_with_reviews";
         .b-product-ratable-with-reviews {
           margin-top: 30px;
         }
@@ -95,7 +94,6 @@
           margin-bottom: 10px;
         }
       }
-      @import "retable_with_reviews";
       .b-product-ratable-with-reviews {
         margin-top: 10px;
       }

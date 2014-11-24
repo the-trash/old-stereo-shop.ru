@@ -1,0 +1,5 @@
+.form-group
+  = f.label :email, 'Логин (электронная почта)', class: 'required'
+  = f.email_field :email, autofocus: true, required: true
+  .help-block
+    Например, anna123@mail.ru

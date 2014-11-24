@@ -49,6 +49,13 @@ ru:
         forgot: Напомнить пароль
         recover: Восстановлене пароля
       profile: Профиль
+      order_history: История заказов
+      settings:
+        self: Настройки
+        profile: Личные данные
+        mail: Почта
+        password: Пароль
+        subscriptions: Подписки
   controllers:
     products:
       product_not_found: Продукт не найден
@@ -78,6 +85,7 @@ ru:
   popular: Популярные
   product_price: Цена
   registration: Регистрация
+  save: 'Сохранить'
   show: Показать
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится

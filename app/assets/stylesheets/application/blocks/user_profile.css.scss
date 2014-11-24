@@ -5,4 +5,29 @@
       margin-right: 10px;
     }
   }
+  .b-user-settings-menu, .b-user-settings-content {
+    float: left;
+  }
+  .b-user-settings-menu {
+    width: $userProfileLeftMenyWidth;
+    font-size: 16px;
+    .profile-menu {
+      li {
+        a {
+          &:hover {
+            color: $black;
+            text-decoration: none;
+          }
+        }
+        &.active {
+          & > a {
+            @extend a:hover;
+          }
+        }
+      }
+    }
+  }
+  .b-user-settings-content {
+    width: $containerWidth - $userProfileLeftMenyWidth;
+  }
 }

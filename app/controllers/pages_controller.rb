@@ -17,6 +17,6 @@ class PagesController < FrontController
   end
 
   def not_found_page
-    redirect_to [:root], alert: I18n.t('page_not_found') if resource.nil?
+    redirect_to [:root], flash: { error: I18n.t('page_not_found') } if resource.nil?
   end
 end

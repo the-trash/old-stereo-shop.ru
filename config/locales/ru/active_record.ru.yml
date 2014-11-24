@@ -87,6 +87,7 @@ ru:
         first_name: 'Имя'
         last_name: 'Фамилия'
         middle_name: 'Отчество'
+        full_name: Полное имя
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         phone: 'Номер телефона'
