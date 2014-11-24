@@ -1,9 +1,14 @@
 %ul.profile-menu
-  %li.active= link_to t('views.users.order_history'), '#'
-  %li.active
+  %li{ class: settings_active_class(controller, 'users', %w(show order_history)) }
+    = link_to t('views.users.order_history'), '#'
+  %li{ class: settings_active_class(controller, 'settings', %w(profile mail password subscriptions)) }
     = link_to t('views.users.settings.self'), '#'
     %ul.profile-menu.settings
-      %li= link_to t('views.users.settings.profile'), [:settings, :profile, user]
-      %li= link_to t('views.users.settings.mail'), [:settings, :mail, user]
-      %li= link_to t('views.users.settings.password'), [:settings, :password, user]
-      %li= link_to t('views.users.settings.subscriptions'), [:settings, :subscriptions, user]
+      %li{ class: settings_active_class(controller, 'settings', %w(profile))}
+        = link_to t('views.users.settings.profile'), [:settings, :profile, user]
+      %li{ class: settings_active_class(controller, 'settings', %w(mail)) }
+        = link_to t('views.users.settings.mail'), [:settings, :mail, user]
+      %li{ class: settings_active_class(controller, 'settings', %w(password)) }
+        = link_to t('views.users.settings.password'), [:settings, :password, user]
+      %li{ class: settings_active_class(controller, 'settings', %w(subscriptions)) }
+        = link_to t('views.users.settings.subscriptions'), [:settings, :subscriptions, user]

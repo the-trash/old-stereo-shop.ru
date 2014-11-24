@@ -1,0 +1,19 @@
+.b-page
+  %h3= t('views.pages.help')
+
+  .b-page-questions.tabs
+    %ul
+      %li.active= link_to resource.title, '#main'
+      %li= link_to t('questions'), '#questions'
+    .tab-content
+      .b-page-content.active#main
+        = resource.full_text.html_safe
+      .b-page-content#questions
+        - if @questions_category && @questions_category.posts.published.any?
+          %ul.questions
+            = render partial: 'pages/question', collection: @questions_category.posts.published, as: :question
+        - else
+          %b Создайте категорию 'Ваши вопросы' и наполните материалом
+
+  .b-page-feedback-form
+    %p test form

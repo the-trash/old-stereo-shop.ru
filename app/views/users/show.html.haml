@@ -2,3 +2,6 @@
   = render 'users/includes/header_menu'
   .b-user-settings-menu
     = render 'users/includes/menu', user: @user
+  .b-user-settings-content
+    - if controller.controller_name == 'settings'
+      = render template: "users/settings/#{ controller.action_name }"

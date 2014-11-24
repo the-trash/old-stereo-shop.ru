@@ -7,7 +7,17 @@ class PagesController < FrontController
 
   def show
     add_breadcrumb(resource.title, resource)
-    show!
+
+    if params[:id] == 'help'
+      @questions_category = PostCategory.find_by(title: I18n.t('questions'))
+
+      render :help
+    else
+      show!
+    end
+  end
+
+  def help
   end
 
   private

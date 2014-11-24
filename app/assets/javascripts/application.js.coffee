@@ -45,3 +45,9 @@ $(document).ready ->
 
     $(@).children('i').toggleClass('icon-arrow-bottom icon-arrow-top')
 
+  $('body').on 'click', '.help-question', (e) ->
+    e.preventDefault()
+
+    $(@).closest('li').toggleClass('active')
+    $(@).next('.description').toggle()
+

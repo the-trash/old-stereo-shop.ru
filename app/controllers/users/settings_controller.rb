@@ -4,28 +4,22 @@ class Users::SettingsController < UsersController
 
   def profile
     add_breadcrumb I18n.t('views.users.settings.profile')
+    render :show
   end
 
   def mail
     add_breadcrumb I18n.t('views.users.settings.mail')
+    render :show
   end
 
   def password
     add_breadcrumb I18n.t('views.users.settings.password')
+    render :show
   end
 
   def subscriptions
     add_breadcrumb I18n.t('views.users.settings.subscriptions')
-  end
-
-  def settings_update
-    if @user.update_attributes(profile_permit)
-      flash!(:success)
-    else
-      flash!(:error)
-    end
-
-    redirect_to :back
+    render :show
   end
 
   private
@@ -36,9 +30,5 @@ class Users::SettingsController < UsersController
 
   def add_profile_breadcrumbs
     add_breadcrumb I18n.t('my_profile'), @user
-  end
-
-  def profile_permit
-    params.require(:user).permit(:full_name, :birthday, :phone, :city, :index, :address, :email)
   end
 end

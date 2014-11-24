@@ -51,7 +51,6 @@ Rails.application.routes.draw do
         get :mail, as: :settings_mail
         get :password, as: :settings_password
         get :subscriptions, as: :settings_subscriptions
-        patch :settings, as: :settings, action: :settings_update
       end
     end
   end

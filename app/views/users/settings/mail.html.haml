@@ -1,0 +1,3 @@
+= form_for @user, html: { class: 'form' } do |f|
+  = render 'devise/registrations/includes/fields/email', f: f
+  = f.submit t('save')

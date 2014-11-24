@@ -25,10 +25,10 @@ class UsersController < FrontController
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, bypass: true)
-        format.html { redirect_to @user, flash: :success }
+        format.html { redirect_to :back, flash: :success }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to :back, flash: :error }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -53,7 +53,7 @@ class UsersController < FrontController
   end
 
   def user_params
-    accessible = [ :full_name, :email ] # extend with your own params
+    accessible = [ :full_name, :email, :full_name, :birthday, :phone, :city, :index, :address, :email ] # extend with your own params
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
     params.require(:user).permit(accessible)
   end

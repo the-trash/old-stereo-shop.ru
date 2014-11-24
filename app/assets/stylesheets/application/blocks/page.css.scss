@@ -1,0 +1,40 @@
+.b-page {
+  .b-page-questions, .b-page-feedback-form {
+    float: left;
+  }
+  .b-page-feedback-form {
+    width: 40%;
+  }
+  .b-page-questions {
+    width: 60%;
+    ul {
+      margin-bottom: 15px;
+      li {
+        display: inline-block;
+        width: 49%;
+        a {
+          font-size: 18px;
+        }
+        &.active {
+          a {
+            color: $black;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .b-page-content {
+      .questions {
+        li {
+          display: list-item;
+          margin-bottom: 10px;
+          @extend .active;
+          .description {
+            margin-top: 10px;
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

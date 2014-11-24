@@ -9,5 +9,9 @@ FactoryGirl.define do
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
     middle_name Faker::Name.suffix
+    full_name Faker::Name.name
+    city [0, 1].sample
+    index 123
+    address Faker::Address.street_name
   end
 end

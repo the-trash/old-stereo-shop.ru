@@ -9,7 +9,4 @@ ru:
     users:
       update:
         success: Ваш профиль успешно обновлен
-      settings:
-        settings_update:
-          success: Профиль успешно обновлен
-          error: Возникли ошибки
+        error: Возникли ошибки
