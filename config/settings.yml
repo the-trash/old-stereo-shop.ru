@@ -5,3 +5,8 @@ product:
 pagination:
   products: 10
   posts: 10
+
+shop:
+  feedback:
+    to: 'test@shop.ru'
+    subject: Default Subject

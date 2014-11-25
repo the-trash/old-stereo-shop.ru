@@ -1,9 +1,9 @@
 class PagesController < FrontController
   inherit_resources
 
-  before_filter :not_found_page
+  before_filter :not_found_page, except: :feedback
 
-  actions :show
+  actions :show, :feedback
 
   def show
     add_breadcrumb(resource.title, resource)
@@ -20,6 +20,17 @@ class PagesController < FrontController
   def help
   end
 
+  def feedback
+    if feedback_params[:question].length <= 500
+      FeedbackMailer.delay.feedback(feedback_params)
+      flash!(:success)
+    else
+      flash!(:error)
+    end
+
+    redirect_to page_path(:help)
+  end
+
   private
 
   def resource
@@ -28,5 +39,9 @@ class PagesController < FrontController
 
   def not_found_page
     redirect_to [:root], flash: { error: I18n.t('page_not_found') } if resource.nil?
+  end
+
+  def feedback_params
+    params.require(:feedback).permit(:name, :phone, :email, :question, :subject)
   end
 end

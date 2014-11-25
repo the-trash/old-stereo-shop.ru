@@ -61,6 +61,14 @@ h3 {
 @import "icons";
 @import "alerts";
 
+.blue { color: $blue; }
+.dark-pink { color: $darkPink; }
+.pink { color: $pink; }
+.light-blue { color: $lightBlue; }
+
+.dark-gray-bg { background-color: $darkGray; }
+.light-gray-bg { background-color: $lightGray; }
+
 //CONTAINER
 .container {
   margin: 0 auto;

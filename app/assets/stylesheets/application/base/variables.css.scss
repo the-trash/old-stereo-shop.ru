@@ -2,6 +2,7 @@
 $btnBorderRadius   : 7px;
 $inputsWidth       : 270px;
 $bigInputsWidth    : 466px;
+$middleInputsWidth : 380px;
 $containerWidth    : 1168px;
 $catalogImageWidth : 268px;
 
@@ -30,14 +31,6 @@ $veryPaleBlue          : #d1d2d3;
 $smokyWhite            : #ebebeb;
 
 $btnBorderColor        : #898989;
-
-.blue { color: $blue; }
-.dark-pink { color: $darkPink; }
-.pink { color: $pink; }
-.light-blue { color: $lightBlue; }
-
-.dark-gray-bg { background-color: $darkGray; }
-.light-gray-bg { background-color: $lightGray; }
 
 //== Form states and alerts
 //

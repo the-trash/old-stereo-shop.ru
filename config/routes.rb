@@ -35,8 +35,12 @@ Rails.application.routes.draw do
     end
   end
 
-  %i(post_categories posts pages).each do |resource|
+  %i(post_categories posts).each do |resource|
     resources resource, only: :show
+  end
+
+  resources :pages, only: :show do
+    post :feedback
   end
 
   resources :brands, only: [:index, :show]

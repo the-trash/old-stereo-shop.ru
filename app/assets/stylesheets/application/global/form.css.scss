@@ -24,6 +24,9 @@
       width: $bigInputsWidth;
       height: 28px;
     }
+    &.middle {
+      width: $middleInputsWidth;
+    }
   }
 
   input[type="submit"] {
@@ -44,10 +47,16 @@
       width: $bigInputsWidth;
       height: 185px;
     }
+    &.middle {
+      width: $middleInputsWidth;
+    }
   }
 
   select {
     width: $inputsWidth;
+    &.middle {
+      width: $middleInputsWidth;
+    }
   }
 
   .form-group {

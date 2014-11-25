@@ -69,24 +69,40 @@ ru:
   addition: Дополнительно
   all_brands: Все бренды
   all_products: Все товары
+  ask_a_question: Задать вопрос
   authentication: Авторизация
   brands: Бренды
+  chouse_category: Выберите категорию
+  clear: Очистить
   cities:
     spb: Санкт-Петербург
     moscow: Москва
   delete: Удалить
+  email: Электронная почта
+  feedback: Обратная связь
+  feedback_subject:
+    product: О товаре
+    order: О моем заказе
+    payment: Об оплате
+    delivery: О доставке
+    return: О возврате денег
+    other: Другое
+  feedback_user_name: Как к Вам обращаться
   goods_supplied: Товары в комплект
+  question: Вопрос
   questions: Ваши вопросы
   i_like: Мне нравится
   my_profile: Мой профиль
+  my_question: Мой вопрос
   my_wishlist: Мой список желаний
   new_products: Новинки
   news: Новости
   page_not_found: Страница не найдена
+  phone: Телефон
   popular: Популярные
   product_price: Цена
   registration: Регистрация
-  save: 'Сохранить'
+  save: Сохранить
   show: Показать
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится

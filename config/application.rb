@@ -32,6 +32,9 @@ module Stereoshop
     config.autoload_paths += Dir["#{ config.root }/lib/**/"]
     config.autoload_paths += Dir["#{ config.root }/app/uploaders/**/"]
     config.autoload_paths += Dir["#{ config.root }/app/workers/**"]
+    config.autoload_paths += Dir["#{ config.root }/app/views/mailers/**"]
+
+    ActionMailer::Base.prepend_view_path("#{ config.root }/app/views/mailers/")
 
     CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
   end
