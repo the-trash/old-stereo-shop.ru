@@ -1,0 +1,29 @@
+.b-store
+  %h3= resource.title
+  .description= resource.description.html_safe
+  #map{ data: { latitude: resource.latitude, longitude: resource.longitude }, style: "width: 100%; height: 400px" }
+
+= javascript_include_tag 'http://api-maps.yandex.ru/2.1/?lang=ru_RU'
+
+:javascript
+  ymaps.ready(init);
+  var shopMap, shopPlacemark;
+  var mapContainer = document.getElementById('map'),
+    data = mapContainer.dataset;
+
+  function init(){
+    shopMap = new ymaps.Map("map", {
+        center: [data.latitude, data.longitude],
+        zoom: 7
+    });
+
+    shopPlacemark = new ymaps.Placemark(
+      [data.latitude, data.longitude],
+      {
+        content: '#{ resource.title }',
+        balloonContent: '#{ resource.title }'
+      }
+    );
+
+    shopMap.geoObjects.add(shopPlacemark);
+  }

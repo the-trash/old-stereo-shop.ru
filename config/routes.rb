@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  %i(post_categories posts).each do |resource|
+  %i(post_categories posts stores).each do |resource|
     resources resource, only: :show
   end
 

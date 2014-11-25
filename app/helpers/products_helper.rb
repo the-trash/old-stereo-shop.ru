@@ -37,7 +37,7 @@ module ProductsHelper
 
   def link_or_title_for_store(store)
     if store.happens
-      link_to store.title, '#'
+      link_to store.title, store
     else
       store.title
     end
