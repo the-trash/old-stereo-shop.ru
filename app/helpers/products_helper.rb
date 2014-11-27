@@ -42,4 +42,26 @@ module ProductsHelper
       store.title
     end
   end
+
+  def add_to_wishlist product, opts = {}
+    options = opts.merge!({
+      remote: true,
+      method: :post,
+      data: {
+        role: 'add-to-wish',
+        id: product.id
+      }
+    })
+
+    i = content_tag :i, '', class: 'icon icon-i-like'
+
+    link =
+      if current_user.wishes.pluck(:product_id).include?(product.id)
+        link_to(I18n.t('delete'), [:remove_from_wishlist, product])
+      else
+        link_to(I18n.t('i_like'), [:add_to_wishlist, product], options)
+      end
+
+    (i + link).html_safe
+  end
 end

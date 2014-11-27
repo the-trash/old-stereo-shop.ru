@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121103114) do
+ActiveRecord::Schema.define(version: 20141127150232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,26 @@ ActiveRecord::Schema.define(version: 20141121103114) do
   add_index "brands", ["position"], name: "index_brands_on_position", using: :btree
   add_index "brands", ["slug"], name: "index_brands_on_slug", using: :btree
   add_index "brands", ["state"], name: "index_brands_on_state", using: :btree
+
+  create_table "carts", force: true do |t|
+    t.integer "user_id"
+    t.string  "session_token",                                         null: false
+    t.integer "products_count",                          default: 0
+    t.decimal "total_amount",   precision: 10, scale: 2, default: 0.0, null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
+
+  create_table "carts_products", force: true do |t|
+    t.integer "cart_id"
+    t.integer "product_id"
+    t.integer "count",                                 default: 0
+    t.decimal "total_amount", precision: 10, scale: 2, default: 0.0, null: false
+  end
+
+  add_index "carts_products", ["cart_id", "product_id"], name: "index_carts_products_on_cart_id_and_product_id", unique: true, using: :btree
+  add_index "carts_products", ["cart_id"], name: "index_carts_products_on_cart_id", using: :btree
+  add_index "carts_products", ["product_id"], name: "index_carts_products_on_product_id", using: :btree
 
   create_table "characteristic_categories", force: true do |t|
     t.string   "title"

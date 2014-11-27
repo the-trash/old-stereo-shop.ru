@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get :sale, on: :member, action: :sale_product_category
   end
 
+  resources :carts, except: [:index, :edit]
+
   resources :products, only: [:index, :show] do
     member do
       post :add_review

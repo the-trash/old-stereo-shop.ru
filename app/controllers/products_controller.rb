@@ -38,7 +38,9 @@ class ProductsController < FrontController
   end
 
   def add_to_wishlist
-    current_user.wishes << Wish.new(product: resource) if current_user
+    if current_user && !current_user.wishes.pluck(:product_id).include?(resource.id)
+      current_user.wishes << Wish.new(product: resource)
+    end
   end
 
   def remove_from_wishlist

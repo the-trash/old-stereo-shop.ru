@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :wishes, dependent: :destroy
 
+  has_one :cart, dependent: :destroy
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Get the identity and user if they exist

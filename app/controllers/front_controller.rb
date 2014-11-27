@@ -33,6 +33,8 @@ class FrontController < ApplicationController
     @product_categories = ProductCategory.includes(:photos).for_front.arrange(order: :position)
     @news = PostCategory.find_by(title: I18n.t('news'))
     @useful_information = PostCategory.find_by(title: I18n.t('useful_information'))
+
+    @cart = current_cart
   end
 
   def breadcrumbs_with_ancestors(obj, resource = nil)
@@ -54,5 +56,34 @@ class FrontController < ApplicationController
 
   def user_not_authorized
     redirect_to [:root], flash: { error: I18n.t('controllers.front.user_not_authorized') }
+  end
+
+  def current_cart
+    if user_signed_in?
+      cart = current_user.cart
+      raise ActiveRecord::RecordNotFound unless cart.present?
+
+      cart
+    else
+      if params[:cart_token]
+        cart = Cart.includes(:products).find_by(session_token: params[:cart_token])
+
+        if cart
+          session[:cart_token] = params[:cart_token]
+          cart
+        else
+          Cart.new(session_token: params[:cart_token].gsub(/[@{}\[\]()\'\"]/, ''))
+        end
+      else
+        Cart.includes(:products).find_by!(session_token: session[:cart_token])
+      end
+    end
+  rescue ActiveRecord::RecordNotFound
+    token = SecureRandom.urlsafe_base64(nil, false)
+    cart  = Cart.create!({ session_token: token, user: current_user })
+
+    session[:cart_token] = token unless user_signed_in?
+
+    cart
   end
 end
