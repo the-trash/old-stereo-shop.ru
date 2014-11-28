@@ -10,10 +10,16 @@
         .ratable.read_only{ data: { score: resource.average_score } }
         = link_to t('views.product.reviews_count', count: resource.published_reviews_count), '#', class: 'reviews-count'
 
-      - if user_signed_in?
-        = link_to t('i_like'), [:add_to_wishlist, resource], remote: true, method: :post, data: { role: 'add-to-wish' }
       = render 'products/includes/stores', stores: @stores, product: resource if @stores.present?
 
+    .b-commerce
+      %ul
+        %li
+          = button_to carts_products_path(product_id: resource.id), class: 'btn add-to-cart' do
+            %i.icon.icon-add-to-cart
+            = t('add_to_cart')
+        - if user_signed_in?
+          %li= add_to_wishlist(resource)
   .b-product-description
     %h4= t('about_good')
     %p= raw resource.description

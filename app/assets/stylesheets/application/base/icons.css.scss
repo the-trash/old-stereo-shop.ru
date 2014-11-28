@@ -1,5 +1,5 @@
 .icon {
-  display: inline-block;
+  @include inline-block();
 }
 
 .in-stock {
@@ -37,4 +37,11 @@
   width: icons-sprite-width('heart-blue-micro');
   height: icons-sprite-height('heart-blue-micro');
   @include icons-sprite('heart-blue-micro');
+}
+
+.icon-add-to-cart {
+  width: icons-sprite-width('cart-white-micro');
+  height: icons-sprite-height('cart-white-micro');
+  @include icons-sprite('cart-white-micro');
+  margin-right: 10px;
 }

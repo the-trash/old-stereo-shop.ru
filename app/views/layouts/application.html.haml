@@ -27,7 +27,7 @@
 
     .container
       #flash_messages= flash_messages
-      - unless current_page?(root_path)
+      - unless current_page?(root_path) || %w(carts orders).include?(controller.controller_name)
         = render_breadcrumbs builder: ::BootstrapBreadcrumbsBuilder, separator: ' > '
 
       = yield

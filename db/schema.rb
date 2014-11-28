@@ -97,12 +97,14 @@ ActiveRecord::Schema.define(version: 20141127150232) do
   create_table "carts_products", force: true do |t|
     t.integer "cart_id"
     t.integer "product_id"
+    t.integer "order_id"
     t.integer "count",                                 default: 0
     t.decimal "total_amount", precision: 10, scale: 2, default: 0.0, null: false
   end
 
   add_index "carts_products", ["cart_id", "product_id"], name: "index_carts_products_on_cart_id_and_product_id", unique: true, using: :btree
   add_index "carts_products", ["cart_id"], name: "index_carts_products_on_cart_id", using: :btree
+  add_index "carts_products", ["order_id"], name: "index_carts_products_on_order_id", using: :btree
   add_index "carts_products", ["product_id"], name: "index_carts_products_on_product_id", using: :btree
 
   create_table "characteristic_categories", force: true do |t|

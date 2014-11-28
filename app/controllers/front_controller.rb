@@ -61,7 +61,8 @@ class FrontController < ApplicationController
   def current_cart
     if user_signed_in?
       cart = current_user.cart
-      raise ActiveRecord::RecordNotFound unless cart.present?
+      session[:cart_token] = cart.session_token
+      raise ActiveRecord::RecordNotFound unless cart
 
       cart
     else

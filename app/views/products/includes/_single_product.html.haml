@@ -11,7 +11,13 @@
       .ratable.read_only{ data: { score: product.average_score } }
       = link_to t('views.product.reviews_count', count: product.published_reviews_count), product_path(product, anchor: 'reviews'), class: 'reviews-count'
     .b-commerce
-      - if main_class != 'wishlist'
-        = add_to_wishlist(product) if user_signed_in?
-      - else
-        = link_to t('delete'), [:remove_from_wishlist, product]
+      %ul.single-product{ class: main_class }
+        %li
+          = button_to carts_products_path(product_id: resource.id), class: 'btn add-to-cart single-product' do
+            %i.icon.icon-add-to-cart
+            = t('add_to_cart')
+        %li
+          - if main_class != 'wishlist'
+            = add_to_wishlist(product) if user_signed_in?
+          - else
+            = link_to t('delete'), [:remove_from_wishlist, product]
