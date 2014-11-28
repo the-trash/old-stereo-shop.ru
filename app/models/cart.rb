@@ -12,7 +12,7 @@ class Cart < ActiveRecord::Base
   private
 
   def recalculate_products_count(carts_product = nil)
-    update_column(:products_count, carts_products.sum(:count))
+    update_column(:products_count, carts_products.sum(:quantity))
   end
 
   def recalculate_total_amount(carts_product = nil)

@@ -1,11 +1,11 @@
 class CartsProduct < ActiveRecord::Base
-  before_save :recalculate_total_amount, if: :count_changed?
+  before_save :recalculate_total_amount, if: :quantity_changed?
   before_save :recalculate_products_count_for_cart, if: :count_changed?
 
   belongs_to :cart
   belongs_to :product
 
-  validates :cart, :product, presence: true
+  validates :product, presence: true
 
   def calculated_total_amount
     product.price_with_discount * count

@@ -153,7 +153,7 @@ class Product < ActiveRecord::Base
 
   def recalculate_total_amount_for_carts
     carts_products.each do |carts_product|
-      carts_product.update_column(:total_amount, carts_product.count * price_with_discount)
+      carts_product.update_column(:total_amount, carts_product.quantity * price_with_discount)
     end
 
     carts.includes(:carts_products).map { |cart| cart.send(:recalculate_total_amount) }

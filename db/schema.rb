@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20141127150232) do
     t.integer "cart_id"
     t.integer "product_id"
     t.integer "order_id"
-    t.integer "count",                                 default: 0
+    t.integer "quantity",                              default: 1
     t.decimal "total_amount", precision: 10, scale: 2, default: 0.0, null: false
   end
 
