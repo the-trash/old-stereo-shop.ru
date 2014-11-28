@@ -86,10 +86,12 @@ ActiveRecord::Schema.define(version: 20141127150232) do
   add_index "brands", ["state"], name: "index_brands_on_state", using: :btree
 
   create_table "carts", force: true do |t|
-    t.integer "user_id"
-    t.string  "session_token",                                         null: false
-    t.integer "products_count",                          default: 0
-    t.decimal "total_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.integer  "user_id"
+    t.string   "session_token",                                         null: false
+    t.integer  "products_count",                          default: 0
+    t.decimal  "total_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree

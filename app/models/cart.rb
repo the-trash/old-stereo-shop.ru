@@ -1,4 +1,6 @@
 class Cart < ActiveRecord::Base
+  scope :old_cart, -> { where(updated_at: 14.days.ago) }
+
   has_many :carts_products, dependent: :nullify,
     after_add: [:recalculate_products_count, :recalculate_total_amount],
     after_remove: [:recalculate_products_count, :recalculate_total_amount]

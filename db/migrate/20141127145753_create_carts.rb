@@ -5,6 +5,8 @@ class CreateCarts < ActiveRecord::Migration
       t.string :session_token, null: false
       t.integer :products_count, default: 0
       t.decimal :total_amount, precision: 10, scale: 2, default: 0.0, null: false
+
+      t.timestamps
     end
   end
 end

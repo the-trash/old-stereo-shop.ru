@@ -1,4 +1,6 @@
 class CartsProduct < ActiveRecord::Base
+  scope :broken_position, -> { where(cart_id: nil, order_id: nil) }
+
   before_save :recalculate_total_amount, if: :quantity_changed?
   before_save :recalculate_products_count_for_cart, if: :count_changed?
 
