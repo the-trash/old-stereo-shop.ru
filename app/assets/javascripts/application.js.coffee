@@ -51,3 +51,7 @@ $(document).ready ->
     $(@).closest('li').toggleClass('active')
     $(@).next('.description').toggle()
 
+  $('body').on 'click', '.user-widget > .cart.with-good', (e) ->
+    e.preventDefault()
+    $('.user-widget-wrapper .line-items').toggle()
+    $('.user-widget .you_watched').toggle()

@@ -61,13 +61,13 @@ class FrontController < ApplicationController
   def current_cart
     if user_signed_in?
       cart = current_user.cart
-      session[:cart_token] = cart.session_token
       raise ActiveRecord::RecordNotFound unless cart
+      session[:cart_token] = cart.session_token
 
       cart
     else
       if params[:cart_token]
-        cart = Cart.includes(:products).find_by(session_token: params[:cart_token])
+        cart = Cart.includes(line_items: :product).find_by(session_token: params[:cart_token])
 
         if cart
           session[:cart_token] = params[:cart_token]
@@ -76,7 +76,7 @@ class FrontController < ApplicationController
           Cart.new(session_token: params[:cart_token].gsub(/[@{}\[\]()\'\"]/, ''))
         end
       else
-        Cart.includes(:products).find_by!(session_token: session[:cart_token])
+        Cart.includes(line_items: :product).find_by!(session_token: session[:cart_token])
       end
     end
   rescue ActiveRecord::RecordNotFound

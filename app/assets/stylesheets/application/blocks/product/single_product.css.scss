@@ -99,4 +99,34 @@
       }
     }
   }
+  &.cart {
+    .e-image {
+      width: 168px;
+      height: 108px;
+      margin-right: 25px;
+    }
+    .b-info {
+      p {
+        margin: 0 0 5px;
+        &.price {
+          color: $black;
+        }
+      }
+    }
+  }
+  &.cart-list-user-widget {
+    .e-photo {
+      @include inline-block();
+      width: 170px;
+      float: left;
+      margin-right: 25px;
+      .e-image {
+        width: 168px;
+        height: 108px;
+      }
+    }
+    .b-info {
+      p { margin: 0; }
+    }
+  }
 }

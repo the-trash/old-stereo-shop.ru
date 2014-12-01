@@ -1,0 +1,6 @@
+%p Пока вы не добавили ни одного товара в вашу корзину.
+%ul
+  - if user_signed_in?
+    %li
+      = link_to t('go_to_wishlist'), [:wishlist, current_user]
+  %li= link_to t('go_to_main'), [:root]

@@ -27,6 +27,9 @@
     &.middle {
       width: $middleInputsWidth;
     }
+    &.quantity {
+      width: $quantityInputsWidth;
+    }
   }
 
   input[type="submit"] {

@@ -22,7 +22,7 @@
     .b-commerce
       %ul
         %li
-          = button_to carts_products_path(product_id: resource.id), class: 'btn add-to-cart single-product' do
+          = button_to line_items_path(product_id: product.id), class: 'btn add-to-cart single-product' do
             %i.icon.icon-add-to-cart
             = t('add_to_cart')
         %li

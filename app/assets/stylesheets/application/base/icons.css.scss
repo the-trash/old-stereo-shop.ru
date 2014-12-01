@@ -37,6 +37,7 @@
   width: icons-sprite-width('heart-blue-micro');
   height: icons-sprite-height('heart-blue-micro');
   @include icons-sprite('heart-blue-micro');
+  margin-right: 5px;
 }
 
 .icon-add-to-cart {
@@ -44,4 +45,13 @@
   height: icons-sprite-height('cart-white-micro');
   @include icons-sprite('cart-white-micro');
   margin-right: 10px;
+}
+
+.icon-clear {
+  &:before {
+    content: '\00D7';
+    font-weight: bold;
+    margin-right: 5px;
+    color: $blue;
+  }
 }

@@ -15,7 +15,7 @@
     .b-commerce
       %ul
         %li
-          = button_to carts_products_path(product_id: resource.id), class: 'btn add-to-cart' do
+          = button_to line_items_path(product_id: resource.id), class: 'btn add-to-cart' do
             %i.icon.icon-add-to-cart
             = t('add_to_cart')
         - if user_signed_in?
@@ -43,7 +43,7 @@
           class: 'more-review', data: { more: 0, count: Settings.product.reviews_count } if resource.published_reviews_count > Settings.product.reviews_count
 
   - if @related_products.present?
-    %h4= t('goods_supplied')
+    %h4#related-products= t('goods_supplied')
     - @related_products.in_groups(Settings.product.related_group, false) do |group|
       .b-related-products
         = render partial: 'products/includes/single_product',
@@ -51,6 +51,6 @@
 
   - if @similar_products.present?
     .b-similar-products
-      %h4= t('you_might_also_like')
+      %h4#similar-products= t('you_might_also_like')
       = render partial: 'products/includes/single_product',
         collection: @similar_products, as: :product, locals: { main_class: 'similar' }

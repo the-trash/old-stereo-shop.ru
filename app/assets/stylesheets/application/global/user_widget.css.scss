@@ -2,6 +2,35 @@
   position: relative;
   @extend .container;
   overflow: visible;
+  .line-items {
+    border: 1px solid $black;
+    padding: 20px;
+    width: 500px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 60px;
+    background-color: $white;
+    display: none;
+    @include border-radius(8px);
+    & > li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid $black;
+      padding-bottom: 10px;
+      @include inline-block();
+      &:last-child {
+        border: none;
+      }
+      .b-product-related-similar {
+        margin-top: 20px;
+        float: left;
+      }
+    }
+    h4 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+  }
 }
 
 .user-widget {
@@ -73,6 +102,7 @@
 
     border-right: 2px solid $white;
     border-left: 2px solid $white;
+    position: relative;
 
     .icon {
       @include icons-sprite('cart-blue-big');

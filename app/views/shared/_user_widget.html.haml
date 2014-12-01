@@ -1,4 +1,5 @@
 .user-widget-wrapper
+  = render 'shared/includes/line_items' if @cart.line_items.any?
   .user-widget
     .panel.wishes
       .icon
@@ -6,9 +7,9 @@
         = link_to '', [:wishlist, current_user]
       - else
         = link_to '', new_user_session_path
-    .panel.cart
+    .panel.cart{ class: ('with-good' if @cart.total_quantity > 0) }
       .icon
-      .cart-items-counter 5
+      .cart-items-counter= @cart.total_quantity
       = link_to '', @cart
     .panel.profile
       .icon

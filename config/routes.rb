@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :carts, except: [:index, :edit, :new]
-  resources :carts_products, only: [:create, :update, :destroy]
+  resources :line_items, only: [:create, :update, :destroy]
 
   resources :products, only: [:index, :show] do
     member do

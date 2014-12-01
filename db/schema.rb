@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127150232) do
+ActiveRecord::Schema.define(version: 20141201123643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,27 +87,14 @@ ActiveRecord::Schema.define(version: 20141127150232) do
 
   create_table "carts", force: true do |t|
     t.integer  "user_id"
-    t.string   "session_token",                                         null: false
-    t.integer  "products_count",                          default: 0
-    t.decimal  "total_amount",   precision: 10, scale: 2, default: 0.0, null: false
+    t.string   "session_token",                                        null: false
+    t.decimal  "total_amount",  precision: 10, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "carts", ["session_token"], name: "index_carts_on_session_token", using: :btree
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
-
-  create_table "carts_products", force: true do |t|
-    t.integer "cart_id"
-    t.integer "product_id"
-    t.integer "order_id"
-    t.integer "quantity",                              default: 1
-    t.decimal "total_amount", precision: 10, scale: 2, default: 0.0, null: false
-  end
-
-  add_index "carts_products", ["cart_id", "product_id"], name: "index_carts_products_on_cart_id_and_product_id", unique: true, using: :btree
-  add_index "carts_products", ["cart_id"], name: "index_carts_products_on_cart_id", using: :btree
-  add_index "carts_products", ["order_id"], name: "index_carts_products_on_order_id", using: :btree
-  add_index "carts_products", ["product_id"], name: "index_carts_products_on_product_id", using: :btree
 
   create_table "characteristic_categories", force: true do |t|
     t.string   "title"
@@ -165,6 +152,18 @@ ActiveRecord::Schema.define(version: 20141127150232) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "line_items", force: true do |t|
+    t.integer "cart_id"
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity",   default: 1
+  end
+
+  add_index "line_items", ["cart_id", "product_id"], name: "index_line_items_on_cart_id_and_product_id", unique: true, using: :btree
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "title"

@@ -12,12 +12,9 @@ after 'development:reviews' do
   users.find_each do |user|
     cart = FactoryGirl.create(:cart, user: user)
 
-    carts_products =
-      [].tap do |a|
-        products.sample(3).each do |product|
-          a << FactoryGirl.create(:carts_product, product: product, cart: cart)
-        end
-      end
+    products.sample(3).each do |product|
+      a << FactoryGirl.create(:line_item, product: product, cart: cart)
+    end
 
     progressbar.increment
   end

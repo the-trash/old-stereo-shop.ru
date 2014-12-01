@@ -1,1 +1,16 @@
-= debug @cart.products.size
+.b-cart
+  = render 'shared/includes/order_steps_header'
+
+  .e-clear-cart
+    %i.icon.icon-clear
+    = link_to t('clear_cart'), @cart, method: :delete, class: 'clear-cart'
+  .b-cart-table
+    %table
+      %thead
+        %tr
+          %th= t('product_name')
+          %th= t('quantity')
+          %th= t('total_amount')
+          %th= t('product_actions')
+      %tbody
+        = render partial: 'carts/line_item', collection: @cart.line_items.includes(product: :photos), as: :line_item

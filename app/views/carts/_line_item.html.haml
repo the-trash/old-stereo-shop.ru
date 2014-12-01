@@ -1,0 +1,22 @@
+%tr
+  %td
+    .b-single-product.cart
+      - photo = line_item.product_photos.first
+      - if photo
+        .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
+      .b-info
+        %p.title= link_to line_item.product_title, line_item.product
+        %p.price= I18n.t('views.product.with_currency', coust: line_item.product_price_with_discount)
+  %td
+    = form_for line_item, html: { class: 'update-quantity form' } do |f|
+      = f.text_field :quantity, class: 'quantity'
+  %td
+    %p.total_amount= I18n.t('views.product.with_currency', coust: line_item.calculated_total_amount)
+  %td
+    %ul.actions
+      %li
+        %i.icon.icon-clear
+        = link_to t('delete'), line_item, method: :delete
+      - if user_signed_in?
+        %li
+          = add_to_wishlist(line_item.product)

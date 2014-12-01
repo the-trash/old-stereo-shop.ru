@@ -1,0 +1,21 @@
+%ul.line-items
+  %h4= link_to t('cart_with_count', count: @cart.total_quantity), @cart
+  - @cart.line_items.each do |line_item|
+    %li
+      .b-single-product.cart-list-user-widget
+        .e-photo
+          - photo = line_item.product_photos.first
+          - if photo
+            .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
+            %i.icon.icon-clear
+            = link_to t('delete'), line_item, method: :delete
+        .b-info
+          %p.title= link_to line_item.product_title, line_item.product
+          %p.price= I18n.t('views.product.with_currency', coust: line_item.product_price_with_discount)
+        - if line_item.similar_products.published.any? || line_item.related_products.published
+          .b-product-related-similar
+            %ul
+              - if line_item.related_products.published.any?
+                %li= link_to t('goods_supplied'), product_path(line_item.product, anchor: 'related-products')
+              - if line_item.similar_products.published.any?
+                %li= link_to t('you_might_also_like'), product_path(line_item.product, anchor: 'similar-products')

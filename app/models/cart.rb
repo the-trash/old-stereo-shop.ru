@@ -1,23 +1,31 @@
 class Cart < ActiveRecord::Base
   scope :old_cart, -> { where(updated_at: 14.days.ago) }
 
-  has_many :carts_products, dependent: :nullify,
-    after_add: [:recalculate_products_count, :recalculate_total_amount],
-    after_remove: [:recalculate_products_count, :recalculate_total_amount]
+  has_many :line_items, dependent: :nullify
 
-  has_many :products, through: :carts_products
+  has_many :products, through: :line_items
 
   belongs_to :user
 
   validates :session_token, presence: true
 
-  private
+  def add_product(product_id)
+    current_line = line_items.find_by('line_items.product_id = ?', product_id)
 
-  def recalculate_products_count(carts_product = nil)
-    update_column(:products_count, carts_products.sum(:quantity))
+    if current_line
+      current_line.quantity += 1
+    else
+      current_line = line_items.build(product_id: product_id)
+    end
+
+    current_line
   end
 
-  def recalculate_total_amount(carts_product = nil)
-    update_column(:total_amount, carts_products.to_a.sum(&:total_amount))
+  def total_price
+    line_items.to_a.sum(&:calculated_total_amount)
+  end
+
+  def total_quantity
+    line_items.sum(:quantity)
   end
 end

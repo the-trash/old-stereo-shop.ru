@@ -1,0 +1,40 @@
+.b-cart {
+  .clear-cart {
+    text-decoration: none;
+    border-bottom: 1px dotted $blue;
+  }
+  table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    thead {
+      tr {
+        background-color: $gray;
+        th {
+          padding: 5px;
+          text-align: left;
+          font {
+            weight: 100;
+            size: 14px;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          vertical-align: top;
+          padding: 10px 0;
+          p {
+            margin: 0;
+            &.total_amount {
+              color: $moderateReddishOrange;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

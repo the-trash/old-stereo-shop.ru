@@ -5,7 +5,7 @@ FactoryGirl.define do
 
     trait :with_products do
       after(:create) do |cart|
-        cart.carts_products << create_list(:carts_product, 3, cart: cart)
+        cart.line_items << create_list(:line_item, 3, cart: cart)
       end
     end
   end

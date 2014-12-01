@@ -21,8 +21,7 @@ class Product < ActiveRecord::Base
   after_create :increment_product_category_cache_counters, if: :need_change_counter?
   after_destroy :decrement_product_category_cache_counters, if: :need_change_counter?
   before_save :recalculate_product_category_cache_counters, if: :state_changed?
-  before_save :ensure_not_referenced_by_any_carts_products, if: :state_changed?
-  after_update :recalculate_total_amount_for_carts, if: :need_recalculate_total_amount?
+  before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
 
   %i(admin_user brand).each do |m|
     belongs_to m
@@ -38,8 +37,8 @@ class Product < ActiveRecord::Base
 
   has_many :wishes, dependent: :destroy
 
-  has_many :carts_products
-  has_many :carts, through: :carts_products
+  has_many :line_items
+  has_many :carts, through: :line_items
 
   has_many :reviews, dependent: :destroy, as: :recallable
   %w(published removed moderated).each_with_index do |st, i|
@@ -138,24 +137,12 @@ class Product < ActiveRecord::Base
     ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id) if need_change_counter?
   end
 
-  def ensure_not_referenced_by_any_carts_products
-    if carts_products.any?
+  def ensure_not_referenced_by_any_line_items
+    if line_items.any?
       errors.add(:base, I18n.t('product_in_cart'))
       return false
     else
       return true
     end
-  end
-
-  def need_recalculate_total_amount?
-    price_changed? || discount_changed?
-  end
-
-  def recalculate_total_amount_for_carts
-    carts_products.each do |carts_product|
-      carts_product.update_column(:total_amount, carts_product.quantity * price_with_discount)
-    end
-
-    carts.includes(:carts_products).map { |cart| cart.send(:recalculate_total_amount) }
   end
 end

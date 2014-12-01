@@ -74,8 +74,10 @@ ru:
   ask_a_question: Задать вопрос
   authentication: Авторизация
   brands: Бренды
+  cart_with_count: 'Корзина (%{count})'
   chouse_category: Выберите категорию
   clear: Очистить
+  clear_cart: Очистить корзину
   cities:
     spb: Санкт-Петербург
     moscow: Москва
@@ -90,9 +92,9 @@ ru:
     return: О возврате денег
     other: Другое
   feedback_user_name: Как к Вам обращаться
+  go_to_main: На главную
+  go_to_wishlist: 'В список "Мне нравится"'
   goods_supplied: Товары в комплект
-  question: Вопрос
-  questions: Ваши вопросы
   i_like: Мне нравится
   my_profile: Мой профиль
   my_question: Мой вопрос
@@ -102,11 +104,17 @@ ru:
   page_not_found: Страница не найдена
   phone: Телефон
   popular: Популярные
+  product_actions: Действия с товаром
   product_in_cart: Товар находится в корзине
+  product_name: Название товара
   product_price: Цена
+  quantity: Количество
+  question: Вопрос
+  questions: Ваши вопросы
   registration: Регистрация
   save: Сохранить
   show: Показать
+  total_amount: Общая сумма
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится
   you_watched: Вы смотрели
