@@ -21,4 +21,6 @@
           %h3.blue
             = link_to @useful_information.title, @useful_information
           %ul
-            = render partial: 'posts/includes/main_news_list', collection: @useful_information.posts.published.limit(3), as: :post, locals: { with_author: true }
+            = render partial: 'posts/includes/main_news_list',
+              collection: @useful_information.posts.published.includes(:admin_user).limit(3),
+              as: :post, locals: { with_author: true }

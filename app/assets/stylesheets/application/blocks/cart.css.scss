@@ -4,7 +4,7 @@
     border-bottom: 1px dotted $blue;
   }
   table {
-    margin-top: 30px;
+    margin: 30px 0 50px;
     width: 100%;
     border-collapse: collapse;
     font-size: 16px;
@@ -31,6 +31,30 @@
             &.total_amount {
               color: $moderateReddishOrange;
               font-size: 20px;
+            }
+          }
+          span {
+            &.arrow {
+              color: $black;
+              cursor: pointer;
+              font: {
+                size: 24px;
+                weight: bold;
+              }
+              &.arrow-left {
+                &:before {
+                  content: '\003C';
+                }
+              }
+              &.arrow-right {
+                &:before {
+                  content: '\003E';
+                }
+              }
+              &.disabled {
+                color: $gray;
+                cursor: default;
+              }
             }
           }
         }
@@ -71,6 +95,40 @@
         font-size: 12px;
         bottom: -12px;
         left: 0;
+      }
+    }
+  }
+  .e-help-links {
+    background-color: $dustyBlue;
+    @include border-radius(5px);
+    border: 1px solid $gray;
+    padding: 10px 50px;
+    width: 600px;
+    margin-right: 50px;
+    @include box-sizing(border-box);
+    float: left;
+    li {
+      @include inline-block();
+      margin-left: 140px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  .e-cart-total-information {
+    float: left;
+    padding: 15px 20px;
+    border: 1px solid $gray;
+    width: 400px;
+    background-color: $gray;
+    @include border-radius(5px);
+    @include box-sizing(border-box);
+    @include box-shadow(inset 2px 2px 2px 0 rgba(177, 177, 177, 0.4));
+    font-size: 20px;
+    p {
+      margin: 0;
+      &.cart-total-amount {
+        color: $moderateReddishOrange;
       }
     }
   }

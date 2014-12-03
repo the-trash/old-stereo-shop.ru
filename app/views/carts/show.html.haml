@@ -13,4 +13,15 @@
           %th= t('total_amount')
           %th= t('product_actions')
       %tbody
-        = render partial: 'carts/line_item', collection: @cart.line_items.includes(product: :photos), as: :line_item
+        = render partial: 'carts/line_item', collection: @cart.line_items, as: :line_item
+
+  .b-cart-bottom
+    %ul.e-help-links
+      %li= link_to I18n.t('views.pages.payment'), page_path(:payment)
+      %li= link_to I18n.t('views.pages.delivery'), page_path(:delivery)
+      %li= link_to I18n.t('views.pages.return'), page_path(:return)
+
+    .e-cart-total-information
+      %p= t('cart_total_amount')
+      %p.cart-total-amount{ data: { total: @cart.total_amount } }
+        = t('views.product.with_currency', coust: @cart.total_amount)

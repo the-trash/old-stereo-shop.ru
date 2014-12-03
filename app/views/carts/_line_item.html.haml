@@ -6,12 +6,15 @@
         .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
       .b-info
         %p.title= link_to line_item.product_title, line_item.product
-        %p.price= I18n.t('views.product.with_currency', coust: line_item.product_price_with_discount)
+        %p.price= t('views.product.with_currency', coust: line_item.product_price_with_discount)
   %td
     = form_for line_item, html: { class: 'update-quantity form' } do |f|
-      = f.text_field :quantity, class: 'quantity'
+      %span.arrow.arrow-left{ data: { role: :decrement }, class: ('disabled' if line_item.quantity == 1) }
+      = f.text_field :quantity, class: 'quantity', data: { id: line_item.id }
+      %span.arrow.arrow-right{ data: { role: :increment } }
   %td
-    %p.total_amount= I18n.t('views.product.with_currency', coust: line_item.calculated_total_amount)
+    %p.total_amount{ data: { price: line_item.product_price_with_discount } }
+      = t('views.product.with_currency', coust: line_item.calculated_total_amount)
   %td
     %ul.actions
       %li

@@ -19,6 +19,9 @@ $(document).ready ->
   if ('.b-product-category').length
     new ProductCategoryShowPage()
 
+  if ('.b-cart').length
+    new Cart()
+
   $('body').find('.tabs').each ->
     $(this).tabs
       activate: (event, ui) ->

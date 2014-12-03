@@ -44,6 +44,7 @@ ru:
       contacts: Контакты
       delivery: Доставка
       help: Помощь и обратная связь
+      return: Возврат
     users:
       password:
         forgot: Напомнить пароль
@@ -77,6 +78,7 @@ ru:
   brands: Бренды
   cart: Корзина
   cart_with_count: 'Корзина (%{count})'
+  cart_total_amount: Сумма заказа
   chouse_category: Выберите категорию
   chouse_delivery: Выбор способа доставки
   clear: Очистить

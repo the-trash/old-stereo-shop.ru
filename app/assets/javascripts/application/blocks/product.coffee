@@ -49,5 +49,4 @@ class ProductShowPage
           $(data).insertBefore(_this)
           _this.attr 'data-more', reviewsCount + dataMore
 
-
 @ProductShowPage = ProductShowPage

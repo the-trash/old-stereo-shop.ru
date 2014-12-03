@@ -3,7 +3,7 @@
     @extend label;
   }
   .simple-captcha-image {
-    display: inline-block;
+    @include inline-block();
     margin-bottom: 10px;
     .simple-captcha-refresh-button, img { float: left; }
     img {

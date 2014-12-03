@@ -15,8 +15,12 @@ class LineItemsController < FrontController
   end
 
   def update
-    @line_item.update_column(:quantity, params[:quantity].to_i)
-    redirect_to @cart, flash: :success
+    @line_item.update_column(:quantity, quantity) if quantity > 0
+
+    respond_to do |format|
+      format.html { redirect_to @cart, flash: :success }
+      format.json { render json: @line_item }
+    end
   end
 
   def destroy
@@ -28,5 +32,13 @@ class LineItemsController < FrontController
 
   def set_line_item
     @line_item = @cart.line_items.find(params[:id])
+  end
+
+  def line_item_params
+    params.require(:line_item).permit(:quantity)
+  end
+
+  def quantity
+    line_item_params[:quantity].to_i
   end
 end

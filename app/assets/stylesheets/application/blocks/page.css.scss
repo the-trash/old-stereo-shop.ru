@@ -11,7 +11,7 @@
     ul {
       margin-bottom: 15px;
       li {
-        display: inline-block;
+        @include inline-block();
         width: 49%;
         a {
           font-size: 18px;
