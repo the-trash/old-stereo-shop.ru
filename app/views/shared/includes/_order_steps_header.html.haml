@@ -1,2 +1,13 @@
-%ul
-  %li steps
+%ul.e-order-steps
+  %li.cart.active
+    = t('cart')
+    (
+    %span.cart-items-counter= @cart.total_quantity
+    )
+  %li.delivery
+    = t('views.pages.delivery')
+    %span.help= t('chouse_delivery')
+  %li.authentification
+    = t('authentication')
+    %span.help= t('authentication_help_info')
+  %li.payment= t('views.pages.payment')

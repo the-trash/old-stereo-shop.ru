@@ -73,9 +73,12 @@ ru:
   all_products: Все товары
   ask_a_question: Задать вопрос
   authentication: Авторизация
+  authentication_help_info: 'Вход/Регистрация илипокупка без регистрации'
   brands: Бренды
+  cart: Корзина
   cart_with_count: 'Корзина (%{count})'
   chouse_category: Выберите категорию
+  chouse_delivery: Выбор способа доставки
   clear: Очистить
   clear_cart: Очистить корзину
   cities:

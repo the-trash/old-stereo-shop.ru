@@ -70,6 +70,7 @@ gem 'gon'
 gem 'hstore_accessor'
 gem 'image_suckr'
 gem 'jquery-ui-rails'
+gem 'memoist'
 gem 'rabl'
 gem 'ruby-progressbar'
 gem 'select2-rails'
@@ -86,6 +87,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller' # need for better_errors
   gem 'brakeman', require: false
+  gem 'bullet'
   gem 'capistrano', '~> 3.2.1'
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano-rails', '~> 1.1.2'

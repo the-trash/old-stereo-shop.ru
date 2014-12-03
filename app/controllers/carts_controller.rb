@@ -9,7 +9,7 @@ class CartsController < FrontController
   end
 
   def destroy
-    @cart.destroy
+    @cart.line_items.destroy_all
     redirect_to [:root], flash: :success
   end
 

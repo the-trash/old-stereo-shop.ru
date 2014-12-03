@@ -37,4 +37,41 @@
       }
     }
   }
+  .e-order-steps {
+    $steps: cart, delivery, authentification, payment;
+    color: $gray;
+    font-size: 40px;
+    margin-bottom:  30px;
+    li {
+      @include inline-block();
+      position: relative;
+      &.active {
+        color: $black;
+      }
+      &:after {
+        content: '\003E';
+        color: $gray;
+      }
+      &:last-child:after {
+        content: '';
+      }
+      @for $i from 1 through length($steps) {
+        &.#{nth($steps, $i)} {
+          &:before {
+            content: '#{$i}';
+            font-size: 12px;
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+          }
+        }
+      }
+      .help {
+        position: absolute;
+        font-size: 12px;
+        bottom: -12px;
+        left: 0;
+      }
+    }
+  }
 }
