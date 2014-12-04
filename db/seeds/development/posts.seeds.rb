@@ -28,7 +28,7 @@ after 'development:post_categories' do
     post.update_column(:state, rand(0..3))
   end
 
-  slugs_pages = %w(about payment contacts delivery help)
+  slugs_pages = %w(about payment contacts delivery help return)
   PAGES_COUNT = slugs_pages.size
 
   progressbar_page =

@@ -13,7 +13,7 @@ after 'development:reviews' do
     cart = FactoryGirl.create(:cart, user: user)
 
     products.sample(3).each do |product|
-      a << FactoryGirl.create(:line_item, product: product, cart: cart)
+      FactoryGirl.create(:line_item, product: product, cart: cart)
     end
 
     progressbar.increment

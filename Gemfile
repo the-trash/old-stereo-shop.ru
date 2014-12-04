@@ -119,8 +119,9 @@ group :development, :test do
   gem 'rspec-mocks'
   gem 'rspec-nc'
   gem 'rspec-rails'
-  gem 'seedbank', github: 'james2m/seedbank'
   gem 'shoulda-matchers'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
+
+gem 'seedbank', github: 'james2m/seedbank', group: [:development, :test, :staging]

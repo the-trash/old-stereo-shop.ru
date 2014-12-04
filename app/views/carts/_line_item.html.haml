@@ -10,7 +10,7 @@
   %td
     = form_for line_item, html: { class: 'update-quantity form' } do |f|
       %span.arrow.arrow-left{ data: { role: :decrement }, class: ('disabled' if line_item.quantity == 1) }
-      = f.text_field :quantity, class: 'quantity', data: { id: line_item.id }
+      = f.text_field :quantity, class: 'quantity', data: { id: line_item.id, value: line_item.quantity }
       %span.arrow.arrow-right{ data: { role: :increment } }
   %td
     %p.total_amount{ data: { price: line_item.product_price_with_discount } }

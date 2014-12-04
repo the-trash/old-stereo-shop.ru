@@ -2,8 +2,11 @@ class Cart
   constructor: ->
     _this = @
 
-    $('body').on 'click', '.arrow:not(.disabled)', (e) ->
+    $('.b-cart').on 'click', '.arrow:not(.disabled)', (e) ->
       _this.arrowClick(this)
+
+    $('.b-cart').on 'change', '.quantity', (e) ->
+      _this.changeQuantityField($(this))
 
   changeProductsCount: (count) ->
     $('body').find('.cart-items-counter').each (index, element) ->
@@ -11,13 +14,13 @@ class Cart
 
       $(this).text(parseInt(current_count + count))
 
-  changeTotalAmountForLine: (count, quantityField, role) ->
+  changeTotalAmountForLine: (count, quantityField) ->
     totalAmount = quantityField.closest('tr').find('.total_amount')
     price       = totalAmount.data('price')
 
     totalAmount.text @priceWithCurrency(parseFloat(price * count))
 
-    @changeCartTotalAmount(parseFloat(price), role)
+    @changeCartTotalAmount()
 
   arrowClick: (arrow) ->
     role  = $(arrow).data('role')
@@ -41,38 +44,47 @@ class Cart
       decrementArrow.addClass('disabled')
 
     quantityField.val(count)
+    quantityField.attr('data-value', count)
     @changeTotalAmountForLine(count, quantityField, role)
 
-    data =
-      line_item:
-        quantity: count
-        id: quantityField.data('id')
+    @sendAjax(form.attr('action'), count, quantityField)
 
-    @sendAjax(form.attr('action'), data)
-
-  sendAjax: (url, formData) ->
+  sendAjax: (url, count, quantityField) ->
     $.ajax
       url: url
-      data: formData
+      data:
+        line_item:
+          quantity: count
+          id: quantityField.data('id')
       dataType: 'json'
       type: 'PATCH'
       success: (data) ->
         # console.log data
 
-  changeCartTotalAmount: (count, role) ->
+  changeCartTotalAmount: ->
     container = $('.cart-total-amount')
     total     = parseFloat container.attr('data-total')
+    amount    = 0
 
-    amount = if role == 'decrement'
-      parseFloat(total - count)
-    else
-      parseFloat(total + count)
+    $('.total_amount').each ->
+      amount += parseFloat($(this).text())
 
     container.attr 'data-total', amount
-
     container.text @priceWithCurrency(amount)
 
   priceWithCurrency: (price) ->
     price + ' руб.'
+
+  changeQuantityField: (quantityField) ->
+    form     = quantityField.closest('form')
+    quantity = parseInt(quantityField.val())
+
+    if quantity >= 1
+      @changeTotalAmountForLine(quantity, quantityField)
+      @changeCartTotalAmount()
+
+      @sendAjax(form.attr('action'), quantity, quantityField)
+    else
+      quantityField.val(quantityField.data('value'))
 
 @Cart = Cart

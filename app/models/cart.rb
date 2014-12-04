@@ -1,7 +1,7 @@
 class Cart < ActiveRecord::Base
   scope :old_cart, -> { where(updated_at: 14.days.ago) }
 
-  has_many :line_items, dependent: :nullify
+  has_many :line_items, -> { order('id DESC') }, dependent: :nullify
 
   has_many :products, through: :line_items
 
