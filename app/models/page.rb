@@ -5,5 +5,5 @@ class Page < ActiveRecord::Base
 
   belongs_to :admin_user
 
-  validates :title, :admin_user_id, presence: true
+  validates :title, :admin_user_id, :full_text, presence: true
 end
