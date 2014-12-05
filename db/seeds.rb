@@ -15,3 +15,6 @@ settings.each do |setting|
     group: (setting[3] || 'Основные')
   ) unless Setting.find_by_key(setting[0]).present?
 end
+
+require 'fileutils'
+print '.'.green if FileUtils.rm_rf "#{Rails.root}/public/uploads/"

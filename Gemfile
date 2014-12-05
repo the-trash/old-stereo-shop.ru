@@ -95,6 +95,7 @@ group :development do
   gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq'
   gem 'capistrano3-nginx'
   gem 'capistrano3-unicorn'
+  gem 'foreman'
   gem 'guard'
   gem 'guard-livereload', require: false
   gem 'letter_opener'

@@ -213,6 +213,7 @@ GEM
     devise-async (0.9.0)
       devise (~> 3.2)
     diff-lcs (1.2.5)
+    dotenv (1.0.2)
     dragonfly (0.9.15)
       multi_json (~> 1.0)
       rack
@@ -233,6 +234,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
     ffi (1.9.6)
+    foreman (0.76.0)
+      dotenv (~> 1.0.2)
+      thor (~> 0.19.1)
     formatador (0.2.5)
     formtastic (3.0.0)
       actionpack (>= 3.2.13)
@@ -594,6 +598,7 @@ DEPENDENCIES
   errgent!
   factory_girl_rails
   faker
+  foreman
   friendly_id (~> 5.0.4)
   fuubar
   gon
