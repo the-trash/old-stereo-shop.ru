@@ -10,7 +10,7 @@ class AdminUser < ActiveRecord::Base
 
   %i(
     products product_categories posts post_categories
-    characteritic_categories stores
+    characteritic_categories stores newletters
   ).each do |m|
     has_many m, dependent: :destroy
   end

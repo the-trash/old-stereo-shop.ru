@@ -138,17 +138,18 @@ ru:
       actions:
         update: Запись успешно обновлена
     views:
-      meta: Meta информация
-      main: Основаня информация
-      site: Ссылка на сайт производителя
-      price: "Цена: %{price}"
-      discount: "Скидка: %{discount}"
-      product_category: "Категория: %{category}"
-      photo: Изображения
-      characteristics: Характеристики
-      characteristic_category: Категория характеристик
-      stores: Магазины
       additional_info: Дополнительная информация
+      characteristic_category: Категория характеристик
+      characteristics: Характеристики
+      discount: "Скидка: %{discount}"
+      main: Основаня информация
+      meta: Meta информация
+      photo: Изображения
+      price: "Цена: %{price}"
+      product_category: "Категория: %{category}"
+      settings: Настройки
+      site: Ссылка на сайт производителя
+      stores: Магазины
       batch_action:
         zero: Не одной записи не было выбранное
         one: "(1) запись успешно обновлена"
@@ -156,3 +157,12 @@ ru:
         other: "(%{count}) записей успешно обновлено"
       products:
         reviews: Отзывы
+      newletters:
+        posts_count: 'Количество постов: %{count}'
+        new_posts_yes: 'Отправлять только новые посты: Да'
+        new_posts_no: 'Отправлять только новые посты: Нет'
+        subscription_type:
+          news: О новостях сайта
+          bonus: О моих бонусах
+          product_delivered: О доставке товара
+          deals: 'О спец. предложениях'

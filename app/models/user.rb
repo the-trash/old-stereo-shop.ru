@@ -18,10 +18,18 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     inverse_of: :user
 
-  has_many :reviews, dependent: :destroy
-  has_many :wishes, dependent: :destroy
+  %i(reviews wishes).each do |r|
+    has_many r, dependent: :destroy
+  end
 
   has_one :cart, dependent: :destroy
+
+  hstore_accessor :subscription_settings,
+    unsubscribe: :boolean,
+    news: :boolean,
+    bonus: :boolean,
+    product_delivered: :boolean,
+    deals: :boolean
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 

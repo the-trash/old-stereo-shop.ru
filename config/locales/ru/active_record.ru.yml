@@ -75,6 +75,11 @@ ru:
         few: Отзывы
         many: Отзывов
         other: Отзывы
+      newletter:
+        one: Рассылка новостей
+        few: Рассылки новостей
+        many: Рассылок новостей
+        other: Рассылки новостей
     attributes:
       setting:
         description: Описание
@@ -94,6 +99,7 @@ ru:
         city: Город
         address: Адрес доставки
         index: Индекс
+        subscription_settings: Настройки рассылки
       admin_user:
         email: 'E-mail'
         current_sign_in_at: Последний раз авторизован
@@ -177,3 +183,16 @@ ru:
         cons: Минусы
         body: Отзыв
         state: Статус
+      newletter:
+        title: Заголовок
+        description: Вступление
+        admin_user: Создатель
+        post_category: Категория постов
+        created_at: Дата создания
+        updated_at: Дата обновления
+        state: Статус
+        last_delivery: Дата последний рассылки
+        settings: Настройки
+        posts_count: Количество постов
+        only_new_posts: 'Только новые посты?'
+        subscription_type: Тип рассылки
