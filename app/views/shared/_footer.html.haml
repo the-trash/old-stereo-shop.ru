@@ -43,9 +43,8 @@
             %span.icons-arrow-black-down
           %ul.menu.right-menu
             = render 'shared/includes/static_pages_links'
-        .gray-block.subscribe
-          %p Получить рассылку на новинки и т.д.
-          = form_tag '/', class: 'inline-one-input' do
-            %span.wrapper<
-              = text_field_tag :email, '', placeholder: 'Укажите вашу почту'
-              = submit_tag 'Подписаться', class: 'btn btn-pink'
+
+        - if user_signed_in?
+          = render 'shared/includes/subscribe', email: current_user.email if policy(current_user).subscibe?
+        - else
+          = render 'shared/includes/subscribe'

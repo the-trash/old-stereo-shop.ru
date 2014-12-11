@@ -1,0 +1,8 @@
+- email ||= nil
+
+.gray-block.subscribe
+  %p= t('get_subscribes')
+  = form_for SubscribedEmail.new, html: { class: 'inline-one-input' } do |f|
+    %span.wrapper<
+      = f.text_field :email, { placeholder: t('set_your_email'), value: email }
+      = f.submit t('to_subscribe'), class: 'btn btn-pink'

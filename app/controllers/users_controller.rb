@@ -1,5 +1,6 @@
 class UsersController < FrontController
   before_filter :set_user, :authenticate_user!
+  skip_before_filter :set_variables, only: :update
   after_action :verify_authorized
 
   def show
@@ -46,15 +47,18 @@ class UsersController < FrontController
 
   private
 
-  private
-
   def set_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    accessible = [ :full_name, :email, :full_name, :birthday, :phone, :city, :index, :address, :email ] # extend with your own params
+    accessible = [
+      :full_name, :email, :full_name, :birthday, :phone, :city, :index,
+      :address, :email, :unsubscribe
+    ] # extend with your own params
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+    accessible << Newletter::SUBSCRIPTION_TYPES
+
     params.require(:user).permit(accessible)
   end
 end

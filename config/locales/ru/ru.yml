@@ -97,6 +97,7 @@ ru:
     return: О возврате денег
     other: Другое
   feedback_user_name: Как к Вам обращаться
+  get_subscribes: 'Получить рассылку на новинки и т.д.'
   go_to_main: На главную
   go_to_wishlist: 'В список "Мне нравится"'
   goods_supplied: Товары в комплект
@@ -106,6 +107,7 @@ ru:
   my_wishlist: Мой список желаний
   new_products: Новинки
   news: Новости
+  notificatins_mail: Уведомления на почту
   page_not_found: Страница не найдена
   phone: Телефон
   popular: Популярные
@@ -118,7 +120,9 @@ ru:
   questions: Ваши вопросы
   registration: Регистрация
   save: Сохранить
+  set_your_email: Укажите вашу почту
   show: Показать
+  to_subscribe: Подписаться
   total_amount: Общая сумма
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится

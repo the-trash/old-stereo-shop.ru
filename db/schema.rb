@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210142048) do
+ActiveRecord::Schema.define(version: 20141211165005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -404,6 +404,16 @@ ActiveRecord::Schema.define(version: 20141210142048) do
   add_index "stores", ["position"], name: "index_stores_on_position", using: :btree
   add_index "stores", ["slug"], name: "index_stores_on_slug", using: :btree
   add_index "stores", ["state"], name: "index_stores_on_state", using: :btree
+
+  create_table "subscribed_emails", force: true do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscribed_emails", ["email"], name: "index_subscribed_emails_on_email", unique: true, using: :btree
+  add_index "subscribed_emails", ["user_id"], name: "index_subscribed_emails_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.date     "birthday"

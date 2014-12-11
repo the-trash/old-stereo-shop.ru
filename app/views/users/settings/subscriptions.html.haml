@@ -1,0 +1,15 @@
+%h4= t('notificatins_mail')
+= form_for @user, html: { class: 'form' } do |f|
+  %ul.sybscription-types-list
+    - Newletter::SUBSCRIPTION_TYPES.each do |sub_type|
+      %li
+        = f.label sub_type do
+          = f.check_box sub_type
+          = t(sub_type, scope: %i(active_admin views newletters subscription_type))
+
+    %li
+      = f.label :unsubscribe do
+        = f.check_box :unsubscribe
+        = t(:unsubscribe, scope: %i(activerecord attributes user))
+
+  %p= f.submit t('save')

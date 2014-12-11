@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   enum city: %i(spb moscow)
 
+  before_save :set_full_name, if: :generate_full_name?
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :omniauthable,
@@ -22,7 +24,9 @@ class User < ActiveRecord::Base
     has_many r, dependent: :destroy
   end
 
-  has_one :cart, dependent: :destroy
+  %i(cart subscribed_email).each do |r|
+    has_one r, dependent: :destroy
+  end
 
   hstore_accessor :subscription_settings,
     unsubscribe: :boolean,
@@ -73,5 +77,16 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  private
+
+  def generate_full_name?
+    full_name?
+  end
+
+  def set_full_name
+    self.full_name =
+      [first_name, middle_name, last_name].compact.map(&:strip).join(' ')
   end
 end

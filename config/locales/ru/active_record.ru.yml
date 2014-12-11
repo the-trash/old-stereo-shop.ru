@@ -100,6 +100,7 @@ ru:
         address: Адрес доставки
         index: Индекс
         subscription_settings: Настройки рассылки
+        unsubscribe: Не получать рассылки
       admin_user:
         email: 'E-mail'
         current_sign_in_at: Последний раз авторизован

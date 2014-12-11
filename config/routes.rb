@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
   resources :brands, only: [:index, :show]
 
+  resources :subscribed_emails, only: [:create, :destroy]
+
   resources :users, except: [:destroy, :edit] do
     member do
       get :you_watched

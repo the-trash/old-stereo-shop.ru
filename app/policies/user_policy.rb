@@ -14,4 +14,8 @@ class UserPolicy
   def show?
     update?
   end
+
+  def subscibe?
+    user.unsubscribe
+  end
 end
