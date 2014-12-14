@@ -3,8 +3,18 @@ ActiveAdmin.register User do
 
   actions :all, except: :show
 
+  controller do
+    def update
+      if params[:user][:password].blank?
+        params[:user].delete('password')
+        params[:user].delete('password_confirmation')
+      end
+      super
+    end
+  end
+
   permit_params :email, :birthday, :phone, :first_name, :last_name, :middle_name,
-                :password, :password_confirmation
+    :password, :password_confirmation
 
   index do
     selectable_column
@@ -42,15 +52,5 @@ ActiveAdmin.register User do
     end
 
     f.actions
-  end
-
-  controller do
-    def update
-      if params[:user][:password].blank?
-        params[:user].delete('password')
-        params[:user].delete('password_confirmation')
-      end
-      super
-    end
   end
 end

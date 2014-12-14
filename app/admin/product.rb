@@ -116,14 +116,14 @@ ActiveAdmin.register Product do
                 char.template.content_tag(:p, char.object.characteristic_characteristic_category_title)
               end
           end
-          char.input :characteristic, as: :select2,
-            collection: option_groups_from_collection_for_select(
-                CharacteristicCategory.includes(:characteristics).all,
-                :characteristics, :title, :id, :title, char.object.characteristic_id
-              )
-          char.input :value
+            char.input :characteristic, as: :select2,
+              collection: option_groups_from_collection_for_select(
+                  CharacteristicCategory.includes(:characteristics).all,
+                  :characteristics, :title, :id, :title, char.object.characteristic_id
+                )
+            char.input :value
         end
-      end
+      end if Characteristic.any?
 
       f.inputs I18n.t('active_admin.views.stores') do
         f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
@@ -135,8 +135,8 @@ ActiveAdmin.register Product do
         end
       end
 
-      f.input :related_products
-      f.input :similar_products
+      f.input :related_products if Product.any?
+      f.input :similar_products if Product.any?
     end
 
     f.actions

@@ -49,5 +49,7 @@ ActiveAdmin.register Characteristic do
         f.input :characteristic_category, as: :select2, collection: CharacteristicCategory.for_select, selected: resource.characteristic_category_id
       end
     end
+
+    f.actions
   end
 end

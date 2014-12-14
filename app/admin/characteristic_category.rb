@@ -39,5 +39,7 @@ ActiveAdmin.register CharacteristicCategory do
         f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
       end
     end
+
+    f.actions
   end
 end
