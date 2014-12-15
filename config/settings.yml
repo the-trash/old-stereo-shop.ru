@@ -10,3 +10,6 @@ shop:
   feedback:
     to: 'test@shop.ru'
     subject: Default Subject
+    from: 'shop@shop.ru'
+  newletter:
+    subject: Default subject

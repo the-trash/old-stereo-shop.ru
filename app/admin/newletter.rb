@@ -8,6 +8,14 @@ ActiveAdmin.register Newletter do
     end
   end
 
+  batch_action :send_newletters do |ids|
+    ids.each do |id|
+      NewletterWorker.perform_async(id)
+    end
+
+    redirect_to collection_path, notice: I18n.t('active_admin.views.batch_action.newletters', count: ids.size)
+  end
+
   actions :all, except: [:show, :destroy]
 
   permit_params :title, :description, :state, :admin_user_id, :post_category_id,
@@ -27,6 +35,11 @@ ActiveAdmin.register Newletter do
     def end_of_association_chain
       super.includes(:post_category)
     end
+  end
+
+  member_action :send_newletter, method: :get do
+    msq = NewletterWorker.perform_async(params[:id]) ? 'success' : 'failure'
+    redirect_to :back, notice: I18n.t(msq, scope: %i(active_admin views newletters send_newletter))
   end
 
   index do
@@ -51,7 +64,10 @@ ActiveAdmin.register Newletter do
         content_tag(:p, subscription_type)
       )
     end
-    actions
+
+    actions do |newletter|
+      link_to(I18n.t('active_admin.send_newletter'), [:send_newletter, :admin, newletter])
+    end
   end
 
   filter :id

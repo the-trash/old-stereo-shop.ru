@@ -8,6 +8,6 @@ class ClearOldCartsWorker
 
   def perform
     Cart.old_cart.destroy_all
-    CartsProduct.broken_position.destroy_all
+    LineItem.broken_position.destroy_all
   end
 end

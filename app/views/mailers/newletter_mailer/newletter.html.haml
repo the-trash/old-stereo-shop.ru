@@ -1,0 +1,5 @@
+%h3= @user.full_name
+
+.l-posts
+  - @posts.find_each do |post|
+    = render partial: 'mailers/newletter_mailer/includes/post', locals: { post: post}
