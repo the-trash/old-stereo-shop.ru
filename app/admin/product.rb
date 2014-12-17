@@ -13,12 +13,12 @@ ActiveAdmin.register Product do
   sortable_list
   config.sort_order = 'position_asc'
 
-  permit_params :title, :description, :state, :admin_user_id, :price, :discount,
+  permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id,
     :product_category_id, :position, :keywords, :seo_description, :seo_title,
     photos_attributes: [:id, :file, :state],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
-    related_product_ids: []
+    related_product_ids: [], similar_product_ids: []
 
   controller do
     def update
@@ -86,7 +86,7 @@ ActiveAdmin.register Product do
         f.input :title
         f.input :description
         f.input :price
-        f.input :discount, as: :wysihtml5
+        f.input :discount
         f.input :admin_user, as: :select2,
           collection: AdminUser.for_select,
           selected: resource.admin_user_id
@@ -95,6 +95,9 @@ ActiveAdmin.register Product do
           selected: resource.product_category_id
         f.input :state, as: :select2,
           collection: resource_class.states.keys, selected: resource.state
+        f.input :brand_id, as: :select2,
+          collection: Brand.published.map { |brand| [brand.title, brand.id] },
+          selected: resource.brand_id
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

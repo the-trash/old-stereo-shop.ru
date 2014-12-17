@@ -150,6 +150,7 @@ ru:
         average_score: Рейтинг
         related_products: Товары в комплект
         similar_products: Вам может понравиться
+        brand_id: Брэнд
       product_category:
         <<: *main
         products: Продукты

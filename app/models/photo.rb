@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
 
   belongs_to :photoable, polymorphic: true
 
-  validates :photoable, :file, presence: true
+  validates :file, presence: true
 
   mount_uploader :file, PhotoUploader
 end
