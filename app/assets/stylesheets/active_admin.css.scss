@@ -6,3 +6,11 @@ td span.icon, p span.icon {
   width: 1.8em;
   height: 1.8em;
 }
+
+body {
+  &.edit {
+    .select2-offscreen {
+      min-width: 200px;
+    }
+  }
+}
