@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211165005) do
+ActiveRecord::Schema.define(version: 20141218103354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,19 @@ ActiveRecord::Schema.define(version: 20141211165005) do
   add_index "characteristics_products", ["characteristic_id"], name: "index_characteristics_products_on_characteristic_id", using: :btree
   add_index "characteristics_products", ["product_id", "characteristic_id"], name: "composite_product_characteristic", unique: true, using: :btree
   add_index "characteristics_products", ["product_id"], name: "index_characteristics_products_on_product_id", using: :btree
+
+  create_table "cities", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.integer  "vk_id"
+    t.integer  "region_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cities", ["region_id"], name: "index_cities_on_region_id", using: :btree
+  add_index "cities", ["slug"], name: "index_cities_on_slug", using: :btree
+  add_index "cities", ["title"], name: "index_cities_on_title", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -348,6 +361,17 @@ ActiveRecord::Schema.define(version: 20141211165005) do
   add_index "ratings", ["votable_id", "votable_type", "score"], name: "index_ratings_on_votable_id_and_votable_type_and_score", using: :btree
   add_index "ratings", ["votable_id", "votable_type", "user_id"], name: "index_ratings_on_votable_id_and_votable_type_and_user_id", using: :btree
   add_index "ratings", ["votable_id", "votable_type"], name: "index_ratings_on_votable_id_and_votable_type", using: :btree
+
+  create_table "regions", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.integer  "vk_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "regions", ["slug"], name: "index_regions_on_slug", using: :btree
+  add_index "regions", ["title"], name: "index_regions_on_title", using: :btree
 
   create_table "reviews", force: true do |t|
     t.integer  "user_id"
