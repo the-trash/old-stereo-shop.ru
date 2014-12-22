@@ -12,12 +12,19 @@ class VkLocation::ApiVkRequestLocation
 
     params.merge!({
       v: @api_v,
-      count: @count
+      count: @count,
+      country_id: 1
     })
 
     uri.query = URI.encode_www_form(params)
 
-    @response = Net::HTTP.get_response(uri)
+    @response =
+      begin
+        Net::HTTP.get_response(uri)
+      rescue Errno::EHOSTUNREACH, Errno::ENETUNREACH
+        retry
+      end
+
     @response
   end
 
