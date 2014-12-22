@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'stereoshop@ru'
   TEMP_EMAIL_REGEX = /\Astereoshop@ru/
 
-  enum city: %i(spb moscow)
-
   before_save :set_full_name, if: :generate_full_name?
 
   # Include default devise modules. Others available are:
@@ -27,6 +25,8 @@ class User < ActiveRecord::Base
   %i(cart subscribed_email).each do |r|
     has_one r, dependent: :destroy
   end
+
+  belongs_to :city
 
   hstore_accessor :subscription_settings,
     unsubscribe: :boolean,

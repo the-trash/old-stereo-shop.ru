@@ -9,7 +9,7 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     middle_name { [nil, Faker::Name.suffix].sample }
-    city { [0, 1].sample }
+    city
     index { Random.new.rand(100..1000) }
     address { Faker::Address.street_name }
     subscription_settings {
