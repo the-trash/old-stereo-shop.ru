@@ -9,7 +9,11 @@ namespace :vk_location do
 
   desc 'Fetch Regions'
   task fetch_regions: :environment do
-    progressbar = ProgressBar.create({ total: nil, title: 'Fetch Regions' })
+    progressbar = ProgressBar.create({
+      total: nil,
+      title: 'Fetch Regions',
+      format: '%t %B count %c'
+    })
 
     vk_location = VkLocation::ApiVkRequestLocation.new
     fetcher     = VkLocation::StereoShopLocation.new(vk_location)
@@ -21,7 +25,11 @@ namespace :vk_location do
 
   desc 'Fetch Cities'
   task fetch_cities: :environment do
-    progressbar = ProgressBar.create({ total: nil, title: 'Fetch Cities' })
+    progressbar = ProgressBar.create({
+      total: nil,
+      title: 'Fetch Cities',
+      format: '%t %B count %c'
+    })
 
     vk_location = VkLocation::ApiVkRequestLocation.new
     fetcher     = VkLocation::StereoShopLocation.new(vk_location)

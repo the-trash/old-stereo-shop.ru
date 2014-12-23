@@ -64,7 +64,7 @@ class VkLocation::StereoShopLocation
 
       offset += 1
 
-      sleep(0.2)
+      sleep(0.1)
 
       fetch_cities(region_id, region_vk_id, offset) do
         block.call if block_given?
@@ -78,21 +78,29 @@ class VkLocation::StereoShopLocation
 
   def create_regions(regions, &block)
     regions.each do |region|
-      Region.create!(title: region[:title].strip, vk_id: region[:id])
+      title = region[:title].strip
 
-      block.call if block_given?
+      if Region.find_by(title: title).nil?
+        Region.create!(title: title, vk_id: region[:id])
+
+        block.call if block_given?
+      end
     end
   end
 
   def create_cities(cities, region_id, &block)
     cities.each do |city|
-      City.create!(title: city[:title].strip, vk_id: city[:id], region_id: region_id)
+      title = city[:title].strip
 
-      block.call if block_given?
+      if City.find_by(title: title).nil?
+        City.create!(title: title, vk_id: city[:id], region_id: region_id)
+
+        block.call if block_given?
+      end
     end
   end
 
   def items_for_create titles, items
-    items.reject { |item| titles.include?(item[:title]) }
+    items.reject { |item| titles.include?(item[:title]) }.uniq! { |item| item[:title] } || []
   end
 end

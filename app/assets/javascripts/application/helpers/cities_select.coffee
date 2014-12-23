@@ -3,13 +3,13 @@ class CitiesSelect
     @initSelect()
 
   initSelect: ->
-    console.log 'el:', @el.data('searching')
     @el.select2($.extend {}, @defaultOptions(), @options)
       .select2('data', @selectedCities)
 
   defaultOptions: ->
     multiple: true
     minimumInputLength: 1
+    width: 'copy'
     ajax:
       url: @el.data('search-path')
       dataType: 'json'

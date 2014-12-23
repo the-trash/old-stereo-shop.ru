@@ -13,5 +13,15 @@
   }
   .b-additional-fields-for-sign-up {
     display: none;
+    .form-group {
+      .get-cities {
+        width: $inputsWidth;
+      }
+      .select2-choices {
+        @include box-sizing(border-box);
+        border: 1px solid $gray;
+        background-image: none;
+      }
+    }
   }
 }

@@ -8,8 +8,8 @@
     = f.text_field :phone
 
   .form-group
-    =# f.label :city_id, t('city', scope: [:activerecord, :attributes, :user])
-    =# f.hidden_field :city_id, { data: { search_path: get_cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
+    = f.label :city_id, t('city', scope: [:activerecord, :attributes, :user])
+    = f.hidden_field :city_id, { data: { search_path: get_cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
 
   .form-group
     = f.label :address, t('address', scope: [:activerecord, :attributes, :user])
