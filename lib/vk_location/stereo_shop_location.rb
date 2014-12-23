@@ -38,7 +38,7 @@ class VkLocation::StereoShopLocation
 
       offset += 1
 
-      sleep(1)
+      sleep(0.2)
 
       fetch_regions(offset) do
         block.call if block_given?
@@ -64,7 +64,7 @@ class VkLocation::StereoShopLocation
 
       offset += 1
 
-      sleep(1)
+      sleep(0.2)
 
       fetch_cities(region_id, region_vk_id, offset) do
         block.call if block_given?

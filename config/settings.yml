@@ -5,6 +5,8 @@ product:
 pagination:
   products: 10
   posts: 10
+  users: 10
+  cities: 10
 
 shop:
   feedback:

@@ -13,14 +13,18 @@ $(document).ready ->
   $('body').find('.ratable').each ->
     new Ratable(this)
 
-  if ('.b-product').length
+  if $('.b-product').length
     new ProductShowPage()
 
-  if ('.b-product-category').length
+  if $('.b-product-category').length
     new ProductCategoryShowPage()
 
-  if ('.b-cart').length
+  if $('.b-cart').length
     new Cart()
+
+  if $('.get-cities').length
+    new CitiesSelect
+      el: $('.get-cities')
 
   $('body').find('.tabs').each ->
     $(this).tabs
