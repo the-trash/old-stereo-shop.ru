@@ -1,19 +1,19 @@
 class CitiesSelect
   constructor: (el: @el, options: @options) ->
     @initSelect()
+    # TODO: add initSelection
 
   initSelect: ->
     @el.select2($.extend {}, @defaultOptions(), @options)
       .select2('data', @selectedCities)
 
   defaultOptions: ->
-    multiple: true
-    minimumInputLength: 1
+    minimumInputLength: 3
     width: 'copy'
     ajax:
       url: @el.data('search-path')
       dataType: 'json'
-      data: (searchText) -> query: searchText, limit: gon.selector_search_limit
+      data: (searchText) -> query: searchText
       results: (data) -> results: data
     formatResult: @formatCityToString
     formatSelection: @formatCityToString
@@ -21,6 +21,6 @@ class CitiesSelect
     formatNoMatches: @el.data('not-found')
 
   formatCityToString: (city) ->
-    city.title
+    "#{ city.region_title } - #{ city.title }"
 
 @CitiesSelect = CitiesSelect

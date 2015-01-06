@@ -8,4 +8,6 @@ class City < ActiveRecord::Base
   belongs_to :region
 
   validates :region, presence: true
+
+  delegate :title, to: :region, prefix: true
 end

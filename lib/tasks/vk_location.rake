@@ -18,9 +18,9 @@ namespace :vk_location do
     vk_location = VkLocation::ApiVkRequestLocation.new
     fetcher     = VkLocation::StereoShopLocation.new(vk_location)
 
-    fetcher.fetch_regions #do
-    #   progressbar.increment
-    # end
+    fetcher.fetch_regions do
+      progressbar.increment
+    end
   end
 
   desc 'Fetch Cities'

@@ -53,7 +53,7 @@ class UsersController < FrontController
 
   def user_params
     accessible = [
-      :full_name, :email, :full_name, :birthday, :phone, :city, :index,
+      :full_name, :email, :full_name, :birthday, :phone, :city_id, :index,
       :address, :email, :unsubscribe
     ] # extend with your own params
     accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
