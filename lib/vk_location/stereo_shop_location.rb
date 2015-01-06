@@ -1,21 +1,25 @@
 require 'json'
 
 class VkLocation::StereoShopLocation
-  cattr_accessor :responser, :response
+  cattr_accessor :request, :response
 
-  def initialize(responser)
-    @responser = responser
+  def initialize(request)
+    @request = request
   end
 
   def data(method, params = {})
-    @responser.get_response(method, params)
+    @request.get_response(method, params)
 
-    @response = JSON.parse(@responser.body, { symbolize_names: true })
+    @response = JSON.parse(@request.body, { symbolize_names: true })
     @response
   end
 
   def items
     errors_exists? ? [] : @response[:response][:items]
+  end
+
+  def items_count
+    errors_exists? ? 0 : @response[:response][:count]
   end
 
   def errors_exists?
@@ -30,18 +34,20 @@ class VkLocation::StereoShopLocation
     if items.any?
       region_titles = Region.pluck(:title)
 
-      region_for_create = items_for_create(region_titles, items)
+      region_for_create = region_titles.any? ? items_for_create(region_titles, items) : items
 
       create_regions(region_for_create) do
         block.call if block_given?
       end if region_for_create.any?
 
-      offset += 1
+      if offset < items_count
+        offset += @request.count
 
-      sleep(0.2)
+        sleep(0.2)
 
-      fetch_regions(offset) do
-        block.call if block_given?
+        fetch_regions(offset) do
+          block.call if block_given?
+        end
       end
     end
 
@@ -56,18 +62,20 @@ class VkLocation::StereoShopLocation
     if items.any?
       city_titles = City.pluck(:title)
 
-      cities_for_create = items_for_create(city_titles, items)
+      cities_for_create = city_titles.any? ? items_for_create(city_titles, items) : items
 
       create_cities(cities_for_create, region_id) do
         block.call if block_given?
       end if cities_for_create.any?
 
-      offset += 1
+      if offset < items_count
+        offset += @request.count
 
-      sleep(0.1)
+        sleep(0.1)
 
-      fetch_cities(region_id, region_vk_id, offset) do
-        block.call if block_given?
+        fetch_cities(region_id, region_vk_id, offset) do
+          block.call if block_given?
+        end
       end
     end
 

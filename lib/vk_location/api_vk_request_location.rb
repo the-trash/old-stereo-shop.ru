@@ -39,4 +39,8 @@ class VkLocation::ApiVkRequestLocation
   def head_message
     @response.message
   end
+
+  def count
+    @count
+  end
 end
