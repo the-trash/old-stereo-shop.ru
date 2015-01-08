@@ -48,7 +48,10 @@ class FrontController < ApplicationController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:city_id, :index, :address, :birthday, :phone, :email, :password, :password_confirmation)
+      u.permit \
+        :city_id, :index, :address, :birthday,
+        :phone, :email, :password, :password_confirmation,
+        :full_name
     end
   end
 

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get 'get_cities', to: 'cities#get_cities'
+  resources :cities, only: [:index, :show]
 
   resources :product_categories, only: :show do
     get :sale, on: :collection

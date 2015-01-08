@@ -1,7 +1,6 @@
 class CitiesSelect
   constructor: (el: @el, options: @options) ->
     @initSelect()
-    # TODO: add initSelection
 
   initSelect: ->
     @el.select2($.extend {}, @defaultOptions(), @options)
@@ -19,6 +18,14 @@ class CitiesSelect
     formatSelection: @formatCityToString
     formatSearching: @el.data('searching')
     formatNoMatches: @el.data('not-found')
+    initSelection: (element, callback) ->
+      id = $(element).val()
+
+      if id != ''
+        $.ajax('/cities/' + id,
+          dataType: 'json'
+        ).done (data) ->
+          callback data
 
   formatCityToString: (city) ->
     "#{ city.region_title } - #{ city.title }"

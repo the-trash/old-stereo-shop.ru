@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   private
 
   def generate_full_name?
-    full_name?
+    !full_name?
   end
 
   def set_full_name
