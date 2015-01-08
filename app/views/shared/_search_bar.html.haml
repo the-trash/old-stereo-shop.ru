@@ -1,6 +1,6 @@
 .search-bar
-  = form_tag '/', class: 'inline-one-input' do
+  = form_tag [:products], method: :get, class: 'inline-one-input' do
     %span.wrapper<
       .icon
-      = text_field_tag :q, '', placeholder: 'Что вы ищете?'
-      = submit_tag 'Найти', class: 'btn btn-pink'
+      = text_field_tag :q, params[:q], placeholder: t('what_are_you_looking_for')
+      = submit_tag t('find'), class: 'btn btn-pink'

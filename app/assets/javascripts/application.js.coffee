@@ -17,7 +17,7 @@ $(document).ready ->
   if $('.b-product').length
     new ProductShowPage()
 
-  if $('.b-product-category').length
+  if $('.b-product-category').length || $('.b-search').length
     new ProductCategoryShowPage()
 
   if $('.b-cart').length

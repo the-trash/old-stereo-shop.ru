@@ -15,6 +15,7 @@ class Product < ActiveRecord::Base
   scope :by_brand, -> (brand_id) { joins(:brand).where(brands: { id: brand_id }) }
   scope :on_hand, -> { where(in_stock: true) }
   scope :out_of_stock, -> { where(in_stock: false) }
+  scope :by_q, -> (q) { where("#{ table_name }.title ILIKE :text", text: "%#{ q }%") }
 
   acts_as_list
 

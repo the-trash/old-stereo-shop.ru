@@ -1,0 +1,26 @@
+.b-filters
+  = form_tag(form_path, method: :get, class: 'filter-products-form') do
+    = hidden_field_tag 'brand_id', params[:brand_id], class: 'filter-by-brand'
+    = hidden_field_tag 'sort_by', params[:sort_by], class: 'filter-by-show'
+    = hidden_field_tag 'q', params[:q]
+
+  .b-filter-brands
+    %ul.brands
+      %span= t('brands')
+      %li{ class: active_class_by_params(0, params[:brand_id].to_i) }
+        = link_to t('all_brands'), '#', data: { id: 0 }
+      = render partial: 'product_categories/includes/brand', collection: brands, as: :brand
+
+  .b-filter-show
+    %ul.show
+      %span= t('show')
+      %li{ class: active_class_by_params('popular', params[:sort_by].nil? ? 'popular' : params[:sort_by]) }
+        = link_to t('popular'), '#', data: { sort_by: 'popular' }
+      %li{ class: active_class_by_params('new_products', params[:sort_by]) }
+        = link_to t('new_products'), '#', data: { sort_by: 'new_products' }
+      %li{ class: active_class_by_params('price_reduction', params[:sort_by]) }
+        %i.reduction
+        = link_to t('product_price'), '#', data: { sort_by: 'price_reduction' }
+      %li{ class: active_class_by_params('price_increase', params[:sort_by]) }
+        %i.increase
+        = link_to t('product_price'), '#', data: { sort_by: 'price_increase' }

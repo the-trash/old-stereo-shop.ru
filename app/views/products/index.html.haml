@@ -1,0 +1,9 @@
+.b-search
+  %h3= t('search_result', request: params[:q])
+
+  = render 'shared/products_filters', form_path: products_path, brands: @brands
+
+  .b-products
+    = render partial: 'product_categories/includes/product', collection: collection, as: :product
+
+= will_paginate collection

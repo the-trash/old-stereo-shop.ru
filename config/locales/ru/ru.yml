@@ -98,6 +98,7 @@ ru:
     return: О возврате денег
     other: Другое
   feedback_user_name: Как к Вам обращаться
+  find: Найти
   get_subscribes: 'Получить рассылку на новинки и т.д.'
   go_to_main: На главную
   go_to_wishlist: 'В список "Мне нравится"'
@@ -121,7 +122,9 @@ ru:
   questions: Ваши вопросы
   registration: Регистрация
   save: Сохранить
+  search: Поиск
   searching: Идет поиск
+  search_result: 'Результаты поиска "%{request}"'
   set_your_email: Укажите вашу почту
   show: Показать
   to_subscribe: Подписаться
@@ -129,3 +132,4 @@ ru:
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится
   you_watched: Вы смотрели
+  what_are_you_looking_for: Что вы ищете?
