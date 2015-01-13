@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
 
   after_create :increment_product_category_cache_counters, if: :need_change_counter?
   after_destroy :decrement_product_category_cache_counters, if: :need_change_counter?
+
   before_save :recalculate_product_category_cache_counters, if: :state_changed?
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
 

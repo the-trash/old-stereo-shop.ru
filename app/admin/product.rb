@@ -34,11 +34,14 @@ ActiveAdmin.register Product do
     end
 
     def scoped_collection
+      Product.includes(:product_category)
+    end
+
+    def resource
       Product.includes(
-        :photos, :product_category,
-        characteristics: :characteristic_category,
-        stores: :products_stores
-      )
+        :photos, products_stores: :store,
+        characteristics: :characteristic_category
+      ).find(params[:id])
     end
   end
 

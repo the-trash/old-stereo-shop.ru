@@ -13,4 +13,13 @@ body {
       min-width: 200px;
     }
   }
+  fieldset {
+    &.inputs {
+      ol {
+        li {
+          margin: 5px 0;
+        }
+      }
+    }
+  }
 }
