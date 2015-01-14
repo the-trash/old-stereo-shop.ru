@@ -39,25 +39,19 @@ describe Product do
     describe '#make_characteristics_tree' do
       let!(:product_with_caracteristics) { create(:product, :with_caracteristics) }
 
+      subject { product_with_caracteristics.make_characteristics_tree }
+
       it 'include categories' do
-        product_with_caracteristics
-        expect(product_with_caracteristics.make_characteristics_tree.first[:category]).
-          to eq(CharacteristicCategory.order(id: :asc).first)
+        expect(subject.first[:category]).to eq(CharacteristicCategory.order(id: :asc).first)
       end
 
       it 'include characteristics' do
-        expect(
-          product_with_caracteristics.make_characteristics_tree.
-          first[:characteristics].first[:characteristic]
-        ).
+        expect(subject.first[:characteristics].first[:characteristic]).
           to eq(CharacteristicCategory.order(id: :asc).first.characteristics.first)
       end
 
       it 'include characteristic value' do
-        expect(
-          product_with_caracteristics.make_characteristics_tree.
-            first[:characteristics].first[:characteristic_value]
-        ).
+        expect(subject.first[:characteristics].first[:characteristic_value]).
           to eq(
             CharacteristicCategory.order(id: :asc).first.characteristics.first.
               characteristics_products.first

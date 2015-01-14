@@ -6,9 +6,7 @@ describe CharacteristicsProduct do
   end
 
   context 'validates' do
-    %i(value product characteristic).each do |f|
-      it { should validate_presence_of(f) }
-    end
+    it { should validate_presence_of(:value) }
   end
 
   it { should delegate(:characteristic_category_title).to(:characteristic).with_prefix }

@@ -8,8 +8,6 @@ describe Photo do
   end
 
   context 'validates' do
-    %i(photoable file).each do |f|
-      it { should validate_presence_of(f) }
-    end
+    it { should validate_presence_of(:file) }
   end
 end

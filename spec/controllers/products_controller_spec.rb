@@ -1,5 +1,5 @@
 describe ProductsController do
-  let(:product) { FactoryGirl.create(:product) }
+  let!(:product) { FactoryGirl.create(:product, :published) }
 
   context 'GET /products' do
     before { get :index }
@@ -7,6 +7,8 @@ describe ProductsController do
     it 'assigns @products' do
       expect(assigns(:products)).to include(product)
     end
+
+    specify { expect(assigns(:brands)).to include(product.brand) }
 
     it 'render index template' do
       expect(response).to render_template('index')
