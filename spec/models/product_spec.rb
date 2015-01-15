@@ -81,4 +81,65 @@ describe Product do
       end
     end
   end
+
+  describe '#save' do
+    let(:product) { build :product, state }
+
+    subject { product.save }
+
+    shared_examples_for 'receive_increment_product_category_cache_counters' do
+      it 'should be receive #increment_product_category_cache_counters' do
+        expect(product).to receive(:increment_product_category_cache_counters)
+        subject
+      end
+    end
+
+    shared_examples_for 'not_to_receive_increment_product_category_cache_counters' do
+      it 'should not be receive #increment_product_category_cache_counters' do
+        expect(product).not_to receive(:increment_product_category_cache_counters)
+        subject
+      end
+    end
+
+    shared_examples_for 'receive_recalculate_product_category_cache_counters' do |state|
+      context 'when we change state' do
+        before { subject }
+
+        it 'should be receive #recalculate_product_category_cache_counters' do
+          expect(product).to receive(:recalculate_product_category_cache_counters)
+          product.send(:"#{state}!")
+        end
+      end
+    end
+
+    shared_examples_for 'not_to_receive_recalculate_product_category_cache_counters' do |state|
+      context 'when we change state' do
+        before { subject }
+
+        it 'should not be receive #recalculate_product_category_cache_counters' do
+          expect(product).not_to receive(:recalculate_product_category_cache_counters)
+          product.send(:"#{state}!")
+        end
+      end
+    end
+
+    shared_examples_for 'product_with_specific_state' do |state, to_state, *args|
+      context 'when product with specific state' do
+        let(:state) { state}
+
+        it_behaves_like "#{ args[0] }receive_increment_product_category_cache_counters"
+        it_behaves_like "#{ args[1] }receive_recalculate_product_category_cache_counters", to_state
+      end
+    end
+
+    context 'when product has published or removed state' do
+      it_behaves_like 'product_with_specific_state', :published, :removed
+      it_behaves_like 'product_with_specific_state', :removed, :published
+    end
+
+    context 'when product has state not equal published and removed' do
+      it_behaves_like 'product_with_specific_state', :draft, :published, 'not_to_'
+      it_behaves_like 'product_with_specific_state', :moderated, :published, 'not_to_'
+    end
+  end
 end
