@@ -38,10 +38,14 @@ ActiveAdmin.register Product do
     end
 
     def resource
-      Product.includes(
-        :photos, products_stores: :store,
-        characteristics: :characteristic_category
-      ).find(params[:id])
+      if params[:id].present?
+        Product.includes(
+          :photos, products_stores: :store,
+          characteristics: :characteristic_category
+        ).find(params[:id])
+      else
+        super
+      end
     end
   end
 
