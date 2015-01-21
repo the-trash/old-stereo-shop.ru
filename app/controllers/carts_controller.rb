@@ -16,12 +16,14 @@ class CartsController < FrontController
   private
 
   def alien_cart
-    if @cart.session_token != session[:cart_token] || params[:id].to_i != @cart.id
-      redirect_to [:root], flash: { error: I18n.t('alien_cart') }
-    end
+    redirect_to [:root], flash: { error: I18n.t('alien_cart') } if alien_cart?
   end
 
   def empty_cart
     render :empty if @cart.line_items.empty?
+  end
+
+  def alien_cart?
+    @cart.session_token != session[:cart_token] || params[:id].to_i != @cart.id
   end
 end

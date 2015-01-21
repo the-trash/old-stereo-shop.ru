@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: characteristic_categories
+#
+#  id            :integer          not null, primary key
+#  title         :string(255)
+#  admin_user_id :integer
+#  position      :integer          default(0)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+# Indexes
+#
+#  index_characteristic_categories_on_admin_user_id  (admin_user_id)
+#  index_characteristic_categories_on_position       (position)
+#
+
 class CharacteristicCategory < ActiveRecord::Base
   acts_as_list
 

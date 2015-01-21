@@ -2,7 +2,7 @@ class LineItemsController < FrontController
   before_filter :set_line_item, except: :create
 
   def create
-    @product = Product.find(params[:product_id])
+    @product   = Product.find(params[:product_id])
     @line_item = @cart.add_product(@product.id)
 
     if @line_item.save

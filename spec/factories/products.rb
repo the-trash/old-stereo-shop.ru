@@ -42,5 +42,14 @@ FactoryGirl.define do
     trait :with_similar do
       association :similar_products, factory: :product
     end
+
+    trait :popular do
+      average_score 1000
+    end
+
+    trait :cheap do
+      discount 10
+      price 11
+    end
   end
 end

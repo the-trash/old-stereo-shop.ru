@@ -83,7 +83,8 @@ gem 'unicorn'
 gem 'will_paginate'
 
 group :development do
-  gem 'annotate', '>= 2.6.0'
+  gem 'annotate', github: 'ctran/annotate_models'
+  gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller' # need for better_errors
   gem 'brakeman', require: false
@@ -96,6 +97,7 @@ group :development do
   gem 'capistrano3-nginx'
   gem 'capistrano3-unicorn'
   gem 'foreman'
+  gem 'fuubar'
   gem 'guard'
   gem 'guard-livereload', require: false
   gem 'letter_opener'
@@ -108,20 +110,22 @@ group :development do
 end
 
 group :development, :test do
-  gem 'awesome_print'
+  gem 'faker'
+  gem 'guard-spring'
+  gem 'spring'
+end
+
+group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'fuubar'
-  gem 'guard-spring'
   gem 'rspec'
   gem 'rspec-core'
   gem 'rspec-expectations'
+  gem 'rspec-its'
   gem 'rspec-mocks'
   gem 'rspec-nc'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'spring'
   gem 'spring-commands-rspec'
 end
 

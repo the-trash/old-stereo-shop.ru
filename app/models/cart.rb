@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: carts
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  session_token :string(255)      not null
+#  total_amount  :decimal(10, 2)   default(0.0), not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+# Indexes
+#
+#  index_carts_on_session_token  (session_token)
+#  index_carts_on_user_id        (user_id)
+#
+
 class Cart < ActiveRecord::Base
   scope :old_cart, -> { where(updated_at: 14.days.ago) }
 
@@ -13,7 +30,7 @@ class Cart < ActiveRecord::Base
     current_line = line_items.find_by('line_items.product_id = ?', product_id)
 
     if current_line
-      current_line.quantity += 1
+      current_line.increment!(:quantity)
     else
       current_line = line_items.build(product_id: product_id)
     end

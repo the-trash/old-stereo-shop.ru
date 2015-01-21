@@ -142,4 +142,56 @@ describe Product do
       it_behaves_like 'product_with_specific_state', :moderated, :published, 'not_to_'
     end
   end
+
+  describe '.sort_by' do
+    let!(:popular) { create :product, :popular }
+    let!(:cheap) { create :product, :cheap }
+
+    subject { Product.sort_by(how_sort).first }
+
+    shared_examples_for 'not_receive_any_scopes' do
+      described_class::HOWSORT.each do |how_sort|
+        it 'should not be receive .sort_by' do
+          expect(Product).not_to receive(:"#{ how_sort }")
+          subject
+        end
+      end
+    end
+
+    context 'when sort by popular' do
+      let(:how_sort) { 'popular' }
+
+      its(:id) { popular.id }
+    end
+
+    context 'when sort by new_products' do
+      let(:how_sort) { 'new_products' }
+
+      its(:id) { popular.id }
+    end
+
+    context 'when sort by price_reduction' do
+      let(:how_sort) { 'price_reduction' }
+
+      its(:id) { cheap.id }
+    end
+
+    context 'when sort by price_increase' do
+      let(:how_sort) { 'price_increase' }
+
+      its(:id) { popular.id }
+    end
+
+    context 'when sort by nil' do
+      let(:how_sort) { nil }
+
+      it_behaves_like 'not_receive_any_scopes'
+    end
+
+    context "when Product::HOWSORT don't include sort by param" do
+      let(:how_sort) { Faker::Lorem.word }
+
+      it_behaves_like 'not_receive_any_scopes'
+    end
+  end
 end

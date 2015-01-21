@@ -1,17 +1,55 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id                      :integer          not null, primary key
+#  title                   :string(255)
+#  sku                     :string(255)
+#  slug                    :string(255)
+#  description             :text
+#  state                   :integer          default(1)
+#  price                   :decimal(10, 2)   default(0.0), not null
+#  discount                :decimal(10, 2)   default(0.0), not null
+#  admin_user_id           :integer
+#  brand_id                :integer
+#  product_category_id     :integer
+#  meta                    :hstore
+#  created_at              :datetime
+#  updated_at              :datetime
+#  position                :integer          default(0)
+#  score_weight            :integer          default(5)
+#  average_score           :integer          default(0)
+#  reviews_count           :integer          default(0)
+#  published_reviews_count :integer          default(0)
+#  removed_reviews_count   :integer          default(0)
+#  moderated_reviews_count :integer          default(0)
+#  in_stock                :boolean          default(TRUE)
+#
+# Indexes
+#
+#  index_products_on_admin_user_id        (admin_user_id)
+#  index_products_on_brand_id             (brand_id)
+#  index_products_on_position             (position)
+#  index_products_on_product_category_id  (product_category_id)
+#  index_products_on_slug                 (slug)
+#  index_products_on_state                (state)
+#
+
 class Product < ActiveRecord::Base
   include Friendable, Seoble, Statable, Photoable, Ratable
+
+  HOWSORT = %w(popular new_products price_reduction price_increase)
 
   scope :with_discount, -> { where('discount > 0.0') }
   scope :popular, -> { order(average_score: :desc) }
   scope :new_products, -> { order(created_at: :desc) }
   scope :price_reduction, -> { order_by_price('ASC') }
   scope :price_increase, -> { order_by_price('DESC') }
-  scope :order_by_price, -> (how_order) { order("SUM(price - discount) #{ how_order }").group('products.id') }
-  scope :sort_by, -> (how_sort) {
-    if %w(popular new_products price_reduction price_increase).include?(how_sort)
-      send(:"#{ how_sort }")
-    end
+  scope :order_by_price, -> (how_order) {
+    order("SUM(price - discount) #{ how_order }").
+    group("#{ table_name }.id")
   }
+  scope :sort_by, -> (how_sort) { send(:"#{ how_sort }") if self.need_sort?(how_sort) }
   scope :by_brand, -> (brand_id) { joins(:brand).where(brands: { id: brand_id }) }
   scope :on_hand, -> { where(in_stock: true) }
   scope :out_of_stock, -> { where(in_stock: false) }
@@ -146,5 +184,9 @@ class Product < ActiveRecord::Base
     else
       return true
     end
+  end
+
+  def self.need_sort?(how_sort)
+    HOWSORT.include?(how_sort)
   end
 end

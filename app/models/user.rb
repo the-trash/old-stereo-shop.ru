@@ -1,3 +1,39 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  birthday               :date
+#  phone                  :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  middle_name            :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  email                  :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  reviews_count          :integer          default(0)
+#  full_name              :string(255)
+#  city_id                :integer          default(0)
+#  address                :string(255)
+#  index                  :integer
+#  subscription_settings  :hstore
+#
+# Indexes
+#
+#  index_users_on_city_id               (city_id)
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+
 class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'stereoshop@ru'
   TEMP_EMAIL_REGEX = /\Astereoshop@ru/
@@ -76,7 +112,7 @@ class User < ActiveRecord::Base
   end
 
   def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
+    email && email !~ TEMP_EMAIL_REGEX
   end
 
   private

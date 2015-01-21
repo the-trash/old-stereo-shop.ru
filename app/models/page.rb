@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: pages
+#
+#  id            :integer          not null, primary key
+#  title         :string(255)
+#  slug          :string(255)
+#  short_text    :text
+#  full_text     :text
+#  state         :integer          default(1)
+#  meta          :hstore
+#  admin_user_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+# Indexes
+#
+#  index_pages_on_admin_user_id  (admin_user_id)
+#  index_pages_on_slug           (slug)
+#  index_pages_on_state          (state)
+#
+
 class Page < ActiveRecord::Base
   include Friendable, Seoble, Statable
 
