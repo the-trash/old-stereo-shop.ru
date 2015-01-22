@@ -33,7 +33,7 @@ class Review < ActiveRecord::Base
   after_create :increment_recallable_cache_counters, if: :need_recalculate?
   after_destroy :decrement_recallable_cache_counters, if: :need_recalculate?
 
-  before_save :recalculate_product_category_cache_counters, if: :need_recalculate_after_state_changed?
+  before_save :recalculate_product_cache_counters, if: [:state_changed?, :need_recalculate?, :wasnot_draft?]
 
   belongs_to :recallable, polymorphic: true, counter_cache: true
 
@@ -54,8 +54,8 @@ class Review < ActiveRecord::Base
     recallable_type == 'Product'
   end
 
-  def need_recalculate_after_state_changed?
-    state_changed? && recallable_type_product? && !draft?
+  def wasnot_draft?
+    state_was != 'draft'
   end
 
   def increment_recallable_cache_counters
@@ -66,7 +66,7 @@ class Review < ActiveRecord::Base
     Product.decrement_counter(:"#{ state }_reviews_count", recallable_id)
   end
 
-  def recalculate_product_category_cache_counters
+  def recalculate_product_cache_counters
     Product.decrement_counter(:"#{ state_was }_reviews_count", recallable_id)
     Product.increment_counter(:"#{ state }_reviews_count", recallable_id)
   end

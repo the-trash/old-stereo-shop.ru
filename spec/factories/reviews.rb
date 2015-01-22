@@ -13,8 +13,8 @@ FactoryGirl.define do
       end
     end
 
-    # trait :for_post do
-    #   association :recallable, factory: :post
-    # end
+    trait :for_post do
+      association :recallable, factory: :post
+    end
   end
 end
