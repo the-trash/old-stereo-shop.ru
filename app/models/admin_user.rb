@@ -42,6 +42,8 @@ class AdminUser < ActiveRecord::Base
     has_many m, dependent: :destroy
   end
 
+  has_many :imports, dependent: :destroy, class_name: 'Product::Import'
+
   def self.for_select
     all.map { |u| [u.email, u.id] } if connection.table_exists?(table_name)
   end

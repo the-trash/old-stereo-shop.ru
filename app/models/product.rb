@@ -103,8 +103,7 @@ class Product < ActiveRecord::Base
     foreign_key: :product_id,
     association_foreign_key: :similar_product_id
 
-  validates :title, :description, :product_category_id, :admin_user_id,
-    :brand_id, presence: true
+  validates :title, :description, :product_category_id, :brand_id, presence: true
 
   delegate :title, to: :product_category, prefix: true
 

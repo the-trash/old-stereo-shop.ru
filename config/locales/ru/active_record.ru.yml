@@ -80,6 +80,16 @@ ru:
         few: Рассылки новостей
         many: Рассылок новостей
         other: Рассылки новостей
+      'product/import':
+        one: Импорт продуктов
+        few: Импорт продуктов
+        many: Импорт продуктов
+        other: Импорт продуктов
+      'product/import_entry':
+        one: Вхождение
+        few: Вхождений
+        many: Вхождения
+        other: Вхождения
     attributes:
       setting:
         description: Описание
@@ -117,16 +127,18 @@ ru:
           published: Опубликовано
           removed: Удалено
           moderated: На модерации
+      main_date: &main_date
+        created_at: Дата создания
+        updated_at: Дата обновления
       main: &main
         title: Заголовок
         description: Описание
         slug: Алиас
         state: Статус
-        created_at: Дата создания
-        updated_at: Дата обновления
         admin_user: Создатель
         position: Позиция
         <<: *meta
+        <<: *main_date
 
       post:
         <<: *main
@@ -198,3 +210,15 @@ ru:
         posts_count: Количество постов
         only_new_posts: 'Только новые посты?'
         subscription_type: Тип рассылки
+      'product/import':
+        state: Статус
+        admin_user: Создатель
+        import_entries_count: Кол-во товаров в файле
+        completed_import_entries_count: Успешно импортированных товаров
+        failed_import_entries_count: Завершенных с ошибками
+        file: Файл для импорта
+        <<: *main_date
+      'product/import_entry':
+        state: Статус
+        import_errors: Ошибки при импорте
+        <<: *main_date

@@ -50,7 +50,7 @@ class ProductCategory < ActiveRecord::Base
       dependent: :destroy
   end
 
-  validates :title, :admin_user_id, presence: true
+  validates :title, presence: true
 
   def self.for_select
     all.map { |u| [u.title, u.id] } if connection.table_exists?(table_name)

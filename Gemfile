@@ -75,10 +75,11 @@ gem 'rabl'
 gem 'ruby-progressbar'
 gem 'select2-rails'
 gem 'sidekiq'
+gem 'sidetiq'
 # For sidekiq
 gem 'sinatra', require: false
 gem 'slim'
-gem 'sidetiq'
+gem 'state_machine'
 gem 'unicorn'
 gem 'will_paginate'
 
@@ -93,7 +94,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.3'
   gem 'capistrano-rails', '~> 1.1.2'
   gem 'capistrano-rvm'
-  gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq'
+  gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
   gem 'capistrano3-nginx'
   gem 'capistrano3-unicorn'
   gem 'foreman'

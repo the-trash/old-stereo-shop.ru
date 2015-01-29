@@ -22,4 +22,9 @@ body {
       }
     }
   }
+  ol {
+    &.with-list-style {
+      list-style-type: decimal
+    }
+  }
 }

@@ -1,13 +1,4 @@
 FactoryGirl.define do
-  sequence :settings do |n|
-    {
-      posts_count: Random.new.rand(5..20),
-      only_new_posts: [true, false].sample
-    }
-  end
-
-  sequence(:title) { Faker::Lorem.sentence }
-
   factory :newletter do
     admin_user
     post_category

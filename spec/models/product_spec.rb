@@ -22,7 +22,7 @@ describe Product do
   end
 
   context 'validates' do
-    %i(title description product_category_id admin_user_id brand_id).each do |f|
+    %i(title description product_category_id brand_id).each do |f|
       it { should validate_presence_of(f) }
     end
 

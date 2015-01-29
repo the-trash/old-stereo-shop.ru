@@ -13,9 +13,7 @@ describe ProductCategory do
   end
 
   context 'validates' do
-    %i(title admin_user_id).each do |f|
-      it { should validate_presence_of(f) }
-    end
+    it { should validate_presence_of(:title) }
   end
 
   context 'class methods' do
