@@ -457,8 +457,8 @@ ActiveRecord::Schema.define(version: 20141222141932) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "reviews_count",          default: 0
     t.string   "full_name"
+    t.integer  "reviews_count",          default: 0
     t.integer  "city_id",                default: 0
     t.string   "address"
     t.integer  "index"

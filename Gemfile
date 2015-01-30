@@ -113,11 +113,11 @@ group :development, :test do
   gem 'faker'
   gem 'guard-spring'
   gem 'spring'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'rspec'
   gem 'rspec-core'
   gem 'rspec-expectations'
