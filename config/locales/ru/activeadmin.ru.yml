@@ -78,6 +78,7 @@ ru:
         removed: Удалить
         moderated: Отправить на модерацию
         send_newletters: Разослать пользователям
+        import: Импортировать
     comments:
       resource_type: "Тип ресурса"
       author_type: "Тип автора"
@@ -139,6 +140,8 @@ ru:
     controller:
       actions:
         update: Запись успешно обновлена
+        create: Запись успешно создана
+        with_errors: "Возникли ошбики %{errors}"
     views:
       additional_info: Дополнительная информация
       characteristic_category: Категория характеристик
@@ -166,6 +169,8 @@ ru:
           other: "(%{count}) рассылок успешно отправлено в очередь"
       products:
         reviews: Отзывы
+        import:
+          import_entries: Вхождения
       newletters:
         posts_count: 'Количество постов: %{count}'
         new_posts_yes: 'Отправлять только новые посты: Да'

@@ -15,3 +15,8 @@ shop:
     from: 'shop@shop.ru'
   newletter:
     subject: Default subject
+
+carrierwave:
+  extension_white_list:
+    files: ['csv', 'xml', 'doc', 'xls']
+    photos: ['jpg', 'jpeg', 'png']

@@ -9,13 +9,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n") }
     price { Random.new.rand(10..100) }
     discount { Random.new.rand(0..9) }
-    meta {
-      {
-        keywords: Faker::Lorem.words(Random.new.rand(4..10)).join(','),
-        seo_title: Faker::Lorem.sentence,
-        seo_description: Faker::Lorem.sentence
-      }
-    }
+    meta { generate :meta }
 
     Product::STATES.each_with_index do |s, i|
       trait s do

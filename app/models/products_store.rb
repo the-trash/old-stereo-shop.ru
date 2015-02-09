@@ -15,6 +15,8 @@
 #
 
 class ProductsStore < ActiveRecord::Base
+  scope :by_store_ids, -> (store_ids) { where(store_id: store_ids) }
+
   belongs_to :product
   belongs_to :store
 

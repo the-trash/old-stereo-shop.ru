@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222141932) do
+ActiveRecord::Schema.define(version: 20150130152623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,6 +290,33 @@ ActiveRecord::Schema.define(version: 20141222141932) do
   add_index "product_categories", ["position"], name: "index_product_categories_on_position", using: :btree
   add_index "product_categories", ["slug"], name: "index_product_categories_on_slug", using: :btree
   add_index "product_categories", ["state"], name: "index_product_categories_on_state", using: :btree
+
+  create_table "product_import_entries", force: true do |t|
+    t.integer  "import_id"
+    t.string   "state"
+    t.text     "import_errors"
+    t.hstore   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_import_entries", ["import_id", "state"], name: "index_product_import_entries_on_import_id_and_state", using: :btree
+  add_index "product_import_entries", ["import_id"], name: "index_product_import_entries_on_import_id", using: :btree
+  add_index "product_import_entries", ["state"], name: "index_product_import_entries_on_state", using: :btree
+
+  create_table "product_imports", force: true do |t|
+    t.integer  "admin_user_id"
+    t.string   "file"
+    t.string   "state"
+    t.integer  "import_entries_count"
+    t.integer  "completed_import_entries_count"
+    t.integer  "failed_import_entries_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_imports", ["admin_user_id"], name: "index_product_imports_on_admin_user_id", using: :btree
+  add_index "product_imports", ["state"], name: "index_product_imports_on_state", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "title"
