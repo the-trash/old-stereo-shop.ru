@@ -41,7 +41,7 @@ ActiveAdmin.register Product do
       @product ||= current_admin_user.products.includes(
         :photos, products_stores: :store,
         characteristics: :characteristic_category
-      ).build
+      ).build(permitted_params[:product])
     end
   end
 
