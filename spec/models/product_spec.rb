@@ -80,6 +80,28 @@ describe Product do
         expect(product.make_stores).to eq([])
       end
     end
+
+    describe '#price_with_discount' do
+      let(:price_with_discount) { product.price - (product.price * product.discount) / 100 }
+
+      subject { product.price_with_discount }
+
+      context 'product has discount' do
+        subject { product.price_with_discount }
+
+        specify {
+          expect(subject).to eq(price_with_discount)
+        }
+      end
+
+      context "when product hasn't discount" do
+        let(:product) { create :product, :without_discount }
+
+        specify {
+          expect(subject).to eq(price_with_discount)
+        }
+      end
+    end
   end
 
   describe '#save' do

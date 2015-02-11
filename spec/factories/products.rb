@@ -8,7 +8,7 @@ FactoryGirl.define do
     sku { Faker::Code.isbn(Random.new.rand(5..8)) }
     description { Faker::Lorem.paragraphs(Random.new.rand(4..8)).join("\r\n") }
     price { Random.new.rand(10..100) }
-    discount { Random.new.rand(0..9) }
+    discount { Random.new.rand(1..9) }
     meta { generate :meta }
 
     Product::STATES.each_with_index do |s, i|
@@ -44,6 +44,10 @@ FactoryGirl.define do
     trait :cheap do
       discount 10
       price 11
+    end
+
+    trait :without_discount do
+      discount 0
     end
   end
 end

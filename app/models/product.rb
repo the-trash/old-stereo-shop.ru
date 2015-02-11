@@ -9,7 +9,7 @@
 #  description             :text
 #  state                   :integer          default(1)
 #  price                   :decimal(10, 2)   default(0.0), not null
-#  discount                :decimal(10, 2)   default(0.0), not null
+#  discount                :integer          default(0), not null
 #  admin_user_id           :integer
 #  brand_id                :integer
 #  product_category_id     :integer
@@ -40,13 +40,13 @@ class Product < ActiveRecord::Base
 
   HOWSORT = %w(popular new_products price_reduction price_increase)
 
-  scope :with_discount, -> { where('discount > 0.0') }
+  scope :with_discount, -> { where('discount > 0') }
   scope :popular, -> { order(average_score: :desc) }
   scope :new_products, -> { order(created_at: :desc) }
-  scope :price_reduction, -> { order_by_price('ASC') }
-  scope :price_increase, -> { order_by_price('DESC') }
+  scope :price_reduction, -> { order_by_price('DESC') }
+  scope :price_increase, -> { order_by_price('ASC') }
   scope :order_by_price, -> (how_order) {
-    order("SUM(price - discount) #{ how_order }").
+    order("SUM(price - (price * discount)/100) #{ how_order }").
     group("#{ table_name }.id")
   }
   scope :sort_by, -> (how_sort) { send(:"#{ how_sort }") if self.need_sort?(how_sort) }
@@ -111,7 +111,7 @@ class Product < ActiveRecord::Base
     :reviews, allow_destroy: true, reject_if: :all_blank
 
   def price_with_discount
-    price - discount
+    price - (price * discount) / 100
   end
 
   def make_characteristics_tree

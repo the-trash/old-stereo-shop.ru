@@ -146,7 +146,7 @@ ru:
       additional_info: Дополнительная информация
       characteristic_category: Категория характеристик
       characteristics: Характеристики
-      discount: "Скидка: %{discount}"
+      discount: "Скидка: %{discount} %"
       main: Основаня информация
       meta: Meta информация
       photo: Изображения

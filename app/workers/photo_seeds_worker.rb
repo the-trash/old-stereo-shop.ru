@@ -7,7 +7,7 @@ class PhotoSeedsWorker
     suckr = ImageSuckr::GoogleSuckr.new
     pictures =
       [].tap do |a|
-        rand(40..60).times do |n|
+        rand(80..100).times do |n|
           a << suckr.get_image_url({
               q: 'stereo&product',
               as_filetype: 'jpg',
