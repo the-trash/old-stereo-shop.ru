@@ -34,7 +34,8 @@ class Product::ImportEntry < ActiveRecord::Base
     meta: :string,
     brand: :string,
     price: :string,
-    discount: :string
+    discount: :string,
+    euro_price: :string
 
   state_machine :state, initial: :created do
     %i(created completed failed).each { |st| state st }
@@ -53,11 +54,12 @@ class Product::ImportEntry < ActiveRecord::Base
 
   def import!
     transaction do
-      stores_hash.any? ? set_products_count_in_stores : product
+      brand_by_title
 
       if errors.any?
         error! errors.full_messages
       else
+        stores_hash.any? ? set_products_count_in_stores : product
         update_product if need_update?
       end
     end
@@ -89,6 +91,7 @@ class Product::ImportEntry < ActiveRecord::Base
   rescue ActiveRecord::RecordNotFound => e
     errors.add :brand, e.message
   end
+  memoize :brand_by_title
 
   def split_information(data_information, first_seporator = ';', second_seporator = ':')
     {}.tap do |a|
@@ -217,7 +220,8 @@ class Product::ImportEntry < ActiveRecord::Base
       sku: sku,
       price: price,
       discount: discount,
-      brand_id: brand_by_title.try(:id),
+      euro_price: euro_price,
+      brand_id: brand_by_title.id,
       meta: meta_hash
     }
   end

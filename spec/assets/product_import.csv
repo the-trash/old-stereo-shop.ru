@@ -1,2 +1,2 @@
-brand;title,description,meta,sku,new_product,need_update,stores,price,discount
-Brand,Эргономичный Хлопковый Кулон,Quis hic blanditiis ex eos iste sequi sint. Id pariatur ut voluptates et illum optio. Vel tempora amet accusantium sed dicta laboriosam.,keywords:bla bla|bla b;seo_description: bla;seo_title: asfsdf,427198288-1,true,false,Store 1:12;Store 2:1,10.20,1
+brand,title,description,meta,sku,new_product,need_update,stores,price,discount,euro_price
+Brand,Эргономичный Хлопковый Кулон,Quis hic blanditiis ex eos iste sequi sint. Id pariatur ut voluptates et illum optio. Vel tempora amet accusantium sed dicta laboriosam.,keywords:bla bla|bla b;seo_description: bla;seo_title: asfsdf,427198288-1,true,false,Store 1:12;Store 2:1,10.20,1,5

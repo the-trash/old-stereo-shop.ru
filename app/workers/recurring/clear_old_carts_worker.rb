@@ -1,4 +1,4 @@
-class ClearOldCartsWorker
+class Recurring::ClearOldCartsWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 

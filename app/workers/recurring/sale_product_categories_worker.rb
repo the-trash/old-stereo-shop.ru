@@ -1,4 +1,4 @@
-class SaleProductCategoriesWorker
+class Recurring::SaleProductCategoriesWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 

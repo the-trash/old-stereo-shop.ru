@@ -24,6 +24,7 @@
 #  removed_reviews_count   :integer          default(0)
 #  moderated_reviews_count :integer          default(0)
 #  in_stock                :boolean          default(TRUE)
+#  euro_price              :decimal(10, 2)   default(0.0), not null
 #
 # Indexes
 #
@@ -54,6 +55,7 @@ class Product < ActiveRecord::Base
   scope :on_hand, -> { where(in_stock: true) }
   scope :out_of_stock, -> { where(in_stock: false) }
   scope :by_q, -> (q) { where("#{ table_name }.title ILIKE :text", text: "%#{ q }%") }
+  scope :with_euro_price, -> { where('euro_price > 0') }
 
   acts_as_list
 

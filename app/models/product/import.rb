@@ -19,11 +19,6 @@
 #
 
 class Product::Import < ActiveRecord::Base
-  NEEDED_HEADERS = [
-    :brand, :title, :description, :meta,
-    :sku, :new_product, :need_update, :stores,
-    :price
-  ]
   IMPORT_STATES = %i(created started cmpleted)
 
   has_many :import_entries, dependent: :destroy, class_name: 'Product::ImportEntry'
@@ -64,6 +59,14 @@ class Product::Import < ActiveRecord::Base
   mount_uploader :file, FileUploader do
     def store_dir
       "uploads/imports/#{ Rails.env }"
+    end
+
+    def filename
+      @name ||= "#{SecureRandom.hex(10)}.#{file.extension}" if original_filename.present?
+    end
+
+    def extension_white_list
+      ['csv']
     end
   end
 

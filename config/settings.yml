@@ -20,3 +20,10 @@ carrierwave:
   extension_white_list:
     files: ['csv', 'xml', 'doc', 'xls']
     photos: ['jpg', 'jpeg', 'png']
+
+central_bank:
+  urls:
+    daily: 'http://www.cbr.ru/scripts/XML_daily.asp'
+    range: 'http://www.cbr.ru/scripts/XML_dynamic.asp'
+  currency_code:
+    eur: 'R01239'

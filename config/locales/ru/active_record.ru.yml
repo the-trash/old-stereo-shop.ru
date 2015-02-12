@@ -156,8 +156,9 @@ ru:
       product:
         <<: *main
         sku: Артикул
-        price: Цена
+        price: Цена в рублях
         discount: Скидка
+        euro_price: Цена в евро
         product_category: Категория продуктов
         average_score: Рейтинг
         related_products: Товары в комплект
@@ -220,5 +221,6 @@ ru:
         <<: *main_date
       'product/import_entry':
         state: Статус
+        data: Инфармация о продукте
         import_errors: Ошибки при импорте
         <<: *main_date

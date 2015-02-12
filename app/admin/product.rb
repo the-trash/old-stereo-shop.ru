@@ -14,7 +14,7 @@ ActiveAdmin.register Product do
   config.sort_order = 'position_asc'
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id,
-    :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku,
+    :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price,
     photos_attributes: [:id, :file, :state, :_destroy],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
@@ -74,6 +74,7 @@ ActiveAdmin.register Product do
   filter :id
   filter :title
   filter :price
+  filter :euro_price
   filter :sku
   filter :discount
   filter :average_score
@@ -90,6 +91,7 @@ ActiveAdmin.register Product do
         f.input :title
         f.input :description
         f.input :price
+        f.input :euro_price
         f.input :sku
         f.input :discount
         f.input :admin_user, as: :select2,
