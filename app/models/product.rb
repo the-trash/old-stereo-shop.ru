@@ -25,6 +25,7 @@
 #  moderated_reviews_count :integer          default(0)
 #  in_stock                :boolean          default(TRUE)
 #  euro_price              :decimal(10, 2)   default(0.0), not null
+#  euro_rate               :decimal(10, 2)   default(0.0), not null
 #
 # Indexes
 #
@@ -64,6 +65,7 @@ class Product < ActiveRecord::Base
 
   before_save :recalculate_product_category_cache_counters, if: :state_changed?
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
+  before_save :recalculate_price_for_the_euro, if: :need_recalculate_price?
 
   %i(admin_user brand).each do |m|
     belongs_to m
@@ -185,6 +187,15 @@ class Product < ActiveRecord::Base
     else
       return true
     end
+  end
+
+  def need_recalculate_price?
+    state_changed? && published? && euro_price > 0 && euro_rate > 0
+  end
+
+  # TODO: add tests for this
+  def recalculate_price_for_the_euro
+    self.price = euro_price * euro_rate
   end
 
   def self.need_sort?(how_sort)

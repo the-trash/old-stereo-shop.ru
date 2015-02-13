@@ -15,7 +15,7 @@ class Recurring::CentralBankUpdateAttitudeEuroByRub
     eur_value = cb.range_report_by_node(response.body, 'Value').text().to_f
 
     Product.published.with_euro_price.find_each do |product|
-      product.update_column(:price, product.euro_price * eur_value)
+      product.update_columns({ price: product.euro_price * eur_value, euro_rate: eur_value})
     end
   end
 end

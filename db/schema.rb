@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212162038) do
+ActiveRecord::Schema.define(version: 20150213150851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -341,6 +341,7 @@ ActiveRecord::Schema.define(version: 20150212162038) do
     t.integer  "moderated_reviews_count",                          default: 0
     t.boolean  "in_stock",                                         default: true
     t.decimal  "euro_price",              precision: 10, scale: 2, default: 0.0,  null: false
+    t.decimal  "euro_rate",               precision: 10, scale: 2, default: 0.0,  null: false
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
@@ -485,8 +486,8 @@ ActiveRecord::Schema.define(version: 20150212162038) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "reviews_count",          default: 0
     t.string   "full_name"
+    t.integer  "reviews_count",          default: 0
     t.integer  "city_id",                default: 0
     t.string   "address"
     t.integer  "index"
