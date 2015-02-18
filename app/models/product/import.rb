@@ -22,6 +22,8 @@ class Product::Import < ActiveRecord::Base
   IMPORT_STATES = %i(created started cmpleted)
 
   has_many :import_entries, dependent: :destroy, class_name: 'Product::ImportEntry'
+  alias :product_import_entries :import_entries
+
   belongs_to :admin_user
 
   validates :file, presence: true
@@ -49,11 +51,6 @@ class Product::Import < ActiveRecord::Base
 
   def has_failed_entries?
     import_entries.with_state(:failed).any?
-  end
-
-  # TODO need for activeadmin
-  def product_import_entries
-    import_entries
   end
 
   mount_uploader :file, FileUploader do

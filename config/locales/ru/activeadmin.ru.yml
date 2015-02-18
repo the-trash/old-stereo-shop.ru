@@ -169,6 +169,7 @@ ru:
           other: "(%{count}) рассылок успешно отправлено в очередь"
       products:
         reviews: Отзывы
+        additional_options: Дополнительные опции
         import:
           import_entries: Вхождения
       newletters:

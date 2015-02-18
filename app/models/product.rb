@@ -84,6 +84,10 @@ class Product < ActiveRecord::Base
   has_many :line_items
   has_many :carts, through: :line_items
 
+  has_many :additional_options, dependent: :destroy,
+    class_name: 'Product::AdditionalOption'
+  alias :product_additional_options :additional_options
+
   has_many :reviews, dependent: :destroy, as: :recallable
   %w(published removed moderated).each_with_index do |st, i|
     has_many :"#{ st }_reviews",
@@ -193,7 +197,6 @@ class Product < ActiveRecord::Base
     state_changed? && published? && euro_price > 0 && euro_rate > 0
   end
 
-  # TODO: add tests for this
   def recalculate_price_for_the_euro
     self.price = euro_price * euro_rate
   end

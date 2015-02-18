@@ -48,6 +48,7 @@ ActiveAdmin.register Product do
   sidebar I18n.t('active_admin.views.additional_info'), only: :edit do
     ul do
       li link_to I18n.t('active_admin.views.products.reviews'), [:admin, resource, :reviews]
+      li link_to I18n.t('active_admin.views.products.additional_options'), [:admin, resource, :product_additional_options]
     end
   end
 

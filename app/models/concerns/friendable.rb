@@ -12,5 +12,9 @@ module Friendable
         [:id, :title]
       ]
     end
+
+    def should_generate_new_friendly_id?
+      !slug? || title_changed?
+    end
   end
 end

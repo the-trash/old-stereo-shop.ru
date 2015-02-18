@@ -10,6 +10,8 @@ FactoryGirl.define do
     price { Random.new.rand(10..100) }
     discount { Random.new.rand(1..9) }
     meta { generate :meta }
+    euro_price { Random.new.rand(10..100) }
+    euro_rate { Random.new.rand(10..100) }
 
     Product::STATES.each_with_index do |s, i|
       trait s do

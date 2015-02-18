@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213150851) do
+ActiveRecord::Schema.define(version: 20150218161348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -265,6 +265,27 @@ ActiveRecord::Schema.define(version: 20150213150851) do
   add_index "posts", ["post_category_id"], name: "index_posts_on_post_category_id", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
   add_index "posts", ["state"], name: "index_posts_on_state", using: :btree
+
+  create_table "product_additional_options", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.integer  "render_type", default: 0
+    t.integer  "state",       default: 1
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_additional_options", ["product_id", "state"], name: "index_product_additional_options_on_product_id_and_state", using: :btree
+  add_index "product_additional_options", ["product_id"], name: "index_product_additional_options_on_product_id", using: :btree
+  add_index "product_additional_options", ["state"], name: "index_product_additional_options_on_state", using: :btree
+
+  create_table "product_additional_options_values", force: true do |t|
+    t.integer "product_additional_option_id"
+    t.string  "value"
+  end
+
+  add_index "product_additional_options_values", ["product_additional_option_id"], name: "additional_options_id_index", using: :btree
 
   create_table "product_categories", force: true do |t|
     t.string   "title"

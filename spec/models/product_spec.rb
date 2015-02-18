@@ -163,6 +163,30 @@ describe Product do
       it_behaves_like 'product_with_specific_state', :draft, :published, 'not_to_'
       it_behaves_like 'product_with_specific_state', :moderated, :published, 'not_to_'
     end
+
+    describe '#recalculate_price_for_the_euro' do
+      let(:product) { create :product, :draft }
+
+      subject { product.update_attributes(params_new_values) }
+
+      context 'when we have all needed depends' do
+        let(:params_new_values) { { state: 'published' } }
+
+        it 'should be receive recalculate_price_for_the_euro' do
+          expect(product).to receive(:recalculate_price_for_the_euro)
+          subject
+        end
+      end
+
+      context 'when we have invalid depends' do
+        let(:params_new_values) { { state: 'published', euro_price: 0, euro_rate: 0 } }
+
+        it 'should not be receive recalculate_price_for_the_euro' do
+          expect(product).not_to receive(:recalculate_price_for_the_euro)
+          subject
+        end
+      end
+    end
   end
 
   describe '.sort_by' do

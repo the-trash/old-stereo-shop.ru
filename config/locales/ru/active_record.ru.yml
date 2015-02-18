@@ -90,6 +90,11 @@ ru:
         few: Вхождений
         many: Вхождения
         other: Вхождения
+      'product/additional_option':
+        one: Дополнительная опция
+        few: Дополнительных опций
+        many: Дополнительных опций
+        other: Дополнительные опции
     attributes:
       setting:
         description: Описание
@@ -224,3 +229,9 @@ ru:
         data: Инфармация о продукте
         import_errors: Ошибки при импорте
         <<: *main_date
+      'product/additional_option':
+        render_type: Способ отображения
+        product: Продукт
+        title: Заголовок
+        slug: Алиас
+        state: Статус
