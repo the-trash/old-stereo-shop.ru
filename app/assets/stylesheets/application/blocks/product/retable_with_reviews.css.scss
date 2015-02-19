@@ -1,5 +1,6 @@
 .b-product-ratable-with-reviews {
-  display: table;
+  @include inline-block;
+  margin-top: 10px;
   .ratable, .reviews-count { float: left; }
   .ratable {
     min-width: 145px;
@@ -11,6 +12,7 @@
     font-size: 20px;
   }
   &.smal {
+    margin-top: 0;
     img {
       width: 15px;
       height: 15px;

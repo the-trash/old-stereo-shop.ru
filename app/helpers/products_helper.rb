@@ -1,11 +1,11 @@
 module ProductsHelper
-  def price_with_discount(product)
-    content_tag(:div, class: 'price') do
-      if product.discount != 0.0
-        content_tag(:p, I18n.t('views.product.with_currency', coust: product.price_with_discount), class: 'new') +
-        content_tag(:p, I18n.t('views.product.with_currency', coust: product.price), class: 'old')
+  def price_with_discount(price, with_discount, options = { default_classes: 'price' })
+    content_tag(:div, class: options[:default_classes]) do
+      if price == with_discount
+        product_price(price, { class: 'product-price' })
       else
-        content_tag(:p, I18n.t('views.product.with_currency', coust: product.price))
+        product_discount(with_discount, { class: 'new product-price-with-discount' }) +
+        product_price(price, { class: 'old product-price' })
       end
     end
   end
@@ -63,5 +63,21 @@ module ProductsHelper
       end
 
     (i + link).html_safe
+  end
+
+  def product_price(price, options = {})
+    content_tag(
+      :p,
+      I18n.t('views.product.with_currency', coust: price),
+      options
+    )
+  end
+
+  def product_discount(with_discount, options = {})
+    content_tag(
+      :p,
+      I18n.t('views.product.with_currency', coust: with_discount),
+      options
+    )
   end
 end

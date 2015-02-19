@@ -87,6 +87,7 @@ ru:
     spb: Санкт-Петербург
     moscow: Москва
     no_matches_found: Городов не найдено
+  default: По умолчанию
   delete: Удалить
   email: Электронная почта
   feedback: Обратная связь

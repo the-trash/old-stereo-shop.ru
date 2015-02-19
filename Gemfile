@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails'
 gem 'rails_config', '0.2.5'
@@ -29,14 +29,10 @@ gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
 gem 'html5shiv-js-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'oily_png'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
 
 ## Cache store
 gem 'redis-namespace', '>= 1.0'
@@ -69,7 +65,6 @@ gem 'friendly_id', '~> 5.0.4'
 gem 'gon'
 gem 'hstore_accessor'
 gem 'image_suckr'
-gem 'jquery-ui-rails'
 gem 'memoist'
 gem 'rabl'
 gem 'ruby-progressbar'

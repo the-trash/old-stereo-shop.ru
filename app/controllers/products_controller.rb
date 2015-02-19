@@ -1,5 +1,5 @@
 class ProductsController < FrontController
-  before_filter :check_product_state, except: :index
+  before_action :check_product_state, except: :index
 
   inherit_resources
 
@@ -16,12 +16,20 @@ class ProductsController < FrontController
   def show
     session[:user]['product_ids'] << resource.id if current_user
 
-    @product_category = resource.product_category
-    @stores           = resource.make_stores
-    @characteristics  = resource.make_characteristics_tree
-    @related_products = resource.related_products.published
-    @similar_products = resource.similar_products.published
-    @last_reviews     = last_reviews
+    @product_category   = resource.product_category
+    @stores             = resource.make_stores
+    @characteristics    = resource.make_characteristics_tree
+    @related_products   = resource.related_products.published
+    @similar_products   = resource.similar_products.published
+    @last_reviews       = last_reviews
+    @additional_options = resource.additional_options.published.includes(:values)
+
+    if params_with_additional_option_value_exists?
+      @additional_option_value =
+        resource.additional_options_values.published
+          .find(params[:additional_option_value])
+      @product_new_values = @additional_option_value.new_values
+    end
 
     breadcrumbs_with_ancestors(@product_category, resource)
 
@@ -84,11 +92,16 @@ class ProductsController < FrontController
     end_collection_chain = end_collection_chain.by_brand(params[:brand_id]) if params[:brand_id].to_i != 0
     end_collection_chain = end_collection_chain.sort_by(params[:sort_by]) if params[:sort_by].present?
 
-    end_collection_chain.published.includes(:photos, characteristics_products: :characteristic)
+    # TODO products/index with search - add includes characteristics_products: :characteristic
+    end_collection_chain.published.includes(:photos)
   end
 
   def collection
     get_collection_ivar || set_collection_ivar(end_of_association_chain
       .paginate(page: params[:page], per_page: Settings.pagination.products))
+  end
+
+  def params_with_additional_option_value_exists?
+    params[:additional_option_value].present? && params[:additional_option_value].to_i != 0
   end
 end

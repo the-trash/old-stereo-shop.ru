@@ -51,5 +51,9 @@ FactoryGirl.define do
     trait :without_discount do
       discount 0
     end
+
+    trait :without_sku do
+      sku nil
+    end
   end
 end
