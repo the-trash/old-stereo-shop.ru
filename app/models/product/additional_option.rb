@@ -28,7 +28,8 @@ class Product::AdditionalOption < ActiveRecord::Base
   has_many :values,
     class_name: 'Product::AdditionalOptionsValue',
     inverse_of: :additional_option,
-    dependent: :destroy
+    dependent: :destroy,
+    foreign_key: :product_additional_option_id
 
   belongs_to :product
 

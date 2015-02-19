@@ -150,6 +150,7 @@ ru:
       main: Основаня информация
       meta: Meta информация
       photo: Изображения
+      additional_options_values: Значения дополнительной опции
       price: "Цена: %{price}"
       product_category: "Категория: %{category}"
       settings: Настройки

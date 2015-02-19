@@ -95,6 +95,11 @@ ru:
         few: Дополнительных опций
         many: Дополнительных опций
         other: Дополнительные опции
+      'product/additional_options_value':
+        one: Значение дополнительной опции
+        few: Значений дополнительной опции
+        many: Значений дополнительной опции
+        other: Значения дополнительной опции
     attributes:
       setting:
         description: Описание
@@ -235,3 +240,6 @@ ru:
         title: Заголовок
         slug: Алиас
         state: Статус
+      'product/additional_options_value':
+        product_additional_option: Дополнительная опция
+        value: Значение

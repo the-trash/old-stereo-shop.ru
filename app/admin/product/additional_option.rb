@@ -5,7 +5,9 @@ ActiveAdmin.register Product::AdditionalOption do
 
   navigation_menu :default
 
-  permit_params :product_id, :title, :slug, :render_type
+  permit_params :product_id, :title, :slug, :render_type,
+    photos_attributes: [:id, :file, :state, :_destroy],
+    values_attributes: [:id, :value, :_destroy]
 
   actions :all, except: [:show, :destroy]
 
@@ -59,6 +61,16 @@ ActiveAdmin.register Product::AdditionalOption do
         as: :select2,
         collection: resource_class.states.keys,
         selected: resource.state
+
+      f.inputs I18n.t('active_admin.views.additional_options_values') do
+        f.has_many :values, allow_destroy: true, heading: false do |additional_option|
+          additional_option.input :value
+        end
+      end
+
+      f.inputs I18n.t('active_admin.views.photo') do
+        f.has_many_photos
+      end
 
       f.actions
     end

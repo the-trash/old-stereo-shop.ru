@@ -28,7 +28,7 @@ class Product::Import < ActiveRecord::Base
 
   validates :file, presence: true
 
-  after_create :start!, if: :created?
+  after_commit :start!, on: :create, if: :created?
 
   state_machine :state, initial: :created do
     IMPORT_STATES.each { |st| state st }
