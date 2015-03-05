@@ -53,12 +53,12 @@ class Product::ImportEntry < ActiveRecord::Base
   end
 
   def import!
-    transaction do
-      brand_by_title
+    prepare_methods
 
-      if errors.any?
-        error! errors.full_messages
-      else
+    if errors.any?
+      error! errors.full_messages
+    else
+      transaction do
         stores_hash.any? ? set_products_count_in_stores : product
         update_product if need_update?
       end
@@ -67,6 +67,10 @@ class Product::ImportEntry < ActiveRecord::Base
 
   def save_errors errors_full_messages
     update_column :import_errors, errors_full_messages.join("\r\n")
+  end
+
+  def errors_message(key)
+    I18n.t(key, scope: [:activerecord, :errors, :models, self.class.name.underscore])
   end
 
   def product
@@ -80,16 +84,27 @@ class Product::ImportEntry < ActiveRecord::Base
 
   def meta_hash
     split_information(meta)
+  rescue
+    {
+      keywords: nil,
+      seo_title: nil,
+      seo_description: nil
+    }
   end
 
   def stores_hash
-    split_information(stores)
+    if stores.nil?
+      errors.add :stores, errors_message('stores')
+    else
+      split_information(stores)
+    end
   end
+  memoize :stores_hash
 
   def brand_by_title
     Brand.find_by!(title: brand)
   rescue ActiveRecord::RecordNotFound => e
-    errors.add :brand, e.message
+    errors.add :brand, errors_message('brand')
   end
   memoize :brand_by_title
 
@@ -105,7 +120,7 @@ class Product::ImportEntry < ActiveRecord::Base
   def store(store_title)
     Store.find_by!(title: store_title)
   rescue ActiveRecord::RecordNotFound => e
-    errors.add :store, e.message
+    errors.add :store, errors_message('store')
   end
   memoize :store
 
@@ -115,6 +130,11 @@ class Product::ImportEntry < ActiveRecord::Base
 
   def new_product?
     new_product == 'true'
+  end
+
+  def prepare_methods
+    brand_by_title
+    stores_hash
   end
 
   private

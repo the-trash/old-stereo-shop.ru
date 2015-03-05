@@ -41,7 +41,7 @@ class Product::Import < ActiveRecord::Base
       transition started: :completed
     end
 
-    before_transition created: :started do |import, transition|
+    after_transition created: :started do |import, transition|
       import.create_entries!
       import.start_import_job
     end

@@ -243,3 +243,9 @@ ru:
       'product/additional_options_value':
         product_additional_option: Дополнительная опция
         value: Значение
+    errors:
+      models:
+        'product/import_entry':
+          stores: Необходимо указать хотя бы 1 магазин
+          brand: Бренд не найден
+          store: Магазин не найден
