@@ -10,7 +10,9 @@ FactoryGirl.define do
       meta: 'keywords:bla bla|bla b|asd;seo_description:bla la;seo_title:asfsdf',
       brand: 'Brand',
       price: '10',
-      discount: '1'
+      discount: '1',
+      euro_price: '5',
+      euro_rate: '2'
     }
   end
 
@@ -31,7 +33,16 @@ FactoryGirl.define do
       stores 'Store 2:123'
       price '11'
       discount '2'
+      euro_price '6'
       meta 'keywords:bla1 bla2|asd;seo_description:bla2;seo_title:asfsdf12'
+    end
+
+    trait :without_stores do
+      stores nil
+    end
+
+    trait :without_brand do
+      brand nil
     end
   end
 end

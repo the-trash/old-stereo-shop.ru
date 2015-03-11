@@ -23,7 +23,7 @@ describe Product::ImportEntry, type: :model do
         its(product_attribute) { import_entry.send(product_attribute) }
       end
 
-      %i(price discount).each do |product_attribute|
+      %i(price discount euro_price).each do |product_attribute|
         its(product_attribute) { import_entry.send(product_attribute).to_f }
       end
 
@@ -37,6 +37,29 @@ describe Product::ImportEntry, type: :model do
         expect(subject.products_stores.pluck(:count)).
           to eq(import_entry.stores_hash.values.map(&:to_i))
       }
+
+      shared_examples_for 'some data absents in csv' do |data_key|
+        specify {
+          expect{ subject.import! }.to change{ subject.reload.import_errors }.
+            to("#{data_key} #{subject.errors_message(data_key.underscore)}")
+        }
+      end
+
+      context "when stores doesn't exist in csv" do
+        let(:import_without_stores) { create :product_import_entry, :without_stores }
+
+        subject { import_without_stores }
+
+        it_behaves_like 'some data absents in csv', 'Stores'
+      end
+
+      context "when brand doesn't exist in csv" do
+        let(:import_without_brand) { create :product_import_entry, :without_brand }
+
+        subject { import_without_brand }
+
+        it_behaves_like 'some data absents in csv', 'Brand'
+      end
     end
 
     context 'when we update product' do
@@ -56,7 +79,7 @@ describe Product::ImportEntry, type: :model do
         }
       end
 
-      %i(price discount).each do |product_attribute|
+      %i(price discount euro_price).each do |product_attribute|
         specify {
           expect{ subject }.to change{ product.reload.send(product_attribute) }
             .to(import_entry_need_update.send(product_attribute).to_f)
