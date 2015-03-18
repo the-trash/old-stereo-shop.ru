@@ -93,10 +93,10 @@ class Product::ImportEntry < ActiveRecord::Base
   end
 
   def stores_hash
-    if stores.nil?
-      errors.add :stores, errors_message('stores')
-    else
+    if stores.presence
       split_information(stores)
+    else
+      errors.add :stores, errors_message('stores')
     end
   end
   memoize :stores_hash
@@ -134,13 +134,21 @@ class Product::ImportEntry < ActiveRecord::Base
 
   def prepare_methods
     brand_by_title
-    stores_hash
+
+    check_all_stores if stores_hash
+  end
+
+  def check_all_stores
+    stores_hash.each do |one_store|
+      store(one_store[0])
+    end
   end
 
   private
 
   def complete_entry
     import! if import?
+
     import.increment! :completed_import_entries_count if completed?
   end
 

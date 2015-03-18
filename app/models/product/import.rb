@@ -45,8 +45,6 @@ class Product::Import < ActiveRecord::Base
       import.create_entries!
       import.start_import_job
     end
-
-    before_transition started: :completed, do: :import!
   end
 
   def has_failed_entries?
@@ -76,8 +74,6 @@ class Product::Import < ActiveRecord::Base
   def start_import_job
     ProductImportWorker.perform_async id
   end
-
-  private
 
   def import!
     import_entries.each(&:complete!)

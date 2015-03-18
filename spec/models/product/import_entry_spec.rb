@@ -38,10 +38,12 @@ describe Product::ImportEntry, type: :model do
           to eq(import_entry.stores_hash.values.map(&:to_i))
       }
 
-      shared_examples_for 'some data absents in csv' do |data_key|
+      shared_examples_for 'some data absents in csv' do
+        before { subject.prepare_methods }
+
         specify {
           expect{ subject.import! }.to change{ subject.reload.import_errors }.
-            to("#{data_key} #{subject.errors_message(data_key.underscore)}")
+            to(subject.errors.full_messages.join("\r\n"))
         }
       end
 
@@ -50,7 +52,7 @@ describe Product::ImportEntry, type: :model do
 
         subject { import_without_stores }
 
-        it_behaves_like 'some data absents in csv', 'Stores'
+        it_behaves_like 'some data absents in csv'
       end
 
       context "when brand doesn't exist in csv" do
@@ -58,7 +60,7 @@ describe Product::ImportEntry, type: :model do
 
         subject { import_without_brand }
 
-        it_behaves_like 'some data absents in csv', 'Brand'
+        it_behaves_like 'some data absents in csv'
       end
     end
 
