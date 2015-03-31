@@ -100,6 +100,11 @@ ru:
         few: Значений дополнительной опции
         many: Значений дополнительной опции
         other: Значения дополнительной опции
+      'product/attributes_value':
+        one: Изменяемый атрибут продукта
+        few: Изменяемые атрибуты продукта
+        many: Изменяемых атрибутов продукта
+        other: Изменяемые атрибуты продукта
     attributes:
       setting:
         description: Описание
@@ -149,6 +154,10 @@ ru:
         position: Позиция
         <<: *meta
         <<: *main_date
+      render_types: &render_types
+        render_type:
+          select_style: В виде списка
+          radio: Радио (переключатель)
 
       post:
         <<: *main
@@ -243,6 +252,13 @@ ru:
       'product/additional_options_value':
         product_additional_option: Дополнительная опция
         value: Значение
+        state: Статус
+      'product/attributes_value':
+        additional_options_value: Значение дополнительный опции
+        state: Статус
+        product_attribute: Изменяемый атрибут продукта
+        new_value: Новое значение
+
     errors:
       models:
         'product/import_entry':

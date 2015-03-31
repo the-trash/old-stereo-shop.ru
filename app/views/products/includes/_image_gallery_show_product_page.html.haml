@@ -1,5 +1,5 @@
-.b-product-images
-  - resource.photos.each_with_index do |photo, i|
+.b-product-images.default
+  - photos.each_with_index do |photo, i|
     - if i == 0
       .e-main-image{ style: "background-image: url(#{ photo.file_url(:product) });" }
 

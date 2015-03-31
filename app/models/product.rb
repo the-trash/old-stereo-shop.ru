@@ -41,6 +41,7 @@ class Product < ActiveRecord::Base
   include Friendable, Seoble, Statable, Photoable, Ratable
 
   HOWSORT = %w(popular new_products price_reduction price_increase)
+  ALLOWED_ATTRIBUTES = %i(title description price discount)
 
   scope :with_discount, -> { where('discount > 0') }
   scope :popular, -> { order(average_score: :desc) }
@@ -66,6 +67,7 @@ class Product < ActiveRecord::Base
   before_save :recalculate_product_category_cache_counters, if: :state_changed?
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
   before_save :recalculate_price_for_the_euro, if: :need_recalculate_price?
+  before_save :generate_sku, unless: :sku?
 
   %i(admin_user brand).each do |m|
     belongs_to m
@@ -87,6 +89,10 @@ class Product < ActiveRecord::Base
   has_many :additional_options, dependent: :destroy,
     class_name: 'Product::AdditionalOption'
   alias :product_additional_options :additional_options
+
+  has_many :additional_options_values, through: :additional_options,
+    class_name: 'Product::AdditionalOptionsValue',
+    source: :values
 
   has_many :reviews, dependent: :destroy, as: :recallable
   %w(published removed moderated).each_with_index do |st, i|
@@ -118,8 +124,12 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :products_stores, :characteristics_products,
     :reviews, allow_destroy: true, reject_if: :all_blank
 
-  def price_with_discount
-    price - (price * discount) / 100
+  def price_with_discount(custom_discount = nil)
+    price - (price * (custom_discount.nil? ? discount : custom_discount)) / 100
+  end
+
+  def new_price_with_discount(new_price)
+    [new_price, (new_price - (new_price * discount) / 100)]
   end
 
   def make_characteristics_tree
@@ -203,5 +213,9 @@ class Product < ActiveRecord::Base
 
   def self.need_sort?(how_sort)
     HOWSORT.include?(how_sort)
+  end
+
+  def generate_sku
+    self.sku = SecureRandom.uuid
   end
 end

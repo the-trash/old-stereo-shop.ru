@@ -38,6 +38,10 @@ Rails.application.routes.draw do
       get :new_review
       get :more_review
     end
+
+    scope module: 'product' do
+      resources :additional_options, only: :show
+    end
   end
 
   %i(post_categories posts stores).each do |resource|

@@ -31,6 +31,10 @@ class Product::AdditionalOption < ActiveRecord::Base
     dependent: :destroy,
     foreign_key: :product_additional_option_id
 
+  has_many :product_attributes,
+    through: :values,
+    source: :new_values
+
   belongs_to :product
 
   validates :product, :title, presence: true

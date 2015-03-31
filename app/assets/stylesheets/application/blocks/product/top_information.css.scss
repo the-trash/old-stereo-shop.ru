@@ -7,10 +7,15 @@
 
   @import "images";
 
-  .b-product-short-info {
-    width: 265px;
-    margin: 0 15px 0 10px;
-    @import "_price";
-    @import "e_stores_list";
+  .b-product-middle {
+    float: left;
+    @include inline-block;
+    width: $productMiddleWidth;
+    .b-product-short-info {
+      width: $productMiddleWidth;
+      margin: 0 15px 0 10px;
+      @import "_price";
+      @import "e_stores_list";
+    }
   }
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218161348) do
+ActiveRecord::Schema.define(version: 20150224130627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -283,9 +283,22 @@ ActiveRecord::Schema.define(version: 20150218161348) do
   create_table "product_additional_options_values", force: true do |t|
     t.integer "product_additional_option_id"
     t.string  "value"
+    t.integer "state",                        default: 1
   end
 
   add_index "product_additional_options_values", ["product_additional_option_id"], name: "additional_options_id_index", using: :btree
+  add_index "product_additional_options_values", ["state"], name: "index_product_additional_options_values_on_state", using: :btree
+
+  create_table "product_attributes_values", force: true do |t|
+    t.integer "additional_options_value_id"
+    t.integer "state",                       default: 1
+    t.integer "product_attribute"
+    t.string  "new_value"
+  end
+
+  add_index "product_attributes_values", ["additional_options_value_id"], name: "additional_options_value_with_new_value", using: :btree
+  add_index "product_attributes_values", ["product_attribute"], name: "index_product_attributes_values_on_product_attribute", using: :btree
+  add_index "product_attributes_values", ["state"], name: "index_product_attributes_values_on_state", using: :btree
 
   create_table "product_categories", force: true do |t|
     t.string   "title"
@@ -507,8 +520,8 @@ ActiveRecord::Schema.define(version: 20150218161348) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "full_name"
     t.integer  "reviews_count",          default: 0
+    t.string   "full_name"
     t.integer  "city_id",                default: 0
     t.string   "address"
     t.integer  "index"

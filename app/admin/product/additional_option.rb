@@ -7,7 +7,12 @@ ActiveAdmin.register Product::AdditionalOption do
 
   permit_params :product_id, :title, :slug, :render_type,
     photos_attributes: [:id, :file, :state, :_destroy],
-    values_attributes: [:id, :value, :_destroy]
+    values_attributes: [
+      :id, :value, :state, :_destroy,
+      new_values_attributes: [
+        :id, :new_value, :_destroy, :product_attribute, :state
+      ]
+    ]
 
   actions :all, except: [:show, :destroy]
 
@@ -52,19 +57,39 @@ ActiveAdmin.register Product::AdditionalOption do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :slug
+      f.input :slug, input_html: { disabled: true }
       f.input :render_type,
         as: :select2,
-        collection: Product::AdditionalOption.render_types.map { |k, v| [k, k] },
+        collection: Product::AdditionalOption.render_types.keys.
+          map { |k| [I18n.t(k, scope: [:activerecord, :attributes, :render_types, :render_type]), k] },
         selected: resource.render_type
       f.input :state,
         as: :select2,
-        collection: resource_class.states.keys,
+        collection: resource_class.states.keys.
+          map { |k| [I18n.t(k, scope: [:activerecord, :attributes, :states, :state]), k] },
         selected: resource.state
 
       f.inputs I18n.t('active_admin.views.additional_options_values') do
         f.has_many :values, allow_destroy: true, heading: false do |additional_option|
           additional_option.input :value
+          additional_option.input :state,
+            as: :select2,
+            collection: additional_option.object.class.states.keys.
+              map { |k| [I18n.t(k, scope: [:activerecord, :attributes, :states, :state]), k] },
+            selected: additional_option.object.state
+          additional_option.has_many :new_values, allow_destroy: true, heading: false do |option_with_new_value|
+            option_with_new_value.input :product_attribute,
+              as: :select2,
+              collection: option_with_new_value.object.class.product_attributes.keys.
+                map { |k| [I18n.t(k, scope: [:activerecord, :attributes, :product]), k] },
+              selected: option_with_new_value.object.product_attribute
+            option_with_new_value.input :new_value
+            option_with_new_value.input :state,
+              as: :select2,
+              collection: option_with_new_value.object.class.states.keys.
+                map { |k| [I18n.t(k, scope: [:activerecord, :attributes, :states, :state]), k] },
+              selected: option_with_new_value.object.state
+          end
         end
       end
 
