@@ -21,6 +21,8 @@
 class Photo < ActiveRecord::Base
   include Statable
 
+  after_commit :recreate_versions!, on: [:create, :update]
+
   acts_as_list scope: [:photoable_id, :photoable_type]
 
   belongs_to :photoable, polymorphic: true
@@ -28,4 +30,7 @@ class Photo < ActiveRecord::Base
   validates :file, presence: true
 
   mount_uploader :file, PhotoUploader
+
+  # TODO: when verisions're generating, photo's new record and photoable's nil
+  delegate :recreate_versions!, to: :file
 end
