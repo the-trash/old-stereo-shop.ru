@@ -22,13 +22,12 @@ class Product::AdditionalOptionsValue < ActiveRecord::Base
 
   belongs_to :additional_option,
     class_name: 'Product::AdditionalOption',
-    inverse_of: :values
+    inverse_of: :values,
+    foreign_key: :product_additional_option_id
 
   validates :additional_option, :value, presence: true
 
   accepts_nested_attributes_for :new_values, allow_destroy: true, reject_if: :all_blank
 
-  def photos
-    Product::AdditionalOption.find(product_additional_option_id).photos
-  end
+  delegate :photos, to: :additional_option
 end

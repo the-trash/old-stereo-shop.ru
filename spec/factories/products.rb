@@ -13,6 +13,10 @@ FactoryGirl.define do
     euro_price { Random.new.rand(10..100) }
     euro_rate { Random.new.rand(10..100) }
 
+    transient do
+      product nil
+    end
+
     Product::STATES.each_with_index do |s, i|
       trait s do
         state i
@@ -32,11 +36,15 @@ FactoryGirl.define do
     end
 
     trait :with_related do
-      association :related_products, factory: :product
+      after(:create) do |product, evaluator|
+        evaluator.product.related_products << product
+      end
     end
 
     trait :with_similar do
-      association :similar_products, factory: :product
+      after(:create) do |product, evaluator|
+        evaluator.product.similar_products << product
+      end
     end
 
     trait :popular do

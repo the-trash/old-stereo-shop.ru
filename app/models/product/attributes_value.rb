@@ -25,7 +25,8 @@ class Product::AttributesValue < ActiveRecord::Base
   end
 
   belongs_to :value, class_name: 'Product::AdditionalOptionsValue',
-    inverse_of: :new_values
+    inverse_of: :new_values,
+    foreign_key: :additional_options_value_id
 
   validates :new_value, presence: true
 

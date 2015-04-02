@@ -78,7 +78,7 @@ class ProductsController < FrontController
   end
 
   def last_reviews
-    resource.reviews.includes(:rating, :user).published.related
+    resource.reviews.published.related.includes(:rating, :user)
   end
 
   def check_product_state
