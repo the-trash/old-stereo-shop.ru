@@ -10,6 +10,7 @@
 #  position       :integer          default(0)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  default        :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -22,6 +23,7 @@ class Photo < ActiveRecord::Base
   include Statable
 
   after_commit :recreate_versions!, on: [:create, :update]
+  before_save :set_correct_default, if: :need_set_default?
 
   acts_as_list scope: [:photoable_id, :photoable_type]
 
@@ -33,4 +35,14 @@ class Photo < ActiveRecord::Base
 
   # TODO: when verisions're generating, photo's new record and photoable's nil
   delegate :recreate_versions!, to: :file
+
+  private
+
+  def set_correct_default
+    photoable.photos.default.update_column(:default, false)
+  end
+
+  def need_set_default?
+    default? && photoable.photos.default
+  end
 end

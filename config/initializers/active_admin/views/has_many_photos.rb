@@ -21,6 +21,7 @@ module ActiveAdmin
             as: options[:as],
             collection: photo.object.class.states.keys.map_with_state_locale,
             selected: photo.object.state
+          photo.input :default
         end
       end
     end

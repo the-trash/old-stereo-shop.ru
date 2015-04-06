@@ -194,6 +194,7 @@ ru:
         state: Статус
         file: Файл
         position: Позиция
+        default: Фотография по умолчанию
       characteristic_category:
         <<: *main
       characteristic:

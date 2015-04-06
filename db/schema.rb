@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224130627) do
+ActiveRecord::Schema.define(version: 20150406100001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20150224130627) do
     t.integer  "position",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "default",        default: false
   end
 
   add_index "photos", ["photoable_id", "photoable_type", "position"], name: "index_photos_on_photoable_id_and_photoable_type_and_position", using: :btree

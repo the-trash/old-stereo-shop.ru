@@ -15,7 +15,7 @@ ActiveAdmin.register Product do
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id,
     :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price,
-    photos_attributes: [:id, :file, :state, :_destroy],
+    photos_attributes: [:id, :file, :state, :default, :_destroy],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
     related_product_ids: [], similar_product_ids: []
