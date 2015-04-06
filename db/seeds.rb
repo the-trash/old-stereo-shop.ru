@@ -1,3 +1,5 @@
+require 'spec/support/factory_girl_sequences'
+
 # default settings
 settings = [
   ['shop_name', 'Stereo Shop', 'Название магазина'],

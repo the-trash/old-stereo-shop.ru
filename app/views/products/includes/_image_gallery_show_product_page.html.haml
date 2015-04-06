@@ -1,6 +1,8 @@
-.b-product-images.default
-  - photos.each_with_index do |photo, i|
-    - if i == 0
-      .e-main-image{ style: "background-image: url(#{ photo.file.url(:product) });" }
+- default_photo = photos.default
 
-    .e-thumb-image{ style: "background-image: url(#{ photo.file.url(:product, :thumb) });", data: { big_img_url: photo.file.url(:product) } }
+.b-product-images.default
+  = render 'products/includes/main_image', photo: default_photo if default_photo
+
+  - photos.each_with_index do |photo, i|
+    = render 'products/includes/main_image', photo: photo if !default_photo && i == 0
+    = render 'products/includes/thumb_image', photo: photo

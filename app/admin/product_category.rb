@@ -16,7 +16,8 @@ ActiveAdmin.register ProductCategory do
     max_levels: 3
 
   permit_params :title, :description, :state, :admin_user_id, :parent_id,
-    :keywords, :seo_description, :seo_title, photos_attributes: [:id, :file, :state]
+    :keywords, :seo_description, :seo_title,
+    photos_attributes: [:id, :file, :state, :default, :_desctroy]
 
   controller do
     def update
