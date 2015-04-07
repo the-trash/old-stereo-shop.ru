@@ -36,24 +36,6 @@ describe Product do
   describe 'instance methods' do
     let!(:product) { create(:product) }
 
-    describe '#make_stores' do
-      let!(:product_with_stores) { create(:product, :with_stores) }
-
-      it 'include store' do
-        expect(product_with_stores.make_stores.first[:store]).
-          to eq(Store.order_by.first)
-      end
-
-      it 'include store_count' do
-        expect(product_with_stores.make_stores.first[:store_count]).
-          to eq(ProductsStore.find_by(product_id: product_with_stores.id, store_id: Store.first.id))
-      end
-
-      it 'return empty array' do
-        expect(product.make_stores).to eq([])
-      end
-    end
-
     describe '#price_with_discount' do
       let(:price_with_discount) { product.price - (product.price * product.discount) / 100 }
 

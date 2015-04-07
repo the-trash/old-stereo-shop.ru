@@ -132,20 +132,6 @@ class Product < ActiveRecord::Base
     [new_price, (new_price - (new_price * discount) / 100)]
   end
 
-  def make_stores
-    prod_stores = products_stores.index_by(&:store_id)
-    _stores     = Store.where(id: prod_stores.keys).published.order_by
-
-    [].tap do |a|
-      _stores.each do |store|
-        a << {
-          store: store,
-          store_count: prod_stores[store.id]
-        }
-      end
-    end
-  end
-
   private
 
   def need_change_counter?

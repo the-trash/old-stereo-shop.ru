@@ -17,7 +17,7 @@ class ProductsController < FrontController
     session[:user]['product_ids'] << resource.id if current_user
 
     @product_category   = resource.product_category
-    @stores             = resource.make_stores
+    @stores             = Product::StoresTree.new(resource).stores_tree
     @characteristics    = Product::CharacteristicsTree.new(resource).characteristics_tree
     @related_products   = resource.related_products.published
     @similar_products   = resource.similar_products.published
