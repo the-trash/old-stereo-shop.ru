@@ -27,11 +27,11 @@ describe ProductsController do
     end
 
     it 'assigns @stores' do
-      expect(assigns(:stores)).to eq(product.make_stores)
+      expect(assigns(:stores)).to eq([])
     end
 
     it 'assigns @characteristics' do
-      expect(assigns(:characteristics)).to eq(product.make_characteristics_tree)
+      expect(assigns(:characteristics)).to eq([])
     end
 
     it 'assigns @related_products' do

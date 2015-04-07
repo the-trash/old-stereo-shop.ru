@@ -132,31 +132,6 @@ class Product < ActiveRecord::Base
     [new_price, (new_price - (new_price * discount) / 100)]
   end
 
-  def make_characteristics_tree
-    chars_products = characteristics_products.index_by(&:characteristic_id)
-    chars          = characteristics.group_by(&:characteristic_category_id)
-    char_cats      = CharacteristicCategory.where(id: chars.keys).order(id: :asc)
-
-    [].tap do |a|
-      char_cats.each do |category|
-        tmp = {
-            category: category,
-            characteristics: []
-          }
-
-        chars[category.id].each do |char|
-          tmp[:characteristics] <<
-            {
-              characteristic: char,
-              characteristic_value: chars_products[char.id]
-            }
-        end
-
-        a << tmp
-      end
-    end
-  end
-
   def make_stores
     prod_stores = products_stores.index_by(&:store_id)
     _stores     = Store.where(id: prod_stores.keys).published.order_by

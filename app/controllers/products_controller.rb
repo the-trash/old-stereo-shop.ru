@@ -18,7 +18,7 @@ class ProductsController < FrontController
 
     @product_category   = resource.product_category
     @stores             = resource.make_stores
-    @characteristics    = resource.make_characteristics_tree
+    @characteristics    = Product::CharacteristicsTree.new(resource).characteristics_tree
     @related_products   = resource.related_products.published
     @similar_products   = resource.similar_products.published
     @last_reviews       = last_reviews

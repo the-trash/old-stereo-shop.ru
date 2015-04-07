@@ -36,33 +36,6 @@ describe Product do
   describe 'instance methods' do
     let!(:product) { create(:product) }
 
-    describe '#make_characteristics_tree' do
-      let!(:product_with_caracteristics) { create(:product, :with_caracteristics) }
-
-      subject { product_with_caracteristics.make_characteristics_tree }
-
-      it 'include categories' do
-        expect(subject.first[:category]).to eq(CharacteristicCategory.order(id: :asc).first)
-      end
-
-      it 'include characteristics' do
-        expect(subject.first[:characteristics].first[:characteristic]).
-          to eq(CharacteristicCategory.order(id: :asc).first.characteristics.first)
-      end
-
-      it 'include characteristic value' do
-        expect(subject.first[:characteristics].first[:characteristic_value]).
-          to eq(
-            CharacteristicCategory.order(id: :asc).first.characteristics.first.
-              characteristics_products.first
-            )
-      end
-
-      it 'return empty array' do
-        expect(product.make_characteristics_tree).to eq([])
-      end
-    end
-
     describe '#make_stores' do
       let!(:product_with_stores) { create(:product, :with_stores) }
 
