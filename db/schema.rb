@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406100001) do
+ActiveRecord::Schema.define(version: 20150408162954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -318,6 +318,8 @@ ActiveRecord::Schema.define(version: 20150406100001) do
     t.integer  "products_count",           default: 0
     t.boolean  "sale",                     default: false
     t.integer  "sale_products_count",      default: 0
+    t.integer  "moderated_products_count", default: 0
+    t.integer  "draft_products_count",     default: 0
   end
 
   add_index "product_categories", ["admin_user_id"], name: "index_product_categories_on_admin_user_id", using: :btree
@@ -377,6 +379,7 @@ ActiveRecord::Schema.define(version: 20150406100001) do
     t.boolean  "in_stock",                                         default: true
     t.decimal  "euro_price",              precision: 10, scale: 2, default: 0.0,  null: false
     t.decimal  "euro_rate",               precision: 10, scale: 2, default: 0.0,  null: false
+    t.integer  "draft_reviews_count",                              default: 0
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree

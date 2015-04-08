@@ -26,6 +26,7 @@
 #  in_stock                :boolean          default(TRUE)
 #  euro_price              :decimal(10, 2)   default(0.0), not null
 #  euro_rate               :decimal(10, 2)   default(0.0), not null
+#  draft_reviews_count     :integer          default(0)
 #
 # Indexes
 #
@@ -61,8 +62,8 @@ class Product < ActiveRecord::Base
 
   acts_as_list
 
-  after_create :increment_product_category_cache_counters, if: :need_change_counter?
-  after_destroy :decrement_product_category_cache_counters, if: :need_change_counter?
+  after_create :increment_product_category_cache_counters
+  after_destroy :decrement_product_category_cache_counters
 
   before_save :recalculate_product_category_cache_counters, if: :state_changed?
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
@@ -95,7 +96,7 @@ class Product < ActiveRecord::Base
     source: :values
 
   has_many :reviews, dependent: :destroy, as: :recallable
-  %w(published removed moderated).each_with_index do |st, i|
+  STATES.each_with_index do |st, i|
     has_many :"#{ st }_reviews",
       -> { where(state: i + 1) },
       class_name: 'Review',
@@ -134,14 +135,6 @@ class Product < ActiveRecord::Base
 
   private
 
-  def need_change_counter?
-    published? || removed?
-  end
-
-  def accepted_state_was
-    ['published', 'removed'].include?(state_was)
-  end
-
   def increment_product_category_cache_counters
     ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
   end
@@ -151,8 +144,8 @@ class Product < ActiveRecord::Base
   end
 
   def recalculate_product_category_cache_counters
-    ProductCategory.decrement_counter(:"#{ state_was }_products_count", product_category.id) if accepted_state_was
-    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id) if need_change_counter?
+    ProductCategory.decrement_counter(:"#{ state_was }_products_count", product_category.id)
+    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
   end
 
   def ensure_not_referenced_by_any_line_items

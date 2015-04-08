@@ -71,30 +71,12 @@ describe Product do
       end
     end
 
-    shared_examples_for 'not_to_receive_increment_product_category_cache_counters' do
-      it 'should not be receive #increment_product_category_cache_counters' do
-        expect(product).not_to receive(:increment_product_category_cache_counters)
-        subject
-      end
-    end
-
     shared_examples_for 'receive_recalculate_product_category_cache_counters' do |state|
       context 'when we change state' do
         before { subject }
 
         it 'should be receive #recalculate_product_category_cache_counters' do
           expect(product).to receive(:recalculate_product_category_cache_counters)
-          product.send(:"#{state}!")
-        end
-      end
-    end
-
-    shared_examples_for 'not_to_receive_recalculate_product_category_cache_counters' do |state|
-      context 'when we change state' do
-        before { subject }
-
-        it 'should not be receive #recalculate_product_category_cache_counters' do
-          expect(product).not_to receive(:recalculate_product_category_cache_counters)
           product.send(:"#{state}!")
         end
       end
@@ -112,11 +94,8 @@ describe Product do
     context 'when product has published or removed state' do
       it_behaves_like 'product_with_specific_state', :published, :removed
       it_behaves_like 'product_with_specific_state', :removed, :published
-    end
-
-    context 'when product has state not equal published and removed' do
-      it_behaves_like 'product_with_specific_state', :draft, :published, 'not_to_'
-      it_behaves_like 'product_with_specific_state', :moderated, :published, 'not_to_'
+      it_behaves_like 'product_with_specific_state', :published, :moderated
+      it_behaves_like 'product_with_specific_state', :published, :draft
     end
 
     describe '#generate_sku' do
@@ -146,6 +125,17 @@ describe Product do
           subject
         }
       end
+    end
+  end
+
+  describe '#destroy' do
+    let(:product) { create :product }
+
+    subject { product.destroy }
+
+    it 'should receive #decrement_product_category_cache_counters' do
+      expect(product).to receive(:decrement_product_category_cache_counters)
+      subject
     end
   end
 

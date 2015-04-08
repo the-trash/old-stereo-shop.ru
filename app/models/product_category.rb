@@ -19,6 +19,8 @@
 #  products_count           :integer          default(0)
 #  sale                     :boolean          default(FALSE)
 #  sale_products_count      :integer          default(0)
+#  moderated_products_count :integer          default(0)
+#  draft_products_count     :integer          default(0)
 #
 # Indexes
 #
@@ -43,7 +45,7 @@ class ProductCategory < ActiveRecord::Base
   belongs_to :admin_user
 
   has_many :products, dependent: :destroy
-  %w(published removed moderated).each_with_index do |st, i|
+  STATES.each_with_index do |st, i|
     has_many :"#{ st }_products",
       -> { where(state: i + 1) },
       class_name: 'Product',

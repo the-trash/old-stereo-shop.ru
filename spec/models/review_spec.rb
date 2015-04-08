@@ -18,6 +18,8 @@ describe Review do
   end
 
   describe '#save' do
+    subject { review.save }
+
     shared_examples_for 'not_to_receive_by_callback_name' do |callback_name|
       it 'should not be receive callback' do
         expect(review).not_to receive(callback_name)
@@ -35,37 +37,26 @@ describe Review do
     context 'when review for product' do
       let(:review) { build :review, state }
 
-      subject { review.save }
-
-      context 'when review has state draft' do
-        let(:state) { :draft }
-
-        it_behaves_like 'not_to_receive_by_callback_name', :increment_recallable_cache_counters
-      end
-
-      described_class::STATES.reject{ |state| state == :draft }.each do |st|
-        context "when review hasn't state draft" do
+      described_class::STATES.each do |st|
+        context "when state was changed" do
           let(:state) { st }
 
           it_behaves_like 'to_receive_by_callback_name', :increment_recallable_cache_counters
         end
       end
-
-      context "when state was changed" do
-        let(:state) { :published }
-
-        before { subject }
-
-        context 'when state draft' do
-          before { review.state = :draft }
-
-          it_behaves_like 'not_to_receive_by_callback_name', :recalculate_product_cache_counters
-        end
-      end
     end
 
-    context "when review doesn't for product" do
+    context "when state was changed for other recallable type" do
+      let(:user) { create :user }
+      let(:review) { build :review, :published, recallable: user }
 
+      before { subject }
+
+      context 'when state draft' do
+        before { review.state = :draft }
+
+        it_behaves_like 'not_to_receive_by_callback_name', :recalculate_product_cache_counters
+      end
     end
   end
 end
