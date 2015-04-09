@@ -193,7 +193,6 @@ class Product::ImportEntry < ActiveRecord::Base
           count: one_store[1]
       rescue ActiveRecord::RecordInvalid => e
         errors.add :products_stores, e.message
-
       end
     end
   end
