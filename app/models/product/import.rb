@@ -66,7 +66,7 @@ class Product::Import < ActiveRecord::Base
   end
 
   def create_entries!
-    CSV.parse(File.open(file.path), headers: true).each do |row|
+    CsvUtf.foreach(file.path, headers: true, header_converters: :symbol).each do |row|
       import_entries.create!(data: row.to_hash)
     end
   end
