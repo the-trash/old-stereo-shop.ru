@@ -8,6 +8,20 @@ ActiveAdmin.register Product do
     end
   end
 
+  batch_action :super_destroy do |ids|
+    Product.find(ids).each do |record|
+      authorize! ActiveAdmin::Auth::DESTROY, record
+
+      destroy_resource(record)
+    end
+
+    redirect_to active_admin_config.route_collection_path(params),
+      notice: I18n.t("active_admin.batch_actions.succesfully_destroyed",
+      count: ids.count,
+      model: active_admin_config.resource_label.downcase,
+      plural_model: active_admin_config.plural_resource_label(count: ids.count).downcase)
+  end
+
   actions :all, except: :destroy
 
   sortable_list

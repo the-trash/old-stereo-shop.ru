@@ -79,6 +79,7 @@ ru:
         moderated: Отправить на модерацию
         send_newletters: Разослать пользователям
         import: Импортировать
+        super_destroy: Полностью удалить
     comments:
       resource_type: "Тип ресурса"
       author_type: "Тип автора"
