@@ -9,5 +9,7 @@ module Statable
     self.states.each do |st, i|
       scope :"#{ st }", -> { where(state: i) }
     end
+
+    validates :state, presence: true
   end
 end

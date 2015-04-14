@@ -51,8 +51,7 @@ ActiveAdmin.register Review do
         f.input :pluses
         f.input :cons
         f.input :body, as: :wysihtml5
-        f.input :state, as: :select2,
-          collection: resource_class.states.keys, selected: resource.state
+        f.states_input(resource_class.states.keys, resource.state)
       end
     end
 

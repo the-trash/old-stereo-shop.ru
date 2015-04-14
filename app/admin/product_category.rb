@@ -69,9 +69,12 @@ ActiveAdmin.register ProductCategory do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
         f.input :description, as: :wysihtml5
-        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
-        f.input :parent_id, as: :select2, collection: resource_class.for_select, selected: resource.parent.try(:id)
-        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
+        f.admin_users_input(resource)
+        f.input :parent_id,
+          as: :select,
+          collection: resource_class.for_select,
+          selected: resource.parent.try(:id)
+        f.states_input(resource_class.states.keys, resource.state)
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

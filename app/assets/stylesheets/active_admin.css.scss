@@ -9,8 +9,10 @@ td span.icon, p span.icon {
 
 body {
   &.edit {
-    .select2-offscreen {
-      min-width: 200px;
+    .select {
+      select {
+        min-width: 200px;
+      }
     }
   }
   fieldset {

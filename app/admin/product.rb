@@ -109,15 +109,12 @@ ActiveAdmin.register Product do
         f.input :euro_price
         f.input :sku
         f.input :discount
-        f.input :admin_user, as: :select2,
-          collection: AdminUser.for_select,
-          selected: resource.admin_user_id
-        f.input :product_category, as: :select2,
+        f.admin_users_input(resource)
+        f.input :product_category, as: :select,
           collection: ProductCategory.for_select,
           selected: resource.product_category_id
-        f.input :state, as: :select2,
-          collection: resource_class.states.keys, selected: resource.state
-        f.input :brand_id, as: :select2,
+        f.states_input(resource_class.states.keys, resource.state)
+        f.input :brand_id, as: :select,
           collection: Brand.published.map { |brand| [brand.title, brand.id] },
           selected: resource.brand_id
       end
@@ -141,7 +138,7 @@ ActiveAdmin.register Product do
                 char.template.content_tag(:p, char.object.characteristic_characteristic_category_title)
               end
           end
-            char.input :characteristic, as: :select2,
+            char.input :characteristic, as: :select,
               collection: option_groups_from_collection_for_select(
                   CharacteristicCategory.includes(:characteristics).all,
                   :characteristics, :title, :id, :title, char.object.characteristic_id
@@ -152,7 +149,7 @@ ActiveAdmin.register Product do
 
       f.inputs I18n.t('active_admin.views.stores') do
         f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
-          pr_store.input :store, as: :select2,
+          pr_store.input :store, as: :select,
             collection: options_from_collection_for_select(
               Store.published, :id, :title, pr_store.object.store_id
             )

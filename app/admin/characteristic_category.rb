@@ -36,7 +36,7 @@ ActiveAdmin.register CharacteristicCategory do
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
-        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
+        f.admin_users_input(resource)
       end
     end
 

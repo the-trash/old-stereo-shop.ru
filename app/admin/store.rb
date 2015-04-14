@@ -52,8 +52,8 @@ ActiveAdmin.register Store do
         f.input :latitude
         f.input :longitude
         f.input :description, as: :wysihtml5
-        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
-        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
+        f.admin_users_input(resource)
+        f.states_input(resource_class.states.keys, resource.state)
         f.input :happens
       end
     end

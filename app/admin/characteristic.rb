@@ -46,7 +46,10 @@ ActiveAdmin.register Characteristic do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
         f.input :unit
-        f.input :characteristic_category, as: :select2, collection: CharacteristicCategory.for_select, selected: resource.characteristic_category_id
+        f.input :characteristic_category,
+          as: :select,
+          collection: CharacteristicCategory.for_select,
+          selected: resource.characteristic_category_id
       end
     end
 

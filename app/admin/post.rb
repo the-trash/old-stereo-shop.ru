@@ -57,9 +57,9 @@ ActiveAdmin.register Post do
         f.input :title
         f.input :description, as: :wysihtml5
         f.input :full_text
-        f.input :admin_user, as: :select2, collection: AdminUser.for_select, selected: resource.admin_user_id
-        f.input :post_category, as: :select2, collection: PostCategory.for_select, selected: resource.post_category_id
-        f.input :state, as: :select2, collection: resource_class.states.keys, selected: resource.state
+        f.admin_users_input(resource)
+        f.post_categories_input(resource)
+        f.states_input(resource_class.states.keys, resource.state)
       end
 
       f.inputs I18n.t('active_admin.views.meta') do
