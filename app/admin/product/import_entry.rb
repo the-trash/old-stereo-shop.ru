@@ -15,7 +15,18 @@ ActiveAdmin.register Product::ImportEntry do
     selectable_column
     column :id
     column :state
-    column :data
+    column :data do |import_entry|
+      content_tag :ul do
+        import_entry.data.each do |key, value|
+          val = value.nil? ? content_tag(:b, I18n.t('blank')) : value
+          li = content_tag :li do
+            "#{content_tag(:b, key)} - #{val}".html_safe
+          end
+
+          concat li
+        end
+      end
+    end
     column :created_at do |import_entry|
       I18n.l(import_entry.created_at, format: :long)
     end
