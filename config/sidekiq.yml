@@ -1,13 +1,13 @@
 ---
 :verbose: true
-:concurrency: 5
+:concurrency: 2
 :namespace: stereo_shop_development
 
 :queues:
   - [critical, 7]
   - [default,  5]
   - [single,   5]
-  - [mailer,   3]
+  - [mailer,  10]
   - [low,      1]
 
 :limits:

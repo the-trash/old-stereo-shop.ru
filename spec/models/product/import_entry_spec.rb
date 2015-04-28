@@ -27,48 +27,14 @@ describe Product::ImportEntry, type: :model do
         its(product_attribute) { import_entry.send(product_attribute).to_f }
       end
 
-      %i(keywords seo_description seo_title).each do |product_attribute|
-        its(product_attribute) { import_entry.meta_hash["#{product_attribute}"] }
-      end
-
       its(:brand_id) { brand.id }
-
-      specify {
-        expect(subject.products_stores.pluck(:count)).
-          to eq(import_entry.stores_hash.values.map(&:to_i))
-      }
-
-      shared_examples_for 'some data absents in csv' do
-        before { subject.prepare_methods }
-
-        specify {
-          expect{ subject.import! }.to change{ subject.reload.import_errors }.
-            to(subject.errors.full_messages.join("\r\n"))
-        }
-      end
-
-      context "when stores doesn't exist in csv" do
-        let(:import_without_stores) { create :product_import_entry, :without_stores }
-
-        subject { import_without_stores }
-
-        it_behaves_like 'some data absents in csv'
-      end
-
-      context "when brand doesn't exist in csv" do
-        let(:import_without_brand) { create :product_import_entry, :without_brand }
-
-        subject { import_without_brand }
-
-        it_behaves_like 'some data absents in csv'
-      end
     end
 
     context 'when we update product' do
+      let!(:product) { create :product }
       let(:import_entry_need_update) {
-        create :product_import_entry, :need_update, title: import_entry.title
+        create :product_import_entry, :need_update, title: product.title
       }
-      let!(:product) { create :product, title: import_entry.title }
 
       before { import_entry.import! }
 
@@ -87,17 +53,6 @@ describe Product::ImportEntry, type: :model do
             .to(import_entry_need_update.send(product_attribute).to_f)
         }
       end
-
-      %i(keywords seo_description seo_title).each do |product_attribute|
-        specify {
-          expect{ subject }.to change{ product.reload.send(product_attribute) }
-            .to(import_entry_need_update.meta_hash["#{product_attribute}"])
-        }
-      end
-
-      specify {
-        expect{ subject }.to change(ProductsStore, :count).from(2).to(1)
-      }
     end
   end
 end
