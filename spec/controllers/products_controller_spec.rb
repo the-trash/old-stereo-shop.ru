@@ -14,9 +14,7 @@ describe ProductsController do
 
     specify { expect(assigns(:brands)).to include(product.brand) }
 
-    it 'render index template' do
-      expect(response).to render_template('index')
-    end
+    it_behaves_like 'a successful render index template'
   end
 
   context 'get /products/:id' do
@@ -62,9 +60,7 @@ describe ProductsController do
       expect(assigns(:product_new_values)).to be_nil
     end
 
-    it 'render show template' do
-      expect(response).to render_template('show')
-    end
+    it_behaves_like 'a successful render show template'
 
     context 'when params containe additional_option_value' do
       let(:additional_option_value) { additional_option.values.first }

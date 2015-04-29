@@ -21,6 +21,18 @@ shared_context 'a successful request' do
   end
 end
 
+shared_context 'a successful render index template' do
+  it 'render index template' do
+    expect(response).to render_template('index')
+  end
+end
+
+shared_context 'a successful render show template' do
+  it 'render show template' do
+    expect(response).to render_template('show')
+  end
+end
+
 shared_context 'response should be equal' do
   it 'should be equal example' do
     expect(response.body).to eq(example)

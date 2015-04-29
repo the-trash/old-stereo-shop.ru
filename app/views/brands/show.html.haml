@@ -2,3 +2,11 @@
   %h3= resource.title
   .description
     = resource.description.html_safe
+
+  - if @products.present?
+    %h4= t('products_from_brand')
+
+    .b-products
+      = render partial: 'product_categories/includes/product', collection: @products, as: :product
+
+    = will_paginate @products

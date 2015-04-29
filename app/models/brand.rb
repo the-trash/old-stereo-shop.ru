@@ -27,6 +27,12 @@ class Brand < ActiveRecord::Base
 
   acts_as_list
 
+  scope :with_published_products, -> {
+    joins(:products).group('brands.id').
+    where(products: { state: 1 }).
+    having('count(products.brand_id) > 0')
+  }
+
   belongs_to :admin_user
 
   has_many :products, dependent: :destroy
