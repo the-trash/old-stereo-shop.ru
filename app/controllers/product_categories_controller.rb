@@ -12,7 +12,7 @@ class ProductCategoriesController < FrontController
 
     @products = @products.paginate(page: params[:page], per_page: Settings.pagination.products)
 
-    @brands = Brand.published.with_published_products
+    @brands = Brand.published.with_published_products.by_product_category(resource.id)
 
     breadcrumbs_with_ancestors(resource)
   end

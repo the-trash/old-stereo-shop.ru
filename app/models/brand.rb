@@ -32,6 +32,10 @@ class Brand < ActiveRecord::Base
     where(products: { state: 1 }).
     having('count(products.brand_id) > 0')
   }
+  scope :by_product_category, -> (product_category_id = nil) {
+    joins(:products).group('brands.id').
+    where(products: { product_category_id: product_category_id }) if product_category_id.present?
+  }
 
   belongs_to :admin_user
 

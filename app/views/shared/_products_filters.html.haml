@@ -4,12 +4,13 @@
     = hidden_field_tag 'sort_by', params[:sort_by], class: 'filter-by-show'
     = hidden_field_tag 'q', params[:q]
 
-  .b-filter-brands
-    %ul.brands
-      %span= t('brands')
-      %li{ class: active_class_by_params(0, params[:brand_id].to_i) }
-        = link_to t('all_brands'), '#', data: { id: 0 }
-      = render partial: 'product_categories/includes/brand', collection: brands, as: :brand
+  - if brands.any?
+    .b-filter-brands
+      %ul.brands
+        %span= t('brands')
+        %li{ class: active_class_by_params(0, params[:brand_id].to_i) }
+          = link_to t('all_brands'), '#', data: { id: 0 }
+        = render partial: 'product_categories/includes/brand', collection: brands, as: :brand
 
   .b-filter-show
     %ul.show
