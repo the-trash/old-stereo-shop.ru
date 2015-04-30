@@ -22,6 +22,6 @@ class BrandsController < FrontController
   private
 
   def collection
-    @brands ||= Brand.published.with_published_products
+    @brands ||= Brand.published.with_published_products.order_by_position
   end
 end

@@ -57,4 +57,19 @@ describe Brand do
       specify { expect(subject).to include(brand) }
     end
   end
+
+  describe '.order_by_position' do
+    let!(:brand2) { create :brand }
+    let(:direction) { :asc }
+
+    subject { Brand.order_by_position(direction) }
+
+    specify { expect(subject).to eq([brand, brand2]) }
+
+    context 'when direction eq desc' do
+      let(:direction) { :desc }
+
+      specify { expect(subject).to eq([brand2, brand]) }
+    end
+  end
 end

@@ -36,6 +36,7 @@ class Brand < ActiveRecord::Base
     joins(:products).group('brands.id').
     where(products: { product_category_id: product_category_id }) if product_category_id.present?
   }
+  scope :order_by_position, -> (direction = :asc) { order(position: direction) }
 
   belongs_to :admin_user
 
