@@ -35,6 +35,8 @@ class FrontController < ApplicationController
     @useful_information = PostCategory.find_by(title: I18n.t('useful_information'))
 
     @cart = current_cart
+
+    @user_wishlist = current_user.wishes.group_by &:product_id
   end
 
   def breadcrumbs_with_ancestors(obj, resource = nil)

@@ -11,8 +11,10 @@ class UserPolicy
     current_user == user
   end
 
-  def show?
-    update?
+  %w(index create show destroy).each do |method|
+    define_method :"#{method}?" do
+      update?
+    end
   end
 
   def subscibe?

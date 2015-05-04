@@ -43,41 +43,48 @@ module ProductsHelper
     end
   end
 
-  def add_to_wishlist product, opts = {}
-    options = opts.merge!({
-      remote: true,
-      method: :post,
+  # TODO: add decorator for product
+  def add_to_wishlist product, options = {}
+    options.reverse_merge! default_wishlist_options(product)
+    wishlist_id = options[:wishlist_id].present? ? options[:wishlist_id] : @user_wishlist[product.id]
+
+    link =
+      if current_user.wishes.product_exists?(product.id)
+        link_to(I18n.t('delete'), product_wishlist_path(product, wishlist_id), options.merge!(wishlist_delete_options))
+      else
+        link_to(I18n.t('i_like'), product_wishlists_path(product), options.merge!(method: :post))
+      end
+
+    (make_tag + link).html_safe
+  end
+
+  def product_price(price, options = {})
+    make_tag :p, I18n.t('views.product.with_currency', coust: price), options
+  end
+
+  def product_discount(with_discount, options = {})
+    make_tag :p, I18n.t('views.product.with_currency', coust: with_discount), options
+  end
+
+  def make_tag tag = :i, body = '', options = { class: 'icon icon-i-like' }
+    content_tag tag, body, options
+  end
+
+  private
+
+  def default_wishlist_options(product)
+    {
       data: {
         role: 'add-to-wish',
         id: product.id
       }
-    })
-
-    i = content_tag :i, '', class: 'icon icon-i-like'
-
-    link =
-      if current_user.wishes.pluck(:product_id).include?(product.id)
-        link_to(I18n.t('delete'), [:remove_from_wishlist, product])
-      else
-        link_to(I18n.t('i_like'), [:add_to_wishlist, product], options)
-      end
-
-    (i + link).html_safe
+    }
   end
 
-  def product_price(price, options = {})
-    content_tag(
-      :p,
-      I18n.t('views.product.with_currency', coust: price),
-      options
-    )
-  end
-
-  def product_discount(with_discount, options = {})
-    content_tag(
-      :p,
-      I18n.t('views.product.with_currency', coust: with_discount),
-      options
-    )
+  def wishlist_delete_options
+    {
+      method: :delete,
+      confirmation: I18n.t('are_you_sure')
+    }
   end
 end

@@ -1,0 +1,10 @@
+.b-user-wishlist
+  %h2= t('my_wishlist')
+
+  - if @wishes.present?
+    .b-products
+      = render partial: 'products/includes/single_product', collection: @wishes, as: :product
+
+      = will_paginate @wishes
+  - else
+    = t('your_wishlist_is_empty')

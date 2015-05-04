@@ -33,11 +33,11 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show] do
     member do
       post :add_review
-      post :add_to_wishlist
-      get :remove_from_wishlist
       get :new_review
       get :more_review
     end
+
+    resources :wishlists, only: [:create, :destroy]
 
     scope module: 'product' do
       resources :additional_options, only: :show
@@ -59,7 +59,6 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy, :edit] do
     member do
       get :you_watched
-      get :wishlist
 
       scope :settings, controller: 'users/settings', path: :settings do
         get :profile, as: :settings_profile
@@ -68,5 +67,7 @@ Rails.application.routes.draw do
         get :subscriptions, as: :settings_subscriptions
       end
     end
+
+    resources :wishlists, only: :index
   end
 end
