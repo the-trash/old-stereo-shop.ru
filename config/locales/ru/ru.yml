@@ -72,6 +72,7 @@ ru:
   alien_cart: Это не ваша корзина
   all_brands: Все бренды
   all_products: Все товары
+  are_you_sure: Вы уверены?
   ask_a_question: Задать вопрос
   authentication: Авторизация
   authentication_help_info: 'Вход/Регистрация илипокупка без регистрации'
@@ -120,20 +121,24 @@ ru:
   product_category_for_import: Категория продуктов для импорта товаров
   product_name: Название товара
   product_price: Цена
+  product_already_exists_in_wishlist: Товар уже существует в списке желаний
   products_from_brand: Все товары бренда
   quantity: Количество
   question: Вопрос
   questions: Ваши вопросы
   registration: Регистрация
   save: Сохранить
+  sale: Sale
   search: Поиск
   searching: Идет поиск
   search_result: 'Результаты поиска "%{request}"'
   set_your_email: Укажите вашу почту
   show: Показать
+  successfully_add_to_wishlist: Товар успешно добавлен с список желаний
   to_subscribe: Подписаться
   total_amount: Общая сумма
   useful_information: 'Полезная информация'
   you_might_also_like: Вам может понравится
   you_watched: Вы смотрели
+  your_wishlist_is_empty: Ваш список желаний пока пуст
   what_are_you_looking_for: Что вы ищете?

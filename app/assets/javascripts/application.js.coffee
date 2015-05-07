@@ -63,3 +63,8 @@ $(document).ready ->
     e.preventDefault()
     $('.user-widget-wrapper .line-items').toggle()
     $('.user-widget .you_watched').toggle()
+
+  $('body').on 'click', 'a[data-role="add-to-wish"]', (e) ->
+    e.preventDefault()
+    e.stopImmediatePropagation()
+    new Wishlist $(this)

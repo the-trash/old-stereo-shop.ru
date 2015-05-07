@@ -35,16 +35,6 @@ class UsersController < FrontController
     end
   end
 
-  def wishlist
-    authorize @user, :update?
-
-    @wishes =
-      Product.where(id: @user.wishes.map(&:product_id)).
-        paginate(page: params[:page], per_page: Settings.pagination.products)
-
-    add_breadcrumb I18n.t('my_wishlist')
-  end
-
   private
 
   def set_user

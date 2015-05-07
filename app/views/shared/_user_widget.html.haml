@@ -4,7 +4,7 @@
     .panel.wishes
       .icon
       - if current_user
-        = link_to '', [:wishlist, current_user]
+        = link_to '', [current_user, :wishlists]
       - else
         = link_to '', new_user_session_path
     .panel.cart{ class: ('with-good' if @cart.total_quantity > 0) }
@@ -12,11 +12,7 @@
       .cart-items-counter= @cart.total_quantity
       = link_to '', @cart
     .panel.profile
-      .icon
-        - if current_user
-          = link_to '', current_user
-        - else
-          = link_to '', new_user_session_path
+      .icon= link_to '', (current_user ? current_user : new_user_session_path)
 
     .you_watched
       - if current_user && session[:user]['product_ids'].any?

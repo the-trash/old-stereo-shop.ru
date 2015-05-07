@@ -54,8 +54,15 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     inverse_of: :user
 
-  %i(reviews wishes).each do |r|
-    has_many r, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :wishes, dependent: :destroy do
+    def product_exists?(product_id)
+      exists?(product_id: product_id)
+    end
+
+    def products
+      Product.where(id: pluck(:product_id))
+    end
   end
 
   %i(cart subscribed_email).each do |r|

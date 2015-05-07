@@ -6,7 +6,7 @@
         %span.icons-arrow-black-down
       - if @product_categories.present?
         %ul.menu
-          %li= link_to 'Sale', [:sale, :product_categories], class: 'pink'
+          %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
           = build_product_category_ancestry_tree(@product_categories)
 
   .row.dark-gray-bg

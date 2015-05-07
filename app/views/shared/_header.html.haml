@@ -9,7 +9,7 @@
         %span.caret
       %ul.menu.main-catalog
         = build_product_category_ancestry_tree(@product_categories, { with_arrow: false })
-        %li= link_to 'Sale', [:sale, :product_categories], class: 'pink'
+        %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
   #menu.item
     %ul.menu
       %li

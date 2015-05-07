@@ -1,8 +1,6 @@
 ru:
   flash_messages:
     products:
-      remove_from_wishlist:
-        success: Продукт успешно удален из Вашего листа желаний
       add_review:
         success: Спасибо за Ваш голос
         error: Вы уже голосовали

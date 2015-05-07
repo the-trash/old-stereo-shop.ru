@@ -53,17 +53,6 @@ class ProductsController < FrontController
     render partial: 'products/includes/new_review', layout: false
   end
 
-  def add_to_wishlist
-    if current_user && !current_user.wishes.pluck(:product_id).include?(resource.id)
-      current_user.wishes << Wish.new(product: resource)
-    end
-  end
-
-  def remove_from_wishlist
-    current_user.wishes.find_by(product: resource).destroy if current_user
-    redirect_to :back, flash: :success
-  end
-
   def more_review
     render partial: 'products/includes/review',
       collection: last_reviews.offset(params[:more].to_i),
