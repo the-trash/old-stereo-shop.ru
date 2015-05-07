@@ -36,7 +36,7 @@ class FrontController < ApplicationController
 
     @cart = current_cart
 
-    @user_wishlist = current_user.wishes.group_by &:product_id
+    @user_wishlist = current_user.wishes.group_by(&:product_id) if current_user
   end
 
   def breadcrumbs_with_ancestors(obj, resource = nil)
