@@ -21,22 +21,9 @@ class FrontController < ApplicationController
   protected
 
   def set_variables
-    @meta = {
-      seo_title: 'Стерео шоп',
-      keywords: 'Ключевики',
-      seo_description: 'Описание'
-    }
-
+    @front_presenter = FrontPresenter.new current_user, params
     @settings ||= $settings
-
-    # TODO: add cache
-    @product_categories = ProductCategory.includes(:photos).for_front.arrange(order: :position)
-    @news = PostCategory.find_by(title: I18n.t('news'))
-    @useful_information = PostCategory.find_by(title: I18n.t('useful_information'))
-
     @cart = current_cart
-
-    @user_wishlist = current_user.wishes.group_by(&:product_id) if current_user
   end
 
   def breadcrumbs_with_ancestors(obj, resource = nil)

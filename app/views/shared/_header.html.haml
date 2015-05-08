@@ -3,12 +3,12 @@
     = link_to '', root_path, class: 'full-block-link'
     .image= image_tag 'application/logo.png'
   #catalog.item
-    - if @product_categories.any?
+    - if @front_presenter.product_categories.any?
       .btn
-        Продукция
+        = t('produce')
         %span.caret
       %ul.menu.main-catalog
-        = build_product_category_ancestry_tree(@product_categories, { with_arrow: false })
+        = build_product_category_ancestry_tree(@front_presenter.product_categories, { with_arrow: false })
         %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
   #menu.item
     %ul.menu

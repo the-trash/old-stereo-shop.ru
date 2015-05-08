@@ -40,4 +40,8 @@ class PostCategory < ActiveRecord::Base
   def self.for_select
     all.map{ |pc| [pc.title, pc.id] } if connection.table_exists?(table_name)
   end
+
+  def with_posts
+    posts.published
+  end
 end
