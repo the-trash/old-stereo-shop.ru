@@ -25,6 +25,11 @@ class CentralBankExchangeRates
     doc.xpath("//#{ node }")
   end
 
+  def report_by_currency xml, currency_code
+    doc = Nokogiri::XML(xml)
+    doc.search("Valute[ID=#{currency_code}]").children().search('Value').text()
+  end
+
   private
 
   def date_formated(date)

@@ -7,15 +7,13 @@ class Recurring::CentralBankUpdateAttitudeEuroByRub
   recurrence { hourly(6) }
 
   def perform
-    date_now = Time.zone.now.to_date
-    cb       = CentralBankExchangeRates.new
+    cb = CentralBankExchangeRates.new
 
-    response = cb.get_range_report(date_now, date_now, Settings.central_bank.currency_code.eur)
-
-    eur_value = cb.range_report_by_node(response.body, 'Value').text().to_f
+    response = cb.get_daily_report(Time.zone.now.to_date)
+    eur_value = cb.report_by_currency(response.body, Settings.central_bank.currency_code.eur).to_f
 
     Product.published.with_euro_price.find_each do |product|
-      product.update_columns({ price: product.euro_price * eur_value, euro_rate: eur_value})
+      product.update_columns({ price: product.euro_price * eur_value, euro_rate: eur_value}) if eur_value.nonzero?
     end
   end
 end
