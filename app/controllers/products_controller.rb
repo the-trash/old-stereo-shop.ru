@@ -1,5 +1,6 @@
 class ProductsController < FrontController
   before_action :check_product_state, except: :index
+  before_filter :add_product_to_user_session, only: :show
 
   inherit_resources
 
@@ -14,15 +15,7 @@ class ProductsController < FrontController
   end
 
   def show
-    session[:user]['product_ids'] << resource.id if current_user
-
-    @product_category   = resource.product_category
-    @stores             = Product::StoresTree.new(resource).stores_tree
-    @characteristics    = Product::CharacteristicsTree.new(resource).characteristics_tree
-    @related_products   = resource.related_products.published
-    @similar_products   = resource.similar_products.published
-    @last_reviews       = last_reviews
-    @additional_options = resource.additional_options.published.includes(:values)
+    @show_presenter = Products::ShowPresenter.new(resource)
 
     if params_with_additional_option_value_exists?
       @additional_option_value =
@@ -31,7 +24,7 @@ class ProductsController < FrontController
       @product_new_values = @additional_option_value.new_values
     end
 
-    breadcrumbs_with_ancestors(@product_category, resource)
+    breadcrumbs_with_ancestors(@show_presenter.product_category, resource)
 
     show!
   end
@@ -61,13 +54,15 @@ class ProductsController < FrontController
 
   private
 
+  def add_product_to_user_session
+    if current_user && !session[:user]['product_ids'].include?(resource.id)
+      session[:user]['product_ids'] << resource.id
+    end
+  end
+
   def permit_review
     params.require(:review).permit \
       :pluses, :cons, :body, :user_id
-  end
-
-  def last_reviews
-    resource.reviews.published.related.includes(:rating, :user)
   end
 
   def check_product_state

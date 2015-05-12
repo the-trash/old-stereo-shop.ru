@@ -59,4 +59,14 @@ describe Review do
       end
     end
   end
+
+  describe '.related' do
+    let!(:related_review) { create :review }
+    let!(:not_related_review) { create :review, :not_related }
+
+    subject { described_class.related }
+
+    specify { expect(subject).to include(related_review) }
+    specify { expect(subject).not_to include(not_related_review) }
+  end
 end

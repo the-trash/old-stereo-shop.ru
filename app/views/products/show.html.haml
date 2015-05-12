@@ -13,9 +13,9 @@
       = render 'products/includes/image_gallery_show_product_page', photos: resource.photos.published if resource.photos.published.any?
 
     .b-product-middle
-      - if @additional_options.any?
+      - if @show_presenter.additional_options.any?
         .l-additional-options
-          = render @additional_options
+          = render @show_presenter.additional_options
 
       .b-product-short-info
         - if @product_new_values.present? && (@product_new_values.with_price.any? || @product_new_values.with_discount.any?)
@@ -33,7 +33,7 @@
             product_path(resource, anchor: 'reviews'),
             class: 'reviews-count'
 
-        = render 'products/includes/stores', stores: @stores, product: resource if @stores.present?
+        = render 'products/includes/stores', stores: @show_presenter.stores, product: resource if @show_presenter.stores.present?
 
     .b-commerce
       %ul
@@ -53,31 +53,31 @@
 
   .b-product-tabs.tabs
     %ul
-      %li.active= link_to 'Технические детали', '#characteristics'
+      %li.active= link_to t('technical_details'), '#characteristics'
       %li
         = link_to t('views.product.review', count: resource.published_reviews_count),
             '#reviews'
     .tab-content
       .b-product-characteristics.tab.active#characteristics
-        = render 'products/includes/characteristics', characteristics: @characteristics if @characteristics.present?
+        = render 'products/includes/characteristics', characteristics: @show_presenter.characteristics if @show_presenter.characteristics.present?
       .b-product-review.tab#reviews
         = link_to t('views.product.new_review'), [:new_review, resource],
             class: 'new-review-link' if user_signed_in? && resource.can_vote?(current_user.id)
 
-        = render partial: 'products/includes/review', collection: @last_reviews, as: :review
+        = render partial: 'products/includes/review', collection: @show_presenter.last_reviews, as: :review
 
         = link_to t('views.product.more_reviews'), [:more_review, resource],
           class: 'more-review', data: { more: 0, count: Settings.product.reviews_count } if resource.published_reviews_count > Settings.product.reviews_count
 
-  - if @related_products.present?
+  - if @show_presenter.related_products.any?
     %h4#related-products= t('goods_supplied')
-    - @related_products.in_groups(Settings.product.related_group, false) do |group|
+    - @show_presenter.related_products.in_groups(Settings.product.related_group, false) do |group|
       .b-related-products
         = render partial: 'products/includes/single_product',
           collection: group, as: :product, locals: { main_class: 'related' }
 
-  - if @similar_products.present?
+  - if @show_presenter.similar_products.any?
     .b-similar-products
       %h4#similar-products= t('you_might_also_like')
       = render partial: 'products/includes/single_product',
-        collection: @similar_products, as: :product, locals: { main_class: 'similar' }
+        collection: @show_presenter.similar_products, as: :product, locals: { main_class: 'similar' }
