@@ -104,7 +104,7 @@ ActiveAdmin.register Product do
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
-        f.input :description
+        f.input :description, as: :wysihtml5
         f.input :price
         f.input :euro_price
         f.input :sku

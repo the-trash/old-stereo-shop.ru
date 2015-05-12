@@ -27,6 +27,10 @@ ActiveAdmin.register Review do
     def scoped_collection
       @reviews ||= parent.reviews.includes(:rating)
     end
+
+    def resource
+      @review ||= parent.reviews.find(params[:id])
+    end
   end
 
   index do
