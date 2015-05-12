@@ -5,7 +5,7 @@
     %h3= t('controllers.product_categories.sale.all_products', count: @products_without_paginate.size)
 
   = render partial: 'product_categories/includes/sale_nested_tree',
-    locals: { product_categories: @product_categories } if @product_categories.present?
+    locals: { product_categories: @front_presenter.product_categories } if @front_presenter.product_categories.any?
 
   .b-products
     = render partial: 'product_categories/includes/product', collection: @products, as: :product

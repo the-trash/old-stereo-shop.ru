@@ -46,7 +46,7 @@ module ProductsHelper
   # TODO: add decorator for product
   def add_to_wishlist product, options = {}
     options.reverse_merge! default_wishlist_options(product)
-    wishlist_id = options[:wishlist_id].present? ? options[:wishlist_id] : @user_wishlist[product.id]
+    wishlist_id = options[:wishlist_id].present? ? options[:wishlist_id] : @front_presenter.user_wishlist[product.id]
 
     link =
       if current_user.wishes.product_exists?(product.id)

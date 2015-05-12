@@ -5,9 +5,9 @@
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{content: "width=1080", name: "viewport"}
 
-    %title= @meta[:seo_title]
-    %meta{name: :keywords, content: @meta[:keywords]}
-    %meta{name: :description, content: @meta[:seo_description]}
+    %title= @front_presenter.meta[:seo_title]
+    %meta{name: :keywords, content: @front_presenter.meta[:keywords]}
+    %meta{name: :description, content: @front_presenter.meta[:seo_description]}
 
     = favicon_link_tag 'favicon.png', type: 'image/png'
     = csrf_meta_tags

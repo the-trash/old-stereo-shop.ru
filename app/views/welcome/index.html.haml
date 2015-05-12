@@ -1,26 +1,26 @@
 .container
-  %h1 Каталог
+  %h1= t('catalog')
 
-  - if @product_categories.any?
+  - if @front_presenter.product_categories_with_photos.any?
     .categories-list
       %ul.menu
-        = build_product_category_ancestry_tree(@product_categories, { with_image: true })
+        = build_product_category_ancestry_tree(@front_presenter.product_categories_with_photos, { with_image: true })
 
-  - if @news || @useful_information
+  - if @front_presenter.news_category || @front_presenter.useful_information_category
     %hr
     .b-news.main-page
-      - if @news
+      - if @front_presenter.news_category
         .b-news-one.margin-right
           %h3.blue
-            = link_to @news.title, @news
+            = link_to @front_presenter.news_category.title, @front_presenter.news_category
           %ul
-            = render partial: 'posts/includes/main_news_list', collection: @news.posts.published.limit(3), as: :post
+            = render partial: 'posts/includes/main_news_list', collection: @front_presenter.news_category.with_posts.limit(3), as: :post
 
-      - if @useful_information
+      - if @front_presenter.useful_information_category
         .b-news-one
           %h3.blue
-            = link_to @useful_information.title, @useful_information
+            = link_to @front_presenter.useful_information_category.title, @front_presenter.useful_information_category
           %ul
             = render partial: 'posts/includes/main_news_list',
-              collection: @useful_information.posts.published.includes(:admin_user).limit(3),
+              collection: @front_presenter.useful_information_category.with_posts.includes(:admin_user).limit(3),
               as: :post, locals: { with_author: true }

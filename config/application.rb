@@ -29,11 +29,11 @@ module Stereoshop
       g.helper_specs false
     end
 
+    %w(uploaders forms presenters workers views/mailers).each do |folder_path|
+      config.autoload_paths += Dir["#{ config.root }/app/#{folder_path}/**/"]
+    end
+
     config.autoload_paths += Dir["#{ config.root }/lib/**/"]
-    config.autoload_paths += Dir["#{ config.root }/app/uploaders/**/"]
-    config.autoload_paths += Dir["#{ config.root }/app/forms/**/"]
-    config.autoload_paths += Dir["#{ config.root }/app/workers/**"]
-    config.autoload_paths += Dir["#{ config.root }/app/views/mailers/**"]
 
     ActionMailer::Base.prepend_view_path("#{ config.root }/app/views/mailers/")
 

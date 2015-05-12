@@ -11,6 +11,12 @@ ru:
       two_words_connector: ! ' и '
       words_connector: ! ', '
 
+  meta:
+    default:
+      seo_title: 'Стерео шоп'
+      keywords: 'Ключевики'
+      seo_description: 'Описание'
+
   views:
     product:
       reviews_count:
@@ -81,6 +87,7 @@ ru:
   cart: Корзина
   cart_with_count: 'Корзина (%{count})'
   cart_total_amount: Сумма заказа
+  catalog: Каталог
   chouse_category: Выберите категорию
   chouse_delivery: Выбор способа доставки
   clear: Очистить
@@ -113,9 +120,11 @@ ru:
   new_products: Новинки
   news: Новости
   notificatins_mail: Уведомления на почту
+  our_production: Наша продукция
   page_not_found: Страница не найдена
   phone: Телефон
   popular: Популярные
+  produce: Продукция
   product_actions: Действия с товаром
   product_in_cart: Товар находится в корзине
   product_category_for_import: Категория продуктов для импорта товаров
