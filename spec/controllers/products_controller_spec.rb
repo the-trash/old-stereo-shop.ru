@@ -24,32 +24,8 @@ describe ProductsController do
       expect(assigns(:product)).to eq(product)
     end
 
-    it 'assigns @stores' do
-      expect(assigns(:stores)).to eq([])
-    end
-
-    it 'assigns @characteristics' do
-      expect(assigns(:characteristics)).to eq([])
-    end
-
-    it 'assigns @related_products' do
-      expect(assigns(:related_products)).to include(related_product)
-    end
-
-    it 'assigns @similar_products' do
-      expect(assigns(:similar_products)).to include(similar_product)
-    end
-
-    it 'assigns @product_category' do
-      expect(assigns(:product_category)).to eq(product.product_category)
-    end
-
-    it 'assigns @last_reviews' do
-      expect(assigns(:last_reviews)).to include(last_review)
-    end
-
-    it 'assigns @additional_options' do
-      expect(assigns(:additional_options)).to include(additional_option)
+    it 'assigns @show_presenter' do
+      expect(assigns(:show_presenter)).to eq(Products::ShowPresenter.new(product))
     end
 
     it 'not assigns @additional_option_value' do
@@ -60,6 +36,7 @@ describe ProductsController do
       expect(assigns(:product_new_values)).to be_nil
     end
 
+    it_behaves_like 'a successful request'
     it_behaves_like 'a successful render show template'
 
     context 'when params containe additional_option_value' do
@@ -75,6 +52,23 @@ describe ProductsController do
       it 'assigns @product_new_values' do
         expect(assigns(:product_new_values)).to include(attributes_value)
       end
+    end
+
+    context 'when user authorized' do
+      let(:user) { create :user }
+
+      # TODO: refoctor me!
+      before do
+        sign_in user
+        session[:user] = {}
+        session[:user]['product_ids'] = [product.id]
+        get :show, id: product.id
+      end
+
+      specify { expect(session[:user]['product_ids']).to eq([product.id]) }
+
+      it_behaves_like 'a successful request'
+      it_behaves_like 'a successful render show template'
     end
   end
 end

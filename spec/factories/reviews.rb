@@ -16,5 +16,9 @@ FactoryGirl.define do
     trait :for_post do
       association :recallable, factory: :post
     end
+
+    trait :not_related do
+      updated_at 8.days.ago
+    end
   end
 end
