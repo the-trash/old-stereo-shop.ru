@@ -24,7 +24,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include MailerHelper, type: :mailer
 
-  Sidekiq::Testing.fake!
+  Sidekiq::Testing.inline!
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

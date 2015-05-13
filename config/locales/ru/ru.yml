@@ -88,14 +88,17 @@ ru:
   cart_with_count: 'Корзина (%{count})'
   cart_total_amount: Сумма заказа
   catalog: Каталог
+  change_password: Изменить пароль
   chouse_category: Выберите категорию
   chouse_delivery: Выбор способа доставки
+  change_my_password: Изменить мой пароль
   clear: Очистить
   clear_cart: Очистить корзину
   cities:
     spb: Санкт-Петербург
     moscow: Москва
     no_matches_found: Городов не найдено
+  confirm_new_password: Повторите ввод пароля
   default: По умолчанию
   delete: Удалить
   email: Электронная почта
@@ -108,6 +111,7 @@ ru:
     return: О возврате денег
     other: Другое
   feedback_user_name: Как к Вам обращаться
+  forgot_your_password: Забыли Ваш пароль?
   find: Найти
   get_subscribes: 'Получить рассылку на новинки и т.д.'
   go_to_main: На главную
@@ -117,6 +121,7 @@ ru:
   my_profile: Мой профиль
   my_question: Мой вопрос
   my_wishlist: Мой список желаний
+  new_password: Новый пароль
   new_products: Новинки
   news: Новости
   notificatins_mail: Уведомления на почту
@@ -141,6 +146,7 @@ ru:
   search: Поиск
   searching: Идет поиск
   search_result: 'Результаты поиска "%{request}"'
+  send_reset_password_instruction: Выслать инструкции
   set_your_email: Укажите вашу почту
   show: Показать
   successfully_add_to_wishlist: Товар успешно добавлен с список желаний

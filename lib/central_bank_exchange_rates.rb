@@ -20,14 +20,14 @@ class CentralBankExchangeRates
     get_response(set_uri(Settings.central_bank.urls.range, params))
   end
 
-  def range_report_by_node(xml, node)
-    doc = Nokogiri::XML(xml)
-    doc.xpath("//#{ node }")
-  end
-
   def report_by_currency xml, currency_code
     doc = Nokogiri::XML(xml)
     doc.search("Valute[ID=#{currency_code}]").children().search('Value').text()
+  end
+
+  def current_euro_rate
+    report = get_daily_report(Time.zone.now.to_date)
+    report_by_currency(report.body, Settings.central_bank.currency_code.eur).to_f
   end
 
   private
