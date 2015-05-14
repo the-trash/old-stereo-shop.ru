@@ -1,9 +1,7 @@
-%h2 Resend confirmation instructions
+%h2= t('.resend_confirmation_instruction')
 = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
   = devise_error_messages!
-  %div
+  .form-group
     = f.label :email
-    %br/
     = f.email_field :email, autofocus: true
-  %div= f.submit "Resend confirmation instructions"
-= render "devise/shared/links"
+  %div= f.submit t('.resend')

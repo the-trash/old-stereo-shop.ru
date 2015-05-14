@@ -1,12 +1,12 @@
-%h2= t('change_password')
+%h2= t('.change_password')
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form change-password' }) do |f|
   = devise_error_messages!
   = f.hidden_field :reset_password_token
   .form-group
-    = f.label :password, t('new_password')
+    = f.label :password, t('.new_password')
     = f.password_field :password, autofocus: true, autocomplete: "off"
   .form-group
-    = f.label :password_confirmation, t('confirm_new_password')
+    = f.label :password_confirmation, t('.confirm_new_password')
     = f.password_field :password_confirmation, autocomplete: "off"
 
-  %div= f.submit t('change_my_password')
+  %div= f.submit t('.change_my_password')

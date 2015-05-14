@@ -1,8 +1,8 @@
-%h2= t('forgot_your_password')
+%h2= t('.forgot_your_password')
 
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form reset-password' }) do |f|
   = devise_error_messages!
   .form-group
     = f.label :email
     = f.email_field :email, autofocus: true
-  %div= f.submit t('send_reset_password_instruction')
+  %div= f.submit t('.send_reset_password_instruction')
