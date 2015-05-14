@@ -61,11 +61,23 @@ describe ProductsController do
       before do
         sign_in user
         session[:user] = {}
-        session[:user]['product_ids'] = [product.id]
+        session[:user]['product_ids'] = []
         get :show, id: product.id
       end
 
-      specify { expect(session[:user]['product_ids']).to eq([product.id]) }
+      subject(:products_session) { session[:user]['product_ids'] }
+
+      specify { expect(products_session).to eq([product.id]) }
+
+      context 'when products_id already containe something' do
+        let(:product2) { create :product }
+
+        before do
+          products_session + [product.id, product2.id]
+        end
+
+        specify { expect{ products_session }.not_to change{ products_session.size } }
+      end
 
       it_behaves_like 'a successful request'
       it_behaves_like 'a successful render show template'

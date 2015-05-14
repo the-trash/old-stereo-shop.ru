@@ -23,7 +23,7 @@ module Stereoshop
       g.helper_specs false
     end
 
-    %w(uploaders forms presenters workers views/mailers).each do |folder_path|
+    %w(uploaders forms presenters queries workers views/mailers).each do |folder_path|
       config.autoload_paths += Dir["#{ config.root }/app/#{folder_path}/**/"]
     end
 
