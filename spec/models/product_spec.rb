@@ -214,4 +214,25 @@ describe Product do
       it_behaves_like 'not_receive_any_scopes'
     end
   end
+
+  describe '.by_brand' do
+    let!(:brand) { create :brand }
+    let!(:product_with_existing_brand) { create :product, brand: brand }
+    let!(:product) { create :product }
+
+    subject { Product.by_brand brand_id }
+
+    context 'when brand id is not nil' do
+      let(:brand_id) { brand.id }
+
+      specify { expect(subject).to include(product_with_existing_brand) }
+      specify { expect(subject).not_to include(product) }
+    end
+
+    context 'when brand id si nil' do
+      let(:brand_id) { nil }
+
+      specify { expect(subject).to be_empty }
+    end
+  end
 end

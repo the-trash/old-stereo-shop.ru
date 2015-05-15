@@ -9,7 +9,7 @@ class ProductsController < FrontController
   def index
     add_breadcrumb(I18n.t('search'))
 
-    @brands = Brand.where(id: collection.map(&:brand_id)).published
+    @brands = Brand.with_published_products.published
 
     index!
   end
@@ -69,20 +69,12 @@ class ProductsController < FrontController
     redirect_to [:root], flash: { error: I18n.t('controllers.products.product_not_found') } unless resource.published?
   end
 
-  def end_of_association_chain
-    end_collection_chain = super
-
-    end_collection_chain = end_collection_chain.by_q(params[:q]) if params[:q].present?
-    end_collection_chain = end_collection_chain.by_brand(params[:brand_id]) if params[:brand_id].to_i != 0
-    end_collection_chain = end_collection_chain.sort_by(params[:sort_by]) if params[:sort_by].present?
-
-    # TODO products/index with search - add includes characteristics_products: :characteristic
-    end_collection_chain.published.includes(:photos)
+  def collection_query_helper
+    Products::IndexQuery.new end_of_association_chain, params
   end
 
   def collection
-    get_collection_ivar || set_collection_ivar(end_of_association_chain
-      .paginate(page: params[:page], per_page: Settings.pagination.products))
+    get_collection_ivar || set_collection_ivar(collection_query_helper.all)
   end
 
   def params_with_additional_option_value_exists?
