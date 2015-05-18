@@ -70,6 +70,15 @@ module ProductsHelper
     content_tag tag, body, options
   end
 
+  def icon_in_stock(product, classes = nil)
+    in_stock = product.in_stock
+    icon_classes = [(in_stock ? 'in-stock' : 'out-of-stock'), 'icon', classes].compact.join(' ').strip
+
+    content_tag :i, class: icon_classes do
+      content_tag :span, I18n.t('not_available') if !in_stock
+    end
+  end
+
   private
 
   def default_wishlist_options(product)

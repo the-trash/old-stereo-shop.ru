@@ -33,6 +33,7 @@
             product_path(resource, anchor: 'reviews'),
             class: 'reviews-count'
 
+        %p= icon_in_stock(resource)
         = render 'products/includes/stores', stores: @show_presenter.stores, product: resource if @show_presenter.stores.present?
 
     .b-commerce

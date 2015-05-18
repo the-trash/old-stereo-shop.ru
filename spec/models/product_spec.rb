@@ -235,4 +235,14 @@ describe Product do
       specify { expect(subject).to be_empty }
     end
   end
+
+  describe '.has_in_stores' do
+    let!(:product_in_stores) { create :product, :with_stores }
+    let!(:product) { create :product }
+
+    subject { described_class.has_in_stores }
+
+    specify { expect(subject).to include(product_in_stores) }
+    specify { expect(subject).not_to include(product) }
+  end
 end

@@ -59,6 +59,9 @@ class Product < ActiveRecord::Base
   scope :out_of_stock, -> { where(in_stock: false) }
   scope :by_q, -> (q) { where("#{ table_name }.title ILIKE :text", text: "%#{ q }%") }
   scope :with_euro_price, -> { where('euro_price > 0') }
+  scope :has_in_stores, -> {
+    joins(:products_stores).group('products.id').having('SUM(products_stores.count) > 0')
+  }
 
   acts_as_list
 
