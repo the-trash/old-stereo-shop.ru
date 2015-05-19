@@ -12,31 +12,31 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :small do
-    process resize_to_fill: [100, 100]
+    process resize_and_pad: [100, 100]
   end
 
   version :product, if: :is_product? do
-    process resize_to_fill: [570, 370]
+    process resize_and_pad: [570, 370]
 
     version :thumb do
-      process resize_to_fill: [70, 45]
+      process resize_and_pad: [70, 45]
     end
 
     version :related do
-      process resize_to_fill: [170, 110]
+      process resize_and_pad: [170, 110]
     end
 
     version :similar do
-      process resize_to_fill: [270, 175]
+      process resize_and_pad: [270, 175]
     end
 
     version :wishlist do
-      process resize_to_fill: [170, 110]
+      process resize_and_pad: [170, 110]
     end
   end
 
   version :product_category, if: :is_product_category? do
-    process resize_to_fill: [260, 115]
+    process resize_and_pad: [260, 115]
   end
 
   protected
