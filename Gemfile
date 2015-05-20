@@ -4,7 +4,7 @@ gem 'rails'
 gem 'rails_config', '0.2.5'
 
 ## Database adapter
-gem 'pg'
+gem 'pg', '0.18.2'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'gregbell/active_admin'
@@ -14,12 +14,8 @@ gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
 
 gem 'carrierwave'
 gem 'carrierwave-size-validator'
-gem 'ckeditor'
 gem 'normalize-rails'
-gem 'paper_trail'
-gem 'phony_rails'
 gem 'rmagick', require: 'RMagick'
-gem 'validates_timeliness', '~> 3.0'
 
 ## Assets
 gem 'autoprefixer-rails'
@@ -29,7 +25,6 @@ gem 'errgent', github: 'route/errgent' # for error pages
 gem 'html5shiv-js-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'oily_png'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 
@@ -40,7 +35,6 @@ gem 'redis-store'
 
 ## Template
 gem 'haml'
-gem 'haml-rails'
 gem 'sanitize'
 gem 'unicode'
 
@@ -70,7 +64,7 @@ gem 'rabl'
 gem 'ruby-progressbar'
 gem 'select2-rails'
 gem 'sidekiq'
-gem 'sidetiq'
+gem 'sidetiq', '0.6.1'
 # For sidekiq
 gem 'sinatra', require: false
 gem 'slim'

@@ -4,7 +4,7 @@ class Recurring::ProductsInStockWorker
 
   sidekiq_options retry: 5, unique: true
 
-  recurrence { minutely(15) }
+  recurrence { hourly.minute_of_hour(0, 15, 30, 45, 60) }
 
   def perform
     has_in_store_product_ids = Product.published.has_in_stores.pluck(:id)

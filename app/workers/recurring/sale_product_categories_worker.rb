@@ -4,7 +4,7 @@ class Recurring::SaleProductCategoriesWorker
 
   sidekiq_options retry: 5, unique: true
 
-  recurrence { minutely(5) }
+  recurrence { hourly.minute_of_hour(0, 5, 10, 15, 20, 30, 35, 40, 45, 50, 55, 60) }
 
   def perform
     ProductCategory.published.includes(:products).find_each do |category|
