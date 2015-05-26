@@ -27,6 +27,7 @@
 #  euro_price              :decimal(10, 2)   default(0.0), not null
 #  euro_rate               :decimal(10, 2)   default(0.0), not null
 #  draft_reviews_count     :integer          default(0)
+#  properties              :hstore
 #
 # Indexes
 #
@@ -121,12 +122,15 @@ class Product < ActiveRecord::Base
     foreign_key: :product_id,
     association_foreign_key: :similar_product_id
 
-  validates :title, :description, :product_category_id, :brand_id, presence: true
+  validates :title, :description, :product_category_id, :brand_id, :weight, :price, presence: true
 
   delegate :title, to: :product_category, prefix: true
 
   accepts_nested_attributes_for :products_stores, :characteristics_products,
     :reviews, allow_destroy: true, reject_if: :all_blank
+
+  hstore_accessor :properties,
+    weight: :integer
 
   def price_with_discount(custom_discount = nil)
     price - (price * (custom_discount.nil? ? discount : custom_discount)) / 100

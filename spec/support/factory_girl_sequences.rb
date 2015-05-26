@@ -15,4 +15,10 @@ FactoryGirl.define do
       seo_description: Faker::Lorem.sentence
     }
   end
+
+  sequence :properties do
+    {
+      weight: Random.new.rand(50..200)
+    }
+  end
 end

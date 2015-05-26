@@ -145,15 +145,16 @@ ru:
         with_errors: "Возникли ошбики %{errors}"
     views:
       additional_info: Дополнительная информация
+      additional_options_values: Значения дополнительной опции
       characteristic_category: Категория характеристик
       characteristics: Характеристики
       discount: "Скидка: %{discount} %"
       main: Основаня информация
       meta: Meta информация
       photo: Изображения
-      additional_options_values: Значения дополнительной опции
       price: "Цена: %{price}"
       product_category: "Категория: %{category}"
+      properties: Св-ва
       settings: Настройки
       site: Ссылка на сайт производителя
       stores: Магазины

@@ -13,9 +13,9 @@ RSpec.describe FrontController, :type => :controller do
       expect(assigns(:settings)).to eq($settings)
     end
 
-    it "assigns @meta" do
+    it "assigns @front_presenter" do
       get :index
-      expect(assigns(:meta).keys.sort).to eq %i(keywords seo_description seo_title)
+      expect(assigns(:front_presenter)).to eq FrontPresenter.new nil, controller.params
     end
   end
 end

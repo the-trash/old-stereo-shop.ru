@@ -29,7 +29,8 @@ class Import::Main < Import::BaseImport
       sku: sku,
       price: price,
       discount: discount,
-      euro_price: euro_price
+      euro_price: euro_price,
+      weight: 0
     }
   end
 end

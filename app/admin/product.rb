@@ -29,17 +29,18 @@ ActiveAdmin.register Product do
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id,
     :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price,
-    photos_attributes: [:id, :file, :state, :default, :_destroy],
+    :weight, photos_attributes: [:id, :file, :state, :default, :_destroy],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
     related_product_ids: [], similar_product_ids: []
 
   controller do
     def update
-      update! do |format|
-        format.html {
+      update! do |success, failure|
+        success.html {
           redirect_to [:edit, :admin, resource], notice: I18n.t('active_admin.controller.actions.update')
         }
+        failure.html { super }
       end
     end
 
@@ -52,10 +53,7 @@ ActiveAdmin.register Product do
     end
 
     def build_resource
-      @product ||= current_admin_user.products.includes(
-        :photos, products_stores: :store,
-        characteristics: :characteristic_category
-      ).build(permitted_params[:product])
+      @product ||= current_admin_user.products.includes(:photos).build(permitted_params[:product])
     end
   end
 
@@ -83,6 +81,14 @@ ActiveAdmin.register Product do
       content_tag(:p, I18n.t('active_admin.views.price', price: product.price)) +
       content_tag(:p, I18n.t('active_admin.views.discount', discount: product.discount))
     end
+    column :properties do |product|
+      content_tag :ul do
+        content_tag :li do
+          content_tag(:strong, I18n.t('activerecord.attributes.product.weight') + ': ') +
+          content_tag(:span, product.weight.presence || I18n.t('should_be_filled'))
+        end
+      end
+    end
     actions
   end
 
@@ -101,6 +107,7 @@ ActiveAdmin.register Product do
   Product::STATES.each { |st| scope st }
 
   form do |f|
+    f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
@@ -117,6 +124,10 @@ ActiveAdmin.register Product do
         f.input :brand_id, as: :select,
           collection: Brand.published.map { |brand| [brand.title, brand.id] },
           selected: resource.brand_id
+      end
+
+      f.inputs I18n.t('active_admin.views.properties') do
+        f.input :weight
       end
 
       f.inputs I18n.t('active_admin.views.meta') do

@@ -183,6 +183,8 @@ ru:
         related_products: Товары в комплект
         similar_products: Вам может понравиться
         brand_id: Брэнд
+        properties: Св-ва
+        weight: Вес
       product_category:
         <<: *main
         products: Продукты
@@ -269,3 +271,7 @@ ru:
           price: Необходимо указать стоимость продукта
           title: Товар должен иметь название
           euro_price: Необходимо указать хотя бы 0
+        product:
+          attributes:
+            weight:
+              blank: должен быть заполнен

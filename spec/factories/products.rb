@@ -12,6 +12,7 @@ FactoryGirl.define do
     meta { generate :meta }
     euro_price { Random.new.rand(10..100) }
     euro_rate { Random.new.rand(10..100) }
+    properties { generate :properties }
 
     transient do
       product nil
