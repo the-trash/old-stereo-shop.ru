@@ -1,8 +1,3 @@
-- default_photo = photos.default
-
 .b-product-images.default
-  = render 'products/includes/main_image', photo: default_photo if default_photo
-
-  - photos.each_with_index do |photo, i|
-    = render 'products/includes/main_image', photo: photo if !default_photo && i == 0
-    = render 'products/includes/thumb_image', photo: photo
+  = render 'products/includes/main_image', photo: photos.default
+  = render partial: 'products/includes/thumb_image', collection: photos, as: :photo

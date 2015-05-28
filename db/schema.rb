@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526070355) do
+ActiveRecord::Schema.define(version: 20150601134909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,7 @@ ActiveRecord::Schema.define(version: 20150526070355) do
 
   create_table "carts", force: true do |t|
     t.integer  "user_id"
-    t.string   "session_token",                                        null: false
-    t.decimal  "total_amount",  precision: 10, scale: 2, default: 0.0, null: false
+    t.string   "session_token", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -170,7 +169,8 @@ ActiveRecord::Schema.define(version: 20150526070355) do
     t.integer "cart_id"
     t.integer "product_id"
     t.integer "order_id"
-    t.integer "quantity",   default: 1
+    t.integer "quantity",                                       default: 1
+    t.decimal "current_product_price", precision: 10, scale: 2, default: 0.0, null: false
   end
 
   add_index "line_items", ["cart_id", "product_id"], name: "index_line_items_on_cart_id_and_product_id", unique: true, using: :btree
@@ -195,6 +195,29 @@ ActiveRecord::Schema.define(version: 20150526070355) do
   add_index "newletters", ["post_category_id"], name: "index_newletters_on_post_category_id", using: :btree
   add_index "newletters", ["state"], name: "index_newletters_on_state", using: :btree
   add_index "newletters", ["subscription_type"], name: "index_newletters_on_subscription_type", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "cart_id"
+    t.integer  "city_id"
+    t.string   "state"
+    t.integer  "step",                                   default: 0
+    t.integer  "delivery",                               default: 0
+    t.integer  "payment",                                default: 0
+    t.string   "post_index"
+    t.string   "user_name"
+    t.string   "phone"
+    t.text     "address"
+    t.hstore   "cashless_info"
+    t.string   "file"
+    t.decimal  "total_amount",  precision: 10, scale: 2, default: 0.0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["cart_id"], name: "index_orders_on_cart_id", using: :btree
+  add_index "orders", ["city_id"], name: "index_orders_on_city_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "title"

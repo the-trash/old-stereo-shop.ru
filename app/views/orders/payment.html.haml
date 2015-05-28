@@ -1,0 +1,39 @@
+.l-order
+  = render 'shared/includes/order_steps_header', active_steps: ['cart', 'delivery', 'authentification', 'payment']
+
+  .b-payment.b-order-steps
+    = form_for resource, method: :patch, html: { class: 'form order' } do |f|
+      = f.hidden_field :step, { value: Order.steps.keys[2] }
+      = hidden_field_tag 'order[next_step]', Order.steps.keys[3]
+
+      .form-group
+        = f.radio_button :payment, 'payment_system'
+        = f.label :payment_payment_system, t('.payment_system')
+
+      .form-group{ class: ('disabled' if resource.mail?) }
+        = f.radio_button :payment, 'receive', disabled: resource.mail?
+        = f.label :payment_receive, t('.receive')
+
+      .form-group
+        = f.radio_button :payment, 'cashless'
+        = f.label :payment_cashless, t('.cashless'), class: 'with-additional-content'
+        .l-cashless
+          .form-group
+            = f.label :organization_name, t('.organization_name')
+            = f.text_field :organization_name, placeholder: t('.organization_name')
+
+          .form-group
+            = f.label :inn, t('.inn'), class: 'required'
+            = f.text_field :inn, placeholder: t('.inn')
+
+          .form-group
+            = f.label :kpp, t('.kpp'), class: 'required'
+            = f.text_field :kpp, placeholder: t('.kpp')
+
+          .form-group
+            = f.label :file, t('.details'), class: 'required'
+            = f.file_field :file, accept: Settings.carrierwave.extension_white_list.accept
+
+      .b-form-actions
+        = link_to t('.change_user_info'), [:authentification, resource], class: 'btn'
+        = f.submit t('.complete_checkout'), class: 'btn btn-pink'

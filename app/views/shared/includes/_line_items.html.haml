@@ -4,14 +4,16 @@
     %li
       .b-single-product.cart-list-user-widget
         .e-photo
-          - photo = line_item.product_photos.first
+          - photo = line_item.photos.default
           - if photo
             .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
             %i.icon.icon-clear
             = link_to t('delete'), line_item, method: :delete
         .b-info
           %p.title= link_to line_item.product_title, line_item.product
-          %p.price= I18n.t('views.product.with_currency', coust: line_item.product_price_with_discount)
+          %p.price= I18n.t('views.product.with_currency', coust: line_item.price_with_discount)
+          - if !line_item.in_stock?
+            %p.alert-danger= t('not_available')
         - if line_item.similar_products.published.any? || line_item.related_products.published
           .b-product-related-similar
             %ul

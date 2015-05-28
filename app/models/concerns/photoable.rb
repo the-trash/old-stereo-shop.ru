@@ -4,7 +4,7 @@ module Photoable
   included do
     has_many :photos, -> { order('position DESC') }, as: :photoable, dependent: :destroy do
       def default
-        where(default: true).first
+        where(default: true).first || first
       end
     end
 

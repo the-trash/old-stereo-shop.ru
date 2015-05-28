@@ -1,0 +1,27 @@
+ru:
+  orders:
+    delivery:
+      courier: Курьерская доставка
+      point_of_delivery: Пункт выдачи заказа
+      mail: Почта России
+      continue_shopping: Продолжить покупки
+    authentification:
+      user_name: Как к вам обращаться
+      phone: Телефон
+      city: Город
+      address: Адрес доставки
+      post_index: Почтовый индекс
+      choose_delivery_type: Выбрать способ доставки
+    payment:
+      payment_system: Через платежную систему
+      receive: Наличными при получении. В пункте выдачи или курьеру
+      cashless: Безналичный расчет для юр. лиц
+      change_user_info: Изменить личные данные
+      complete_checkout: Завершить оформление заказа
+      organization_name: Название организации
+      inn: ИНН
+      kpp: КПП
+      details: Реквизиты
+    success_complete:
+      order_complete: Поздравляем, Ваш заказ оформлен!
+      user_message: Вам на почту отправлена информация по заказу. Если вы долго не получаете письма, проверьте папку "Спам".

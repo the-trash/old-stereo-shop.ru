@@ -18,6 +18,8 @@
 @import "global/footer";
 @import "global/form";
 
+@import "elements/order_steps";
+
 @import "blocks/product/single_product";
 @import "blocks/product/retable_with_reviews";
 @import "blocks/product/additional_options";
@@ -35,5 +37,8 @@
 @import "blocks/page";
 
 @import "blocks/cart";
+@import "blocks/order/main";
+@import "blocks/order/delivery";
+@import "blocks/order/payment";
 
 @import "blocks/menu";

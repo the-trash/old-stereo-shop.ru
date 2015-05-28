@@ -42,3 +42,20 @@ ru:
         many: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
         one: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
         other: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+
+  activerecord:
+    errors:
+      models:
+        'product/import_entry':
+          stores: Необходимо указать хотя бы 1 магазин
+          brand: 'Бренд не найден: %{title}'
+          store: 'Магазин не найден: %{title}'
+          price: Необходимо указать стоимость продукта
+          title: Товар должен иметь название
+          euro_price: Необходимо указать хотя бы 0
+        product:
+          attributes:
+            weight:
+              blank: должен быть заполнен
+        order:
+          payment: При доставке Почтой России, нельзя оплатить наличными

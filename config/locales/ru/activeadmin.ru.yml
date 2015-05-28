@@ -138,6 +138,7 @@ ru:
       posts: Новости
       back_to_site: Сайт
       admin: Админка
+      cities: Города
     controller:
       actions:
         update: Запись успешно обновлена
@@ -149,6 +150,7 @@ ru:
       characteristic_category: Категория характеристик
       characteristics: Характеристики
       discount: "Скидка: %{discount} %"
+      line_items: Товарные позиции
       main: Основаня информация
       meta: Meta информация
       photo: Изображения
@@ -158,6 +160,7 @@ ru:
       settings: Настройки
       site: Ссылка на сайт производителя
       stores: Магазины
+      user: Пользователь
       batch_action:
         zero: Не одной записи не было выбранно
         one: "(1) запись успешно обновлена"
@@ -187,3 +190,18 @@ ru:
           bonus: О моих бонусах
           product_delivered: О доставке товара
           deals: 'О спец. предложениях'
+      orders:
+        created_at: '<strong>Дата оформления: </strong> %{date}'
+        total_amount: '<strong>Общая сумма: </strong> %{total_amount} руб'
+        city: '<strong>Город: </strong> %{city_title}'
+        address: '<strong>Адрес: </strong> %{address}'
+        post_index: '<strong>Почтовый индекс:</strong> %{post_index}'
+        user_name: '<strong>ФИО: </strong> %{user_name}'
+        phone: '<strong>Телефон: </strong> %{phone}'
+        email: '<strong>E-mail: </strong> %{email}'
+        cashless: Реквизиты для юр. лица
+        details: Реквизиты
+        organization_name: '<strong>Название организации:</strong> %{organization_name}'
+        inn: '<strong>ИНН:</strong> %{inn}'
+        kpp: '<strong>КПП:</strong> %{kpp}'
+        file: '<strong>Реквизиты:</strong> <a href="%{href}" target="_blank">реквизиты</a>'

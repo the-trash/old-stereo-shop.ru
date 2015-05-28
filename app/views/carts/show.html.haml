@@ -25,3 +25,5 @@
       %p= t('cart_total_amount')
       %p.cart-total-amount{ data: { total: @cart.total_amount } }
         = t('views.product.with_currency', coust: @cart.total_amount)
+      = form_for @cart.build_order, html: { class: 'form checkout' } do |f|
+        = f.submit t('checkout'), class: 'btn btn-pink'

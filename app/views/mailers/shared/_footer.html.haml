@@ -1,0 +1,11 @@
+%h4= Settings.shop.default.shop_name
+%ul.b-mail-contacts-list
+  %li
+    Телефон для связи:
+    %span= Settings.shop.default.phone
+  %li
+    E-mail для связи:
+    %span= Settings.shop.default.feedback_email
+  %li= Settings.shop.default.address
+  %li= Settings.shop.default.timetable
+  %li= Rails.application.routes.default_url_options[:host].presence || Settings.shop.default.host

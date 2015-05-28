@@ -5,7 +5,6 @@
 #  id            :integer          not null, primary key
 #  user_id       :integer
 #  session_token :string(255)      not null
-#  total_amount  :decimal(10, 2)   default(0.0), not null
 #  created_at    :datetime
 #  updated_at    :datetime
 #
@@ -19,8 +18,9 @@ class Cart < ActiveRecord::Base
   scope :old_cart, -> { where(updated_at: 14.days.ago) }
 
   has_many :line_items, -> { order('id DESC') }, dependent: :nullify
-
   has_many :products, through: :line_items
+
+  has_one :order
 
   belongs_to :user
 

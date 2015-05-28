@@ -1,0 +1,16 @@
+.l-order
+  = render 'shared/includes/order_steps_header', active_steps: ['cart', 'delivery']
+
+  .b-delivery.b-order-steps
+    = form_for resource, method: :patch, html: { class: 'form order' } do |f|
+      = f.hidden_field :step, { value: Order.steps.keys[0] }
+      = hidden_field_tag 'order[next_step]', Order.steps.keys[1]
+
+      - Order::DELIVERIES.each do |delivery_type|
+        .form-group
+          = f.radio_button :delivery, delivery_type
+          = f.label :"delivery_#{delivery_type}", t(".#{delivery_type}")
+
+      .b-form-actions
+        = link_to t('.continue_shopping'), root_path, class: 'btn'
+        = f.submit t('next_step'), class: 'btn btn-pink'

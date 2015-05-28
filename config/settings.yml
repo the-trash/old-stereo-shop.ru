@@ -8,17 +8,39 @@ pagination:
   users: 10
   cities: 10
 
+mailers:
+  orders:
+    created:
+      admin:
+        header: На сайте оформлен заказ
+    paid:
+      admin:
+        header: Оплачен заказ
+
 shop:
+  default:
+    from: 'no-replay@sterep-shop.ru'
+    shop_name: Интернет-магазин Стереошоп
+    phone: '8 (812) 499-49-20'
+    feedback_email: post@artelectronics.ru
+    address: 'Санкт-Петербург, Каменноостровский пр., 14Б, офис 2-Н.'
+    timetable: 'Мы работаем по будням с 10-00 до 18-00'
+    host: sterep-shop.ru
   feedback:
     to: 'test@shop.ru'
     subject: Default Subject
     from: 'shop@shop.ru'
   newletter:
     subject: Default subject
+  order:
+    admins: 'post@artelectronics.ru, farid@artelectronics.ru, yana@artelectronics.ru'
+    subject:
+      created: Оформлен заказ
 
 carrierwave:
   extension_white_list:
-    files: ['csv', 'xml', 'doc', 'xls']
+    files: ['csv', 'xml', 'doc', 'xls', 'docx', 'txt', 'xlsx', 'pdf']
+    accept: '.csv, .xml, .doc, .docx, .txt, .xlsx, .pdf'
     photos: ['jpg', 'jpeg', 'png']
 
 central_bank:
