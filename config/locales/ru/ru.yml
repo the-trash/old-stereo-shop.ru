@@ -88,6 +88,7 @@ ru:
   cart_with_count: 'Корзина (%{count})'
   cart_total_amount: Сумма заказа
   catalog: Каталог
+  checkout: Оформить заказ
   chouse_category: Выберите категорию
   chouse_delivery: Выбор способа доставки
   clear: Очистить
@@ -119,6 +120,7 @@ ru:
   my_wishlist: Мой список желаний
   new_products: Новинки
   news: Новости
+  next_step: Следующий шаг
   not_available: Нет в наличии
   notificatins_mail: Уведомления на почту
   our_production: Наша продукция

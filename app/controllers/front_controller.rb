@@ -2,7 +2,7 @@ class FrontController < ApplicationController
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_variables
+  before_filter :set_variables, :store_location
 
   add_breadcrumb '', :root_path
 
@@ -10,12 +10,12 @@ class FrontController < ApplicationController
     session[:user] = {
       product_ids: []
     }
-    super
+    session[:previous_url] || super
   end
 
   def after_sign_out_path_for(resource)
     session[:user] = nil
-    super
+    session[:previous_url] || super
   end
 
   protected
@@ -78,5 +78,19 @@ class FrontController < ApplicationController
     session[:cart_token] = token unless user_signed_in?
 
     cart
+  end
+
+  def store_location
+    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    return unless request.get?
+    if (request.path != "/users/sign_in" &&
+        request.path != "/users/sign_up" &&
+        request.path != "/users/password/new" &&
+        request.path != "/users/password/edit" &&
+        request.path != "/users/confirmation" &&
+        request.path != "/users/sign_out" &&
+        !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath
+    end
   end
 end

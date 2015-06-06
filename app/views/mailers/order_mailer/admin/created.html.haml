@@ -1,0 +1,6 @@
+%h4= Settings.mailers.orders.created.admin.header
+%ul.b-user-info-list
+  - %i(user_name phone email).each do |attribute|
+    %li
+      %span=I18n.t(attribute, scope: [:activerecord, :attributes, :order])
+      = @order.send(attribute)

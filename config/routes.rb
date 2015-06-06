@@ -29,6 +29,16 @@ Rails.application.routes.draw do
 
   resources :carts, except: [:index, :edit, :new]
   resources :line_items, only: [:create, :update, :destroy]
+  resources :orders, only: [:create, :update] do
+    member do
+      get :delivery
+      get :authentification
+      get :payment
+      get :complete
+    end
+
+    get :success_complete, on: :collection
+  end
 
   resources :products, only: [:index, :show] do
     member do

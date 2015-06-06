@@ -2,11 +2,12 @@
 #
 # Table name: line_items
 #
-#  id         :integer          not null, primary key
-#  cart_id    :integer
-#  product_id :integer
-#  order_id   :integer
-#  quantity   :integer          default(1)
+#  id                    :integer          not null, primary key
+#  cart_id               :integer
+#  product_id            :integer
+#  order_id              :integer
+#  quantity              :integer          default(1)
+#  current_product_price :decimal(10, 2)   default(0.0), not null
 #
 # Indexes
 #
@@ -27,9 +28,16 @@ class LineItem < ActiveRecord::Base
 
   validates :product, presence: true
 
-  delegate :price_with_discount, :photos, :title, to: :product, prefix: true
+  delegate :title, to: :product, prefix: true
+  delegate :price_with_discount, :photos, :in_stock, to: :product
+
+  alias_method :in_stock?, :in_stock
 
   def calculated_total_amount
-    product_price_with_discount * quantity
+    price_with_discount * quantity
+  end
+
+  def update_current_product_price
+    update_attributes current_product_price: price_with_discount
   end
 end

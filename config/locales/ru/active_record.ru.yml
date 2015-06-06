@@ -80,6 +80,26 @@ ru:
         few: Рассылки новостей
         many: Рассылок новостей
         other: Рассылки новостей
+      city:
+        one: Город
+        few: Города
+        many: Городов
+        other: Города
+      region:
+        one: Регион
+        few: Регионы
+        many: Регионов
+        other: Регионы
+      order:
+        one: Заказ
+        few: Заказы
+        many: Заказов
+        other: Заказы
+      line_items:
+        one: Товарная позиция
+        few: Товарные позиции
+        many: Товарных позиций
+        other: Товарные позиции
       'product/import':
         one: Импорт продуктов
         few: Импорт продуктов
@@ -112,26 +132,29 @@ ru:
         key: Ключ
         value: Значение
       user:
-        birthday: 'День рождения'
-        email: 'E-mail'
-        first_name: 'Имя'
-        last_name: 'Фамилия'
-        middle_name: 'Отчество'
+        birthday: День рождения
+        email: E-mail
+        first_name: Имя
+        last_name: Фамилия
+        middle_name: Отчество
         full_name: Полное имя
-        password: 'Пароль'
-        password_confirmation: 'Подтверждение пароля'
-        phone: 'Номер телефона'
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        phone: Номер телефона
         city: Город
         address: Адрес доставки
         index: Индекс
         subscription_settings: Настройки рассылки
         unsubscribe: Не получать рассылки
       admin_user:
-        email: 'E-mail'
+        email: E-mail
         current_sign_in_at: Последний раз авторизован
         sign_in_count: Авторизовывался
         created_at: Создан
 
+      title_with_slug: &title_with_slug
+        title: Заголовок
+        slug: Алиас
       meta: &meta
         keywords: Ключевые слова
         seo_description: Описание
@@ -146,9 +169,8 @@ ru:
         created_at: Дата создания
         updated_at: Дата обновления
       main: &main
-        title: Заголовок
+        <<: *title_with_slug
         description: Описание
-        slug: Алиас
         state: Статус
         admin_user: Создатель
         position: Позиция
@@ -158,6 +180,11 @@ ru:
         render_type:
           select_style: В виде списка
           radio: Радио (переключатель)
+      regions_attributes: &regions_attributes
+        title: Название
+        slug: Алиас
+        vk_id: Id в ВК
+        <<: *main_date
 
       post:
         <<: *main
@@ -221,18 +248,68 @@ ru:
         body: Отзыв
         state: Статус
       newletter:
-        title: Заголовок
+        <<: *title_with_slug
         description: Вступление
         admin_user: Создатель
         post_category: Категория постов
-        created_at: Дата создания
-        updated_at: Дата обновления
+        <<: *main_date
         state: Статус
         last_delivery: Дата последний рассылки
         settings: Настройки
         posts_count: Количество постов
-        only_new_posts: 'Только новые посты?'
+        only_new_posts: Только новые посты?
         subscription_type: Тип рассылки
+      region:
+        <<: *regions_attributes
+      city:
+        <<: *regions_attributes
+        region: Регион
+      order:
+        <<: *main_date
+        user: Пользователь
+        cart: Корзина
+        city: Город
+        state: Статус
+        step: Этап
+        delivery: Способ доставки
+        payment: Способ оплаты
+        post_index: Индекс
+        user_name: Как обращаться
+        phone: Телефон
+        address: Адрес
+        total_amount: Общая сумма
+        line_items: Продукты
+        email: E-mail
+        organization_name: Нвазвание организации
+        inn: ИНН
+        kpp: КПП
+        file: Реквизиты
+        steps:
+          delivery: Выбор доставки
+          authentification: Авторизация
+          payment: Выбор способа оплаты
+          complete: Оформление завершено
+        states:
+          started: Начато оформление
+          created: Закончено оформление
+          approved: Подтвержден
+          paid: Оплачен
+          sent: Отправлен
+          arrived: Прибыл
+        payments:
+          payment_system: Электронный платеж
+          receive: При получении
+          cashless: Безналичный расчет
+        deliveries:
+          courier: Курьерская служба
+          point_of_delivery: Пункт выдачи
+          mail: Почта России
+      line_item:
+        cart: Корзина
+        product: Продукт
+        order: Заказ
+        quantity: Количество
+        current_product_price: Текущая стоимость продукта
       'product/import':
         state: Статус
         admin_user: Создатель
@@ -249,8 +326,7 @@ ru:
       'product/additional_option':
         render_type: Способ отображения
         product: Продукт
-        title: Заголовок
-        slug: Алиас
+        <<: *title_with_slug
         state: Статус
       'product/additional_options_value':
         product_additional_option: Дополнительная опция
@@ -261,17 +337,3 @@ ru:
         state: Статус
         product_attribute: Изменяемый атрибут продукта
         new_value: Новое значение
-
-    errors:
-      models:
-        'product/import_entry':
-          stores: Необходимо указать хотя бы 1 магазин
-          brand: 'Бренд не найден: %{title}'
-          store: 'Магазин не найден: %{title}'
-          price: Необходимо указать стоимость продукта
-          title: Товар должен иметь название
-          euro_price: Необходимо указать хотя бы 0
-        product:
-          attributes:
-            weight:
-              blank: должен быть заполнен

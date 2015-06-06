@@ -1,19 +1,21 @@
 %tr
   %td
     .b-single-product.cart
-      - photo = line_item.product_photos.first
+      - photo = line_item.photos.default
       - if photo
         .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
       .b-info
         %p.title= link_to line_item.product_title, line_item.product
-        %p.price= t('views.product.with_currency', coust: line_item.product_price_with_discount)
+        %p.price= t('views.product.with_currency', coust: line_item.price_with_discount)
+        - if !line_item.in_stock?
+          %p.alert-danger= t('not_available')
   %td
     = form_for line_item, html: { class: 'update-quantity form' } do |f|
       %span.arrow.arrow-left{ data: { role: :decrement }, class: ('disabled' if line_item.quantity == 1) }
       = f.text_field :quantity, class: 'quantity', data: { id: line_item.id, value: line_item.quantity }
       %span.arrow.arrow-right{ data: { role: :increment } }
   %td
-    %p.total_amount{ data: { price: line_item.product_price_with_discount } }
+    %p.total_amount{ data: { price: line_item.price_with_discount } }
       = t('views.product.with_currency', coust: line_item.calculated_total_amount)
   %td
     %ul.actions
@@ -21,5 +23,4 @@
         %i.icon.icon-clear
         = link_to t('delete'), line_item, method: :delete
       - if user_signed_in?
-        %li
-          = add_to_wishlist(line_item.product)
+        %li= add_to_wishlist(line_item.product)

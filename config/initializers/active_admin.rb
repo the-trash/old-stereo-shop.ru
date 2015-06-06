@@ -201,6 +201,7 @@ ActiveAdmin.setup do |config|
         menu.add label: I18n.t('active_admin.custom_menu.users'), url: '#', priority: 1
         menu.add label: I18n.t('active_admin.custom_menu.products'), url: '#', priority: 2
         menu.add label: I18n.t('active_admin.custom_menu.posts'), url: '#', priority: 3
+        menu.add label: I18n.t('active_admin.custom_menu.cities'), url: '#', priority: 4
       end
     end
 

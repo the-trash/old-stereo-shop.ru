@@ -70,6 +70,14 @@
 
   .form-group {
     margin-bottom: 15px;
+    .get-cities {
+      width: $inputsWidth;
+    }
+    .select2-choices {
+      @include box-sizing(border-box);
+      border: 1px solid $gray;
+      background-image: none;
+    }
   }
 
   .help-block {
@@ -95,6 +103,11 @@
           font-size: 14px;
         }
       }
+    }
+  }
+  &.checkout {
+    input[type="submit"] {
+      margin-top: 10px;
     }
   }
 }
