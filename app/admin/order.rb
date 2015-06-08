@@ -42,7 +42,7 @@ ActiveAdmin.register Order do
         [
           content_tag(:li, I18n.t('active_admin.views.orders.created_at', date: I18n.l(order.created_at, format: :long)).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.total_amount', total_amount: order.total_amount).html_safe),
-          content_tag(:li, I18n.t('active_admin.views.orders.city', city_title: order.city_title).html_safe),
+          content_tag(:li, I18n.t('active_admin.views.orders.city', city_title: (order.city ? order.city_title : '')).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.address', address: order.address).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.post_index', post_index: order.post_index).html_safe)
         ].join('').html_safe
@@ -53,7 +53,7 @@ ActiveAdmin.register Order do
         [
           content_tag(:li, I18n.t('active_admin.views.orders.user_name', user_name: order.user_name).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.phone', phone: order.phone).html_safe),
-          content_tag(:li, I18n.t('active_admin.views.orders.email', email: order.email).html_safe)
+          content_tag(:li, I18n.t('active_admin.views.orders.email', email: (order.user ? order.email : '')).html_safe)
         ].join('').html_safe
       end
 
