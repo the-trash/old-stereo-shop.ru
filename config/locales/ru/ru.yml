@@ -93,6 +93,7 @@ ru:
   chouse_delivery: Выбор способа доставки
   clear: Очистить
   clear_cart: Очистить корзину
+  continue_make_order: Продолжить оформление заказа
   cities:
     spb: Санкт-Петербург
     moscow: Москва

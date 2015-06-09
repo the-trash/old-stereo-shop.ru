@@ -1,5 +1,5 @@
 class NewletterMailer < ActionMailer::Base
-  default from: Setting.find_by(key: 'shop_from_email') || Settings.shop.feedback.from
+  default from: Setting.find_by(key: 'shop_from_email') || Settings.shop.default.from
 
   def newletter(user, newletter)
     @posts =

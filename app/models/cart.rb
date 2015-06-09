@@ -20,11 +20,13 @@ class Cart < ActiveRecord::Base
   has_many :line_items, -> { order('id DESC') }, dependent: :nullify
   has_many :products, through: :line_items
 
-  has_one :order
+  has_one :order, dependent: :nullify
 
   belongs_to :user
 
   validates :session_token, presence: true
+
+  delegate :step, to: :order, prefix: true
 
   def add_product(product_id)
     current_line = line_items.find_by('line_items.product_id = ?', product_id)

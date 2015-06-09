@@ -50,7 +50,6 @@ class Order < ActiveRecord::Base
 
   validates :delivery, inclusion: { in: DELIVERIES }
   validates :payment, inclusion: { in: PAYMENTS }
-  validates :cart, presence: true
   validates :user_name, :phone, :city, :address, :post_index, presence: true, if: [:authentification?, :started?]
   # TODO fix me, you should check validation in spec
   validates :file, :inn, :kpp, :organization_name, presence: true, if: [:payment?, :cashless?]
