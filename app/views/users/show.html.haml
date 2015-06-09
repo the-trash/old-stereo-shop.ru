@@ -2,6 +2,26 @@
   = render 'users/includes/header_menu'
   .b-user-settings-menu
     = render 'users/includes/menu', user: @user
-  .b-user-settings-content
-    - if controller.controller_name == 'settings'
-      = render template: "users/settings/#{ controller.action_name }"
+
+  .l-user-orders
+    %h4= t('views.users.order_history')
+
+    - if @orders.any?
+      %table.b-orders-list.table.table-bordered
+        %thead
+          %tr
+            %th= t('order_number')
+            %th= t('order_line_items')
+            %th= t('order_total_amount')
+            %th= t('order_state')
+            %th= t('order_delivery')
+        %tbody
+          = render partial: 'users/includes/order', collection: @orders, as: :order
+
+      = will_paginate @orders
+    - else
+      %ul
+        %li
+          %span= t('orders_not_yet')
+        %li= link_to t('go_to_main'), root_path
+        %li= link_to t('go_to_wishlist'), [current_user, :wishlists]

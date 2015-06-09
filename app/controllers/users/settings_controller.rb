@@ -4,22 +4,22 @@ class Users::SettingsController < UsersController
 
   def profile
     add_breadcrumb I18n.t('views.users.settings.profile')
-    render :show
+    render :settings
   end
 
   def mail
     add_breadcrumb I18n.t('views.users.settings.mail')
-    render :show
+    render :settings
   end
 
   def password
     add_breadcrumb I18n.t('views.users.settings.password')
-    render :show
+    render :settings
   end
 
   def subscriptions
     add_breadcrumb I18n.t('views.users.settings.subscriptions')
-    render :show
+    render :settings
   end
 
   private

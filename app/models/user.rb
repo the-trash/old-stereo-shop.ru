@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
     inverse_of: :user
 
   has_many :reviews, dependent: :destroy
+  has_many :orders, dependent: :nullify
   has_many :wishes, dependent: :destroy do
     def product_exists?(product_id)
       exists?(product_id: product_id)

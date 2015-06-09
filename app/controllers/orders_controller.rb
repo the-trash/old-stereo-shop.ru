@@ -4,6 +4,8 @@ class OrdersController < FrontController
   actions :create, :update
   custom_actions  resource: [:delivery, :authenticate, :payment]
 
+  before_filter :check_access_to_order, except: [:create, :success_complete]
+
   def create
     create! do |success, failure|
       success.html do
@@ -83,5 +85,9 @@ class OrdersController < FrontController
 
   def next_step
     params[:order][:next_step]
+  end
+
+  def check_access_to_order
+    authorize resource, :update?
   end
 end

@@ -1,8 +1,8 @@
 %ul.profile-menu
-  %li{ class: settings_active_class(controller, 'users', %w(show order_history)) }
-    = link_to t('views.users.order_history'), '#'
+  %li{ class: settings_active_class(controller, 'users', %w(show)) }
+    = link_to t('views.users.order_history'), user
   %li{ class: settings_active_class(controller, 'settings', %w(profile mail password subscriptions)) }
-    = link_to t('views.users.settings.self'), '#'
+    = link_to t('views.users.settings.self'), [:settings, :profile, user]
     %ul.profile-menu.settings
       %li{ class: settings_active_class(controller, 'settings', %w(profile))}
         = link_to t('views.users.settings.profile'), [:settings, :profile, user]

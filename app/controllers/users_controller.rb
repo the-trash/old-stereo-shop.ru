@@ -7,6 +7,9 @@ class UsersController < FrontController
     authorize @user
 
     add_breadcrumb I18n.t('my_profile')
+
+    @orders = @user.orders.includes(:line_items, cart: :line_items)
+      .paginate(page: params[:page], per_page: Settings.pagination.orders)
   end
 
   def you_watched

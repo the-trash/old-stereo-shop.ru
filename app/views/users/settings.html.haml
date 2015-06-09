@@ -1,0 +1,7 @@
+.b-user-profile
+  = render 'users/includes/header_menu'
+  .b-user-settings-menu
+    = render 'users/includes/menu', user: @user
+
+  .b-user-settings-content
+    = render template: "users/settings/#{ controller.action_name }"

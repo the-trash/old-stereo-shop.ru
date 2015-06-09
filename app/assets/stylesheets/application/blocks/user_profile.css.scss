@@ -5,7 +5,7 @@
       margin-right: 10px;
     }
   }
-  .b-user-settings-menu, .b-user-settings-content {
+  .b-user-settings-menu, .b-user-settings-content, .l-user-orders {
     float: left;
   }
   .b-user-settings-menu {
@@ -32,11 +32,13 @@
       }
     }
   }
-  .b-user-settings-content {
+  .b-user-settings-content, .l-user-orders {
     width: $containerWidth - $userProfileLeftMenyWidth;
     h4 {
       margin-top: 0;
     }
+  }
+  .b-user-settings-content {
     .sybscription-types-list {
       @include inline-block();
     }

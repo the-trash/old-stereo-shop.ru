@@ -124,6 +124,12 @@ ru:
   next_step: Следующий шаг
   not_available: Нет в наличии
   notificatins_mail: Уведомления на почту
+  order_delivery: Способ доставки
+  order_line_items: Продукция
+  order_number: Номер
+  order_state: Статус
+  order_total_amount: Сумма заказа
+  orders_not_yet: Пока у вас нет истории заказов
   our_production: Наша продукция
   page_not_found: Страница не найдена
   phone: Телефон
