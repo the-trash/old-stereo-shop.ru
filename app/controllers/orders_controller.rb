@@ -1,10 +1,15 @@
 class OrdersController < FrontController
   inherit_resources
 
-  actions :create, :update
+  actions :create, :update, :show
   custom_actions  resource: [:delivery, :authenticate, :payment]
 
-  before_filter :check_access_to_order, except: [:create, :success_complete]
+  before_filter :check_access_to_order, except: [:create, :success_complete, :show]
+
+  def show
+    authorize resource, :show?
+    show!
+  end
 
   def create
     create! do |success, failure|

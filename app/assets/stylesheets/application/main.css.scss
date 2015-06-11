@@ -11,6 +11,7 @@
 @import "base/helpers";
 @import "base/theme";
 @import "base/tables";
+@import "base/typography";
 
 @import "global/search_bar";
 @import "global/user_widget";
@@ -20,6 +21,7 @@
 @import "global/form";
 
 @import "elements/order_steps";
+@import "elements/images";
 
 @import "blocks/product/single_product";
 @import "blocks/product/retable_with_reviews";

@@ -2,9 +2,8 @@
   display: table;
   float: left;
   &:last-child { margin-right: 0; }
-  .e-image, .b-info { float: left; }
-  .e-image { border: 1px solid $gainsborough; }
   .b-info {
+    float: left;
     p {
       font-size: 18px;
       &.price {

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :carts, except: [:index, :edit, :new]
   resources :line_items, only: [:create, :update, :destroy]
-  resources :orders, only: [:create, :update] do
+  resources :orders, only: [:create, :update, :show] do
     member do
       get :delivery
       get :authentification

@@ -1,0 +1,12 @@
+.e-image {
+  border: 1px solid $gainsborough;
+  float: left;
+  &.related {
+    width: 168px;
+    height: 108px;
+  }
+  &.similar {
+    width: $catalogImageWidth;
+    height: 175px;
+  }
+}

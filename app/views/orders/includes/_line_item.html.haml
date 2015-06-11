@@ -1,0 +1,8 @@
+%tr
+  %td
+    - photo = line_item.photos.default
+    - if photo
+      .e-image.related{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
+  %td= link_to line_item.product_title, line_item.product
+  %td= line_item.quantity
+  %td= t('views.product.with_currency', coust: line_item.calculated_total_amount )

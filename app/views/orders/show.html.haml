@@ -1,0 +1,22 @@
+.l-order
+  %h3= t('.payment')
+  .b-user-info
+    %dl.dl-horizontal
+      %dt= t('.user_name')
+      %dd= resource.user_name
+      %dt= t('.order_number')
+      %dd= resource.id
+      %dt= t('.payment_type')
+      %dd= I18n.t(resource.payment, scope: [:activerecord, :attributes, :order, :payments])
+      %dt= t('.delivery_type')
+      %dd= I18n.t(resource.delivery, scope: [:activerecord, :attributes, :order, :deliveries])
+  .b-order-line-items
+    %table.table.table-hover.table-bordered
+      %thead
+        %tr
+          %th
+          %th= t('.product_title')
+          %th= t('.quantity')
+          %th= t('.total_amount')
+      %tbody
+        = render partial: 'orders/includes/line_item', collection: resource.line_items.includes(:product), as: :line_item

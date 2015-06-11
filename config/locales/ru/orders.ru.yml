@@ -25,3 +25,12 @@ ru:
     success_complete:
       order_complete: Поздравляем, Ваш заказ оформлен!
       user_message: Вам на почту отправлена информация по заказу. Если вы долго не получаете письма, проверьте папку "Спам".
+    show:
+      payment: Оплата
+      user_name: Покупатель
+      order_number: Заказ №
+      product_title: Продукт
+      quantity: Количество
+      total_amount: Полная стоимость
+      payment_type: Способ оплаты
+      delivery_type: Способ доставки
