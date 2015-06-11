@@ -40,6 +40,13 @@ Rails.application.routes.draw do
     get :success_complete, on: :collection
   end
 
+  resources :payments, only: [] do
+    collection do
+      post :check
+      post :status
+    end
+  end
+
   resources :products, only: [:index, :show] do
     member do
       post :add_review

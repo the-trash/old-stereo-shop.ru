@@ -20,3 +20,23 @@
           %th= t('.total_amount')
       %tbody
         = render partial: 'orders/includes/line_item', collection: resource.line_items.includes(:product), as: :line_item
+
+  .l-order-payment-form
+    = payment_service_for resource.id,
+        Settings.yandex_cashbox.shop_id,
+        amount: resource.total_amount,
+        currency: Settings.yandex_cashbox.currency_code,
+        service: :yandex_cashbox do |s|
+
+      - s.scid Settings.yandex_cashbox.scid
+      - s.customer_number resource.email
+      - s.order_number resource.id
+      - s.payment_type Settings.yandex_cashbox.payment_type
+
+      - s.customer email: resource.email,
+        phone: resource.phone
+
+      - s.urls success: root_path,
+        fail: root_path
+
+      = submit_tag t('.pay'), class: 'btn btn-pink pull-right'

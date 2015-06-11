@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601134909) do
+ActiveRecord::Schema.define(version: 20150616065040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -234,6 +234,29 @@ ActiveRecord::Schema.define(version: 20150601134909) do
   add_index "pages", ["admin_user_id"], name: "index_pages_on_admin_user_id", using: :btree
   add_index "pages", ["slug"], name: "index_pages_on_slug", using: :btree
   add_index "pages", ["state"], name: "index_pages_on_state", using: :btree
+
+  create_table "payment_transactions", force: true do |t|
+    t.integer  "invoice_id"
+    t.integer  "shop_id"
+    t.integer  "order_number"
+    t.integer  "order_sum_currency_paycash"
+    t.integer  "shop_sum_currency_paycash"
+    t.integer  "order_sum_bank_paycash"
+    t.integer  "shop_sum_bank_paycash"
+    t.decimal  "order_sum_amount",           precision: 10, scale: 2, default: 0.0, null: false
+    t.decimal  "shop_sum_amount",            precision: 10, scale: 2, default: 0.0, null: false
+    t.string   "payment_payer_code"
+    t.string   "customer_number"
+    t.string   "payment_type"
+    t.string   "cps_user_country_code"
+    t.string   "md5"
+    t.datetime "request_datetime"
+    t.datetime "order_created_datetime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_transactions", ["order_number"], name: "index_payment_transactions_on_order_number", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "photoable_id"

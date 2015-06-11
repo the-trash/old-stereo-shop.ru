@@ -1,2 +1,6 @@
 redis:
   port: 6400
+
+yandex_cashbox:
+  mode: :production
+  production_ips: ['77.75.157.168', '77.75.157.169', '77.75.159.166', '77.75.159.170']

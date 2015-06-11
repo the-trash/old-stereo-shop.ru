@@ -125,6 +125,11 @@ ru:
         few: Изменяемые атрибуты продукта
         many: Изменяемых атрибутов продукта
         other: Изменяемые атрибуты продукта
+      transaction:
+        one: Транзакция
+        few: Транзакций
+        many: Транзакций
+        other: Транзакции
     attributes:
       setting:
         description: Описание
@@ -284,6 +289,7 @@ ru:
         inn: ИНН
         kpp: КПП
         file: Реквизиты
+        transition: Транзакция
         steps:
           delivery: Выбор доставки
           authentification: Авторизация
@@ -337,3 +343,23 @@ ru:
         state: Статус
         product_attribute: Изменяемый атрибут продукта
         new_value: Новое значение
+      # https://money.yandex.ru/doc.xml?id=526537 - table 4.2.1.
+      transaction:
+        invoice_id: Номер транзакции
+        customer_number: Идентификатор плательщика
+        shop_id: Идентификатор Контрагента
+        order_number: Номер заказа
+        payment_payer_code: Номер счета в ИС Оператора
+        order_sum_currency_paycash: Код валюты для суммы заказа
+        shop_sum_currency_paycash: Код валюты для суммы к выплате
+        order_sum_bank_paycash: Код процессингового центра Оператора
+        shop_sum_bank_paycash: Код процессингового центра Оператора для суммы к выплате
+        order_sum_amount: Стоимость заказа
+        shop_sum_amount: Сумма к выплате Контрагенту на р/с
+        payment_type: Способ оплаты заказа
+        cps_user_country_code: Код страны плательщика
+        md5: MD5-хэш параметров платежной формы
+        request_datetime: Момент формирования запроса в ИС Оператора
+        order_created_datetime: Момент регистрации заказа в ИС Оператора
+        order: Заказ
+        <<: *main_date

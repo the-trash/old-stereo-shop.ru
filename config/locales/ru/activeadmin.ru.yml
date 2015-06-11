@@ -139,6 +139,7 @@ ru:
       back_to_site: Сайт
       admin: Админка
       cities: Города
+      orders: Заказы
     controller:
       actions:
         update: Запись успешно обновлена

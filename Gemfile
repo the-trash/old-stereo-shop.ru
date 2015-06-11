@@ -49,6 +49,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'pundit'
 
+gem 'activemerchant', '1.43.3', require: 'active_merchant'
 gem 'activerecord-import'
 gem 'acts_as_list'
 gem 'ancestry'
@@ -88,21 +89,18 @@ group :development do
   gem 'capistrano3-unicorn'
   gem 'foreman'
   gem 'fuubar'
-  gem 'guard'
-  gem 'guard-livereload', require: false
   gem 'letter_opener'
   gem 'meta_request'
-  gem 'pry'
-  gem 'pry-rails'
   gem 'thin'
   gem 'traceroute'
 end
 
 group :development, :test do
-  gem 'faker'
-  gem 'guard-spring'
-  gem 'spring'
   gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'spring'
 end
 
 group :test do
