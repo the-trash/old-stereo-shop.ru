@@ -93,6 +93,11 @@ class OrdersController < FrontController
   end
 
   def check_access_to_order
-    authorize resource, :update?
+    if user_signed_in?
+      authorize resource, :update?
+    else
+      cart = Cart.find_by session_token: session[:cart_token]
+      raise Pundit::NotAuthorizedError unless cart && resource.cart.id == cart.id
+    end
   end
 end
