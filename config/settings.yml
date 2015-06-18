@@ -17,6 +17,13 @@ mailers:
     paid:
       admin:
         header: Оплачен заказ
+    approved:
+      user:
+        header: Ваш заказ одобрен
+        body:
+          payment_system: 'Вы можете его оплатить по ссылке: %{payment_link}'
+          receive: Оплата для курьера
+          cashless: Оплата для юр. лиц
 
 shop:
   default:
@@ -49,3 +56,12 @@ central_bank:
     range: 'http://www.cbr.ru/scripts/XML_dynamic.asp'
   currency_code:
     eur: 'R01239'
+
+yandex_cashbox:
+  url:
+    test: https://demomoney.yandex.ru/eshop.xml
+    production: https://demomoney.yandex.ru/eshop.xml
+  shop_id: 42821
+  shop_password: 6MtsWFPQmsshRXcZ
+  currency_code: 643
+  production_ips: ['77.75.157.166', '77.75.157.170']

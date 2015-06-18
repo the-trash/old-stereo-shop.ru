@@ -32,5 +32,7 @@ module Stereoshop
     ActionMailer::Base.prepend_view_path("#{ config.root }/app/views/mailers/")
 
     CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
+    ActiveMerchant::Billing::Base.mode = Settings.yandex_cashbox.mode
   end
 end

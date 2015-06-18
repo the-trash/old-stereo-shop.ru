@@ -1,7 +1,9 @@
 ActiveAdmin.register Order do
+  menu parent: I18n.t('active_admin.custom_menu.orders'), priority: 1
+
   actions :index, :edit, :update
 
-  permit_params :address, :phone, :user_name, :post_index, :step, :payment,
+  permit_params :address, :phone, :user_name, :post_index, :step, :payment, :state,
     :total_amount, :city_id, :delivery, :organization_name, :inn, :kpp, :file,
     line_items_attributes: [:id, :_destroy, :product_id, :quantity, :current_product_price]
 

@@ -44,6 +44,8 @@ class Order < ActiveRecord::Base
 
   has_many :line_items, -> { order('id DESC') }, dependent: :nullify
 
+  has_one :payment_transaction, dependent: :destroy, foreign_key: 'order_number'
+
   belongs_to :cart
   belongs_to :user
   belongs_to :city

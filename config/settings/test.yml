@@ -1,2 +1,8 @@
 redis:
   port: 6379
+
+yandex_cashbox:
+  mode: :test
+  scid: 63048
+  shop_id: 42821
+  production_ips: []
