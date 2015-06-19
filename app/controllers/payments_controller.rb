@@ -1,6 +1,8 @@
 class PaymentsController < ApplicationController
   force_ssl
 
+  skip_before_action :verify_authenticity_token
+
   before_filter :add_payment_action
   before_filter :set_notification
   before_filter :set_order, only: [:status]
