@@ -66,10 +66,6 @@ class Product < ActiveRecord::Base
 
   acts_as_list
 
-  after_create :increment_product_category_cache_counters
-  after_destroy :decrement_product_category_cache_counters
-
-  before_save :recalculate_product_category_cache_counters, if: :state_changed?
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
   before_save :recalculate_price_for_the_euro, if: :need_recalculate_price?
   before_save :generate_sku, unless: :sku?
@@ -142,25 +138,12 @@ class Product < ActiveRecord::Base
 
   private
 
-  def increment_product_category_cache_counters
-    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
-  end
-
-  def decrement_product_category_cache_counters
-    ProductCategory.decrement_counter(:"#{ state }_products_count", product_category.id)
-  end
-
-  def recalculate_product_category_cache_counters
-    ProductCategory.decrement_counter(:"#{ state_was }_products_count", product_category.id)
-    ProductCategory.increment_counter(:"#{ state }_products_count", product_category.id)
-  end
-
   def ensure_not_referenced_by_any_line_items
     if line_items.any?
       errors.add(:base, I18n.t('product_in_cart'))
-      return false
+      false
     else
-      return true
+      true
     end
   end
 

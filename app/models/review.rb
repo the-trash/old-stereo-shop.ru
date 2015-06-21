@@ -30,11 +30,6 @@ class Review < ActiveRecord::Base
     where(updated_at: [7.days.ago..DateTime.now] ).order(id: :desc).limit(limit)
   }
 
-  after_create :increment_recallable_cache_counters, if: :recallable_type_product?
-  after_destroy :decrement_recallable_cache_counters, if: :recallable_type_product?
-
-  before_save :recalculate_product_cache_counters, if: [:state_changed?, :recallable_type_product?]
-
   belongs_to :recallable, polymorphic: true, counter_cache: true
 
   belongs_to :user, counter_cache: true
@@ -43,23 +38,4 @@ class Review < ActiveRecord::Base
   validates :recallable, :body, :user_id, :rating_id, presence: true
 
   delegate :score, to: :rating, prefix: true
-
-  private
-
-  def recallable_type_product?
-    recallable_type == 'Product'
-  end
-
-  def increment_recallable_cache_counters
-    Product.increment_counter(:"#{ state }_reviews_count", recallable_id)
-  end
-
-  def decrement_recallable_cache_counters
-    Product.decrement_counter(:"#{ state }_reviews_count", recallable_id)
-  end
-
-  def recalculate_product_cache_counters
-    Product.decrement_counter(:"#{ state_was }_reviews_count", recallable_id)
-    Product.increment_counter(:"#{ state }_reviews_count", recallable_id)
-  end
 end
