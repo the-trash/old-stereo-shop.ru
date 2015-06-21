@@ -4,6 +4,6 @@ class OrderPolicy < Struct.new(:current_user, :order)
   end
 
   def show?
-    current_user && current_user.order_ids.include?(order.id)
+    current_user && current_user.order_ids.include?(order.id) && order.approved?
   end
 end
