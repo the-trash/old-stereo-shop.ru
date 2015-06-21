@@ -27,7 +27,7 @@ mailers:
 
 shop:
   default:
-    from: 'no-replay@sterep-shop.ru'
+    from: 'no-reply@sterep-shop.ru'
     shop_name: Интернет-магазин Стереошоп
     phone: '8 (812) 499-49-20'
     feedback_email: post@artelectronics.ru
