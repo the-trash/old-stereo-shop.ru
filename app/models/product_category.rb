@@ -47,7 +47,7 @@ class ProductCategory < ActiveRecord::Base
   has_many :products, dependent: :destroy
   STATES.each_with_index do |st, i|
     has_many :"#{ st }_products",
-      -> { where(state: i + 1) },
+      -> { where(state: i) },
       class_name: 'Product',
       dependent: :destroy
   end

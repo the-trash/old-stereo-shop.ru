@@ -98,7 +98,7 @@ class Product < ActiveRecord::Base
   has_many :reviews, dependent: :destroy, as: :recallable
   STATES.each_with_index do |st, i|
     has_many :"#{ st }_reviews",
-      -> { where(state: i + 1) },
+      -> { where(state: i) },
       class_name: 'Review',
       dependent: :destroy,
       as: :recallable
