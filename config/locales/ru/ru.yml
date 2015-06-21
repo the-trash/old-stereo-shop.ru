@@ -81,7 +81,7 @@ ru:
   are_you_sure: Вы уверены?
   ask_a_question: Задать вопрос
   authentication: Авторизация
-  authentication_help_info: 'Вход/Регистрация илипокупка без регистрации'
+  authentication_help_info: 'Вход/Регистрация или покупка без регистрации'
   blank: Пусто
   brands: Бренды
   cart: Корзина

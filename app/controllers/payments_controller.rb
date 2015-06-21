@@ -33,6 +33,12 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def fail
+  end
+
+  def success
+  end
+
   private
 
   def transaction_params

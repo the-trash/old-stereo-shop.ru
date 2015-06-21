@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     collection do
       post :check
       post :status
+      get :fail
+      get :success
     end
   end
 

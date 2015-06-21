@@ -1,8 +1,8 @@
 class CartsController < FrontController
   before_filter :alien_cart
-  before_action :empty_cart, only: :show
 
   def show
+    render @cart.empty_cart? ? :empty : :show
   end
 
   def update
@@ -17,10 +17,6 @@ class CartsController < FrontController
 
   def alien_cart
     redirect_to [:root], flash: { error: I18n.t('alien_cart') } if alien_cart?
-  end
-
-  def empty_cart
-    render :empty if @cart.line_items.empty?
   end
 
   def alien_cart?

@@ -36,7 +36,7 @@
       - s.customer email: resource.email,
         phone: resource.phone
 
-      - s.urls success: root_path,
-        fail: root_path
+      - s.urls success: success_payments_url,
+        fail: fail_payments_url
 
       = submit_tag t('.pay'), class: 'btn btn-pink pull-right'
