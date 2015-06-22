@@ -10,8 +10,8 @@ FactoryGirl.define do
     price { Random.new.rand(10..100) }
     discount { Random.new.rand(1..9) }
     meta { generate :meta }
-    euro_price { Random.new.rand(10..100) }
-    euro_rate { Random.new.rand(10..100) }
+    euro_price { Random.new.rand(10.5..100.1) }
+    euro_rate { Random.new.rand(10.5..100.1) }
     properties { generate :properties }
 
     transient do

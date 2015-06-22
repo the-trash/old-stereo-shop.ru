@@ -11,7 +11,8 @@ class Recurring::CentralBankUpdateAttitudeEuroByRub
     eur_value = cb.current_euro_rate
 
     Product.published.with_euro_price.find_each do |product|
-      product.update_columns({ price: product.euro_price * eur_value, euro_rate: eur_value})
+      price = (product.euro_price * eur_value).round
+      product.update_columns({ price: price, euro_rate: eur_value})
     end if eur_value.nonzero?
   end
 end
