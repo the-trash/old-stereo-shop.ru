@@ -1,5 +1,6 @@
 describe Products::IndexQuery do
   let!(:brand) { create :brand }
+  let!(:product_with_zero_price) { create :product, :with_zero_price, brand: brand }
   let!(:published_product) { create :product, brand: brand, title: 'published product' }
   let!(:draft) { create :product, :draft, title: 'drat product' }
 
@@ -8,6 +9,7 @@ describe Products::IndexQuery do
   shared_examples_for 'result should contain correct result' do
     specify { expect(subject).to include(published_product) }
     specify { expect(subject).not_to include(draft) }
+    specify { expect(subject).not_to include(product_with_zero_price) }
   end
 
   shared_examples_for 'result should not contain draft products' do

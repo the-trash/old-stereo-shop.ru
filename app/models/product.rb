@@ -46,6 +46,7 @@ class Product < ActiveRecord::Base
   ALLOWED_ATTRIBUTES = %i(title description price discount)
 
   scope :with_discount, -> { where('discount > 0') }
+  scope :with_price_larger_than_value, -> (value = 0) { where('price > :value', value: value) }
   scope :popular, -> { order(average_score: :desc) }
   scope :new_products, -> { order(created_at: :desc) }
   scope :price_reduction, -> { order_by_price('DESC') }
