@@ -27,13 +27,13 @@ mailers:
 
 shop:
   default:
-    from: 'no-reply@sterep-shop.ru'
+    from: 'no-reply@stereo-shop.ru'
     shop_name: Интернет-магазин Стереошоп
     phone: '8 (812) 499-49-20'
     feedback_email: post@artelectronics.ru
     address: 'Санкт-Петербург, Каменноостровский пр., 14Б, офис 2-Н.'
     timetable: 'Мы работаем по будням с 10-00 до 18-00'
-    host: sterep-shop.ru
+    host: stereo-shop.ru
   feedback:
     to: 'post@artelectronics.ru'
     subject: Обратная связь
