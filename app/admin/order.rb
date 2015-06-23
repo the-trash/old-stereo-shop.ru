@@ -99,7 +99,11 @@ ActiveAdmin.register Order do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs I18n.t('active_admin.views.main') do
-      f.input :city
+      f.form_buffers.last <<
+        f.template.content_tag(:li, class: 'input required stringish') do
+          f.template.content_tag(:label, (I18n.t('activerecord.attributes.order.city') + content_tag(:abbr, '*', title: 'required')).html_safe, class: 'label', for: 'order_city') +
+          f.template.content_tag(:input, nil, type: 'hidden', id: 'order_city', name: 'order[city]', data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities', value: resource.city.try(:id))
+        end
       f.input :address
       f.input :phone
       f.input :user_name

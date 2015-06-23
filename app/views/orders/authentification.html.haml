@@ -16,7 +16,7 @@
 
         .form-group
           = f.label :city_id, t('.city'), class: 'required'
-          = f.hidden_field :city_id, { data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
+          = f.hidden_field :city_id, { value: current_user.city_id, data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
 
         .form-group
           = f.label :address, t('.address'), class: 'required'

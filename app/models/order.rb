@@ -42,6 +42,8 @@ class Order < ActiveRecord::Base
   enum delivery: DELIVERIES
   enum payment: PAYMENTS
 
+  scope :desc_ordered, -> { order id: :desc }
+
   has_many :line_items, -> { order('id DESC') }, dependent: :nullify
 
   has_one :payment_transaction, dependent: :destroy, foreign_key: 'order_number'
@@ -119,7 +121,8 @@ class Order < ActiveRecord::Base
 
   def make_order_completed
     transaction do
-      update_columns step: 'complete', total_amount: cart_total_amount
+      complete!
+      update_column :total_amount, cart_total_amount
       set_current_products_price_to_line_items
       assing_line_items_to_order
     end

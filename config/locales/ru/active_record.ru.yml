@@ -125,7 +125,7 @@ ru:
         few: Изменяемые атрибуты продукта
         many: Изменяемых атрибутов продукта
         other: Изменяемые атрибуты продукта
-      transaction:
+      payment_transaction:
         one: Транзакция
         few: Транзакций
         many: Транзакций
@@ -289,7 +289,7 @@ ru:
         inn: ИНН
         kpp: КПП
         file: Реквизиты
-        transition: Транзакция
+        payment_transaction: Транзакция
         steps:
           delivery: Выбор доставки
           authentification: Авторизация
@@ -344,7 +344,7 @@ ru:
         product_attribute: Изменяемый атрибут продукта
         new_value: Новое значение
       # https://money.yandex.ru/doc.xml?id=526537 - table 4.2.1.
-      transaction:
+      payment_transaction:
         invoice_id: Номер транзакции
         customer_number: Идентификатор плательщика
         shop_id: Идентификатор Контрагента

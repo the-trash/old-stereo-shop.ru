@@ -11,6 +11,7 @@ describe Order do
     specify { expect{ subject }.to change { order.state }.from('started').to('created') }
     specify { expect{ subject }.to change { order.line_items.count }.from(0).to(cart.line_items.size) }
     specify { expect{ subject }.to change { cart.reload.line_items.count }.from(3).to(0) }
+    specify { expect{ subject }.to change { order.step }.to('complete') }
     specify do
       expect{ subject }.to change { line_item.reload.current_product_price }.from(0.0).to(product_price)
     end

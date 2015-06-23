@@ -4,6 +4,7 @@
   = require select2_locale_ru
   = require_tree ./admin
   = require jquery.raty
+  = require application/helpers/cities_select
 ###
 
 $(document).ready ->
@@ -16,3 +17,7 @@ $(document).ready ->
     $(@).raty
       score: $(@).data('score')
       readOnly: true
+
+  if $('.get-cities').length
+    new CitiesSelect
+      el: $('.get-cities')

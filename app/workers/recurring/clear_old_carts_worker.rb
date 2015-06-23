@@ -9,5 +9,6 @@ class Recurring::ClearOldCartsWorker
   def perform
     Cart.old_cart.destroy_all
     LineItem.broken_position.destroy_all
+    Order.where(user_id: nil, cart_id: nil).destroy_all
   end
 end

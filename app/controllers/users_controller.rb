@@ -8,7 +8,7 @@ class UsersController < FrontController
 
     add_breadcrumb I18n.t('my_profile')
 
-    @orders = @user.orders.includes(:line_items, cart: :line_items)
+    @orders = @user.orders.includes(:line_items, cart: :line_items).desc_ordered
       .paginate(page: params[:page], per_page: Settings.pagination.orders)
   end
 
