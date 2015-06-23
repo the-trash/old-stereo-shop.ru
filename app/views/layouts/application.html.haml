@@ -8,6 +8,8 @@
     %title= @front_presenter.meta[:seo_title]
     %meta{name: :keywords, content: @front_presenter.meta[:keywords]}
     %meta{name: :description, content: @front_presenter.meta[:seo_description]}
+    - if Rails.env.production?
+      %meta{name: 'yandex-verification', content: '7a36516f56ed1101'}
 
     = favicon_link_tag 'favicon.png', type: 'image/png'
     = csrf_meta_tags
