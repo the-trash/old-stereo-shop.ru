@@ -3,6 +3,7 @@
   = require jquery_ujs
   = require jquery.gray.min
   = require select2
+  = require select2_locale_ru
   = require_directory ./application/helpers
   = require_directory ./application/blocks
   = require jquery.raty

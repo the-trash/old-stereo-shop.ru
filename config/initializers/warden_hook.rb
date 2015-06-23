@@ -2,7 +2,7 @@ Warden::Manager.after_authentication do |user, auth, opts|
   session = auth.env['rack.session']
 
   # assign current session cart to user
-  if session[:cart_token].present?
+  if session[:cart_token].present? && user.class.name != 'AdminUser'
     cart = Cart.find_by session_token: session[:cart_token]
 
     ActiveRecord::Base.transaction do

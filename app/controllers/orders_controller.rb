@@ -97,7 +97,7 @@ class OrdersController < FrontController
       authorize resource, :update?
     else
       cart = Cart.find_by session_token: session[:cart_token]
-      raise Pundit::NotAuthorizedError unless cart && resource.cart.id == cart.id
+      raise Pundit::NotAuthorizedError unless cart && resource.cart.try(:id) == cart.id
     end
   end
 end
