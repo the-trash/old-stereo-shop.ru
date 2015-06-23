@@ -60,7 +60,6 @@ class Order < ActiveRecord::Base
   validate :not_cach_payment, if: [:payment?, :mail?, :receive?]
 
   delegate :total_amount, :line_items, to: :cart, prefix: true
-  delegate :email, to: :user
   delegate :region, :region_title, to: :city
   delegate :title, to: :city, prefix: true
   delegate :line_items, to: :cart, prefix: true
@@ -115,6 +114,10 @@ class Order < ActiveRecord::Base
 
   def self.state_names
     state_machine.states.map(&:name)
+  end
+
+  def email
+    user ? user.email : 'empty-user@empty-email.ru'
   end
 
   private
