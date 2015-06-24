@@ -40,8 +40,7 @@ describe PaymentsController do
       shopSumBankPaycash: order_sum_bank_paycash,
       orderNumber: order_number,
       action: action,
-      payment_action: payment_action,
-      format: 'xml'
+      payment_action: payment_action
     }
   }
 

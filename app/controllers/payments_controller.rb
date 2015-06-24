@@ -6,28 +6,20 @@ class PaymentsController < ApplicationController
   before_filter :set_order, only: [:status]
 
   def check
-    respond_to do |format|
-      format.xml do
-        if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge?
-          render xml: @notification.success_response
-        else
-          render xml: @notification.error_response(1, message: I18n.t('inconsistency_of_data'))
-        end
-      end
+    if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge?
+      render xml: @notification.success_response
+    else
+      render xml: @notification.error_response(1, message: I18n.t('inconsistency_of_data'))
     end
   end
 
   def status
-    respond_to do |format|
-      format.xml do
-        if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge? && @order
-          create_transaction
-          @order.paid_up!
-          render xml: @notification.success_response
-        else
-          render xml: @notification.error_response(1, message: I18n.t('inconsistency_of_data'))
-        end
-      end
+    if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge? && @order
+      create_transaction
+      @order.paid_up!
+      render xml: @notification.success_response
+    else
+      render xml: @notification.error_response(1, message: I18n.t('inconsistency_of_data'))
     end
   end
 
