@@ -59,7 +59,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def acknowledge?
-            security_key == generate_signature
+            security_key == generate_signature.upcase
           end
 
           def performed_date_time

@@ -8,7 +8,7 @@ describe PaymentsController do
   let(:order_sum_bank_paycash) { 1001 }
   let(:invoice_id) { 1234567 }
   let(:customer_email) { order.email }
-  let(:md5) {
+  let(:tmp_md5) {
     Digest::MD5.hexdigest \
       [
         payment_action,
@@ -21,6 +21,7 @@ describe PaymentsController do
         Settings.yandex_cashbox.shop_password
       ].compact.join(';')
   }
+  let(:md5) { tmp_md5.upcase}
   let(:params) {
     {
       orderSumAmount: gross,
