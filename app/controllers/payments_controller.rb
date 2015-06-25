@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
   before_filter :add_payment_action
   before_filter :set_notification
   before_filter :set_order, only: [:status]
+  before_filter :set_front_presenter, only: [:fail, :success]
 
   def check
     if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge?
@@ -74,5 +75,9 @@ class PaymentsController < ApplicationController
 
   def payment_action
     action_name == 'check' ? 'checkOrder' : 'paymentAviso'
+  end
+
+  def set_front_presenter
+    @front_presenter = FrontPresenter.new current_user, params
   end
 end

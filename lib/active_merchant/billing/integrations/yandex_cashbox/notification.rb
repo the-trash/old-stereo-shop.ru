@@ -63,7 +63,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def performed_date_time
-            Time.zone.now
+            Time.now
           end
 
           def request_date_time
