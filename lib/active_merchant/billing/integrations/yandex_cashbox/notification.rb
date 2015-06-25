@@ -8,7 +8,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def action
-            params['payment_action']
+            params['payment_action'].presence
           end
 
           def amount
@@ -63,7 +63,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def performed_date_time
-            Time.now
+            Time.zone.now.strftime '%FT%T.%L%:z'
           end
 
           def request_date_time

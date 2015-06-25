@@ -39,23 +39,39 @@ describe PaymentsController do
       paymentPayerCode: 42007148320,
       paymentType: 'AC',
       shopSumBankPaycash: order_sum_bank_paycash,
-      orderNumber: order_number,
-      action: action,
-      payment_action: payment_action
+      orderNumber: order_number
     }
   }
 
   shared_examples_for 'payment failed response' do
     it 'should be equel failed response' do
       subject
-      expect(response.body).to eq notification.error_response(1, message: I18n.t('inconsistency_of_data'))
+      response_xml = Nokogiri::XML(response.body).children[0]
+      notification_xml = Nokogiri::XML(notification.error_response(1, message: I18n.t('inconsistency_of_data'))).children[0]
+
+      expect(response_xml.attributes['code'].value)
+        .to eq notification_xml.attributes['code'].value
+      expect(response_xml.attributes['invoiceId'].value)
+        .to eq notification_xml.attributes['invoiceId'].value
+      expect(response_xml.attributes['shopId'].value)
+        .to eq notification_xml.attributes['shopId'].value
+      expect(response_xml.attributes['message'].value)
+        .to eq notification_xml.attributes['message'].value
     end
   end
 
   shared_examples_for 'payment success response' do
     it 'should be equel success response' do
       subject
-      expect(response.body).to eq notification.success_response
+      response_xml = Nokogiri::XML(response.body).children[0]
+      notification_xml = Nokogiri::XML(notification.success_response).children[0]
+
+      expect(response_xml.attributes['code'].value)
+        .to eq notification_xml.attributes['code'].value
+      expect(response_xml.attributes['invoiceId'].value)
+        .to eq notification_xml.attributes['invoiceId'].value
+      expect(response_xml.attributes['shopId'].value)
+        .to eq notification_xml.attributes['shopId'].value
     end
   end
 
@@ -71,7 +87,6 @@ describe PaymentsController do
 
   # TODO refactor me, like webmock
   describe 'POST /payments/check' do
-    let(:action) { 'check' }
     let(:payment_action) { 'checkOrder' }
 
     subject { post :check, params }
@@ -82,7 +97,6 @@ describe PaymentsController do
   end
 
   describe 'POST /payments/status' do
-    let(:action) { 'status' }
     let(:payment_action) { 'paymentAviso' }
 
     subject { post :status, params }

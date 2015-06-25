@@ -236,7 +236,6 @@ ActiveRecord::Schema.define(version: 20150616065040) do
   add_index "pages", ["state"], name: "index_pages_on_state", using: :btree
 
   create_table "payment_transactions", force: true do |t|
-    t.integer  "invoice_id"
     t.integer  "shop_id"
     t.integer  "order_number"
     t.integer  "order_sum_currency_paycash"
@@ -245,6 +244,7 @@ ActiveRecord::Schema.define(version: 20150616065040) do
     t.integer  "shop_sum_bank_paycash"
     t.decimal  "order_sum_amount",           precision: 10, scale: 2, default: 0.0, null: false
     t.decimal  "shop_sum_amount",            precision: 10, scale: 2, default: 0.0, null: false
+    t.string   "invoice_id"
     t.string   "payment_payer_code"
     t.string   "customer_number"
     t.string   "payment_type"

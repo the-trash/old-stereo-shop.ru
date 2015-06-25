@@ -1,7 +1,6 @@
 class CreatePaymentTransactions < ActiveRecord::Migration
   def change
     create_table :payment_transactions do |t|
-      t.integer :invoice_id
       t.integer :shop_id
       t.integer :order_number
       t.integer :order_sum_currency_paycash
@@ -9,10 +8,10 @@ class CreatePaymentTransactions < ActiveRecord::Migration
       t.integer :order_sum_bank_paycash
       t.integer :shop_sum_bank_paycash
 
-
       t.decimal :order_sum_amount, precision: 10, scale: 2, default: 0.0, null: false
       t.decimal :shop_sum_amount, precision: 10, scale: 2, default: 0.0, null: false
 
+      t.string :invoice_id
       t.string :payment_payer_code
       t.string :customer_number
       t.string :payment_type

@@ -2,7 +2,7 @@ class PaymentsController < FrontController
   skip_before_action :verify_authenticity_token, only: [:check, :status]
   skip_before_filter :set_variables, :store_location, only: [:check, :status]
 
-  before_filter :set_notification, :add_payment_action, only: [:check, :status]
+  before_filter :set_notification, only: [:check, :status]
   before_filter :set_order, only: [:status]
 
   def check
@@ -35,10 +35,10 @@ class PaymentsController < FrontController
 
   def transaction_params
     params.permit(
-      :requestDatetime, :md5, :shopId, :shopArticleId, :invoiceId, :payment_action,
+      :requestDatetime, :md5, :shopId, :shopArticleId, :invoiceId, :orderNumber,
       :customerNumber, :orderCreatedDatetime, :orderSumAmount, :orderSumCurrencyPaycash,
       :orderSumBankPaycash, :shopSumAmount, :shopSumCurrencyPaycash, :shopSumBankPaycash,
-      :paymentPayerCode, :paymentType, :cps_user_country_code, :orderNumber
+      :paymentPayerCode, :paymentType, :cps_user_country_code
     )
   end
 
@@ -63,15 +63,11 @@ class PaymentsController < FrontController
   end
 
   def set_notification
-    @notification = YANDEX_CASHBOX.notification transaction_params.to_query
+    @notification = YANDEX_CASHBOX.notification [transaction_params.to_query, "payment_action=#{payment_action}"].join('&')
   end
 
   def create_transaction
     @order.create_payment_transaction underscored_transaction_params
-  end
-
-  def add_payment_action
-    params.merge! payment_action: payment_action
   end
 
   def payment_action
