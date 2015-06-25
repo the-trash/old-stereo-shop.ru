@@ -105,4 +105,14 @@ describe PaymentsController do
       }
     end
   end
+
+  describe 'GET /payments/fail' do
+    it_behaves_like 'a successful request'
+    # it_behaves_like 'a successful render template', 'fail'
+  end
+
+  describe 'GET /payments/success' do
+    it_behaves_like 'a successful request'
+    # it_behaves_like 'a successful render template', 'success'
+  end
 end

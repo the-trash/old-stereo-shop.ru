@@ -8,6 +8,7 @@
   = require_directory ./application/blocks
   = require jquery.raty
   = require jquery-ui/tabs
+  = require bootstrap-3/dropdown
   = require_self
 ###
 

@@ -1,10 +1,9 @@
-class PaymentsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class PaymentsController < FrontController
+  skip_before_action :verify_authenticity_token, only: [:check, :status]
+  skip_before_filter :set_variables, :store_location, only: [:check, :status]
 
-  before_filter :add_payment_action
-  before_filter :set_notification
+  before_filter :set_notification, :add_payment_action, only: [:check, :status]
   before_filter :set_order, only: [:status]
-  before_filter :set_front_presenter, only: [:fail, :success]
 
   def check
     if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge?
@@ -25,9 +24,11 @@ class PaymentsController < ApplicationController
   end
 
   def fail
+    add_breadcrumb I18n.t('payment_fail')
   end
 
   def success
+    add_breadcrumb I18n.t('payment_success')
   end
 
   private
@@ -75,9 +76,5 @@ class PaymentsController < ApplicationController
 
   def payment_action
     action_name == 'check' ? 'checkOrder' : 'paymentAviso'
-  end
-
-  def set_front_presenter
-    @front_presenter = FrontPresenter.new current_user, params
   end
 end

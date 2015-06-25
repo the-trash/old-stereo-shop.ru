@@ -7,11 +7,16 @@
 @import "icons/*.png";
 @include all-icons-sprites;
 
+@import "bootstrap-3/variables";
+@import "bootstrap-3/mixins/index";
+@import "bootstrap-3/alerts";
+@import "bootstrap-3/dropdowns";
+@import "bootstrap-3/tables";
+@import "bootstrap-3/type";
+
 @import "base/variables";
 @import "base/helpers";
 @import "base/theme";
-@import "base/tables";
-@import "base/typography";
 
 @import "global/search_bar";
 @import "global/user_widget";
