@@ -5,13 +5,10 @@
     @include clearfix();
 
     li {
-      display: block;
-      float: left;
-      width: 270px;
+      @include inline-block;
+      width: $dropDownMenuWidth;
       margin: 0 27px 50px 0;
       font-size: 24px;
-      max-height: 190px;
-      min-height: 190px;
       color: $deathlyIndigo;
 
       &:nth-of-type(4n){
@@ -24,17 +21,27 @@
         border: 5px solid $gray;
       }
 
-      // grayscale fix
-      a:hover img {
-        -webkit-filter: grayscale(0%);
-        filter: none;
-      }
-      a svg {
-        opacity: 1;
-        @include transition(opacity .5s ease);
-      }
-      a:hover svg {
-        opacity: 0;
+      a {
+        &.b-product-category-parent-link {
+          width: $dropDownMenuWidth;
+          @include inline-block;
+        }
+        &.b-link-with-child {
+          width: $dropDownMenuWidth - 20px;
+        }
+        svg {
+          opacity: 1;
+          @include transition(opacity .5s ease);
+        }
+        &:hover {
+          img {
+            -webkit-filter: grayscale(0%);
+            filter: none;
+          }
+          svg {
+            opacity: 0;
+          }
+        }
       }
     }
   }

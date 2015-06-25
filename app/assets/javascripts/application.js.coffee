@@ -35,19 +35,6 @@ $(document).ready ->
         ui.oldTab.removeClass('active')
         ui.newTab.addClass('active')
 
-  $('body').on 'click', '.with-children > span.arrow', (e) ->
-    if $(this).hasClass('down')
-      $(this).next('.children').show()
-      $(this).html('&#x25B2;').removeClass('down').addClass('up')
-    else
-      $(this).next('.children').hide()
-      $(this).html('&#x25BC;').removeClass('up').addClass('down')
-
-  $('body').on 'click', '#catalog > .btn', (e) ->
-    e.preventDefault()
-    $('.main-catalog').toggle()
-    $(@).toggleClass('active')
-
   $('body').on 'click', '.e-additional-fields', (e) ->
     e.preventDefault()
 
@@ -70,3 +57,5 @@ $(document).ready ->
     e.preventDefault()
     e.stopImmediatePropagation()
     new Wishlist $(this)
+
+  $('.dropdown-toggle').dropdown()

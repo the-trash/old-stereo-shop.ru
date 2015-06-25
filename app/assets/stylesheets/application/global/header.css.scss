@@ -15,7 +15,7 @@ header {
 // logotype
 #logo {
   position: relative;
-  line-height: 16px;
+  line-height: $base-font-size + 2;
 
   .image {
     padding-left: 13px;
@@ -28,7 +28,10 @@ header {
   padding-left: 10px;
 
   ul.menu {
-    font-size: 16px;
+    font-size: $base-font-size + 2;
+    li {
+      margin: 0 10px;
+    }
   }
 
   .help-block {
@@ -45,25 +48,23 @@ header {
   color: $white;
   position: relative;
 
+  ul li > a.pink {
+    @extend .pink;
+  }
+
   .btn {
-    position: relative;
-    padding-right: 40px;
     background-color: $blue;
     font-size: 21px;
 
-    &:after {
+    .caret {
       $height: icons-sprite-height('arrow-white-down');
       $width: icons-sprite-width('arrow-white-down');
 
-      content: '';
-      display: block;
-      position: absolute;
       width: $width;
       height: $height;
-      top: 50%;
-      right: $width;
-      margin-top: -$width/2;
       @include icons-sprite('arrow-white-down');
+      border: none;
+      margin-left: 20px;
     }
   }
 
