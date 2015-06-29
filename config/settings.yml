@@ -60,7 +60,7 @@ central_bank:
 yandex_cashbox:
   url:
     test: https://demomoney.yandex.ru/eshop.xml
-    production: https://demomoney.yandex.ru/eshop.xml
+    production: https://money.yandex.ru/eshop.xml
   shop_id: 42821
   shop_password: 6MtsWFPQmsshRXcZ
   currency_code: 643

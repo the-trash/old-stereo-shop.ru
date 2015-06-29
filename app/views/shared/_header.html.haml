@@ -5,7 +5,7 @@
   #catalog.item
     - if @front_presenter.product_categories.any?
       .btn{ data: { toggle: 'dropdown' } }
-        = t('produce')
+        = t('catalog')
         %span.caret
       %ul.dropdown-menu.multi-level{ aria: { labelledby: 'dropdownMenu' } }
         = build_dropdown_product_category_nested_tree(@front_presenter.product_categories)
