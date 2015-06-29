@@ -16,7 +16,6 @@
 
 ul.menu {
   @extend .unstyled;
-  @include clearfix();
 
   li {
     @include inline-block;

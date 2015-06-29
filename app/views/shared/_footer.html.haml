@@ -1,13 +1,12 @@
 %footer
-  .row.our-products
-    .container
-      %h2
-        = t('our_production')
-        %span.icons-arrow-black-down
-      - if @front_presenter.product_categories.any?
-        %ul.menu
-          %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
-          = build_product_category_ancestry_tree(@front_presenter.product_categories)
+  .our-products
+    %h2
+      = t('our_production')
+      %span.icons-arrow-black-down
+    - if @front_presenter.product_categories.any?
+      %ul.menu
+        %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
+        = build_product_category_ancestry_tree(@front_presenter.product_categories)
 
   .row.dark-gray-bg
     .container

@@ -6,6 +6,7 @@ footer {
   width: 100%;
   clear: both;
   background-color: $gray;
+  @include box-shadow(inset 0 3px 10px -3px rgba(50, 50, 50, 0.4));
 
   .search-bar {
     float: left;
@@ -18,6 +19,9 @@ footer {
   }
 
   .our-products {
+    width: 1168px;
+    margin: 0 auto;
+    padding-bottom: 30px;
     li {
       width: $b-our-products-width;
       margin: 0 40px 0 0;

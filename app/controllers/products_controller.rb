@@ -66,7 +66,9 @@ class ProductsController < FrontController
   end
 
   def check_product_state
-    redirect_to [:root], flash: { error: I18n.t('controllers.products.product_not_found') } unless resource.published?
+    redirect_to_root_with_flash unless resource.published?
+  rescue ActiveRecord::RecordNotFound
+    redirect_to_root_with_flash
   end
 
   def collection_query_helper
@@ -79,5 +81,9 @@ class ProductsController < FrontController
 
   def params_with_additional_option_value_exists?
     params[:additional_option_value].present? && params[:additional_option_value].to_i != 0
+  end
+
+  def redirect_to_root_with_flash
+    redirect_to [:root], flash: { error: I18n.t('controllers.products.product_not_found') }
   end
 end
