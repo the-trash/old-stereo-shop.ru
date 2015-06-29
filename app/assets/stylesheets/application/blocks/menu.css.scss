@@ -1,32 +1,35 @@
 ul.menu {
   li {
+    position: relative;
+    a {
+      @include ellipsis;
+    }
+    .b-dropdown-arrow {
+      color: $blue;
+      font-size: 0.625em;
+      cursor: pointer;
+      float: right;
+      margin-top: 10px;
+    }
     &.with-children {
       & > a {
         text-decoration: none;
         border-bottom: 1px dashed $blue;
       }
-      span {
-        &.arrow {
-          color: $blue;
-          font-size: 0.625em;
-          cursor: pointer;
-        }
-      }
-      .children {
-        display: none;
-        .with-children {
-          &:hover {
-            & > .children {
-              display: block;
-            }
-          }
-        }
+    }
+    .dropdown-menu {
+      li {
+        width: $dropDownMenuWidth;
+        font-size: $base-font-size;
+        margin: 5px 0;
+        min-height: $base-font-size;
       }
     }
   }
   &.sale {
     li {
-      display: inline-block;
+      @include inline-block;
+      vertical-align: top;
       margin-bottom: 10px;
       &.disabled {
         color: $gray;
@@ -41,48 +44,12 @@ ul.menu {
         }
       }
       .children {
-        max-width: 200px;
         li {
           display: block;
           margin-bottom: 10px;
           p {
             margin: 0;
             padding: 0;
-          }
-        }
-      }
-    }
-  }
-  &.main-catalog {
-    display: none;
-    position: absolute;
-    top: 35px;
-    left: -15px;
-    z-index: 10;
-    background-color: $gray;
-    padding: 40px;
-    @include border-radius(4px);
-    width: $containerWidth - 40 - 200;
-    // @include box-shadow(inset 0 3px 10px -3px rgba(50, 50, 50, 0.4));
-    li {
-      display: list-item;
-      margin-bottom: 10px;
-      a {
-        color: $blue;
-        font-size: 18px;
-        &.pink {
-          color: #c93482;
-        }
-      }
-      &.with-children {
-        & > a {
-          text-decoration: underline;
-          border: none;
-        }
-        .children {
-          display: block;
-          li {
-            margin: 5px 0;
           }
         }
       }

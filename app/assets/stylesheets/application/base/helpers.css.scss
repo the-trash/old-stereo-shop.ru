@@ -15,14 +15,13 @@
 }
 
 ul.menu {
-  display: block;
   @extend .unstyled;
   @include clearfix();
 
   li {
-    display: block;
-    float: left;
+    @include inline-block;
     margin: 0 15px;
+    vertical-align: top;
   }
 
   .help-block {

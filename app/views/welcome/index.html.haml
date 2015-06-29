@@ -3,7 +3,7 @@
 
   - if @front_presenter.product_categories_with_photos.any?
     .categories-list
-      %ul.menu
+      %ul.menu.product-category-dropdown-menu{ aria: { labelledby: 'dropdownMenu' } }
         = build_product_category_ancestry_tree(@front_presenter.product_categories_with_photos, { with_image: true })
 
   - if @front_presenter.news_category || @front_presenter.useful_information_category

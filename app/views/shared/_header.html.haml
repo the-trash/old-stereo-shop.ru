@@ -4,11 +4,11 @@
     .image= image_tag 'application/logo.png'
   #catalog.item
     - if @front_presenter.product_categories.any?
-      .btn
+      .btn{ data: { toggle: 'dropdown' } }
         = t('produce')
         %span.caret
-      %ul.menu.main-catalog
-        = build_product_category_ancestry_tree(@front_presenter.product_categories, { with_arrow: false })
+      %ul.dropdown-menu.multi-level{ aria: { labelledby: 'dropdownMenu' } }
+        = build_dropdown_product_category_nested_tree(@front_presenter.product_categories)
         %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
   #menu.item
     %ul.menu
