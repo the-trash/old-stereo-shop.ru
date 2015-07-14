@@ -28,6 +28,8 @@
 #
 
 class Order < ActiveRecord::Base
+  include StateMachineHelper
+
   DELIVERIES = %w(courier point_of_delivery mail)
   PAYMENTS   = %w(payment_system receive cashless)
   EVENTS_MAP = {
@@ -110,10 +112,6 @@ class Order < ActiveRecord::Base
     after_transition any => :arrived, do: :notify_user
 
     after_transition any => :paid, do: :notify_admins
-  end
-
-  def self.state_names
-    state_machine.states.map(&:name)
   end
 
   def email

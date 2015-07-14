@@ -130,6 +130,11 @@ ru:
         few: Транзакций
         many: Транзакций
         other: Транзакции
+      yandex_market_export:
+        one: Экспорт в Яндекс Маркет
+        few: Экспортов в Яндекс Маркет
+        many: Экспортов в Яндекс Маркет
+        other: Экспорты в Яндекс Маркет
     attributes:
       setting:
         description: Описание
@@ -217,6 +222,7 @@ ru:
         brand_id: Брэнд
         properties: Св-ва
         weight: Вес
+        add_to_yandex_market: Добавить в Яндекс Маркет
       product_category:
         <<: *main
         products: Продукты
@@ -363,3 +369,13 @@ ru:
         order_created_datetime: Момент регистрации заказа в ИС Оператора
         order: Заказ
         <<: *main_date
+      yandex_market_export:
+        <<: *main_date
+        error_messages: Ошибки
+        file: Файл
+        state: Статус
+        states:
+          created: Создан
+          started: Начато формирование
+          completed: Закончено формирование
+          failed: Завершено с ошибками
