@@ -1,6 +1,10 @@
 redis:
   port: 6400
 
+shop:
+  default:
+    host: 'staging.stereo-shop.ru'
+
 yandex_cashbox:
   mode: :production
   scid: 29276

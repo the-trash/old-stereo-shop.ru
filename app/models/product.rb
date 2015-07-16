@@ -28,6 +28,7 @@
 #  euro_rate               :decimal(10, 2)   default(0.0), not null
 #  draft_reviews_count     :integer          default(0)
 #  properties              :hstore
+#  add_to_yandex_market    :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -64,6 +65,7 @@ class Product < ActiveRecord::Base
   scope :has_in_stores, -> {
     joins(:products_stores).group('products.id').having('SUM(products_stores.count) > 0')
   }
+  scope :for_yandex_market, -> { where(add_to_yandex_market: true) }
 
   acts_as_list
 
@@ -122,6 +124,7 @@ class Product < ActiveRecord::Base
   validates :title, :description, :product_category_id, :brand_id, :weight, :price, presence: true
 
   delegate :title, to: :product_category, prefix: true
+  delegate :title, to: :brand, prefix: true
 
   accepts_nested_attributes_for :products_stores, :characteristics_products,
     :reviews, allow_destroy: true, reject_if: :all_blank

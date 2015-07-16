@@ -9,6 +9,7 @@ pagination:
   cities: 10
   orders: 10
 
+# TODO make it from locales variables, for example ru.mailers.orders.created.admin.header.order_made_on_site
 mailers:
   orders:
     created:
@@ -34,6 +35,7 @@ shop:
     address: 'Санкт-Петербург, Каменноостровский пр., 14Б, офис 2-Н.'
     timetable: 'Мы работаем по будням с 10-00 до 18-00'
     host: stereo-shop.ru
+    port: 3000
   feedback:
     to: 'post@artelectronics.ru'
     subject: Обратная связь
@@ -65,3 +67,10 @@ yandex_cashbox:
   shop_password: 6MtsWFPQmsshRXcZ
   currency_code: 643
   production_ips: ['77.75.157.166', '77.75.157.170']
+
+# yandex market documentation for text format http://help.yandex.ru/partnermarket/export/text-format.xml
+yandex_market:
+  text_format:
+    headers: ['id', 'available', 'url', 'price', 'currencyId', 'category', 'picture', 'store', 'pickup', 'delivery', 'name', 'description', 'vendor']
+    currency_id: 'RUR'
+    letters_count: 175

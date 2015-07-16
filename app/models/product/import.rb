@@ -51,17 +51,9 @@ class Product::Import < ActiveRecord::Base
     import_entries.with_state(:failed).any?
   end
 
-  mount_uploader :file, FileUploader do
+  mount_uploader :file, CsvFileUploader do
     def store_dir
       "uploads/imports/#{ Rails.env }"
-    end
-
-    def filename
-      @name ||= "#{SecureRandom.hex(10)}.#{file.extension}" if original_filename.present?
-    end
-
-    def extension_white_list
-      ['csv']
     end
   end
 

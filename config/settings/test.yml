@@ -1,6 +1,10 @@
 redis:
   port: 6379
 
+shop:
+  default:
+    host: 'localhost'
+
 yandex_cashbox:
   mode: :test
   scid: 63048

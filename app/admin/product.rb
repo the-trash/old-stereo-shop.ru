@@ -29,7 +29,7 @@ ActiveAdmin.register Product do
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id,
     :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price,
-    :weight, photos_attributes: [:id, :file, :state, :default, :_destroy],
+    :weight, :add_to_yandex_market, photos_attributes: [:id, :file, :state, :default, :_destroy],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
     related_product_ids: [], similar_product_ids: []
@@ -76,7 +76,9 @@ ActiveAdmin.register Product do
       content_tag(:p, category) +
       content_tag(:p, '', class: 'ratable read_only', data: { score: product.average_score })
     end
-    column :description
+    column :description do |product|
+      truncate Sanitize.fragment(product.description), length: Settings.yandex_market.text_format.letters_count
+    end
     column :price do |product|
       content_tag(:p, I18n.t('active_admin.views.price', price: product.price)) +
       content_tag(:p, I18n.t('active_admin.views.discount', discount: product.discount))
@@ -102,6 +104,7 @@ ActiveAdmin.register Product do
   filter :admin_user, collection: AdminUser.for_select
   filter :product_category, collection: ProductCategory.for_select
   filter :created_at
+  filter :add_to_yandex_market
 
   scope :all
   Product::STATES.each { |st| scope st }
@@ -124,6 +127,7 @@ ActiveAdmin.register Product do
         f.input :brand_id, as: :select,
           collection: Brand.published.map { |brand| [brand.title, brand.id] },
           selected: resource.brand_id
+        f.input :add_to_yandex_market
       end
 
       f.inputs I18n.t('active_admin.views.properties') do

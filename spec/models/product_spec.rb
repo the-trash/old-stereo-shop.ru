@@ -200,4 +200,14 @@ describe Product do
     specify { expect(subject).to include(product_in_stores) }
     specify { expect(subject).not_to include(product) }
   end
+
+  describe '.for_yandex_market' do
+    let!(:for_yandex_market) { create :product }
+    let!(:not_for_yandex_market) { create :product, :not_for_yandex_market }
+
+    subject { described_class.for_yandex_market }
+
+    specify { expect(subject).to include(for_yandex_market) }
+    specify { expect(subject).not_to include(not_for_yandex_market) }
+  end
 end

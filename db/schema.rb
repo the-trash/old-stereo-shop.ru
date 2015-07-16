@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616065040) do
+ActiveRecord::Schema.define(version: 20150716065535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -427,6 +427,7 @@ ActiveRecord::Schema.define(version: 20150616065040) do
     t.decimal  "euro_rate",               precision: 10, scale: 2, default: 0.0,  null: false
     t.integer  "draft_reviews_count",                              default: 0
     t.hstore   "properties"
+    t.boolean  "add_to_yandex_market",                             default: true
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
@@ -586,6 +587,14 @@ ActiveRecord::Schema.define(version: 20150616065040) do
   create_table "wishes", force: true do |t|
     t.integer  "user_id"
     t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "yandex_market_exports", force: true do |t|
+    t.string   "state"
+    t.string   "file"
+    t.text     "error_messages"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

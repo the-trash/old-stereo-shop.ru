@@ -56,6 +56,7 @@ gem 'ancestry'
 gem 'bootstrap_flash_messages', '~> 1.0.0'
 gem 'breadcrumbs_on_rails'
 gem 'charlock_holmes'
+gem 'draper'
 gem 'friendly_id', '~> 5.0.4'
 gem 'gon'
 gem 'hstore_accessor'
@@ -114,6 +115,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
+  gem 'test_after_commit'
 end
 
 gem 'seedbank', github: 'james2m/seedbank', group: [:development, :test, :staging]
