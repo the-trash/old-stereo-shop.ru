@@ -32,7 +32,7 @@ ActiveAdmin.register YandexMarketExport do
     end
     column :file do |yandex_market_export|
       file_url = yandex_market_export.file.url
-      link_to File.basename(file_url), file_url
+      link_to File.basename(file_url), file_url if file_url.presence
     end
     column :created_at do |yandex_market_export|
       content_tag :p, I18n.l(yandex_market_export.created_at, format: :long)
