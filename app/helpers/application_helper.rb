@@ -74,6 +74,10 @@ module ApplicationHelper
     params[:page] == slug ? 'active' : nil
   end
 
+  def split_by_divider string, divider = ';'
+    string.split divider
+  end
+
   private
 
   def ancestry_tree_child_class has_items

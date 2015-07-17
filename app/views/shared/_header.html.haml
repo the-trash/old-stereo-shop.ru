@@ -21,7 +21,8 @@
           page_path(:contacts),
           class: active_class_for_page(params, 'contacts')
         .help-block
-          %p= @settings[:shop_phone]
+          - split_by_divider(@settings[:shop_phone]).each do |phone|
+            %p= phone
           %p.dark-pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
       %li= link_to t('brands'), [:brands]
       = render 'shared/includes/static_pages_links'

@@ -94,6 +94,7 @@ ru:
   clear: Очистить
   clear_cart: Очистить корзину
   continue_make_order: Продолжить оформление заказа
+  convenience_and_safety: Удобство и безопасность
   cities:
     spb: Санкт-Петербург
     moscow: Москва
@@ -148,7 +149,9 @@ ru:
   quantity: Количество
   question: Вопрос
   questions: Ваши вопросы
+  refund_of_money: Возврат денег
   sale: Sale
+  safety: Безопасность
   save: Сохранить
   search: Поиск
   search_result: 'Результаты поиска "%{request}"'
@@ -163,6 +166,7 @@ ru:
   total_amount: Общая сумма
   useful_information: 'Полезная информация'
   what_are_you_looking_for: Что вы ищете?
+  who_we_are: Кто мы
   you_might_also_like: Вам может понравиться
   you_watched: Вы смотрели
   your_cart_empty_yet: Пока вы не добавили ни одного товара в вашу корзину

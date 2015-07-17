@@ -11,14 +11,14 @@
   .row.dark-gray-bg
     .container
       %h2.pull-left
-        Поиск
+        = t 'search'
         %span.icons-arrow-black-right
       = render 'shared/search_bar'
   .row.who-are-we
     .container
       .pull-left
         %h2
-          Кто мы
+          = t 'who_we_are'
           %span.icons-arrow-black-down
         %ul.menu.left-menu
           %li
@@ -31,7 +31,8 @@
               page_path(:contacts),
               class: active_class_for_page(params, 'contacts')
             .help-block
-              %p= @settings[:shop_phone]
+              - split_by_divider(@settings[:shop_phone]).each do |phone|
+                %p= phone
               %p.pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
           - if @news
             %li= link_to @news.title, @news
@@ -40,7 +41,7 @@
       .pull-right
         .gray-block
           %h2
-            Удобство и безопасность
+            = t 'convenience_and_safety'
             %span.icons-arrow-black-down
           %ul.menu.right-menu
             = render 'shared/includes/static_pages_links'
