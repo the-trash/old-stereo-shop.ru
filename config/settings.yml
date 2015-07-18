@@ -71,6 +71,7 @@ yandex_cashbox:
 # yandex market documentation for text format http://help.yandex.ru/partnermarket/export/text-format.xml
 yandex_market:
   text_format:
-    headers: ['id', 'available', 'url', 'price', 'currencyId', 'category', 'picture', 'store', 'pickup', 'delivery', 'name', 'description', 'vendor']
+    headers: ['id', 'type', 'available', 'url', 'price', 'currencyId', 'category', 'picture', 'vendor', 'model', 'description']
     currency_id: 'RUR'
     letters_count: 175
+    type_name: 'vendor.model'
