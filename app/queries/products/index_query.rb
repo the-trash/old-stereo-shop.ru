@@ -10,6 +10,7 @@ class Products::IndexQuery < Struct.new(:collection, :params)
   def all
     sorted_collection
       .published
+      .by_position
       .with_price_larger_than_value
       .includes(:photos, characteristics_products: :characteristic)
       .paginate(page: params[:page], per_page: Settings.pagination.products)

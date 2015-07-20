@@ -210,4 +210,26 @@ describe Product do
     specify { expect(subject).to include(for_yandex_market) }
     specify { expect(subject).not_to include(not_for_yandex_market) }
   end
+
+  describe '.by_position' do
+    let!(:first_product) { create :product }
+    let!(:second_product) { create :product }
+
+    subject { described_class.by_position direction }
+
+    context 'when direction asc' do
+      let(:direction) { :asc }
+      specify { expect(subject.first).to eq second_product }
+    end
+
+    context 'when direction nil' do
+      let(:direction) {}
+      specify { expect(subject.first).to eq second_product }
+    end
+
+    context 'when direction desc' do
+      let(:direction) { :desc }
+      specify { expect(subject.first).to eq first_product }
+    end
+  end
 end

@@ -66,6 +66,7 @@ class Product < ActiveRecord::Base
     joins(:products_stores).group('products.id').having('SUM(products_stores.count) > 0')
   }
   scope :for_yandex_market, -> { where(add_to_yandex_market: true) }
+  scope :by_position, -> (direction = :asc) { order(position: (direction.present? ? direction : :asc)) }
 
   acts_as_list
 
