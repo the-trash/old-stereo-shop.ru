@@ -8,3 +8,11 @@
     }
   }
 }
+
+.b-order-in-total {
+  margin-bottom: 10px;
+  font-size: $base-font-size + 6;
+  span {
+    color: red;
+  }
+}

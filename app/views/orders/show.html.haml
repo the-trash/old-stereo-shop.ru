@@ -39,4 +39,9 @@
       - s.urls success: success_payments_url,
         fail: fail_payments_url
 
-      = submit_tag t('.pay'), class: 'btn btn-pink pull-right'
+      .l-order-actions.pull-right
+        .b-order-in-total
+          %span #{t('in_total')}:
+          = t('views.product.with_currency', coust: resource.total_amount )
+        .b-order-actions
+          = submit_tag t('.pay'), class: 'btn btn-pink pull-right'

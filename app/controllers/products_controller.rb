@@ -9,7 +9,7 @@ class ProductsController < FrontController
   def index
     add_breadcrumb(I18n.t('search'))
 
-    @brands = Brand.with_published_products.published
+    @brands = brands
 
     index!
   end
@@ -85,5 +85,9 @@ class ProductsController < FrontController
 
   def redirect_to_root_with_flash
     redirect_to [:root], flash: { error: I18n.t('controllers.products.product_not_found') }
+  end
+
+  def brands
+    Brand.where(id: collection.map(&:brand_id).uniq).published
   end
 end

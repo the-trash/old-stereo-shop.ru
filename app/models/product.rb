@@ -29,6 +29,7 @@
 #  draft_reviews_count     :integer          default(0)
 #  properties              :hstore
 #  add_to_yandex_market    :boolean          default(TRUE)
+#  fix_price               :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -60,13 +61,14 @@ class Product < ActiveRecord::Base
   scope :by_brand, -> (brand_id) { joins(:brand).where(brands: { id: brand_id }) }
   scope :on_hand, -> { where(in_stock: true) }
   scope :out_of_stock, -> { where(in_stock: false) }
-  scope :by_q, -> (q) { where("#{ table_name }.title ILIKE :text", text: "%#{ q }%") }
+  scope :by_q, -> (q) { where("title @@ :text OR description @@ :text", text: q) }
   scope :with_euro_price, -> { where('euro_price > 0') }
   scope :has_in_stores, -> {
     joins(:products_stores).group('products.id').having('SUM(products_stores.count) > 0')
   }
   scope :for_yandex_market, -> { where(add_to_yandex_market: true) }
   scope :by_position, -> (direction = :asc) { order(position: (direction.present? ? direction : :asc)) }
+  scope :without_fix_price, -> { where(fix_price: false) }
 
   acts_as_list
 

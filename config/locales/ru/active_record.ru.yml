@@ -223,6 +223,7 @@ ru:
         properties: Св-ва
         weight: Вес
         add_to_yandex_market: Добавить в Яндекс Маркет
+        fix_price: Фиксированная цена
       product_category:
         <<: *main
         products: Продукты

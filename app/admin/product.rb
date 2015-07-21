@@ -27,7 +27,7 @@ ActiveAdmin.register Product do
   sortable_list
   config.sort_order = 'position_asc'
 
-  permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id,
+  permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id, :fix_price,
     :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price,
     :weight, :add_to_yandex_market, photos_attributes: [:id, :file, :state, :default, :_destroy],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
@@ -53,7 +53,9 @@ ActiveAdmin.register Product do
     end
 
     def build_resource
-      @product ||= current_admin_user.products.includes(:photos).build(permitted_params[:product])
+      @product ||= current_admin_user.products
+        .includes(:photos, products_stores: :store)
+        .build(permitted_params[:product])
     end
   end
 
@@ -105,6 +107,7 @@ ActiveAdmin.register Product do
   filter :product_category, collection: ProductCategory.for_select
   filter :created_at
   filter :add_to_yandex_market
+  filter :fix_price
 
   scope :all
   Product::STATES.each { |st| scope st }
@@ -128,6 +131,7 @@ ActiveAdmin.register Product do
           collection: Brand.published.map { |brand| [brand.title, brand.id] },
           selected: resource.brand_id
         f.input :add_to_yandex_market
+        f.input :fix_price
       end
 
       f.inputs I18n.t('active_admin.views.properties') do

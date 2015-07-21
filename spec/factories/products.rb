@@ -72,5 +72,9 @@ FactoryGirl.define do
     trait :not_for_yandex_market do
       add_to_yandex_market false
     end
+
+    trait :with_fix_price do
+      fix_price true
+    end
   end
 end

@@ -117,6 +117,7 @@ ru:
   go_to_wishlist: 'В список "Мне нравится"'
   goods_supplied: Товары в комплект
   i_like: Мне нравится
+  in_total: Итого
   inconsistency_of_data: Несоответствие данных
   my_profile: Мой профиль
   my_question: Мой вопрос
@@ -142,6 +143,7 @@ ru:
   product_actions: Действия с товаром
   product_in_cart: Товар находится в корзине
   product_category_for_import: Категория продуктов для импорта товаров
+  products_has_not_been_detected: Продутов не обнаружено
   product_name: Название товара
   product_price: Цена
   product_already_exists_in_wishlist: Товар уже существует в списке желаний

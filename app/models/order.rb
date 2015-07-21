@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
 
   scope :desc_ordered, -> { order id: :desc }
 
-  has_many :line_items, -> { order('id DESC') }, dependent: :nullify
+  has_many :line_items, -> { order(id: :desc) }, dependent: :nullify
 
   has_one :payment_transaction, dependent: :destroy, foreign_key: 'order_number'
 
@@ -59,7 +59,7 @@ class Order < ActiveRecord::Base
   validates :user_name, :phone, :city, :address, :post_index, presence: true, if: [:authentification?, :started?]
   # TODO fix me, you should check validation in spec
   validates :file, :inn, :kpp, :organization_name, presence: true, if: [:payment?, :cashless?]
-  validate :not_cach_payment, if: [:payment?, :mail?, :receive?]
+  validate :not_cash_payment, if: [:payment?, :mail?, :receive?]
 
   delegate :total_amount, :line_items, to: :cart, prefix: true
   delegate :region, :region_title, to: :city
@@ -147,7 +147,7 @@ class Order < ActiveRecord::Base
     OrderMailer.delay.notify_user self
   end
 
-  def not_cach_payment
+  def not_cash_payment
     errors.add :payment
   end
 end

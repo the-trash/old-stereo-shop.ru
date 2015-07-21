@@ -232,4 +232,14 @@ describe Product do
       specify { expect(subject.first).to eq first_product }
     end
   end
+
+  describe '.without_fix_price' do
+    let!(:product) { create :product }
+    let!(:product_with_fix_price) { create :product, :with_fix_price }
+
+    subject { described_class.without_fix_price }
+
+    specify { expect(subject).not_to include product_with_fix_price }
+    specify { expect(subject).to include product }
+  end
 end

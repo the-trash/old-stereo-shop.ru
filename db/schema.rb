@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716065535) do
+ActiveRecord::Schema.define(version: 20150721064136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -407,8 +407,8 @@ ActiveRecord::Schema.define(version: 20150716065535) do
     t.string   "slug"
     t.text     "description"
     t.integer  "state",                                            default: 1
-    t.decimal  "price",                   precision: 10, scale: 2, default: 0.0,  null: false
-    t.integer  "discount",                                         default: 0,    null: false
+    t.decimal  "price",                   precision: 10, scale: 2, default: 0.0,   null: false
+    t.integer  "discount",                                         default: 0,     null: false
     t.integer  "admin_user_id"
     t.integer  "brand_id"
     t.integer  "product_category_id"
@@ -423,11 +423,12 @@ ActiveRecord::Schema.define(version: 20150716065535) do
     t.integer  "removed_reviews_count",                            default: 0
     t.integer  "moderated_reviews_count",                          default: 0
     t.boolean  "in_stock",                                         default: true
-    t.decimal  "euro_price",              precision: 10, scale: 2, default: 0.0,  null: false
-    t.decimal  "euro_rate",               precision: 10, scale: 2, default: 0.0,  null: false
+    t.decimal  "euro_price",              precision: 10, scale: 2, default: 0.0,   null: false
+    t.decimal  "euro_rate",               precision: 10, scale: 2, default: 0.0,   null: false
     t.integer  "draft_reviews_count",                              default: 0
     t.hstore   "properties"
     t.boolean  "add_to_yandex_market",                             default: true
+    t.boolean  "fix_price",                                        default: false
   end
 
   add_index "products", ["admin_user_id"], name: "index_products_on_admin_user_id", using: :btree
