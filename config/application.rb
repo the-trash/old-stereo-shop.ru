@@ -16,11 +16,18 @@ module Stereoshop
     config.i18n.default_locale = :ru
 
     config.generators do |g|
+      g.helper false
+      g.assets false
+      g.decorator false
+
       g.test_framework :rspec, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
 
       g.view_specs false
       g.helper_specs false
+      g.view_specs false
+      g.controller_spec true
+      g.model_spec true
     end
 
     %w(uploaders forms presenters queries workers views/mailers).each do |folder_path|
