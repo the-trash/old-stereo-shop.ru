@@ -15,7 +15,6 @@ public/system/uploads/
 public/system/dragonfly/
 public/uploads/
 public/assets
-public/sitemap.xml.gz
 icon-*.png
 
 config/database.yml

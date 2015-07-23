@@ -1,6 +1,7 @@
 sitemap_helper = ShopSitemap.new
 
 SitemapGenerator::Sitemap.default_host = "http://#{Settings.shop.default.host}"
+SitemapGenerator::Sitemap.sitemaps_path = 'uploads/'
 
 SitemapGenerator::Sitemap.create do
   # Pages

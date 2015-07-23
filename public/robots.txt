@@ -4,4 +4,4 @@
 User-agent: *
 Disallow: /users
 Disallow: /carts
-Sitemap: http://stereo-shop.ru/sitemap.xml.gz
+Sitemap: http://stereo-shop.ru/uploads/sitemap.xml.gz

@@ -1,5 +1,5 @@
 describe Recurring::SitemapGeneratorWorker do
-  subject { File.exists?('public/sitemap.xml.gz') }
+  subject { File.exists?('public/uploads/sitemap.xml.gz') }
 
   before { described_class.new.perform }
 
