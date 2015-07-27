@@ -27,6 +27,14 @@ ul.menu {
     p {
       margin: 0;
     }
+    a {
+      &.light-blue {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 

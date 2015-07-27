@@ -11,5 +11,13 @@ FactoryGirl.define do
         state i
       end
     end
+
+    trait :news do
+      title I18n.t('news')
+    end
+
+    trait :useful_information do
+      title I18n.t('useful_information')
+    end
   end
 end

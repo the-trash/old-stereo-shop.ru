@@ -14,5 +14,12 @@
     page_path(:help),
     class: active_class_for_page(params, 'help')
   .help-block
-    %p.light-blue= t 'safety'
-    %p.light-blue= t 'refund_of_money'
+    - if @front_presenter.safety
+      = link_to t('safety'), @front_presenter.safety, class: 'light-blue'
+    - else
+      %p.light-blue= t 'safety'
+
+    - if @front_presenter.refund_of_money
+      = link_to t('refund_of_money'), @front_presenter.refund_of_money, class: 'light-blue'
+    - else
+      %p.light-blue= t 'refund_of_money'

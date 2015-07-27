@@ -47,4 +47,32 @@ describe FrontPresenter do
     specify { expect(subject.product_categories).to include(product_category1) }
     specify { expect(subject.product_categories).not_to include(product_category2) }
   end
+
+  describe '#show_news?' do
+    let!(:post_category) { create :post_category, :news }
+
+    subject { described_class.new.show_news? }
+
+    specify { expect(subject).to be_falsey }
+
+    context 'when posts exist for news post category' do
+      let!(:post) { create :post, post_category: post_category }
+
+      specify { expect(subject).to be_truthy }
+    end
+  end
+
+  describe '#show_useful_information?' do
+    let!(:post_category) { create :post_category, :useful_information }
+
+    subject { described_class.new.show_useful_information? }
+
+    specify { expect(subject).to be_falsey }
+
+    context 'when posts exist for useful information post category' do
+      let!(:post) { create :post, post_category: post_category }
+
+      specify { expect(subject).to be_truthy }
+    end
+  end
 end

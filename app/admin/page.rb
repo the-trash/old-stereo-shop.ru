@@ -31,7 +31,9 @@ ActiveAdmin.register Page do
     selectable_column
     column :id
     column :title
-    column :short_text
+    column :short_text do |page|
+      truncate page.short_text, length: 170
+    end
     column :created_at
     actions
   end
