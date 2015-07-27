@@ -6,7 +6,7 @@
   = link_to I18n.t('views.pages.delivery'),
     page_path(:delivery),
     class: active_class_for_page(params, 'delivery')
-  .help-block
+  .help-block.delivery
     - split_by_divider(@settings[:delivery_cities], ',').each do |city|
       %p= city
 %li
@@ -14,12 +14,14 @@
     page_path(:help),
     class: active_class_for_page(params, 'help')
   .help-block
-    - if @front_presenter.safety
-      = link_to t('safety'), @front_presenter.safety, class: 'light-blue'
-    - else
-      %p.light-blue= t 'safety'
-
-    - if @front_presenter.refund_of_money
-      = link_to t('refund_of_money'), @front_presenter.refund_of_money, class: 'light-blue'
-    - else
-      %p.light-blue= t 'refund_of_money'
+    %ul
+      %li.light-blue
+        - if @front_presenter.safety
+          = link_to t('safety'), @front_presenter.safety
+        - else
+          %span= t 'safety'
+      %li.light-blue
+        - if @front_presenter.refund_of_money
+          = link_to t('refund_of_money'), @front_presenter.refund_of_money
+        - else
+          %span= t 'refund_of_money'

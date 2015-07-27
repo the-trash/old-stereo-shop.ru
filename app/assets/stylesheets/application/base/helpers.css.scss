@@ -17,25 +17,32 @@
 ul.menu {
   @extend .unstyled;
 
-  li {
+  & > li {
     @include inline-block;
     margin: 0 15px;
     vertical-align: top;
   }
+}
 
-  .help-block {
-    p {
-      margin: 0;
-    }
-    a {
-      &.light-blue {
+.help-block {
+  ul {
+    li {
+      margin: 5px 0;
+      a {
         text-decoration: none;
         &:hover {
           text-decoration: underline;
         }
       }
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
+  p { margin: 0 0 5px; }
 }
 
 .btn {
