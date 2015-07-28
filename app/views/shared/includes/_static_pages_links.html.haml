@@ -1,16 +1,20 @@
 %li
-  = link_to I18n.t('views.pages.payment'),
+  = link_to t('views.pages.payment'),
     page_path(:payment),
     class: active_class_for_page(params, 'payment')
 %li
-  = link_to I18n.t('views.pages.delivery'),
+  = link_to t('views.pages.delivery'),
     page_path(:delivery),
     class: active_class_for_page(params, 'delivery')
   .help-block.delivery
     - split_by_divider(@settings[:delivery_cities], ',').each do |city|
       %p= city
 %li
-  = link_to I18n.t('views.pages.help'),
+  = link_to t('dealers'),
+    page_path(:dileram),
+    class: active_class_for_page(params, 'dileram')
+%li
+  = link_to t('views.pages.help'),
     page_path(:help),
     class: active_class_for_page(params, 'help')
   .help-block

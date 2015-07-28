@@ -8,8 +8,8 @@
         = render partial: 'users/includes/line_item', collection: order.cart_line_items.includes(:product), as: :line_item
   %td
     - if order.total_amount == 0.0 && order.cart
-      = I18n.t('views.product.with_currency', coust: order.cart_total_amount)
+      = I18n.t('views.product.with_currency', coust: price_formatted(order.cart_total_amount))
     - else
-      = I18n.t('views.product.with_currency', coust: order.total_amount)
+      = I18n.t('views.product.with_currency', coust: price_formatted(order.total_amount))
   %td= I18n.t(order.state, scope: [:activerecord, :attributes, :order, :states])
   %td= I18n.t(order.delivery, scope: [:activerecord, :attributes, :order, :deliveries])

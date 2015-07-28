@@ -11,7 +11,7 @@
             = link_to t('delete'), line_item, method: :delete
         .b-info
           %p.title= link_to line_item.product_title, line_item.product
-          %p.price= I18n.t('views.product.with_currency', coust: line_item.price_with_discount)
+          %p.price= I18n.t('views.product.with_currency', coust: price_formatted(line_item.price_with_discount))
           - if !line_item.in_stock?
             %p.alert-danger= t('not_available')
         - if line_item.similar_products.published.any? || line_item.related_products.published

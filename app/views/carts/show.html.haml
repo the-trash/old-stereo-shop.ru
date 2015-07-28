@@ -24,7 +24,7 @@
     .e-cart-total-information
       %p= t('cart_total_amount')
       %p.cart-total-amount{ data: { total: @cart.total_amount } }
-        = t('views.product.with_currency', coust: @cart.total_amount)
+        = t('views.product.with_currency', coust: price_formatted(@cart.total_amount))
       .b-order-checkout
         - if @cart.order && @cart.order.started?
           = link_to t('continue_make_order'), [@cart.order_step, @cart.order], class: 'btn btn-pink'

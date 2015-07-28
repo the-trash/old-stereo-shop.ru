@@ -6,7 +6,7 @@
         .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
       .b-info
         %p.title= link_to line_item.product_title, line_item.product
-        %p.price= t('views.product.with_currency', coust: line_item.price_with_discount)
+        %p.price= t('views.product.with_currency', coust: price_formatted(line_item.price_with_discount))
         - if !line_item.in_stock?
           %p.alert-danger= t('not_available')
   %td
@@ -16,7 +16,7 @@
       %span.arrow.arrow-right{ data: { role: :increment } }
   %td
     %p.total_amount{ data: { price: line_item.price_with_discount } }
-      = t('views.product.with_currency', coust: line_item.calculated_total_amount)
+      = t('views.product.with_currency', coust: price_formatted(line_item.calculated_total_amount))
   %td
     %ul.actions
       %li

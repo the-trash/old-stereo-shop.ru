@@ -42,6 +42,6 @@
       .l-order-actions.pull-right
         .b-order-in-total
           %span #{t('in_total')}:
-          = t('views.product.with_currency', coust: resource.total_amount )
+          = t('views.product.with_currency', coust: price_formatted(resource.total_amount) )
         .b-order-actions
           = submit_tag t('.pay'), class: 'btn btn-pink pull-right'

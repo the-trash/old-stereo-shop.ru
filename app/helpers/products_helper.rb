@@ -59,11 +59,11 @@ module ProductsHelper
   end
 
   def product_price(price, options = {})
-    make_tag :p, I18n.t('views.product.with_currency', coust: price), options
+    make_tag :p, I18n.t('views.product.with_currency', coust: price_formatted(price)), options
   end
 
   def product_discount(with_discount, options = {})
-    make_tag :p, I18n.t('views.product.with_currency', coust: with_discount), options
+    make_tag :p, I18n.t('views.product.with_currency', coust: price_formatted(with_discount)), options
   end
 
   def make_tag tag = :i, body = '', options = { class: 'icon icon-i-like' }
@@ -76,6 +76,16 @@ module ProductsHelper
 
     content_tag :i, class: icon_classes do
       content_tag :span, I18n.t('not_available') if !in_stock
+    end
+  end
+
+  def price_formatted price
+    int_price = price.to_i
+
+    if int_price > 0 && price % int_price == 0
+      int_price
+    else
+      price
     end
   end
 

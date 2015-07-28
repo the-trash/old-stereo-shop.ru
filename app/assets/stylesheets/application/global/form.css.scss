@@ -106,3 +106,27 @@
     }
   }
 }
+
+form {
+  &.inline-one-input {
+    input[type="text"] {
+      position: relative;
+      border: 1px solid $btnBorderColor;
+      border-right: none;
+      @include box-sizing(border-box);
+      @include border-bottom-left-radius($btnBorderRadius);
+      @include border-top-left-radius($btnBorderRadius);
+      padding: 2px 15px 5px; // padding-top/bottom should be same as .btn
+    }
+
+    .wrapper {
+      position: relative;
+    }
+
+    .btn {
+      @include border-bottom-left-radius(0px);
+      @include border-top-left-radius(0px);
+      position: relative;
+    }
+  }
+}

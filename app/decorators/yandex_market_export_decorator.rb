@@ -1,6 +1,7 @@
 class YandexMarketExportDecorator < Draper::Decorator
   delegate_all
 
+  # TODO override this method. Here should be only methods for product
   def text_format_temp_body
     [].tap do |temp_body|
       temp_body << id
