@@ -11,5 +11,9 @@ FactoryGirl.define do
     trait :delivery_by_mail do
       delivery 2
     end
+
+    trait :approved do
+      state 'approved'
+    end
   end
 end

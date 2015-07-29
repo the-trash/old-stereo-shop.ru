@@ -10,13 +10,14 @@
     - split_by_divider(@settings[:delivery_cities], ',').each do |city|
       %p= city
 %li
-  = link_to t('dealers'),
+  = link_to t('resellers'),
     page_path(:dileram),
     class: active_class_for_page(params, 'dileram')
 %li
   = link_to t('views.pages.help'),
     page_path(:help),
     class: active_class_for_page(params, 'help')
+
   .help-block
     %ul
       %li.light-blue

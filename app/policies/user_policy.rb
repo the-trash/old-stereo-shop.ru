@@ -1,10 +1,9 @@
-class UserPolicy
-  attr_reader :current_user, :user
+class UserPolicy < Struct.new(:current_user, :user)
+  delegate :unsubscribe, to: :user
 
   def initialize(current_user, user)
-    raise Pundit::NotAuthorizedError, "must be logged in" unless user
-    @current_user = current_user
-    @user         = user
+    raise Pundit::NotAuthorizedError, I18n.t('you_should_be_logged_in') unless user
+    super
   end
 
   def update?
@@ -12,12 +11,10 @@ class UserPolicy
   end
 
   %w(index create show destroy).each do |method|
-    define_method :"#{method}?" do
-      update?
-    end
+    alias_method :"#{method}?", :update?
   end
 
   def subscibe?
-    user.unsubscribe
+    unsubscribe
   end
 end

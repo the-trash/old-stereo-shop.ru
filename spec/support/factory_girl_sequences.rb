@@ -21,4 +21,14 @@ FactoryGirl.define do
       weight: Random.new.rand(50..200)
     }
   end
+
+  sequence :subscription_settings do
+    {
+      unsubscribe: [true, false].sample,
+      news: [true, false].sample,
+      bonus: [true, false].sample,
+      product_delivered: [true, false].sample,
+      deals: [true, false].sample
+    }
+  end
 end

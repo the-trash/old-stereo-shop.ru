@@ -1,8 +1,5 @@
-- if @order_page
-  = @order_page.full_text.html_safe
-- else
-  %h3= t('.order_complete')
-  %p= t('.user_message')
-  %ul
-    %li= link_to t('go_to_main'), root_path
-    %li= link_to t('my_profile'), current_user
+%h3= t('.order_complete')
+%p= t('.user_message')
+%ul
+  %li= link_to t('go_to_main'), root_path
+  %li= link_to t('my_profile'), current_user

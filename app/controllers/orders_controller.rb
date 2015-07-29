@@ -2,7 +2,8 @@ class OrdersController < FrontController
   inherit_resources
 
   actions :create, :update, :show
-  custom_actions  resource: [:delivery, :authenticate, :payment]
+  custom_actions  resource: [:delivery, :authenticate, :payment],
+    collection: [:success_complete]
 
   before_filter :check_access_to_order, except: [:create, :success_complete, :show]
 
@@ -46,10 +47,6 @@ class OrdersController < FrontController
     end
   end
 
-  def success_complete
-    @order_page = Page.find_by(slug: 'order-complete')
-  end
-
   private
 
   def build_resource
@@ -81,7 +78,7 @@ class OrdersController < FrontController
   end
 
   def payment_permitted_params
-    %i(payment file organization_name inn kpp)
+    base_permitted_params + %i(payment file organization_name inn kpp)
   end
 
   def order_step
@@ -96,8 +93,7 @@ class OrdersController < FrontController
     if user_signed_in?
       authorize resource, :update?
     else
-      cart = Cart.find_by session_token: session[:cart_token]
-      raise Pundit::NotAuthorizedError unless cart && resource.cart.try(:id) == cart.id
+      raise Pundit::NotAuthorizedError unless resource.cart == @cart
     end
   end
 end

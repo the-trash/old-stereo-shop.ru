@@ -64,7 +64,6 @@ class Order < ActiveRecord::Base
   delegate :total_amount, :line_items, to: :cart, prefix: true
   delegate :region, :region_title, to: :city
   delegate :title, to: :city, prefix: true
-  delegate :line_items, to: :cart, prefix: true
 
   accepts_nested_attributes_for :line_items, allow_destroy: true, reject_if: :all_blank
 
@@ -103,6 +102,7 @@ class Order < ActiveRecord::Base
       transition any => :arrived
     end
 
+    # TODO notify user if user exists
     before_transition started: :created, do: :make_order_completed
     after_transition started: :created, do: :notify_admins
     after_transition started: :created, do: :notify_user

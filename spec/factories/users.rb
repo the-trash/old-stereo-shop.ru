@@ -1,5 +1,3 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :user do
     sequence(:email) { Faker::Internet.free_email }
@@ -12,14 +10,34 @@ FactoryGirl.define do
     city
     index { Faker::Address.postcode }
     address { Faker::Address.street_name }
+    subscription_settings { generate :subscription_settings }
+  end
+
+  trait :with_orders do
+    transient do
+      orders_count 2
+    end
+
+    after :create do |user, evaluator|
+      create_list(:order, evaluator.orders_count, user: user)
+    end
+  end
+
+  trait :with_order_was_approved do
+    after :create do |user, evaluator|
+      create :order, :approved, user: user
+    end
+  end
+
+  trait :subscribed do
     subscription_settings {
-      {
-        unsubscribe: [true, false].sample,
-        news: [true, false].sample,
-        bonus: [true, false].sample,
-        product_delivered: [true, false].sample,
-        deals: [true, false].sample
-      }
+      { unsubscribe: false }
+    }
+  end
+
+  trait :unsubscribed do
+    subscription_settings {
+      { unsubscribe: true }
     }
   end
 end
