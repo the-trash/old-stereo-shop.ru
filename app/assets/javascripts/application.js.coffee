@@ -4,11 +4,12 @@
   = require jquery.gray.min
   = require select2
   = require select2_locale_ru
+  = require bootstrap-sass/assets/javascripts/bootstrap/dropdown
+  = require bootstrap-sass/assets/javascripts/bootstrap/tab
+  = require raty/lib/jquery.raty
   = require_directory ./application/helpers
   = require_directory ./application/blocks
-  = require jquery.raty
   = require jquery-ui/tabs
-  = require bootstrap-3/dropdown
   = require_self
 ###
 
@@ -29,6 +30,7 @@ $(document).ready ->
     new CitiesSelect
       el: $('.get-cities')
 
+  # TODO override it on bootstrap tabs
   $('body').find('.tabs').each ->
     $(this).tabs
       activate: (event, ui) ->

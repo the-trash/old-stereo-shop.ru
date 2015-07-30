@@ -1,0 +1,9 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "bootstrap-sass": "latest",
+    "backbone": "latest",
+    "marionette": "latest",
+    "raty": "git://github.com/wbotelhos/raty"
+  }
+}

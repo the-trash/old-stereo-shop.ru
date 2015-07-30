@@ -3,7 +3,7 @@
   = require select2
   = require select2_locale_ru
   = require_tree ./admin
-  = require jquery.raty
+  = require raty/lib/jquery.raty
   = require application/helpers/cities_select
 ###
 
@@ -17,6 +17,7 @@ $(document).ready ->
     $(@).raty
       score: $(@).data('score')
       readOnly: true
+      path: '/images/raty'
 
   if $('.get-cities').length
     new CitiesSelect

@@ -9,9 +9,11 @@ class Ratable
     $(el).raty
       score: $(el).data('score')
       readOnly: true
+      path: '/images/raty'
 
   initClickRaty: (el) ->
     $(el).raty
+      path: '/images/raty'
       click: (score, evt) ->
         $('#review_rating_score').val(score)
 
