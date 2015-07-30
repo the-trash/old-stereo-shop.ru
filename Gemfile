@@ -23,8 +23,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
 gem 'html5shiv-js-rails'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails' # TODO install it through bower
+gem 'jquery-ui-rails' # TODO install it through bower
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 
@@ -54,6 +54,7 @@ gem 'activerecord-import'
 gem 'acts_as_list'
 gem 'ancestry'
 gem 'bootstrap_flash_messages', '~> 1.0.0'
+gem 'bower-rails'
 gem 'breadcrumbs_on_rails'
 gem 'charlock_holmes'
 gem 'draper'
@@ -66,7 +67,7 @@ gem 'memoist'
 gem 'newrelic_rpm'
 gem 'rabl'
 gem 'ruby-progressbar'
-gem 'select2-rails'
+gem 'select2-rails' # TODO install it through bower
 gem 'sidekiq'
 gem 'sidetiq', '0.6.1'
 # For sidekiq
