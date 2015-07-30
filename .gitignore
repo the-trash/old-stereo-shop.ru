@@ -35,4 +35,3 @@ config/environments/*.local.yml
 
 # Bower files
 /vendor/assets/bower_components
-.bowerrc
