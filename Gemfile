@@ -22,9 +22,7 @@ gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
-gem 'html5shiv-js-rails'
-gem 'jquery-rails' # TODO install it through bower
-gem 'jquery-ui-rails' # TODO install it through bower
+gem 'html5shiv-js-rails' # TODO install it with bower
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 
@@ -68,7 +66,6 @@ gem 'memoist'
 gem 'newrelic_rpm'
 gem 'rabl'
 gem 'ruby-progressbar'
-gem 'select2-rails' # TODO install it through bower
 gem 'sidekiq'
 gem 'sidetiq', '0.6.1'
 # For sidekiq

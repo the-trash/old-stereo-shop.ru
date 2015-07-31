@@ -37,4 +37,6 @@
     = render 'shared/footer'
 
     = javascript_include_tag "application"
-    = render 'shared/metrics' if Rails.env.production?
+    - if Rails.env.production?
+      = render 'shared/metrics'
+      = render 'shared/includes/jivosite'

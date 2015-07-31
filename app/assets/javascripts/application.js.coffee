@@ -1,15 +1,17 @@
 ###
-  = require jquery
-  = require jquery_ujs
+  = require jquery/dist/jquery
+  = require jquery-ujs/src/rails
+  = require jquery-ui/ui/core
+  = require jquery-ui/ui/widget
+  = require jquery-ui/ui/tabs
   = require jquery.gray.min
-  = require select2
-  = require select2_locale_ru
+  = require select2/select2
+  = require select2/select2_locale_ru
   = require bootstrap-sass/assets/javascripts/bootstrap/dropdown
   = require bootstrap-sass/assets/javascripts/bootstrap/tab
   = require raty/lib/jquery.raty
   = require_directory ./application/helpers
   = require_directory ./application/blocks
-  = require jquery-ui/tabs
   = require_self
 ###
 
@@ -30,7 +32,7 @@ $(document).ready ->
     new CitiesSelect
       el: $('.get-cities')
 
-  # TODO override it on bootstrap tabs
+  # TODO override it on bootstrap tabs and remove jQuery UI
   $('body').find('.tabs').each ->
     $(this).tabs
       activate: (event, ui) ->

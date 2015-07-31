@@ -445,8 +445,6 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    select2-rails (3.5.9.3)
-      thor (~> 0.14)
     sexp_processor (4.4.4)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
@@ -570,8 +568,6 @@ DEPENDENCIES
   hstore_accessor
   html5shiv-js-rails
   image_suckr
-  jquery-rails
-  jquery-ui-rails
   letter_opener
   memoist
   meta_request
@@ -602,7 +598,6 @@ DEPENDENCIES
   sanitize
   sass-rails (~> 4.0.3)
   seedbank!
-  select2-rails
   shoulda-matchers
   sidekiq
   sidetiq (= 0.6.1)

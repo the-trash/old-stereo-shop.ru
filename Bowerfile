@@ -1,7 +1,11 @@
 # A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
+asset 'jquery', '2.1.4'
+asset 'jquery-ujs'
+asset 'jquery-ui', '1.11.2'
 asset 'bootstrap-sass'
 asset 'backbone'
 asset 'marionette'
 asset 'raty', github: 'wbotelhos/raty'
+asset 'select2', '3.5.2'

@@ -1,9 +1,13 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
+    "jquery" : "2.1.4",
+    "jquery-ujs": "latest",
+    "jquery-ui": "1.11.2",
     "bootstrap-sass": "latest",
     "backbone": "latest",
     "marionette": "latest",
-    "raty": "git://github.com/wbotelhos/raty"
+    "raty": "git://github.com/wbotelhos/raty",
+    "select2": "3.5.2"
   }
 }
