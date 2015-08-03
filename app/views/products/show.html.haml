@@ -53,15 +53,17 @@
         = raw resource.description
 
   .b-product-tabs.tabs
-    %ul
-      %li.active= link_to t('technical_details'), '#characteristics'
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.active
+        = link_to t('technical_details'), '#characteristics',
+          'aria-controls' => 'characteristics', role: :tab, 'data-toggle' => 'tab'
       %li
         = link_to t('views.product.review', count: resource.published_reviews_count),
-            '#reviews'
+          '#reviews', 'aria-controls' => 'reviews', role: :tab, 'data-toggle' => 'tab'
     .tab-content
-      .b-product-characteristics.tab.active#characteristics
+      .b-product-characteristics.tab-pane.tab.active#characteristics{ role: 'tabpanel' }
         = render 'products/includes/characteristics', characteristics: @show_presenter.characteristics if @show_presenter.characteristics.present?
-      .b-product-review.tab#reviews
+      .b-product-review.tab-pane.tab#reviews{ role: 'tabpanel' }
         = link_to t('views.product.new_review'), [:new_review, resource],
             class: 'new-review-link' if user_signed_in? && resource.can_vote?(current_user.id)
 

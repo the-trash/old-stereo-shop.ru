@@ -1,9 +1,6 @@
 ###
   = require jquery/dist/jquery
   = require jquery-ujs/src/rails
-  = require jquery-ui/ui/core
-  = require jquery-ui/ui/widget
-  = require jquery-ui/ui/tabs
   = require jquery.gray.min
   = require select2/select2
   = require select2/select2_locale_ru
@@ -32,12 +29,9 @@ $(document).ready ->
     new CitiesSelect
       el: $('.get-cities')
 
-  # TODO override it on bootstrap tabs and remove jQuery UI
-  $('body').find('.tabs').each ->
-    $(this).tabs
-      activate: (event, ui) ->
-        ui.oldTab.removeClass('active')
-        ui.newTab.addClass('active')
+  $('body').on 'click', "a[data-toggle='tab']", (e) ->
+    e.preventDefault()
+    $(this).tab 'show'
 
   $('body').on 'click', '.e-additional-fields', (e) ->
     e.preventDefault()

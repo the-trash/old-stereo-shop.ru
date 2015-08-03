@@ -2,13 +2,13 @@
   %h3= t('views.pages.help')
 
   .b-page-questions.tabs
-    %ul
-      %li.active= link_to resource.title, '#main'
-      %li= link_to t('questions'), '#questions'
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.active= link_to resource.title, '#main', 'aria-controls' => 'main', role: :tab, 'data-toggle' => 'tab'
+      %li= link_to t('questions'), '#questions', 'aria-controls' => 'questions', role: :tab, 'data-toggle' => 'tab'
     .tab-content
-      .b-page-content.active#main
+      .b-page-content.tab-pane.active#main{ role: 'tabpanel' }
         = resource.full_text.html_safe
-      .b-page-content#questions
+      .b-page-content.tab-pane#questions{ role: 'tabpanel' }
         - if @questions_category && @questions_category.posts.published.any?
           %ul.questions
             = render partial: 'pages/question', collection: @questions_category.posts.published, as: :question
