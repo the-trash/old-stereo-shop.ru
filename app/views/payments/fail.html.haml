@@ -1,0 +1,10 @@
+.l-payment-fail
+  %ul
+    %li= link_to t('go_to_main'), root_path
+    - if user_signed_in?
+      %li= link_to t('go_to_the_personal_area'), current_user
+    %li= link_to t('views.pages.help'), page_path(:help)
+    %li.b-fail-wrong-message= t('shomething_was_wrong')
+    - if user_signed_in? && @order
+      %li= t('try_to_play_again', link: order_path(@order)).html_safe
+    %li.b-payment-fail-image

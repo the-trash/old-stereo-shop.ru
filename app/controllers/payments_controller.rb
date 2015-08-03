@@ -3,7 +3,7 @@ class PaymentsController < FrontController
   skip_before_filter :set_variables, :store_location, only: [:check, :status]
 
   before_filter :set_notification, only: [:check, :status]
-  before_filter :set_order, only: [:status]
+  before_filter :set_order, only: [:status, :fail]
 
   def check
     if @notification.valid_sender?(request.remote_ip) && @notification.acknowledge?

@@ -114,10 +114,12 @@ ru:
   feedback_user_name: Как к Вам обращаться
   find: Найти
   get_subscribes: 'Получить рассылку на новинки и т.д.'
+  go_to_the_personal_area: В личный кабинет
   go_to_main: На главную
   go_to_wishlist: 'В список "Мне нравится"'
   goods_supplied: Товары в комплект
   i_like: Мне нравится
+  information_about_your_order: Информация о заказе на Вашей почте
   in_total: Итого
   inconsistency_of_data: Несоответствие данных
   my_profile: Мой профиль
@@ -163,11 +165,14 @@ ru:
   set_your_email: Укажите вашу почту
   should_be_filled: Должен быть заполнен
   show: Показать
+  shomething_was_wrong: Что то не получилось
   sign_up: Зарегистрироваться
   successfully_add_to_wishlist: Товар успешно добавлен с список желаний
   technical_details: Технические детали
+  thanks_for_your_order: "Спасибо за Ваш заказ!<br />Оплата прошла успешно..."
   to_subscribe: Подписаться
   total_amount: Общая сумма
+  try_to_play_again: "Пожалуйста, попробуйте <a href=%{link}>оплатить</a> еще раз"
   useful_information: 'Полезная информация'
   what_are_you_looking_for: Что вы ищете?
   who_we_are: Кто мы

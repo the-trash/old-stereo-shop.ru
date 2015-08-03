@@ -1,0 +1,8 @@
+.l-payment-success
+  %ul
+    %li= link_to t('go_to_main'), root_path
+    - if user_signed_in?
+      %li= link_to t('go_to_the_personal_area'), current_user
+    %li.b-payment-thanks-message= t('thanks_for_your_order').html_safe
+    %li= t('information_about_your_order')
+    %li.b-payment-success-image

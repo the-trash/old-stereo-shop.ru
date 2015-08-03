@@ -1,0 +1,24 @@
+@import payments/*.png
++all-payments-sprites
+
+.l-payment-fail, .l-payment-success
+  margin-top: 20px
+  ul
+    li
+      a
+        font-size: $base-font-size + 4
+      &.b-fail-wrong-message, &.b-payment-thanks-message
+        margin-top: 10px
+
+      &.b-payment-fail-image, &.b-payment-success-image
+        margin-top: 20px
+
+      &.b-payment-fail-image
+        +payments-sprite('payment-fail')
+        width: payments-sprite-width('payment-fail')
+        height: payments-sprite-height('payment-fail')
+
+      &.b-payment-success-image
+        +payments-sprite('payment-success')
+        width: payments-sprite-width('payment-success')
+        height: payments-sprite-height('payment-success')

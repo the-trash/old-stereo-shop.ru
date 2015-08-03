@@ -15,7 +15,9 @@ public/system/uploads/
 public/system/dragonfly/
 public/uploads/
 public/assets
-icon-*.png
+
+app/assets/images/icons-*.png
+app/assets/images/payments-*.png
 
 config/database.yml
 config/*.sphinx.conf

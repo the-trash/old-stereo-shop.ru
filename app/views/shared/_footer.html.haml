@@ -1,9 +1,6 @@
 %footer
-  .our-products
-    %h2
-      = t('our_production')
-      %span.icons-arrow-black-down
-    - if @front_presenter.product_categories.any?
+  - if @front_presenter.product_categories.any?
+    .our-products
       %ul.menu
         %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
         = build_product_category_ancestry_tree(@front_presenter.product_categories)
@@ -40,9 +37,6 @@
             %li.pull-right= link_to @useful_information.title, @useful_information
       .pull-right
         .gray-block
-          %h2
-            = t 'convenience_and_safety'
-            %span.icons-arrow-black-down
           %ul.menu.right-menu
             = render 'shared/includes/static_pages_links'
 
