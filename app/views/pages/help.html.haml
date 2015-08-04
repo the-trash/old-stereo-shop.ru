@@ -10,7 +10,7 @@
         = resource.full_text.html_safe
       .b-page-content.tab-pane#questions{ role: 'tabpanel' }
         - if @questions_category && @questions_category.posts.published.any?
-          %ul.questions
+          .panel-group#question-accordion{ role: 'tablist', 'aria-multiselectable' => true }
             = render partial: 'pages/question', collection: @questions_category.posts.published, as: :question
         - else
           %b Создайте категорию 'Ваши вопросы' и наполните материалом

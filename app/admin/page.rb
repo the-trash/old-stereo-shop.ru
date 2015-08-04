@@ -50,7 +50,7 @@ ActiveAdmin.register Page do
     f.inputs do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
-        f.input :short_text
+        f.input :short_text, as: :wysihtml5
         f.input :full_text, as: :wysihtml5
         f.admin_users_input(resource)
         f.states_input(resource_class.states.keys, resource.state)

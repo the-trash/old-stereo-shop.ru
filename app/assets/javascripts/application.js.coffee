@@ -5,6 +5,7 @@
   = require select2/select2
   = require select2/select2_locale_ru
   = require bootstrap-sass/assets/javascripts/bootstrap/dropdown
+  = require bootstrap-sass/assets/javascripts/bootstrap/collapse
   = require bootstrap-sass/assets/javascripts/bootstrap/tab
   = require raty/lib/jquery.raty
   = require_directory ./application/helpers
@@ -39,12 +40,6 @@ $(document).ready ->
     $('.b-additional-fields-for-sign-up').toggle()
 
     $(@).children('i').toggleClass('icon-arrow-bottom icon-arrow-top')
-
-  $('body').on 'click', '.help-question', (e) ->
-    e.preventDefault()
-
-    $(@).closest('li').toggleClass('active')
-    $(@).next('.description').toggle()
 
   $('body').on 'click', '.user-widget > .cart.with-good', (e) ->
     e.preventDefault()

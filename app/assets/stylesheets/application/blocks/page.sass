@@ -1,0 +1,22 @@
+.b-page
+  .b-page-questions, .b-page-feedback-form
+    float: left
+
+  .b-page-feedback-form
+    width: 35%
+    padding-left: 30px
+
+  .b-page-questions
+    width: 60%
+    & > ul
+      margin-bottom: 15px
+      li
+        +inline-block()
+        width: 49%
+        a
+          font-size: 18px
+
+        &.active
+          a
+            color: $black
+            text-decoration: none

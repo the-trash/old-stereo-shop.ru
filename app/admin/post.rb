@@ -56,7 +56,7 @@ ActiveAdmin.register Post do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
         f.input :description, as: :wysihtml5
-        f.input :full_text
+        f.input :full_text, as: :wysihtml5
         f.admin_users_input(resource)
         f.post_categories_input(resource)
         f.states_input(resource_class.states.keys, resource.state)

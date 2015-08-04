@@ -1,4 +1,13 @@
-%li
-  = link_to question.title, '#', class: 'help-question'
-  .description
-    = question.full_text.html_safe
+- question_href = "question-#{question_counter}"
+- question_heading = "heading-#{question_href}"
+
+.panel.panel-default
+  .panel-heading{ role: 'role', id: question_heading }
+    %h4.panel-title
+      = link_to question.title, "##{question_href}", role: 'button',
+        data: { toggle: 'collapse', parent: 'question-accordion' },
+        'aria-expanded'=> false, 'aria-controls' => question_href
+
+  .panel-collapse.collapse{ role: 'tabpanel', 'aria-labelledby' => question_heading, id: question_href }
+    .panel-body
+      = question.full_text.html_safe
