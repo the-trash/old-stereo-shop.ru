@@ -1,2 +1,2 @@
 %h4= Settings.mailers.orders.approved.user.header
-%p= link_to 'оплата', order_url(@order)
+%p= link_to t('payment'), order_url(@order, cart_token: @order.cart.session_token)

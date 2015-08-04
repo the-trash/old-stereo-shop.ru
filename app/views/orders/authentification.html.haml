@@ -3,31 +3,24 @@
 
   .b-authentification.b-order-steps
     - if user_signed_in?
-      = form_for resource, method: :patch, html: { class: 'form order' } do |f|
-        = f.hidden_field :step, { value: Order.steps.keys[1] }
-        = hidden_field_tag 'order[next_step]', Order.steps.keys[2]
-        .form-group
-          = f.label :user_name, t('.user_name'), class: 'required'
-          = f.text_field :user_name, { value: resource.user_name || current_user.full_name, required: true }
-
-        .form-group
-          = f.label :phone, t('.phone'), class: 'required'
-          = f.text_field :phone, { value: resource.phone || current_user.phone, required: true }
-
-        .form-group
-          = f.label :city_id, t('.city'), class: 'required'
-          = f.hidden_field :city_id, { value: current_user.city_id, data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
-
-        .form-group
-          = f.label :address, t('.address'), class: 'required'
-          = f.text_field :address, { value: resource.address || current_user.address, required: true }
-
-        .form-group
-          = f.label :post_index, t('.post_index'), class: 'required'
-          = f.text_field :post_index, { value: resource.post_index || current_user.index, required: true }
-
-        .b-form-actions
-          = link_to t('.choose_delivery_type'), [:delivery, resource], class: 'btn'
-          = f.submit t('next_step'), class: 'btn btn-pink'
+      = render 'orders/includes/user_info_for_order'
     - else
-      = render template: 'devise/sessions/new'
+      %ul.nav.nav-tabs{ role: 'tablist' }
+        %li.active
+          = link_to t('.buy_without_registration'), '#without-registration',
+            'aria-controls' => 'without-registration', role: 'tab',
+            data: { toggle: 'tab' }
+        %li
+          = link_to t('sign_up'), '#sign-up', 'aria-controls' => 'sign-up',
+            role: 'tab', data: { toggle: 'tab' }
+        %li
+          = link_to t('authentication'), '#authentication', 'aria-controls' => 'authentication',
+            role: 'tab', data: { toggle: 'tab' }
+
+      .tab-content
+        .tab-pane.active#without-registration{ role: 'tabpanel' }
+          = render 'orders/includes/user_info_for_order'
+        .tab-pane#sign-up{ role: 'tabpanel' }
+          = render 'devise/registrations/sign_up_form'
+        .tab-pane#authentication{ role: 'tabpanel' }
+          = render 'devise/sessions/sign_in_form'

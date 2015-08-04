@@ -1,17 +1,20 @@
 ru:
   orders:
+    includes:
+      user_info_for_order:
+        user_name: Как к вам обращаться
+        phone: Телефон
+        city: Город
+        address: Адрес доставки
+        post_index: Почтовый индекс
+        choose_delivery_type: Выбрать способ доставки
     delivery:
       courier: Курьерская доставка
       point_of_delivery: Пункт выдачи заказа
       mail: Почта России
       continue_shopping: Продолжить покупки
     authentification:
-      user_name: Как к вам обращаться
-      phone: Телефон
-      city: Город
-      address: Адрес доставки
-      post_index: Почтовый индекс
-      choose_delivery_type: Выбрать способ доставки
+      buy_without_registration: Купить без регистрации
     payment:
       payment_system: Через платежную систему
       receive: Наличными при получении. В пункте выдачи или курьеру
@@ -25,6 +28,7 @@ ru:
     success_complete:
       order_complete: Поздравляем, Ваш заказ оформлен!
       user_message: Вам на почту отправлена информация по заказу. Если вы долго не получаете письма, проверьте папку "Спам".
+      not_authorized_user_message: "В течении 5 - 10 минут с Вами свяжется наш менеджер. Если никто не позвонил, <a href=\"mailto:%{admin_emails}?subject=%{subject}\">обратитесь в службу поддержки</a>"
     show:
       payment: Оплата
       user_name: Покупатель

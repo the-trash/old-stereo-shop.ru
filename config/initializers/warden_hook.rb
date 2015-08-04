@@ -6,7 +6,7 @@ Warden::Manager.after_authentication do |user, auth, opts|
     cart = Cart.find_by session_token: session[:cart_token]
 
     ActiveRecord::Base.transaction do
-      user.cart.destroy if user.cart && user.cart.id != cart.id # remove old user cart
+      user.cart.update_column :user_id, nil if user.cart && user.cart.id != cart.id && user.cart.order # remove old user cart
       cart.update_column :user_id, user.id
 
       user.reload

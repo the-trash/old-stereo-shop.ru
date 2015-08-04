@@ -5,6 +5,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'spec_helper'
 require 'mailer_helper'
 require 'rspec/rails'
+require 'devise'
 require 'sidekiq/testing'
 require 'pundit/rspec'
 
@@ -23,6 +24,7 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include MailerHelper, type: :mailer
+  config.include Devise::TestHelpers, type: :controller
 
   Sidekiq::Testing.inline!
 
@@ -34,6 +36,7 @@ RSpec.configure do |config|
   config.before(:each) do
     DatabaseCleaner.start
     Sidekiq::Worker.clear_all
+    ActionMailer::Base.deliveries.clear
   end
 
   config.after(:each) do

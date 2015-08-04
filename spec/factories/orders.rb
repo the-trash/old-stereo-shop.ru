@@ -15,5 +15,9 @@ FactoryGirl.define do
     trait :approved do
       state 'approved'
     end
+
+    trait :without_user do
+      user_id nil
+    end
   end
 end

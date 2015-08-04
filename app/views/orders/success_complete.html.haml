@@ -1,5 +1,9 @@
 %h3= t('.order_complete')
-%p= t('.user_message')
+- if user_signed_in?
+  %p= t('.user_message')
+- else
+  %p
+    = t('.not_authorized_user_message', admin_emails: Settings.shop.order.admins, subject: Settings.shop.order.subject.should_phone_immediately).html_safe
 %ul
   %li= link_to t('go_to_main'), root_path
   %li= link_to t('my_profile'), current_user

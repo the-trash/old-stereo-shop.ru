@@ -45,6 +45,7 @@ shop:
     admins: 'post@artelectronics.ru, farid@artelectronics.ru, yana@artelectronics.ru'
     subject:
       created: Оформлен заказ
+      should_phone_immediately: Мне не перезвонил менеджер по поводу заказа
 
 carrierwave:
   extension_white_list:

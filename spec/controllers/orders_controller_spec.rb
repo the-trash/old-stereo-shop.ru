@@ -30,4 +30,11 @@ describe OrdersController do
     it_behaves_like 'a successful request'
     it_behaves_like 'a successful render template', 'success_complete'
   end
+
+  context 'GET /orders/:id/complete' do
+    before { get :complete, id: order.id, step: 'success_complete' }
+
+    it_behaves_like 'a successful request'
+    it_behaves_like 'a successful render template', 'orders/success_complete'
+  end
 end

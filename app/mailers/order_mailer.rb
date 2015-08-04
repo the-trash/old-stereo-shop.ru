@@ -6,7 +6,7 @@ class OrderMailer < ActionMailer::Base
     @order = order
 
     mail \
-      to: Setting.find_by(key: 'default_admin_emails') || Settings.shop.order.admins,
+      to: OrderMailer.default_admin_emails,
       subject: make_subject(order),
       template_path: 'mailers/order_mailer/admin',
       template_name: order.state
@@ -20,6 +20,10 @@ class OrderMailer < ActionMailer::Base
       subject: make_subject(order),
       template_path: 'mailers/order_mailer/user',
       template_name: order.state
+  end
+
+  def self.default_admin_emails
+    Setting.find_by(key: 'default_admin_emails').try(:value) || Settings.shop.order.admins
   end
 
   private

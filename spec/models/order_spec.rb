@@ -24,6 +24,55 @@ describe Order do
     end
   end
 
+  describe 'transitions' do
+    let(:order) { create :order }
+
+    shared_examples_for 'mails for user should be sent correct' do
+      specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(1) }
+
+      context "when user doesn't exist" do
+        let(:order) { create :order, :without_user }
+
+        specify { expect{ subject }.not_to change{ OrderMailer.deliveries.count }.from(0) }
+      end
+    end
+
+    describe '#make_complete' do
+      subject { order.make_complete }
+
+      specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(2) }
+
+      context "when user doesn't exist" do
+        let(:order) { create :order, :without_user }
+
+        specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(1) }
+
+        it 'should be sent for admins' do
+          subject
+          expect(OrderMailer.deliveries.first.to).to eq OrderMailer.default_admin_emails.split(', ')
+        end
+      end
+    end
+
+    describe '#forward' do
+      subject { order.forward }
+
+      it_behaves_like 'mails for user should be sent correct'
+    end
+
+    describe '#approve' do
+      subject { order.approve }
+
+      it_behaves_like 'mails for user should be sent correct'
+    end
+
+    describe '#arrive' do
+      subject { order.arrive }
+
+      it_behaves_like 'mails for user should be sent correct'
+    end
+  end
+
   describe '#validations' do
     describe '#not_cash_payment' do
       context "when order doesn't have delivery by mail" do

@@ -21,7 +21,7 @@ class CitiesSelect
     initSelection: (element, callback) ->
       id = $(element).val()
 
-      if id != ''
+      if id != '0' && id != ''
         $.ajax('/cities/' + id,
           dataType: 'json'
         ).done (data) ->

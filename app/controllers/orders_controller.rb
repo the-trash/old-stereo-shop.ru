@@ -2,15 +2,11 @@ class OrdersController < FrontController
   inherit_resources
 
   actions :create, :update, :show
-  custom_actions  resource: [:delivery, :authenticate, :payment],
+  custom_actions  resource: [:delivery, :authenticate, :payment, :complete],
     collection: [:success_complete]
 
   before_filter :check_access_to_order, except: [:create, :success_complete, :show]
-
-  def show
-    authorize resource, :show?
-    show!
-  end
+  before_filter :check_access_to_show_order, only: :show
 
   def create
     create! do |success, failure|
@@ -19,7 +15,7 @@ class OrdersController < FrontController
         redirect_to [:delivery, resource]
       end
       failure.html do
-        redirect_to :back, flash: { error: resource.errors.full_messages.join("\r\n") }
+        redirect_to :back, flash: { error: resource_errors }
       end
     end
   end
@@ -34,7 +30,7 @@ class OrdersController < FrontController
         end
       end
       failure.html do
-        redirect_to :back, flash: { error: resource.errors.full_messages.join("\r\n") }
+        redirect_to :back, flash: { error: resource_errors }
       end
     end
   end
@@ -43,7 +39,7 @@ class OrdersController < FrontController
     if resource.make_complete!
       redirect_to [:success_complete, :orders]
     else
-      redirect_to :back, flash: { error: resource.errors.full_messages.join("\r\n") }
+      redirect_to :back, flash: { error: resource_errors }
     end
   end
 
@@ -93,7 +89,23 @@ class OrdersController < FrontController
     if user_signed_in?
       authorize resource, :update?
     else
-      raise Pundit::NotAuthorizedError unless resource.cart == @cart
+      raise_pundit_exception
     end
+  end
+
+  def check_access_to_show_order
+    if user_signed_in?
+      authorize resource, :show?
+    else
+      raise_pundit_exception
+    end
+  end
+
+  def raise_pundit_exception
+    raise Pundit::NotAuthorizedError unless resource.cart == @cart
+  end
+
+  def resource_errors
+    resource.errors.full_messages.join("\r\n")
   end
 end
