@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default to: Setting.find_by(key: 'shop_feedback_email') || Settings.shop.feedback.to
+  default to: Setting.find_by(key: 'shop_feedback_email').try(:value) || Settings.shop.feedback.to
 
   def feedback(params = {})
     @params = params

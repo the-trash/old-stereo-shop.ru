@@ -1,6 +1,6 @@
 class OrderMailer < ActionMailer::Base
   # TODO remove default 'from' from other mailers and make this setting in application.rb
-  default from: Setting.find_by(key: 'shop_mailer_default_from') || Settings.shop.default.from
+  default from: Setting.find_by(key: 'shop_mailer_default_from').try(:value) || Settings.shop.default.from
 
   def notify_admins order
     @order = order
@@ -25,6 +25,6 @@ class OrderMailer < ActionMailer::Base
   private
 
   def make_subject order
-    Setting.find_by(key: "subject_for_#{order.state}_order") || Settings.shop.order.subject.try("#{order.state}")
+    Setting.find_by(key: "subject_for_#{order.state}_order").try(:value) || Settings.shop.order.subject.try("#{order.state}")
   end
 end
