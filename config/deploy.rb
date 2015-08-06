@@ -38,7 +38,7 @@ namespace :bower do
   task :install do
     on roles(:web) do
       within release_path do
-        execute :rake, "bower:install['--allow-root']"
+        execute :rake, "bower:install:deployment['--allow-root'] bower:resolve"
       end
     end
   end

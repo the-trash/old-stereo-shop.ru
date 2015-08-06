@@ -9,6 +9,3 @@ Rails.application.config.assets.precompile += %w(
   select2/*.png
   select2/*.gif
 )
-
-Rails.application.config.assets.paths << File.join(Rails.root, 'vendor/assets')
-Rails.application.config.assets.paths << File.join(Rails.root, 'vendor/assets', 'bower_components', 'select2')
