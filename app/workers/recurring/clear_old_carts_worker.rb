@@ -7,7 +7,7 @@ class Recurring::ClearOldCartsWorker
   recurrence { weekly }
 
   def perform
-    Cart.old_cart.destroy_all
+    Cart.old_cart.without_orders.destroy_all
     LineItem.broken_position.destroy_all
     Order.where(user_id: nil, cart_id: nil).destroy_all
   end

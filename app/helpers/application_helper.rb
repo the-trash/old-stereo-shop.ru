@@ -75,7 +75,7 @@ module ApplicationHelper
   end
 
   def split_by_divider string, divider = ';'
-    string.split divider
+    string.present? ? string.split(divider) : []
   end
 
   private

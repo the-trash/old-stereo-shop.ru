@@ -1,7 +1,6 @@
 describe Cart do
-  let!(:product) { create :product }
-
   describe '#add_product' do
+    let!(:product) { create :product }
     subject { cart.add_product(product.id) }
 
     context 'cart without products' do
@@ -31,5 +30,15 @@ describe Cart do
         }
       end
     end
+  end
+
+  describe '.without_orders' do
+    let!(:cart) { create :cart, :with_order }
+    let!(:broken_cart) { create :cart, :broken_relation_with_order }
+
+    subject { described_class.without_orders }
+
+    specify { expect(subject).to include broken_cart }
+    specify { expect(subject).not_to include cart }
   end
 end

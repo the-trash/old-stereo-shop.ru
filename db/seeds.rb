@@ -1,4 +1,4 @@
-require 'spec/support/factory_girl_sequences'
+require Rails.root.join 'spec/support/factory_girl_sequences'
 
 # default settings
 settings = [

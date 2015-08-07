@@ -10,6 +10,10 @@
     = f.text_field :phone, { value: resource.phone || (current_user.phone if current_user), required: true }
 
   .form-group
+    = f.label :email, t('.email'), class: 'required'
+    = f.text_field :email, { value: resource.email || (current_user.email if current_user), required: true }
+
+  .form-group
     = f.label :city_id, t('.city'), class: 'required'
     = f.hidden_field :city_id, { value: (current_user.city_id if current_user), data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
 

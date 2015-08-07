@@ -19,6 +19,7 @@
 #  total_amount  :decimal(10, 2)   default(0.0), not null
 #  created_at    :datetime
 #  updated_at    :datetime
+#  email         :string(255)
 #
 # Indexes
 #
@@ -56,7 +57,7 @@ class Order < ActiveRecord::Base
 
   validates :delivery, inclusion: { in: DELIVERIES }
   validates :payment, inclusion: { in: PAYMENTS }
-  validates :user_name, :phone, :city, :address, :post_index, presence: true, if: [:authentification?, :started?]
+  validates :user_name, :phone, :city, :address, :post_index, :email, presence: true, if: [:authentification?, :started?]
   # TODO fix me, you should check validation in spec
   validates :file, :inn, :kpp, :organization_name, presence: true, if: [:payment?, :cashless?]
   validate :not_cash_payment, if: [:payment?, :mail?, :receive?]
@@ -111,10 +112,6 @@ class Order < ActiveRecord::Base
     after_transition any => :arrived, do: :notify_user, if: :user
 
     after_transition any => :paid, do: :notify_admins
-  end
-
-  def email
-    user ? user.email : 'empty-user@empty-email.ru'
   end
 
   private

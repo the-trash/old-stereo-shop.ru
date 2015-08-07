@@ -12,7 +12,7 @@ if [ ! -f config/database.yml ]; then
 fi
 
 # Set up database and add any development seed data
-bundle exec rake db:setup
+bundle exec rake db:setup bower:install:deployment bower:resolve
 
 # Pick a port for Foreman
 echo "port: 3000" > .foreman

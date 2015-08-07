@@ -70,7 +70,7 @@ class OrdersController < FrontController
   end
 
   def authentification_permitted_params
-    base_permitted_params + %i(user_name phone city_id address post_index)
+    base_permitted_params + %i(user_name phone city_id address post_index email)
   end
 
   def payment_permitted_params

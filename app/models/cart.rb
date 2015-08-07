@@ -16,6 +16,10 @@
 
 class Cart < ActiveRecord::Base
   scope :old_cart, -> { where(updated_at: 14.days.ago) }
+  scope :without_orders, -> {
+    joins("LEFT JOIN orders ON #{table_name}.id = orders.cart_id")
+    .where(orders: { id: nil })
+  }
 
   has_many :line_items, -> { order('id DESC') }, dependent: :nullify
   has_many :products, through: :line_items

@@ -8,5 +8,22 @@ FactoryGirl.define do
         cart.line_items << create_list(:line_item, 3, cart: cart)
       end
     end
+
+    trait :without_user do
+      user_id nil
+    end
+
+    trait :with_order do
+      after :create do |cart, evaluator|
+        create :order, cart: cart
+      end
+    end
+
+    trait :broken_relation_with_order do
+      after :create do |cart, evaluator|
+        order = create :order, cart: cart
+        order.update_column :cart_id, nil
+      end
+    end
   end
 end

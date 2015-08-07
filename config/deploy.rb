@@ -17,7 +17,7 @@ set :unicorn_restart_sleep_time, 1
 set :assets_roles, [:web, :app]
 
 set :linked_files, %w{config/database.yml config/sidekiq.yml}
-set :linked_dirs, %w{bin log solr tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
+set :linked_dirs, %w{bin log solr tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads public/system/dragonfly}
 
 set :unicorn_config_path, "#{ shared_path }/config/unicorn.#{ fetch :stage }.rb"
 
