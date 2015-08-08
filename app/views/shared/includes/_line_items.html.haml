@@ -1,5 +1,11 @@
 %ul.line-items
-  %h4= link_to t('cart_with_count', count: @cart.total_quantity), @cart
+  %li
+    .btn-group{ role: 'group' }
+      = link_to @cart, class: 'btn btn-info btn-xs' do
+        = t 'cart'
+        %span.badge= @cart.total_quantity
+      = link_to t('continue_purchases'), root_path, class: 'btn btn-success btn-xs'
+
   - @cart.line_items.each do |line_item|
     %li
       .b-single-product.cart-list-user-widget

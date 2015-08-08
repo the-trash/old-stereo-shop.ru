@@ -3,7 +3,6 @@
 
 asset 'jquery', '2.1.4'
 asset 'jquery-ujs'
-asset 'jquery-ui', '1.11.2'
 asset 'bootstrap-sass'
 asset 'backbone'
 asset 'marionette'

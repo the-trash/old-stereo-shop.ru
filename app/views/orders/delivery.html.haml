@@ -11,6 +11,6 @@
           = f.radio_button :delivery, delivery_type
           = f.label :"delivery_#{delivery_type}", t(".#{delivery_type}")
 
-      .b-form-actions
-        = link_to t('.continue_shopping'), root_path, class: 'btn'
+      .b-form-actions.btn-group{ role: 'group' }
+        = link_to t('.continue_shopping'), root_path, class: 'btn btn-success'
         = f.submit t('next_step'), class: 'btn btn-pink'

@@ -4,4 +4,4 @@
       - char[:characteristics].each do |cat_char|
         %tr
           %td= cat_char[:characteristic].title
-          %td= cat_char[:characteristic_value].value
+          %td= characteristic_with_unit cat_char[:characteristic_value].value, cat_char[:characteristic].unit

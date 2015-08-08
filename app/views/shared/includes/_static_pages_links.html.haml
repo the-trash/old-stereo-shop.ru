@@ -22,11 +22,11 @@
     %ul
       %li.light-blue
         - if @front_presenter.safety
-          = link_to t('safety'), @front_presenter.safety
+          = link_to t('guarantee'), @front_presenter.safety
         - else
-          %span= t 'safety'
+          %span= t 'guarantee'
       %li.light-blue
         - if @front_presenter.refund_of_money
-          = link_to t('refund_of_money'), @front_presenter.refund_of_money
+          = link_to t('refund'), @front_presenter.refund_of_money
         - else
-          %span= t 'refund_of_money'
+          %span= t 'refund'

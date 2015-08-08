@@ -79,6 +79,10 @@ module ProductsHelper
     end
   end
 
+  def characteristic_with_unit value, unit
+    content_tag :span, [value, ("(#{unit})" if unit.present?)].join(' ')
+  end
+
   def price_formatted price
     int_price = price.to_i
 

@@ -3,7 +3,6 @@
   "dependencies": {
     "jquery" : "2.1.4",
     "jquery-ujs": "latest",
-    "jquery-ui": "1.11.2",
     "bootstrap-sass": "latest",
     "backbone": "latest",
     "marionette": "latest",

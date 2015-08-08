@@ -1,5 +1,5 @@
 %ul.user-profile
   %li
-    %h2 Редактор личного профиля
+    %h2= t 'user_profile_editor'
   %li
     = link_to t('devise.sign_out'), [:destroy, :user, :session], method: :delete

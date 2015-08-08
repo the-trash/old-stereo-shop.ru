@@ -85,7 +85,6 @@ ru:
   blank: Пусто
   brands: Бренды
   cart: Корзина
-  cart_with_count: 'Корзина (%{count})'
   cart_total_amount: Сумма заказа
   catalog: Каталог
   checkout: Оформить заказ
@@ -93,6 +92,7 @@ ru:
   chouse_delivery: Выбор способа доставки
   clear: Очистить
   clear_cart: Очистить корзину
+  continue_purchases: Продолжить покупки
   continue_make_order: Продолжить оформление заказа
   convenience_and_safety: Удобство и безопасность
   cities:
@@ -114,14 +114,15 @@ ru:
   feedback_user_name: Как к Вам обращаться
   find: Найти
   get_subscribes: 'Получить рассылку на новинки и т.д.'
-  go_to_the_personal_area: В личный кабинет
   go_to_main: На главную
+  go_to_the_personal_area: В личный кабинет
   go_to_wishlist: 'В список "Мне нравится"'
   goods_supplied: Товары в комплект
+  guarantee: Гарантия
   i_like: Мне нравится
-  information_about_your_order: Информация о заказе на Вашей почте
   in_total: Итого
   inconsistency_of_data: Несоответствие данных
+  information_about_your_order: Информация о заказе на Вашей почте
   my_profile: Мой профиль
   my_question: Мой вопрос
   my_wishlist: Мой список желаний
@@ -145,28 +146,29 @@ ru:
   popular: Популярные
   produce: Продукция
   product_actions: Действия с товаром
-  product_in_cart: Товар находится в корзине
+  product_already_exists_in_wishlist: Товар уже существует в списке желаний
   product_category_for_import: Категория продуктов для импорта товаров
-  products_has_not_been_detected: Продутов не обнаружено
+  product_in_cart: Товар находится в корзине
   product_name: Название товара
   product_price: Цена
-  product_already_exists_in_wishlist: Товар уже существует в списке желаний
   products_from_brand: Все товары бренда
+  products_has_not_been_detected: Продутов не обнаружено
   quantity: Количество
   question: Вопрос
   questions: Ваши вопросы
+  refund: Возврат
   refund_of_money: Возврат денег
   resellers: Реселлерам
-  sale: Sale
   safety: Безопасность
+  sale: Sale
   save: Сохранить
   search: Поиск
   search_result: 'Результаты поиска "%{request}"'
   searching: Идет поиск
   set_your_email: Укажите вашу почту
+  shomething_was_wrong: Что то не получилось
   should_be_filled: Должен быть заполнен
   show: Показать
-  shomething_was_wrong: Что то не получилось
   sign_up: Зарегистрироваться
   successfully_add_to_wishlist: Товар успешно добавлен с список желаний
   technical_details: Технические детали
@@ -175,10 +177,11 @@ ru:
   total_amount: Общая сумма
   try_to_play_again: "Пожалуйста, попробуйте <a href=%{link}>оплатить</a> еще раз"
   useful_information: 'Полезная информация'
+  user_profile_editor: Редактор личного профиля
   what_are_you_looking_for: Что вы ищете?
   who_we_are: Кто мы
-  you_should_be_logged_in: Вы должны быть авторизованы
   you_might_also_like: Вам может понравиться
+  you_should_be_logged_in: Вы должны быть авторизованы
   you_watched: Вы смотрели
   your_cart_empty_yet: Пока вы не добавили ни одного товара в вашу корзину
   your_wishlist_is_empty: Ваш список желаний пока пуст

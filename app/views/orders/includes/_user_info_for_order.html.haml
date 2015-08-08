@@ -25,6 +25,7 @@
     = f.label :post_index, t('.post_index'), class: 'required'
     = f.text_field :post_index, { value: resource.post_index || (current_user.index if current_user), required: true }
 
-  .b-form-actions
-    = link_to t('.choose_delivery_type'), [:delivery, resource], class: 'btn'
+  .b-form-actions.btn-group{ role: 'group' }
+    = link_to t('.choose_delivery_type'), [:delivery, resource], class: 'btn btn-default'
+    = link_to t('continue_purchases'), root_path, class: 'btn btn-success'
     = f.submit t('next_step'), class: 'btn btn-pink'

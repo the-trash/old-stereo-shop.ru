@@ -1,4 +1,4 @@
 %li
   %p
     %strong #{ characteristic.characteristic_title }:
-    #{ characteristic.value } (#{ characteristic.characteristic_unit })
+    = characteristic_with_unit characteristic.value, characteristic.characteristic_unit

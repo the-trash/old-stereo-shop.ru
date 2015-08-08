@@ -34,6 +34,7 @@
             = f.label :file, t('.details'), class: 'required'
             = f.file_field :file, accept: Settings.carrierwave.extension_white_list.accept
 
-      .b-form-actions
-        = link_to t('.change_user_info'), [:authentification, resource], class: 'btn'
+      .b-form-actions.btn-group{ role: 'group' }
+        = link_to t('.change_user_info'), [:authentification, resource], class: 'btn btn-default'
+        = link_to t('continue_purchases'), root_path, class: 'btn btn-success'
         = f.submit t('.complete_checkout'), class: 'btn btn-pink'
