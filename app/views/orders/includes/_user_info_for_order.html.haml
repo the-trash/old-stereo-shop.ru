@@ -18,12 +18,12 @@
     = f.hidden_field :city_id, { value: (current_user.city_id if current_user), data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities' }
 
   .form-group
-    = f.label :address, t('.address'), class: 'required'
-    = f.text_field :address, { value: resource.address || (current_user.address if current_user), required: true }
+    = f.label :address, t('.address')
+    = f.text_field :address, { value: resource.address || (current_user.address if current_user) }
 
   .form-group
-    = f.label :post_index, t('.post_index'), class: 'required'
-    = f.text_field :post_index, { value: resource.post_index || (current_user.index if current_user), required: true }
+    = f.label :post_index, t('.post_index')
+    = f.text_field :post_index, { value: resource.post_index || (current_user.index if current_user) }
 
   .b-form-actions.btn-group{ role: 'group' }
     = link_to t('.choose_delivery_type'), [:delivery, resource], class: 'btn btn-default'

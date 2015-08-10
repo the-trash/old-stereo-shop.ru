@@ -15,7 +15,7 @@
 #
 
 class Cart < ActiveRecord::Base
-  scope :old_cart, -> { where(updated_at: 14.days.ago) }
+  scope :old_carts, -> { where('updated_at < ?', 14.days.ago) }
   scope :without_orders, -> {
     joins("LEFT JOIN orders ON #{table_name}.id = orders.cart_id")
     .where(orders: { id: nil })

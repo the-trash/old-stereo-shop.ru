@@ -38,7 +38,17 @@ describe Cart do
 
     subject { described_class.without_orders }
 
-    specify { expect(subject).to include broken_cart }
-    specify { expect(subject).not_to include cart }
+    specify { is_expected.to include broken_cart }
+    specify { is_expected.not_to include cart }
+  end
+
+  describe '.old_carts' do
+    let!(:cart) { create :cart }
+    let!(:old_cart) { create :cart, :old_cart }
+
+    subject { described_class.old_carts }
+
+    specify { is_expected.to include old_cart }
+    specify { is_expected.not_to include cart }
   end
 end

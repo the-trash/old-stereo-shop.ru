@@ -82,7 +82,6 @@
     float: left;
     padding: 15px 20px;
     border: 1px solid $gray;
-    width: 400px;
     background-color: $gray;
     @include border-radius(5px);
     @include box-sizing(border-box);
@@ -99,6 +98,11 @@
     }
     .b-order-checkout {
       margin-top: 10px;
+    }
+  }
+  .checkout {
+    .btn-pink {
+      font-size: $base-font-size + 1
     }
   }
 }

@@ -28,7 +28,7 @@ ru:
     success_complete:
       order_complete: Поздравляем, Ваш заказ оформлен!
       user_message: Вам на почту отправлена информация по заказу. Если вы долго не получаете письма, проверьте папку "Спам".
-      not_authorized_user_message: "В течении 5 - 10 минут с Вами свяжется наш менеджер. Если никто не позвонил, <a href=\"mailto:%{admin_emails}?subject=%{subject}\">обратитесь в службу поддержки</a>"
+      not_authorized_user_message: "В течение 5 - 10 минут с Вами свяжется наш менеджер. Если никто не позвонил, <a href=\"mailto:%{admin_emails}?subject=%{subject}\">обратитесь в службу поддержки</a>"
     show:
       payment: Оплата
       user_name: Покупатель

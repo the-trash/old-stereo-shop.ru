@@ -4,7 +4,7 @@ ActiveAdmin.register Order do
   actions :index, :edit, :update
 
   permit_params :address, :phone, :user_name, :post_index, :step, :payment, :state,
-    :total_amount, :city_id, :delivery, :organization_name, :inn, :kpp, :file,
+    :total_amount, :city_id, :delivery, :organization_name, :inn, :kpp, :file, :email,
     line_items_attributes: [:id, :_destroy, :product_id, :quantity, :current_product_price]
 
   controller do
@@ -19,7 +19,7 @@ ActiveAdmin.register Order do
     end
 
     def scoped_collection
-      Order.includes(:city, :user)
+      Order.includes(:city)
     end
 
     private
@@ -55,7 +55,7 @@ ActiveAdmin.register Order do
         [
           content_tag(:li, I18n.t('active_admin.views.orders.user_name', user_name: order.user_name).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.phone', phone: order.phone).html_safe),
-          content_tag(:li, I18n.t('active_admin.views.orders.email', email: (order.user ? order.email : '')).html_safe)
+          content_tag(:li, I18n.t('active_admin.views.orders.email', email: order.email).html_safe)
         ].join('').html_safe
       end
 
@@ -106,6 +106,7 @@ ActiveAdmin.register Order do
         end
       f.input :address
       f.input :phone
+      f.input :email
       f.input :user_name
       f.input :post_index
       f.input :total_amount

@@ -27,7 +27,11 @@
         = t('views.product.with_currency', coust: price_formatted(@cart.total_amount))
       .b-order-checkout
         - if @cart.order && @cart.order.started?
-          = link_to t('continue_make_order'), [@cart.order_step, @cart.order], class: 'btn btn-pink'
+          .btn-group{ role: 'group' }
+            = link_to t('continue_purchases'), root_path, class: 'btn btn-success'
+            = link_to t('continue_make_order'), [@cart.order_step, @cart.order], class: 'btn btn-pink'
         - else
           = form_for @cart.build_order, html: { class: 'form checkout' } do |f|
-            = f.submit t('checkout'), class: 'btn btn-pink'
+            .btn-group{ role: 'group' }
+              = link_to t('continue_purchases'), root_path, class: 'btn btn-success btn-lg'
+              = f.submit t('checkout'), class: 'btn btn-pink'

@@ -25,5 +25,9 @@ FactoryGirl.define do
         order.update_column :cart_id, nil
       end
     end
+
+    trait :old_cart do
+      updated_at 15.days.ago
+    end
   end
 end
