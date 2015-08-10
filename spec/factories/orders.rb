@@ -3,6 +3,7 @@ FactoryGirl.define do
     user
     city
     cart
+    email { Faker::Internet.email }
     user_name { [Faker::Name.first_name, Faker::Name.last_name].join(' ') }
     phone { Faker::PhoneNumber.cell_phone }
     address { Faker::Address.street_name }
@@ -18,6 +19,10 @@ FactoryGirl.define do
 
     trait :without_user do
       user_id nil
+    end
+
+    trait :without_email do
+      email nil
     end
   end
 end

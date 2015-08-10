@@ -105,11 +105,11 @@ class Order < ActiveRecord::Base
 
     before_transition started: :created, do: :make_order_completed
     after_transition started: :created, do: :notify_admins
-    after_transition started: :created, do: :notify_user, if: :user
+    after_transition started: :created, do: :notify_user, if: :email?
 
-    after_transition any => :approved, do: :notify_user, if: :user
-    after_transition any => :sent, do: :notify_user, if: :user
-    after_transition any => :arrived, do: :notify_user, if: :user
+    after_transition any => :approved, do: :notify_user, if: :email?
+    after_transition any => :sent, do: :notify_user, if: :email?
+    after_transition any => :arrived, do: :notify_user, if: :email?
 
     after_transition any => :paid, do: :notify_admins
   end

@@ -27,29 +27,43 @@ describe Order do
   describe 'transitions' do
     let(:order) { create :order }
 
-    shared_examples_for 'mails for user should be sent correct' do
-      specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(1) }
+    shared_examples_for 'mails for user should be sent correct' do |count|
+      it_behaves_like 'mail should be sent', count
 
       context "when user doesn't exist" do
         let(:order) { create :order, :without_user }
 
-        specify { expect{ subject }.not_to change{ OrderMailer.deliveries.count }.from(0) }
+        it_behaves_like 'mail should be sent', count
       end
+
+      context "when order doesn't have email" do
+        let(:order) { create :order, :without_email }
+
+        it_behaves_like 'mail should not be sent'
+      end
+    end
+
+    shared_examples_for 'mail should be sent' do |count|
+      specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(count) }
+    end
+
+    shared_examples_for 'mail should not be sent' do
+      specify { expect{ subject }.not_to change{ OrderMailer.deliveries.count }.from(0) }
     end
 
     describe '#make_complete' do
       subject { order.make_complete }
 
-      specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(2) }
+      it_behaves_like 'mail should be sent', 2
 
       context "when user doesn't exist" do
         let(:order) { create :order, :without_user }
 
-        specify { expect{ subject }.to change{ OrderMailer.deliveries.count }.from(0).to(1) }
+        it_behaves_like 'mail should be sent', 2
 
         it 'should be sent for admins' do
           subject
-          expect(OrderMailer.deliveries.first.to).to eq OrderMailer.default_admin_emails.split(', ')
+          expect(OrderMailer.deliveries.map(&:to)).to include OrderMailer.default_admin_emails.split(', ')
         end
       end
     end
@@ -57,19 +71,19 @@ describe Order do
     describe '#forward' do
       subject { order.forward }
 
-      it_behaves_like 'mails for user should be sent correct'
+      it_behaves_like 'mails for user should be sent correct', 1
     end
 
     describe '#approve' do
       subject { order.approve }
 
-      it_behaves_like 'mails for user should be sent correct'
+      it_behaves_like 'mails for user should be sent correct', 1
     end
 
     describe '#arrive' do
       subject { order.arrive }
 
-      it_behaves_like 'mails for user should be sent correct'
+      it_behaves_like 'mails for user should be sent correct', 1
     end
   end
 
