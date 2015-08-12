@@ -183,6 +183,12 @@ GEM
       capistrano (>= 3.0.0)
     capistrano3-unicorn (0.2.1)
       capistrano (~> 3.1, >= 3.1.0)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -193,6 +199,7 @@ GEM
       timers (~> 4.0.0)
     charlock_holmes (0.7.3)
     chunky_png (1.3.3)
+    cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -210,6 +217,18 @@ GEM
       compass (>= 0.12.2)
     connection_pool (2.2.0)
     crass (0.2.1)
+    cucumber (1.3.20)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 2.12)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.2)
+    cucumber-rails (1.4.2)
+      capybara (>= 1.1.2, < 3)
+      cucumber (>= 1.3.8, < 2)
+      mime-types (>= 1.16, < 3)
+      nokogiri (~> 1.5)
+      rails (>= 3, < 5)
     daemons (1.2.2)
     database_cleaner (1.3.0)
     debug_inspector (0.0.2)
@@ -248,6 +267,8 @@ GEM
     fuubar (2.0.0)
       rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
+    gherkin (2.12.2)
+      multi_json (~> 1.3)
     gon (5.2.0)
       actionpack (>= 2.3.0)
       json
@@ -301,6 +322,7 @@ GEM
     money (6.5.1)
       i18n (>= 0.6.4, <= 0.7.0)
     multi_json (1.10.1)
+    multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-scp (1.2.1)
@@ -334,6 +356,14 @@ GEM
       omniauth-oauth2 (~> 1.1)
     orm_adapter (0.5.0)
     pg (0.18.2)
+    pickle (0.5.1)
+      cucumber (>= 0.8)
+      rake
+    poltergeist (1.6.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     pry (0.10.1)
@@ -516,7 +546,12 @@ GEM
     uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket-driver (0.6.2)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     will_paginate (3.0.7)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -548,11 +583,13 @@ DEPENDENCIES
   capistrano-sidekiq!
   capistrano3-nginx
   capistrano3-unicorn
+  capybara
   carrierwave
   carrierwave-size-validator
   charlock_holmes
   coffee-rails (~> 4.0.0)
   compass-rails
+  cucumber-rails
   database_cleaner
   devise!
   devise-async
@@ -577,6 +614,8 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-vkontakte
   pg (= 0.18.2)
+  pickle
+  poltergeist
   pry
   pry-rails
   pundit

@@ -105,7 +105,11 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'pickle'
+  gem 'poltergeist'
   gem 'rspec'
   gem 'rspec-core'
   gem 'rspec-expectations'

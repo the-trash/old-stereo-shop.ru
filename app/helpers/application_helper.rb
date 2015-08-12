@@ -90,7 +90,9 @@ module ApplicationHelper
 
   def item_photo item, with_image
     if with_image && item.photos.any?
-      image_tag(item.photos.default.file_url(:product_category), class: 'grayscale grayscale-fade').html_safe
+      link_to [item], class: 'without-border' do
+        image_tag(item.photos.default.file_url(:product_category), class: 'grayscale grayscale-fade').html_safe
+      end
     end
   end
 

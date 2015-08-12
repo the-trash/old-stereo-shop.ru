@@ -3,6 +3,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   storage :file
 
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("default_images/" + [version_name, 'default-image.png'].compact.join('_'))
+  end
+
   def store_dir
     "uploads/#{model.photoable_type.underscore}/#{model.id}"
   end

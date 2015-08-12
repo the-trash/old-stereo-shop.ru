@@ -16,6 +16,9 @@ ul.menu {
         text-decoration: none;
         border-bottom: 1px dashed $blue;
       }
+      a.without-border {
+        border: none;
+      }
     }
     .dropdown-menu {
       li {

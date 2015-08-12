@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
 
   Sidekiq::Testing.inline!
+  Capybara.javascript_driver = :poltergeist
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
