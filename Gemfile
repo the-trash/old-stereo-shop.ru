@@ -19,12 +19,13 @@ gem 'rmagick', require: 'RMagick'
 
 ## Assets
 gem 'autoprefixer-rails'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
 gem 'html5shiv-js-rails' # TODO install it with bower
 gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
+gem 'sprockets-commonjs', github: 'maccman/sprockets-commonjs'
+gem 'uglifier'
 
 ## Cache store
 gem 'redis-namespace', '>= 1.0'
@@ -58,14 +59,16 @@ gem 'breadcrumbs_on_rails'
 gem 'charlock_holmes'
 gem 'draper'
 gem 'friendly_id', '~> 5.0.4'
-gem 'sitemap_generator'
 gem 'gon'
 gem 'hstore_accessor'
+gem 'i18n-js'
 gem 'image_suckr'
+gem 'js-routes'
 gem 'memoist'
 gem 'newrelic_rpm'
 gem 'rabl'
 gem 'ruby-progressbar'
+gem 'sitemap_generator'
 gem 'sidekiq'
 gem 'sidetiq', '0.6.1'
 # For sidekiq

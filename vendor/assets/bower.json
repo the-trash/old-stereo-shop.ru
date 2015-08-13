@@ -7,6 +7,8 @@
     "backbone": "latest",
     "marionette": "latest",
     "raty": "git://github.com/wbotelhos/raty",
-    "select2": "3.5.2"
+    "select2": "3.5.2",
+    "gray": "git://github.com/karlhorky/gray",
+    "commonjs": "latest"
   }
 }

@@ -1,4 +1,3 @@
-# Be sure to restart your server when you modify this file.
-
-# Add new mime types for use in respond_to blocks:
-# Mime::Type.register "text/richtext", :rtf
+# fix bug precompile files with .map extention
+ # https://github.com/emberjs/ember-rails/issues/428#issuecomment-75125279
+ Rack::Mime::MIME_TYPES.merge!({ '.map' => 'text/plain' })

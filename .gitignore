@@ -15,6 +15,8 @@ public/system/uploads/
 public/system/dragonfly/
 public/uploads/
 public/assets
+public/javascripts
+public/stylesheets
 
 app/assets/images/icons-*.png
 app/assets/images/payments-*.png

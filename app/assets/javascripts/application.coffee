@@ -1,34 +1,58 @@
 ###
+  = require commonjs/common
   = require jquery/dist/jquery
   = require jquery-ujs/src/rails
-  = require jquery.gray.min
+
+  = require underscore/underscore
+  = require backbone/backbone
+  = require backbone.babysitter/lib/backbone.babysitter
+  = require backbone.wreqr/lib/backbone.wreqr
+  = require marionette/lib/backbone.marionette
+  = require js-routes
+
+  = require gray/js/jquery.gray.min
+  = require raty/lib/jquery.raty
   = require select2/select2
   = require select2/select2_locale_ru
+
+  = require i18n
+  = require i18n/translations
+
   = require bootstrap-sass/assets/javascripts/bootstrap/dropdown
   = require bootstrap-sass/assets/javascripts/bootstrap/collapse
   = require bootstrap-sass/assets/javascripts/bootstrap/tab
-  = require raty/lib/jquery.raty
+
   = require_directory ./application/helpers
   = require_directory ./application/blocks
+
   = require_self
+
+  = require modules/call_me/application.module
 ###
 
-$(document).ready ->
+window.withElement = (selector, callback) ->
+  callback selector if $(selector).length
+
+$ ->
   $('body').find('.ratable').each ->
     new Ratable(this)
 
-  if $('.b-product').length
+  withElement '.b-product', (selector) ->
     new ProductShowPage()
 
-  if $('.b-product-category').length || $('.b-search').length
+  withElement '.b-product-category, .b-search', (selector) ->
     new ProductCategoryShowPage()
 
-  if $('.b-cart').length
+  withElement '.b-cart', (selector) ->
     new Cart()
 
-  if $('.get-cities').length
+  withElement '.get-cities', (selector) ->
     new CitiesSelect
-      el: $('.get-cities')
+      el: $(selector)
+
+  withElement '.l-call-me', (selector) ->
+    callMeApplication = require 'modules/call_me/application'
+    callMeApplication.start()
 
   $('body').on 'click', "a[data-toggle='tab']", (e) ->
     e.preventDefault()
