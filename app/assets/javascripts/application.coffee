@@ -8,7 +8,7 @@
   = require backbone.babysitter/lib/backbone.babysitter
   = require backbone.wreqr/lib/backbone.wreqr
   = require marionette/lib/backbone.marionette
-  = require js-routes
+  = require lib/backbone/marionette_extensions
 
   = require gray/js/jquery.gray.min
   = require raty/lib/jquery.raty
@@ -17,6 +17,9 @@
 
   = require i18n
   = require i18n/translations
+
+  = require hamlcoffee
+  = require js-routes
 
   = require bootstrap-sass/assets/javascripts/bootstrap/dropdown
   = require bootstrap-sass/assets/javascripts/bootstrap/collapse

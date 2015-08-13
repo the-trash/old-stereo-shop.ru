@@ -283,6 +283,10 @@ GEM
       request_store (>= 1.0.5)
     haml (4.0.6)
       tilt
+    haml_coffee_assets (1.16.0)
+      coffee-script (~> 2.0)
+      sprockets (~> 2.0)
+      tilt (~> 1.1)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -614,6 +618,7 @@ DEPENDENCIES
   fuubar
   gon
   haml
+  haml_coffee_assets
   hstore_accessor
   html5shiv-js-rails
   i18n-js

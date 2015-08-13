@@ -34,6 +34,7 @@ gem 'redis-store'
 
 ## Template
 gem 'haml'
+gem 'haml_coffee_assets'
 gem 'sanitize'
 gem 'unicode'
 

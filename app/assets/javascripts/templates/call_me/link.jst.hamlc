@@ -1,0 +1,1 @@
+%a.b-call-me-link{ href: '#' }= I18n.t 'call_me'

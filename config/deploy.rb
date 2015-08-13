@@ -44,3 +44,15 @@ namespace :bower do
   end
 end
 before 'deploy:compile_assets', 'bower:install'
+
+namespace :i18njs do
+  desc 'Export locales'
+  task :export do
+    on roles(:web) do
+      within release_path do
+        execute :rake, 'i18n:js:export'
+      end
+    end
+  end
+end
+after 'bower:install', 'i18njs:export'

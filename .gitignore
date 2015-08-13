@@ -21,6 +21,8 @@ public/stylesheets
 app/assets/images/icons-*.png
 app/assets/images/payments-*.png
 
+app/assets/javascripts/i18n/*
+
 config/database.yml
 config/*.sphinx.conf
 
