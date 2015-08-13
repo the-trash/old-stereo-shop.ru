@@ -19,7 +19,7 @@ describe Photo do
     context "when default photo doesn't exist" do
       let!(:photo) { create :photo, photoable: product }
 
-      specify { expect(subject).to be_nil }
+      specify { expect(subject).to eq photo }
 
       it 'should not receive #set_correct_default' do
         expect(photo).not_to receive(:set_correct_default)

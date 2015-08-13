@@ -9,6 +9,12 @@ FactoryGirl.define do
     address { Faker::Address.street_name }
     post_index { Faker::Address.postcode }
 
+    trait :with_email do
+      before :create do |order|
+        order.email = order.user.email
+      end
+    end
+
     trait :delivery_by_mail do
       delivery 2
     end

@@ -1,6 +1,6 @@
 describe PaymentsController do
   # TODO fix this test with current order email. Make testfor order with email and without
-  let!(:order) { create :order }
+  let!(:order) { create :order, :with_email }
   let(:order_number) { order.id }
   let(:time_now) { Time.zone.now }
   let(:notification) { YANDEX_CASHBOX.notification(params.to_query) }
