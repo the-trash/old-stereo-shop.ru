@@ -39,8 +39,8 @@ module ActiveMerchant #:nodoc:
             Sanitize.fragment params['customerNumber']
           end
 
-          def customer
-            User.find_by(email: customer_number)
+          def order
+            Order.find_by(email: customer_number)
           end
 
           # action;orderSumAmount;orderSumCurrencyPaycash;orderSumBankPaycash;shopId;invoiceId;customerNumber;shopPassword
@@ -53,7 +53,7 @@ module ActiveMerchant #:nodoc:
                 order_sum_bank_paycash,
                 Settings.yandex_cashbox.shop_id,
                 invoice_id,
-                customer.try(:email),
+                (customer_number if order),
                 Settings.yandex_cashbox.shop_password
               ].compact.join(';')
           end

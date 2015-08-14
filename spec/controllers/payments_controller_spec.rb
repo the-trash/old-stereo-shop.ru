@@ -1,4 +1,5 @@
 describe PaymentsController do
+  # TODO fix this test with current order email. Make testfor order with email and without
   let!(:order) { create :order }
   let(:order_number) { order.id }
   let(:time_now) { Time.zone.now }
