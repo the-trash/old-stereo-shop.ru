@@ -67,6 +67,7 @@ yandex_cashbox:
   shop_id: 42821
   shop_password: 6MtsWFPQmsshRXcZ
   currency_code: 643
+  payment_type: AC
   production_ips: ['77.75.157.166', '77.75.157.170']
 
 # yandex market documentation for text format http://help.yandex.ru/partnermarket/export/text-format.xml

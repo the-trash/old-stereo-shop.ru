@@ -9,5 +9,4 @@ yandex_cashbox:
   mode: :test
   scid: 63048
   shop_id: 42821
-  payment_type: AC
   production_ips: ['77.75.157.166', '77.75.157.170']
