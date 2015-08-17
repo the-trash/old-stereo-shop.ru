@@ -67,9 +67,11 @@ Rails.application.routes.draw do
     resources resource, only: :show
   end
 
-  resources :pages, only: :show do
-    post :feedback
+  resources :feedbacks, only: [:create] do
+    post :call_me, on: :collection
   end
+
+  resources :pages, only: :show
 
   resources :brands, only: [:index, :show]
 

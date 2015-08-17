@@ -8,8 +8,8 @@ ru:
       update:
         success: Ваш профиль успешно обновлен
         error: Возникли ошибки
-    pages:
-      feedback:
+    feedbacks:
+      create:
         success: Ваше сообщение успешно отправлено
         error: Возникли ошибки
     line_items:

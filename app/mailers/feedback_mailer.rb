@@ -7,4 +7,13 @@ class FeedbackMailer < ActionMailer::Base
 
     mail(from: params[:email], subject: subject)
   end
+
+  def call_me params = {}
+    @params = params
+    subject = I18n.t('feedback_subject.call_me')
+
+    mail to: Settings.shop.feedback.admins,
+      from: Settings.shop.feedback.from,
+      subject: subject
+  end
 end

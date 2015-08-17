@@ -85,6 +85,10 @@ ru:
   blank: Пусто
   brands: Бренды
   call_me: Позвоните мне
+  call_me_footer: Команда Stereo-Shop
+  call_me_success_message: Мы скоро вам перезвоним! До связи!
+  call_me_user_message: Мы вам перезвоним в течении часа. Пожалуйста, укажите ваш номер телефона.
+  cancel: Отмена
   cart: Корзина
   cart_total_amount: Сумма заказа
   catalog: Каталог
@@ -93,8 +97,8 @@ ru:
   chouse_delivery: Выбор способа доставки
   clear: Очистить
   clear_cart: Очистить корзину
-  continue_purchases: Продолжить покупки
   continue_make_order: Продолжить оформление заказа
+  continue_purchases: Продолжить покупки
   convenience_and_safety: Удобство и безопасность
   cities:
     spb: Санкт-Петербург
@@ -104,6 +108,8 @@ ru:
   default: По умолчанию
   delete: Удалить
   email: Электронная почта
+  enter: Войти
+  enter_your_phone: Введите ваш телефон
   feedback: Обратная связь
   feedback_subject:
     product: О товаре
@@ -112,6 +118,7 @@ ru:
     delivery: О доставке
     return: О возврате денег
     other: Другое
+    call_me: Перезвоните мне
   feedback_user_name: Как к Вам обращаться
   find: Найти
   get_subscribes: 'Получить рассылку на новинки и т.д.'
@@ -179,6 +186,7 @@ ru:
   try_to_play_again: "Пожалуйста, попробуйте <a href=%{link}>оплатить</a> еще раз"
   useful_information: 'Полезная информация'
   user_profile_editor: Редактор личного профиля
+  waiting_for_call: Жду звонка
   what_are_you_looking_for: Что вы ищете?
   who_we_are: Кто мы
   you_might_also_like: Вам может понравиться

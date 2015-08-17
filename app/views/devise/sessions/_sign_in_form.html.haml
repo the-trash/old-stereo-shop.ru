@@ -10,6 +10,9 @@
   .form-group.remember
     = f.check_box :remember_me
     = f.label t('devise.sessions.remember')
+
     - if devise_mapping.rememberable?
       = f.hidden_field :remember_me
-  %div= f.submit "Войти"
+
+  .form-group
+    = f.submit t('enter'), class: 'btn btn-pink'

@@ -1,0 +1,7 @@
+.modal-header
+  %button.close.pull-right{ data: { dismiss: 'modal' }, type: 'button', 'aria-label' => I18n.t('cancel') }
+    %span{ 'aria-hidden' => 'true' } &times;
+.modal-body
+  %p= I18n.t 'call_me_success_message'
+.modal-footer
+  %p.pull-right= I18n.t 'call_me_footer'

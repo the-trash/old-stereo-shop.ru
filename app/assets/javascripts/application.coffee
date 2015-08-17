@@ -24,6 +24,7 @@
   = require bootstrap-sass/assets/javascripts/bootstrap/dropdown
   = require bootstrap-sass/assets/javascripts/bootstrap/collapse
   = require bootstrap-sass/assets/javascripts/bootstrap/tab
+  = require bootstrap-sass/assets/javascripts/bootstrap/modal
 
   = require_directory ./application/helpers
   = require_directory ./application/blocks

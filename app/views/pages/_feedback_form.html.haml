@@ -1,4 +1,4 @@
-= form_tag [page, :feedback], class: 'form' do |f|
+= form_tag feedbacks_path, class: 'form' do |f|
   .form-group
     = label_tag 'feedback[name]', t('feedback_user_name'), class: 'required'
     = text_field_tag 'feedback[name]', nil, required: true, class: 'middle'
@@ -29,6 +29,6 @@
     .help-block
       Максимум 500 символов
 
-  .form-group
-    = submit_tag t('ask_a_question'), class: 'btn'
-    = submit_tag t('clear'), type: :reset
+  .form-group.btn-group{ role: 'group' }
+    = submit_tag t('ask_a_question'), class: 'btn btn-pink'
+    = submit_tag t('clear'), type: :reset, class: 'btn btn-default'

@@ -34,4 +34,4 @@
           = form_for @cart.build_order, html: { class: 'form checkout' } do |f|
             .btn-group{ role: 'group' }
               = link_to t('continue_purchases'), root_path, class: 'btn btn-success btn-lg'
-              = f.submit t('checkout'), class: 'btn btn-pink'
+              = f.submit t('checkout'), class: 'btn btn-pink btn-lg'
