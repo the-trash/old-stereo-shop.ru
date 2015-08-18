@@ -12,6 +12,6 @@ class FeedbackMailer < ActionMailer::Base
     @params = params
     subject = I18n.t('feedback_subject.call_me')
 
-    mail from: Settings.shop.feedback.to, subject: subject
+    mail from: Settings.shop.default.from, subject: subject
   end
 end

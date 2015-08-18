@@ -1,6 +1,6 @@
 describe PaymentsController do
   # TODO fix this test with current order email. Make testfor order with email and without
-  let!(:order) { create :order, :with_email }
+  let(:order) { create :order, :with_email }
   let(:order_number) { order.id }
   let(:time_now) { Time.zone.now }
   let(:notification) { YANDEX_CASHBOX.notification(params.to_query) }
@@ -78,7 +78,7 @@ describe PaymentsController do
 
   shared_examples_for "user doesn't exists" do
     context "when customer doesn't exists" do
-      let(:customer_email) { 'nil' }
+      let(:customer_email) { nil }
 
       it_behaves_like 'payment failed response'
     end
@@ -95,6 +95,18 @@ describe PaymentsController do
     it_behaves_like 'a successful request'
     it_behaves_like 'payment success response'
     it_behaves_like "user doesn't exists"
+
+    context "when order was created for not authorizes user" do
+      let(:order) { create :order, :without_user }
+
+      it_behaves_like 'a successful request'
+
+      context "when customerNumber doesn't correct" do
+        let(:customer_email) { Faker::Internet.email }
+
+        it_behaves_like 'payment failed response'
+      end
+    end
   end
 
   describe 'POST /payments/status' do

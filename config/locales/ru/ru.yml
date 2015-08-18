@@ -87,7 +87,7 @@ ru:
   call_me: Позвоните мне
   call_me_footer: Команда Stereo-Shop
   call_me_success_message: Мы скоро вам перезвоним! До связи!
-  call_me_user_message: Мы вам перезвоним в течении часа. Пожалуйста, укажите ваш номер телефона.
+  call_me_user_message: Мы вам перезвоним в течение часа. Пожалуйста, укажите ваш номер телефона.
   cancel: Отмена
   cart: Корзина
   cart_total_amount: Сумма заказа
@@ -160,7 +160,7 @@ ru:
   product_name: Название товара
   product_price: Цена
   products_from_brand: Все товары бренда
-  products_has_not_been_detected: Продутов не обнаружено
+  products_has_not_been_detected: Продуктов не обнаружено
   quantity: Количество
   question: Вопрос
   questions: Ваши вопросы
