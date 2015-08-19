@@ -1,10 +1,10 @@
 %ul.line-items
   %li
     .btn-group{ role: 'group' }
-      = link_to @cart, class: 'btn btn-info btn-xs' do
+      = link_to @cart, class: 'btn btn-info' do
         = t 'cart'
         %span.badge= @cart.total_quantity
-      = link_to t('continue_purchases'), root_path, class: 'btn btn-success btn-xs'
+      = link_to t('continue_purchases'), root_path, class: 'btn btn-success'
 
   - @cart.line_items.each do |line_item|
     %li

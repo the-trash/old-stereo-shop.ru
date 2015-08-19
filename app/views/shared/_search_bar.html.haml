@@ -1,6 +1,8 @@
 .search-bar
   = form_tag [:products], method: :get, class: 'inline-one-input' do
-    %span.wrapper<
-      .icon
-      = text_field_tag :q, params[:q], placeholder: t('what_are_you_looking_for')
-      = submit_tag t('find'), class: 'btn btn-pink'
+    .input-group
+      %span.input-group-addon
+        %i.fa.fa-search
+      = text_field_tag :q, params[:q], placeholder: t('what_are_you_looking_for'), class: 'form-control input-lg'
+      %span.input-group-btn
+        = submit_tag t('find'), class: 'btn btn-pink btn-lg'

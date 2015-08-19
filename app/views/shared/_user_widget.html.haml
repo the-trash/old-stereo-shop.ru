@@ -8,8 +8,8 @@
       - else
         = link_to '', new_user_session_path
     .panel.cart{ class: ('with-good' if @cart.total_quantity > 0) }
-      .icon
       .cart-items-counter= @cart.total_quantity
+      .icon
       = link_to '', @cart
     .panel.profile
       .icon= link_to '', (current_user ? current_user : new_user_session_path)

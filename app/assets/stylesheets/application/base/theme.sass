@@ -1,0 +1,80 @@
+html
+  position: relative
+  min-height: 100%
+  font-family: $base-font-family
+  font-size: 14px
+  color: $black
+
+a
+  &.active, &:active
+    color: $black
+    text-decoration: none
+
+  &.btn
+    text-decoration: none
+
+h1
+  font-size: 48px
+  font-weight: normal
+  margin: 0 0 10px
+
+h2
+  font-size: 37px
+  font-weight: normal
+  color: $lightBlack
+
+  [class^="icons-"]
+    +inline-block
+
+  .icons-arrow-black-right
+    position: relative
+    top: -6px
+    margin-left: 15px
+    width: icons-sprite-width('arrow-black-right')
+    height: icons-sprite-height('arrow-black-right')
+
+  .icons-arrow-black-down
+    position: relative
+    top: 12px
+    margin-left: 5px
+    width: icons-sprite-width('arrow-black-down')
+    height: icons-sprite-height('arrow-black-down')
+
+h3
+  font-size: 30px
+  color: $black
+  font-weight: normal
+  margin: 10px 0
+
+@import "icons"
+
+.blue
+  color: $blue
+.dark-pink
+  color: $darkPink
+.pink
+  color: $pink
+.light-blue
+  color: $lightBlue
+.dark-gray-bg
+  background-color: $darkGray
+.light-gray-bg
+  background-color: $lightGray
+
+//CONTAINER
+.container
+  margin: 0 auto
+  width: $containerWidth
+  padding-bottom: 30px
+  @import "../blocks/breadcrumbs"
+  @import "../blocks/pagination"
+  +clearfix
+
+  ul
+    margin: 0
+    padding: 0
+    li
+      list-style: none
+
+#flash_messages
+  margin-top: 10px

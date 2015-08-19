@@ -1,0 +1,47 @@
+header
+  @extend .container
+  overflow: inherit
+
+  position: relative
+  clear: both
+  padding-top: 10px
+
+  .item
+    float: left
+
+// logotype
+#logo
+  position: relative
+  line-height: $base-font-size + 2
+
+  .image
+    padding-left: 13px
+
+// navigation menu
+#menu
+  padding-top: 15px
+  padding-left: 10px
+
+  ul.menu
+    font-size: $base-font-size + 2
+    & > li
+      margin: 0 4px
+      > a
+        font-size: $base-font-size
+
+.help-block
+  padding-top: 2px
+  font-size: 11px
+  line-height: 14px
+  &.delivery
+    max-width: 90px
+
+// button catalog
+#catalog
+  padding-top: 10px
+  padding-left: 15px
+  color: $white
+  position: relative
+
+  ul li > a.pink
+    @extend .pink

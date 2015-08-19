@@ -2,7 +2,7 @@
   label {
     display: block;
     margin-bottom: 3px;
-    font-size: 16px;
+    font-size: $base-font-size;
     cursor: pointer;
     &.required {
       &:after {
@@ -75,48 +75,5 @@
     margin-top: 2px;
     color: $darkGray;
     font-size: 10px;
-  }
-  &.sign-in {
-    width: 268px;
-    .form-group {
-      &.forgot-password {
-        position: relative;
-        a {
-          position: absolute;
-          right: 0;
-          top: 3px;
-        }
-      }
-      &.remember {
-        label {
-          display: inline-block;
-          font-size: 14px;
-        }
-      }
-    }
-  }
-}
-
-form {
-  &.inline-one-input {
-    input[type="text"] {
-      position: relative;
-      border: 1px solid $btnBorderColor;
-      border-right: none;
-      @include box-sizing(border-box);
-      @include border-bottom-left-radius($btnBorderRadius);
-      @include border-top-left-radius($btnBorderRadius);
-      padding: 2px 15px 5px; // padding-top/bottom should be same as .btn
-    }
-
-    .wrapper {
-      position: relative;
-    }
-
-    .btn {
-      @include border-bottom-left-radius(0px);
-      @include border-top-left-radius(0px);
-      position: relative;
-    }
   }
 }

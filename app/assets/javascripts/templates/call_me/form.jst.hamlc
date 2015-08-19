@@ -4,10 +4,13 @@
   .modal-title
     %h4= I18n.t 'call_me'
 .modal-body
-  %form.form-inline.l-call-me-from
+  %form.form-inline.l-call-me-from{ data: { toggle: 'validator' }, role: 'form' }
     %p= I18n.t 'call_me_user_message'
     .form-group
-      %input.form-control.input-sm.b-call-me-phone-input{ type: 'text', name: 'feedback[:phone]', placeholder: I18n.t('enter_your_phone') }
-    %button.btn.btn-pink.b-call-me-send-btn{ type: 'button' }= I18n.t 'waiting_for_call'
-.modal-footer
-  %button.btn.btn-default{ data: { dismiss: 'modal' }, type: 'button' }= I18n.t 'cancel'
+      .input-group
+        %span.input-group-addon
+          %i.fa.fa-phone
+        %input.form-control.b-call-me-phone-input{ type: 'tel', name: 'feedback[:phone]', placeholder: I18n.t('enter_your_phone'), pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", maxlength: 12, required: true, data: { error: '123-123-1234' } }
+        %span.input-group-btn
+          %button.btn.btn-pink.b-call-me-send-btn{ type: 'button' }= I18n.t 'waiting_for_call'
+      %span.help-block.with-errors

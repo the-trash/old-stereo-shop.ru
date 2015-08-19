@@ -1,5 +1,4 @@
 %button.b-call-me-button.btn.btn-primary.btn-sm{ href: '#', data: { toggle: 'modal', target: '.b-call-me-modal' }, type: 'button'  }= I18n.t 'call_me'
 
 .modal.fade.b-call-me-modal{ role: 'dialog' }
-  .modal-dialog.modal-sm
-    .modal-content.l-call-me-modal-content
+  .modal-dialog.l-call-me-modal-content.modal-sm

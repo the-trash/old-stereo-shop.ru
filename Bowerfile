@@ -1,12 +1,14 @@
 # A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
+asset 'backbone', '1.2.1'
+asset 'bootstrap-sass', '3.3.5'
+asset 'bootstrap-validator', '0.9.0'
+asset 'commonjs', '0.2.0'
+asset 'fontawesome', '4.4.0'
+asset 'gray', github: 'karlhorky/gray'
 asset 'jquery', '2.1.4'
-asset 'jquery-ujs'
-asset 'bootstrap-sass'
-asset 'backbone'
-asset 'marionette'
+asset 'jquery-ujs', '1.0.4'
+asset 'marionette', '2.4.2'
 asset 'raty', github: 'wbotelhos/raty'
 asset 'select2', '3.5.2'
-asset 'gray', github: 'karlhorky/gray'
-asset 'commonjs'
