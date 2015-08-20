@@ -9,3 +9,6 @@ Rails.application.config.assets.precompile += %w(
   select2/*.png
   select2/*.gif
 )
+
+Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+Rails.application.config.assets.precompile << Proc.new { |path| path =~ /fontawesome\/fonts/ and File.extname(path).in?(['.otf', '.eot', '.svg', '.ttf', '.woff']) }
