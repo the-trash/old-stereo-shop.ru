@@ -196,6 +196,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-screenshot (1.0.11)
+      capybara (>= 1.0, < 3)
+      launchy
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -600,6 +603,7 @@ DEPENDENCIES
   capistrano3-nginx
   capistrano3-unicorn
   capybara
+  capybara-screenshot
   carrierwave
   carrierwave-size-validator
   charlock_holmes

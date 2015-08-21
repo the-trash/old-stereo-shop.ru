@@ -110,6 +110,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'pickle'
