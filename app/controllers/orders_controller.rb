@@ -97,7 +97,7 @@ class OrdersController < FrontController
     if user_signed_in?
       authorize resource, :show?
     else
-      raise_pundit_exception
+      # raise_pundit_exception
     end
   end
 
