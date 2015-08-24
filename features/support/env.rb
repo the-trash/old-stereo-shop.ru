@@ -76,6 +76,11 @@ Cucumber::Rails::Database.javascript_strategy = :transaction
 Capybara.javascript_driver = :poltergeist
 Capybara.ignore_hidden_elements = false # default is true
 
+Capybara.server_port = 3001
+Capybara.app_host = "http://localhost:3001"
+
+ActionController::Base.asset_host = Capybara.app_host
+
 # Keep only the screenshots generated from the last failing test suite#
 Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
 Capybara::Screenshot.prune_strategy = :keep_last_run
