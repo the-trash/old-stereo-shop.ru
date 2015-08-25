@@ -12,9 +12,6 @@
       = link_to t('views.product.reviews_count', count: product.published_reviews_count), product_path(product, anchor: 'reviews'), class: 'reviews-count'
     .b-commerce
       %ul.single-product{ class: main_class }
-        %li
-          = button_to line_items_path(product_id: product.id), class: 'btn add-to-cart single-product' do
-            %i.icon.icon-add-to-cart
-            = t('add_to_cart')
-        %li
-          = add_to_wishlist(product) if user_signed_in?
+        %li= cart_btn product.id, class: 'btn btn-add-to-cart single-product'
+        - if user_signed_in?
+          %li= add_to_wishlist(product)

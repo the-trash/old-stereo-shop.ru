@@ -111,7 +111,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'pickle'
   gem 'poltergeist'

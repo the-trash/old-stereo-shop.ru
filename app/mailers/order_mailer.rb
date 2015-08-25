@@ -26,6 +26,14 @@ class OrderMailer < ActionMailer::Base
     Setting.find_by(key: 'default_admin_emails').try(:value) || Settings.shop.order.admins
   end
 
+  def in_one_click order
+    @order = order
+
+    mail \
+      to: OrderMailer.default_admin_emails,
+      subject: I18n.t('order_in_one_click')
+  end
+
   private
 
   def make_subject order

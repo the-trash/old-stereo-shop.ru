@@ -1,0 +1,24 @@
+$product-middle-margin-right: 25px !default
+$product-middle-margin-left: 10px !default
+
+.b-product-top-information
+  .b-product-images, .e-thumb-image, .b-product-short-info, .b-product-middle, .b-commerce
+    float: left
+
+  @import images
+
+  .b-product-middle
+    +inline-block
+    .b-product-short-info
+      width: $productMiddleWidth
+      margin: 0 $product-middle-margin-right 0 $product-middle-margin-left
+      @import _price
+      @import e_stores_list
+
+  .b-commerce
+    width: $containerWidth - $productMiddleWidth - $product-middle-margin-right - $product-middle-margin-left - $product-images-margin-right - $product-images-width
+
+  .l-preloader
+    margin-top: 20px
+    text-align: center
+    width: 100%

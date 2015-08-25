@@ -12,30 +12,27 @@ class CallMeForm extends Marionette.ItemView
     formGroup   : '.form-group'
 
   events:
-    'click @ui.sendFormBtn' : 'sendFrom'
+    'click @ui.sendFormBtn' : 'validateForm sendFrom'
 
   onRender: ->
     @ui.callMeForm.validator()
+    @bindDatalinks()
 
   triggerRenderSuccessMessage: ->
     @.triggerMethod 'render:success-message'
 
-  validateForm: ->
+  validateForm: (event) ->
     @ui.callMeForm.validator('validate')
+    event.stopImmediatePropagation() unless @formValid()
 
   formValid: ->
     !@ui.formGroup.hasClass('has-error') && @ui.phoneInput.val().length > 0
 
   sendFrom: ->
-    @validateForm()
-
-    if @formValid()
-      @syncFormData()
-      @triggerRenderSuccessMessage()
+    @syncFormData()
+    @triggerRenderSuccessMessage()
 
   syncFormData: ->
-    @model.save
-      feedback:
-        phone: @ui.phoneInput.val()
+    @model.save()
 
 module.exports = CallMeForm

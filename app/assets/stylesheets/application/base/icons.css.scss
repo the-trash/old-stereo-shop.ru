@@ -40,13 +40,6 @@
   margin-right: 5px;
 }
 
-.icon-add-to-cart {
-  width: icons-sprite-width('cart-white-micro');
-  height: icons-sprite-height('cart-white-micro');
-  @include icons-sprite('cart-white-micro');
-  margin-right: 10px;
-}
-
 .icon-clear {
   &:before {
     content: '\00D7';

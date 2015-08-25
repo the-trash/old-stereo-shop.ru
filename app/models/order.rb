@@ -114,6 +114,10 @@ class Order < ActiveRecord::Base
     after_transition any => :paid, do: :notify_admins
   end
 
+  def notify_about_one_click
+    OrderMailer.delay.in_one_click self
+  end
+
   private
 
   def make_order_completed

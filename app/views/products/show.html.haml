@@ -1,3 +1,6 @@
+- content_for :javascripts do
+  = javascript_include_tag 'modules/order_in_one_click/index'
+
 .b-product
   %h3
     %span.default.product-title
@@ -38,12 +41,13 @@
 
     .b-commerce
       %ul
-        %li
-          = button_to line_items_path(product_id: resource.id), class: 'btn add-to-cart' do
-            %i.icon.icon-add-to-cart
-            = t('add_to_cart')
+        %li= cart_btn resource.id, class: 'btn btn-add-to-cart'
         - if user_signed_in?
           %li= add_to_wishlist(resource)
+        %li.l-make-order-in-one-click
+          .l-preloader
+            %i.fa.fa-spinner.fa-spin.fa-4x
+
   .b-product-description
     %h4= t('about_good')
     %p.default.product-description

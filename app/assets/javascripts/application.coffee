@@ -4,11 +4,13 @@
   = require jquery-ujs/src/rails
 
   = require underscore/underscore
+  = require underscore.string/lib/underscore.string
   = require backbone/backbone
   = require backbone.babysitter/lib/backbone.babysitter
   = require backbone.wreqr/lib/backbone.wreqr
   = require marionette/lib/backbone.marionette
-  = require lib/backbone/marionette_extensions
+  = require backbone.modelbinder/Backbone.ModelBinder.min
+  = require_tree ./lib/backbone
 
   = require gray/js/jquery.gray.min
   = require raty/lib/jquery.raty
@@ -35,6 +37,8 @@
 
   = require modules/call_me/application.module
 ###
+
+_.mixin(_.string.exports())
 
 window.withElement = (selector, callback) ->
   callback selector if $(selector).length

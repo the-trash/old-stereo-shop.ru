@@ -18,8 +18,6 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :letter_opener
 
-  Rails.application.routes.default_url_options = { host: Settings.shop.default.host, port: Settings.shop.default.port }
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -50,3 +48,5 @@ Rails.application.configure do
   # disable assets logger
   config.middleware.insert_before Rails::Rack::Logger, DisableAssetsLogger
 end
+
+Rails.application.routes.default_url_options = { host: Settings.shop.default.host, port: Settings.shop.default.port }

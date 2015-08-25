@@ -1,0 +1,62 @@
+// be sure that parent block is relative!
+.full-block-link
+  position: absolute
+  width: 100%
+  top: 0
+  bottom: 0
+  left: 0
+  cursor: pointer
+
+.unstyled
+  margin: 0
+  padding: 0
+  list-style: none
+
+ul.menu
+  @extend .unstyled
+
+  & > li
+    +inline-block
+    margin: 0 15px
+    vertical-align: top
+
+.help-block
+  ul
+    li
+      margin: 5px 0
+      a
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+      &:first-child
+        margin-top: 0
+
+      &:last-child
+        margin-bottom: 0
+
+  p
+    margin: 0 0 5px
+
+.btn-pink
+  background-color: $pink
+  &, &:hover
+    color: $white
+  &:hover
+    background-color: $darkPink
+
+.btn-add-to-cart
+  +border-radius(5px)
+  +box-sizing(border-box)
+  +box-shadow(inset 2px 2px 0 0 rgba(139, 196, 203, 0.4))
+  background-color: $addToCart
+  border: 1px solid $btnBorderColor
+  padding: 10px 15px
+  &, &:hover
+    color: $white
+  &:hover
+    background-color: $add-to-cart-hover
+  i
+    margin-right: 5px
+  &.single-product
+    padding: 5px 10px

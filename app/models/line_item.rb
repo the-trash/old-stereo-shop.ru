@@ -22,6 +22,7 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :cart
   belongs_to :product
+  belongs_to :order
 
   has_many :related_products, through: :product
   has_many :similar_products, through: :product

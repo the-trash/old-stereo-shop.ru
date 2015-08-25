@@ -1,0 +1,2 @@
+%p= I18n.t 'call_me_success_message'
+%p.pull-right= I18n.t 'call_me_footer'

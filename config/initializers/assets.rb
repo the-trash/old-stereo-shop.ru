@@ -8,7 +8,8 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   select2/*.png
   select2/*.gif
+  modules/order_in_one_click/index.js
 )
 
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-Rails.application.config.assets.precompile << Proc.new { |path| path =~ /fontawesome\/fonts/ and File.extname(path).in?(['.otf', '.eot', '.svg', '.ttf', '.woff']) }
+Rails.application.config.assets.precompile << Proc.new { |path| path =~ /fontawesome\/fonts/ and File.extname(path).in?(['.otf', '.eot', '.svg', '.ttf', '.woff', '.woff2']) }

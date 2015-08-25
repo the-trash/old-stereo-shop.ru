@@ -1,11 +1,12 @@
 class OrdersController < FrontController
+  respond_to :json, only: :in_one_click
   inherit_resources
 
   actions :create, :update, :show
   custom_actions  resource: [:delivery, :authenticate, :payment, :complete],
     collection: [:success_complete]
 
-  before_filter :check_access_to_order, except: [:create, :success_complete, :show]
+  before_filter :check_access_to_order, except: [:create, :success_complete, :show, :in_one_click]
   before_filter :check_access_to_show_order, only: :show
 
   def create
@@ -40,6 +41,20 @@ class OrdersController < FrontController
       redirect_to [:success_complete, :orders]
     else
       redirect_to :back, flash: { error: resource_errors }
+    end
+  end
+
+  def in_one_click
+    form = MakeOrderInOneClickForm.new current_user, one_click_permitted_params
+    form.save
+
+    if form.valid?
+      @order = form.order
+      respond_with @order
+    else
+      # TODO add behavior for handling errors
+      # hi five director :)
+      render nothing: true
     end
   end
 
@@ -97,6 +112,7 @@ class OrdersController < FrontController
     if user_signed_in?
       authorize resource, :show?
     else
+      # TODO resolve problem with validation cart
       # raise_pundit_exception
     end
   end
@@ -107,5 +123,9 @@ class OrdersController < FrontController
 
   def resource_errors
     resource.errors.full_messages.join("\r\n")
+  end
+
+  def one_click_permitted_params
+    params.require(:order).permit(*MakeOrderInOneClickForm.permitted_params)
   end
 end

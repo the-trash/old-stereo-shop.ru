@@ -1,0 +1,5 @@
+.l-make-order-in-one-click-header
+  %span= I18n.t 'order_in_one_click'
+  = I18n.t 'order_in_one_click_user_message'
+
+.l-make-order-in-one-click-body

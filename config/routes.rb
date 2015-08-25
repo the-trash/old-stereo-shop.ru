@@ -37,7 +37,10 @@ Rails.application.routes.draw do
       get :complete
     end
 
-    get :success_complete, on: :collection
+    collection do
+      get :success_complete
+      post :in_one_click
+    end
   end
 
   resources :payments, only: [] do

@@ -39,6 +39,8 @@
 
     = javascript_include_tag "application"
     = render 'shared/includes/i18n'
+    = yield :javascripts
+
     - if Rails.env.production?
       = render 'shared/metrics'
       = render 'shared/includes/jivosite'

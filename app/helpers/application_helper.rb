@@ -78,6 +78,19 @@ module ApplicationHelper
     string.present? ? string.split(divider) : []
   end
 
+  def cart_btn product_id, options
+    button_to line_items_path(product_id: product_id), options do
+      cart_icon_with_text
+    end
+  end
+
+  def cart_icon_with_text
+    [
+      content_tag(:i, '', class: 'fa fa-shopping-cart fa-fw'),
+      content_tag(:span, I18n.t('add_to_cart'))
+    ].join('').html_safe
+  end
+
   private
 
   def ancestry_tree_child_class has_items
