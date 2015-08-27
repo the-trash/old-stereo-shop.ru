@@ -18,6 +18,7 @@ describe BrandsController do
 
     it_behaves_like 'a successful request'
     it_behaves_like 'a successful render show template'
+    it_behaves_like 'a Seoble resource'
 
     it 'assigns @brand' do
       expect(assigns(:brand)).to eq(brand)

@@ -20,6 +20,8 @@ describe ProductsController do
   context 'get /products/:id' do
     before { get :show, id: product.id }
 
+    it_behaves_like 'a Seoble resource'
+
     it 'assigns @product' do
       expect(assigns(:product)).to eq(product)
     end

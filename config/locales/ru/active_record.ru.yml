@@ -6,6 +6,11 @@ ru:
         few: Настройки
         many: Настройки
         other: Настройки
+      seo_setting:
+        one: Метаданные
+        few: Метаданные
+        many: Метаданные
+        other: Метаданные
       user:
         one: Пользователь
         few: Пользователи
@@ -200,6 +205,11 @@ ru:
         <<: *main
         full_text: Полное описание
         post_category: Категория постов
+      seo_setting:
+        <<: *meta
+        url: Путь URL (например '/brands' или '/producs/121')
+        action_name: Название метода
+        controller_name: Название контроллера
       page:
         <<: *main
         full_text: Полное описание

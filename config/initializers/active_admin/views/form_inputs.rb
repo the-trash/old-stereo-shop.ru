@@ -1,4 +1,12 @@
 module ActiveAdmin
+  module Inputs
+    class MessageInput < ::Formtastic::Inputs::StringInput
+      def to_html
+        "<div class='active_admin_message_input'>#{label_text}</div>"
+      end
+    end
+  end
+  
   module Views
     module FormInputs
       using Refinements::Array::Formatter
@@ -21,6 +29,12 @@ module ActiveAdmin
           as: :select,
           collection: collection.map_with_state_locale,
           selected: selected
+      end
+
+      def message_input(text)
+        input :message_text,
+              label: text,
+              as: :message
       end
     end
   end

@@ -1,0 +1,63 @@
+ru:
+  meta_tags:
+    welcome:
+      index:
+        title: 'Интернет-магазин электроники, мобильной техники и электронных сигарет'
+        description: 'Stereo-shop.ru – официальный интернет-магазин, в котором вы можете недорого купить онлайн в Москве, в спб новый белый чехол, usb устройство, черные наушники, колонки mini, электронные сигареты.'
+        keywords: 'интернет магазин, купить denon, zik, parrot 2.0, porsche design, lacie, gps трекер, электронная сигарета, портативная колонка, hi-fi акустика'
+    brands:
+      index:
+        title: Бренды (example)
+        description: Наши лучшие бренды по оптимальным ценам (example)
+        keywords: ключевики (example)
+    carts:
+      show:
+        title: Ваша корзина
+        description: товары в вашей корзине
+        keywords: 'корзина, товары'
+    product_categories:
+      show:
+        title: Категории товаров
+        description: категории товаров
+        keywords: товары
+      sale:
+        title: Распродажа
+        description: распродажа
+        keywords: распродажа
+    products:
+      index:
+        title: Результаты поиска
+        description: рерзультаты поиска
+        keywords: результаты поиска
+    orders:
+      authentification:
+        title: Оформление заказа
+        description: оформление заказа
+        keywords: оформление заказа
+      payment:
+        title: Выбор способа оплаты
+        description: способ оплаты
+        keywords: оплата
+      success_complete:
+        title: Заказ оформлен
+        description: заказ оформлен
+        keywords: заказ оформлен
+    users:
+      show:
+        title: История заказов
+        description: мой профиль
+        keywords: профиль
+    settings:
+      profile:
+        title: Редактор персональных данных
+      mail:
+        title: Изменить email
+      password:
+        title: Изменить пароль
+      subscriptions:
+        title: Изменить подписки
+    stores:
+      show:
+        title: Магазин
+        description: магазин
+        keywords: ключевые слова

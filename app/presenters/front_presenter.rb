@@ -1,14 +1,6 @@
 class FrontPresenter < Struct.new(:current_user, :params)
   extend Memoist
 
-  def meta
-    {
-      seo_title: I18n.t('seo_title', scope: [:meta, :default]),
-      keywords: I18n.t('keywords', scope: [:meta, :default]),
-      seo_description: I18n.t('seo_description', scope: [:meta, :default])
-    }
-  end
-
   def product_categories_with_photos
     product_categories_for_front.includes(:photos).arrange(order: :position)
   end

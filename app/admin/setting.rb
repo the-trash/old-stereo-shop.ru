@@ -1,5 +1,5 @@
 ActiveAdmin.register Setting do
-  menu priority: 5
+  menu parent: I18n.t('active_admin.custom_menu.settings'), priority: 1
   permit_params :description, :group, :key, :value
 
   config.filters  = false

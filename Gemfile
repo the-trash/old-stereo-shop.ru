@@ -37,6 +37,7 @@ gem 'haml'
 gem 'haml_coffee_assets'
 gem 'sanitize'
 gem 'unicode'
+gem 'meta-tags', github: 'alekseenkoss77/meta-tags'
 
 gem 'simple_captcha2', require: 'simple_captcha'
 gem 'browser'
@@ -104,6 +105,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
 end

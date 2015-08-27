@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/alekseenkoss77/meta-tags.git
+  revision: b05ab35795103a181ccd868dd5b9a103e3fb21ad
+  specs:
+    meta-tags (2.1.0.dev)
+      actionpack (>= 3.0.0)
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: d878a5b784ee0f703e9ee677bc0231dc24159512
   specs:
@@ -172,6 +179,8 @@ GEM
     bullet (4.14.0)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
+    byebug (4.0.5)
+      columnize (= 0.9.0)
     callsite (0.0.11)
     capistrano (3.2.1)
       i18n
@@ -219,6 +228,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colorize (0.7.7)
+    columnize (0.9.0)
     compass (0.12.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -337,7 +347,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.0)
-    minitest (5.7.0)
+    minitest (5.8.0)
     money (6.5.1)
       i18n (>= 0.6.4, <= 0.7.0)
     multi_json (1.10.1)
@@ -389,6 +399,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.1.0)
+      byebug (~> 4.0)
+      pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     pundit (1.0.1)
@@ -630,6 +643,7 @@ DEPENDENCIES
   js-routes
   letter_opener
   memoist
+  meta-tags!
   meta_request
   newrelic_rpm
   normalize-rails
@@ -640,6 +654,7 @@ DEPENDENCIES
   pickle
   poltergeist
   pry
+  pry-byebug
   pry-rails
   pundit
   rabl

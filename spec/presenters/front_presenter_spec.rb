@@ -3,18 +3,6 @@ describe FrontPresenter do
 
   subject { described_class.new user }
 
-  describe '#meta' do
-    let(:default_meta) {
-      {
-        seo_title: I18n.t('seo_title', scope: [:meta, :default]),
-        keywords: I18n.t('keywords', scope: [:meta, :default]),
-        seo_description: I18n.t('seo_description', scope: [:meta, :default])
-      }
-    }
-
-    specify { expect(subject.meta).to eq(default_meta) }
-  end
-
   describe '#news_category' do
     let!(:news_category) { create :post_category, title: I18n.t('news') }
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807120232) do
+ActiveRecord::Schema.define(version: 20150828171037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -509,6 +509,16 @@ ActiveRecord::Schema.define(version: 20150807120232) do
   add_index "reviews", ["user_id", "recallable_id", "recallable_type"], name: "index_reviews_on_user_id_and_recallable_id_and_recallable_type", unique: true, using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
+  create_table "seo_settings", force: true do |t|
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.hstore   "meta",            default: {}, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seo_settings", ["controller_name", "action_name"], name: "index_seo_settings_on_controller_name_and_action_name", using: :btree
+
   create_table "settings", force: true do |t|
     t.string   "key"
     t.string   "value"
@@ -539,6 +549,7 @@ ActiveRecord::Schema.define(version: 20150807120232) do
     t.integer  "admin_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.hstore   "meta",          default: {},   null: false
   end
 
   add_index "stores", ["admin_user_id"], name: "index_stores_on_admin_user_id", using: :btree
