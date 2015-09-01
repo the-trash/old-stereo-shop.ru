@@ -18,7 +18,6 @@
   = require select2/select2_locale_ru
 
   = require i18n
-  = require i18n/translations
 
   = require hamlcoffee
   = require js-routes

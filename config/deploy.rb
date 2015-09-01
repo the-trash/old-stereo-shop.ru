@@ -38,9 +38,25 @@ namespace :bower do
   task :install do
     on roles(:web) do
       within release_path do
-        execute :rake, "bower:install:deployment['--allow-root'] bower:resolve"
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "bower:install:deployment['--allow-root'] bower:resolve"
+        end
       end
     end
   end
 end
 before 'deploy:compile_assets', 'bower:install'
+
+namespace :i18njs do
+  desc 'Export locales'
+  task :export do
+    on roles(:web) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'i18n:js:export'
+        end
+      end
+    end
+  end
+end
+after 'bower:install', 'i18njs:export'

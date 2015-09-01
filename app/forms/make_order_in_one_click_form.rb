@@ -3,8 +3,9 @@ class MakeOrderInOneClickForm < Struct.new :current_user, :params
 
   validate :params_correct
 
-  delegate :email, :index, :address, :full_name, to: :current_user
+  delegate :email, :index, :address, :full_name, :city, to: :current_user
   delegate :notify_about_one_click, to: :order
+  delegate :price_with_discount, to: :product
 
   def save
     if valid?
@@ -43,15 +44,22 @@ class MakeOrderInOneClickForm < Struct.new :current_user, :params
       user: current_user
   end
 
+  def product
+    @product ||= Product.find params[:product_id]
+  end
+
   def line_item
-    cart.line_items.create product_id: params[:product_id], order: order
+    cart.line_items.create \
+      product: product,
+      order: order,
+      current_product_price: price_with_discount
   end
 
   def generate_order
      if current_user
        current_user.orders.create build_attributes.merge(user_attributes)
      else
-       Order.create cart: cart, phone: phone
+       Order.create build_attributes
      end
   end
 
@@ -68,7 +76,7 @@ class MakeOrderInOneClickForm < Struct.new :current_user, :params
   end
 
   def build_attributes
-    { cart: cart, phone: phone }
+    { cart: cart, phone: phone, total_amount: price_with_discount }
   end
 
   def user_attributes
@@ -76,7 +84,8 @@ class MakeOrderInOneClickForm < Struct.new :current_user, :params
       email: email,
       post_index: index,
       address: address,
-      user_name: full_name
+      user_name: full_name,
+      city: city
     }
   end
 end

@@ -73,8 +73,8 @@ ru:
         all_products: 'Sale. Все продукты (%{count})'
 
   about_good: О товаре
-  addition: Дополнительно
   add_to_cart: Добавить в корзину
+  addition: Дополнительно
   alien_cart: Это не ваша корзина
   all_brands: Все бренды
   all_products: Все товары

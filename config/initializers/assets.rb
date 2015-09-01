@@ -8,6 +8,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   select2/*.png
   select2/*.gif
+  i18n/translations.js
   modules/order_in_one_click/index.js
 )
 
