@@ -53,7 +53,6 @@ gem 'activemerchant', '1.43.3', require: 'active_merchant'
 gem 'activerecord-import'
 gem 'acts_as_list'
 gem 'ancestry'
-gem 'annotate', github: 'ctran/annotate_models'
 gem 'bootstrap_flash_messages', '~> 1.0.0'
 gem 'bower-rails'
 gem 'breadcrumbs_on_rails'
@@ -80,6 +79,7 @@ gem 'unicorn'
 gem 'will_paginate'
 
 group :development do
+  gem 'annotate', github: 'ctran/annotate_models'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller' # need for better_errors
