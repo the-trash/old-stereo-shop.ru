@@ -1,0 +1,20 @@
+- categories.each do |item, child_items|
+  %li{class: "#{'with-children' if child_items.any?}"}
+    - if images
+      = item_photo item
+    - if child_items.any?
+      = link_to item.title,
+                nil,
+                title: item.title,
+                class: 'b-product-category-parent-link b-link-with-child',
+                data: { toggle: 'dropdown' }
+
+      %span.b-dropdown-arrow{'data-toggle' => 'dropdown'}
+        %i.fa.fa-chevron-down
+
+      = product_category_nested_tree child_items
+    - else
+      = link_to item.title,
+                [item],
+                title: item.title,
+                class: 'b-product-category-parent-link'

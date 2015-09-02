@@ -49,7 +49,7 @@ class FrontPresenter < Struct.new(:current_user, :params)
   private
 
   def product_categories_for_front
-    ProductCategory.for_front
+    ProductCategory.published
   end
   memoize :product_categories_for_front
 

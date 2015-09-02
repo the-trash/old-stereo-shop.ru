@@ -4,7 +4,9 @@
   - if @front_presenter.product_categories_with_photos.any?
     .categories-list
       %ul.menu.product-category-dropdown-menu{ aria: { labelledby: 'dropdownMenu' } }
-        = build_product_category_ancestry_tree(@front_presenter.product_categories_with_photos, { with_image: true })
+        = render 'shared/product_categories_tree',
+                  categories: @front_presenter.product_categories_with_photos,
+                  images: true
 
   - if @front_presenter.show_post_categories?
     %hr

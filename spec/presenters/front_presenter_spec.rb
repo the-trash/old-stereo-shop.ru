@@ -29,7 +29,7 @@ describe FrontPresenter do
 
   describe '#product_categories' do
     let!(:product_category1) { create :product_category }
-    let!(:product_category2) { create :product_category }
+    let!(:product_category2) { create :product_category, :moderated }
     let!(:product) { create :product, product_category: product_category1 }
 
     specify { expect(subject.product_categories).to include(product_category1) }

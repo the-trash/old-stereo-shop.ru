@@ -3,7 +3,7 @@
     .our-products
       %ul.menu
         %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
-        = build_product_category_ancestry_tree(@front_presenter.product_categories)
+        = render 'shared/product_categories_tree', categories: @front_presenter.product_categories, images: false
 
   .row.dark-gray-bg
     .container.l-footer-search-bar= render 'shared/search_bar'

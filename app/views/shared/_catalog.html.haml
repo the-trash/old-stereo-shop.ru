@@ -1,0 +1,13 @@
+#catalog.item
+  - if categories.any?
+    .btn-group
+      %button.dropdown-toggle.btn.btn-primary{ data: { toggle: 'dropdown' }, 'aria-haspopup' => 'true', 'aria-expanded' => 'false' }
+        = t('catalog')
+        %span.caret
+      %ul.dropdown-menu.multi-level{ aria: { labelledby: 'dropdownMenu' } }
+        - categories.each do |item, children|
+          %li{class: "#{'dropdown-submenu' if children.any?}"}
+            = product_category_link item, children.any?
+            = product_category_nested_tree children
+
+        %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'

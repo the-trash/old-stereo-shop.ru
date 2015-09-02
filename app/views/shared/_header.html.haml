@@ -2,15 +2,7 @@
   #logo.item
     = link_to '', root_path, class: 'full-block-link'
     .image= image_tag 'application/logo.png'
-  #catalog.item
-    - if @front_presenter.product_categories.any?
-      .btn-group
-        %button.dropdown-toggle.btn.btn-primary{ data: { toggle: 'dropdown' }, 'aria-haspopup' => 'true', 'aria-expanded' => 'false' }
-          = t('catalog')
-          %span.caret
-        %ul.dropdown-menu.multi-level{ aria: { labelledby: 'dropdownMenu' } }
-          = build_dropdown_product_category_nested_tree(@front_presenter.product_categories)
-          %li= link_to t('sale'), [:sale, :product_categories], class: 'pink'
+  = render 'shared/catalog', categories: @front_presenter.product_categories
   #menu.item
     %ul.menu
       %li

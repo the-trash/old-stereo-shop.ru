@@ -10,7 +10,7 @@
     "fontawesome": "4.4.0",
     "gray": "git://github.com/karlhorky/gray",
     "html5shiv": "git://github.com/aFarkas/html5shiv#ed28c56c071bddfe7d635ad88995674957a016be",
-    "jquery" : "2.1.4",
+    "jquery": "2.1.4",
     "jquery-ujs": "1.0.4",
     "marionette": "2.4.2",
     "raty": "git://github.com/wbotelhos/raty",
