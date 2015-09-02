@@ -102,9 +102,9 @@ module ApplicationHelper
   end
 
   def item_photo item, with_image
-    if with_image && item.photos.any?
+    if with_image
       link_to [item], class: 'without-border' do
-        image_tag(item.photos.default.file_url(:product_category), class: 'grayscale grayscale-fade').html_safe
+        image_tag(ImageDecorator.decorate(item).photo_url(:product_category), class: 'grayscale grayscale-fade')
       end
     end
   end
@@ -127,5 +127,12 @@ module ApplicationHelper
       'b-product-category-parent-link',
       ('b-link-with-child' unless has_items)
     ].compact.join ' '
+  end
+
+  def background_image_tag(url, options = {})
+    opt = options.with_indifferent_access
+    style = { style: "background-image: url('#{image_url url}'); " }
+    style[:style] += opt.delete(:style) if opt.has_key? :style
+    content_tag :div, nil, opt.merge(style)
   end
 end

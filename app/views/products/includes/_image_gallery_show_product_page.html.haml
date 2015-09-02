@@ -1,3 +1,9 @@
 .b-product-images.default
-  = render 'products/includes/main_image', photo: photos.default
-  = render partial: 'products/includes/thumb_image', collection: photos, as: :photo
+  = background_image_tag ImageDecorator.decorate(product).photo_url(:product),
+                         class: 'e-main-image'
+                         
+  - if photos.any?
+    - photos.each do |photo|
+      = background_image_tag photo.file.url(:product, :thumb),
+                             class: 'e-thumb-image',
+                             data: { big_img_url: photo.file.url(:product) }

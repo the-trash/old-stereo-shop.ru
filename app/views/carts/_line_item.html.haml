@@ -1,9 +1,7 @@
 %tr
   %td
     .b-single-product.cart
-      - photo = line_item.photos.default
-      - if photo
-        .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
+      = background_image_tag ImageDecorator.decorate(line_item).photo_url(:product, :related), class: 'e-image'
       .b-info
         %p.title= link_to line_item.product_title, line_item.product
         %p.price= t('views.product.with_currency', coust: price_formatted(line_item.price_with_discount))

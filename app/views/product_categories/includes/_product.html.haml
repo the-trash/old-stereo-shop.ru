@@ -1,7 +1,5 @@
 .b-single-product.catalog
-  - photo = product.photos.first
-  - if photo
-    .e-image{ style: "background-image: url(#{ photo.file_url(:product, :similar) })" }
+  = background_image_tag ImageDecorator.decorate(product).photo_url(:product, :similar), class: 'e-image'
 
   .b-info
     .b-info-main

@@ -10,9 +10,9 @@
 
   .b-product-top-information
     - if @additional_option_value.present? && @additional_option_value.photos.published.any?
-      = render 'products/includes/image_gallery_show_product_page', photos: @additional_option_value.photos.published
+      = render 'products/includes/image_gallery_show_product_page', product: resource, photos: @additional_option_value.photos.published
     - else
-      = render 'products/includes/image_gallery_show_product_page', photos: resource.photos.published if resource.photos.published.any?
+      = render 'products/includes/image_gallery_show_product_page', product: resource, photos: resource.photos.published
 
     .b-product-middle
       - if @show_presenter.additional_options.any?
