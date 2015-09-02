@@ -20,13 +20,22 @@ class BootstrapBreadcrumbsBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   end
 
   def render_element(element, i)
+    first = i == 0
     current = @context.current_page?(compute_path(element))
 
-    @context.content_tag(:li, class: ('active' if current) || ('home' if i == 0)) do
+    @context.content_tag(:li, class: ('active' if current) || ('home' if first)) do
       link_or_text = @context.link_to_unless_current(compute_name(element), compute_path(element), element.options)
       divider = @context.content_tag(:span, (@options[:separator]  || '/').html_safe, class: 'divider') unless current
 
-      link_or_text + (divider || '')
+      ((first ? home_icon : '') + link_or_text + (divider || '')).html_safe
+    end
+  end
+
+  private
+
+  def home_icon
+    @context.link_to Rails.application.routes.url_helpers.root_path do
+      @context.content_tag :i, '', class: 'fa fa-fw fa-home'
     end
   end
 end

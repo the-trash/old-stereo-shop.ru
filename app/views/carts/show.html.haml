@@ -2,8 +2,9 @@
   = render 'shared/includes/order_steps_header'
 
   .e-clear-cart
-    %i.icon.icon-clear
-    = link_to t('clear_cart'), @cart, method: :delete, class: 'clear-cart'
+    = link_to @cart, method: :delete, class: 'clear-cart' do
+      %i.fa.fa-fw.fa-close
+      %span= t('clear_cart')
   .b-cart-table
     %table
       %thead

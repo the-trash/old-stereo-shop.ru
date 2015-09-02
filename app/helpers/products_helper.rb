@@ -49,14 +49,16 @@ module ProductsHelper
     options.reverse_merge! default_wishlist_options(product)
     wishlist_id = options[:wishlist_id].present? ? options[:wishlist_id] : @front_presenter.user_wishlist[product.id]
 
-    link =
+    link_body, link_path, link_options =
       if current_user.wishes.product_exists?(product.id)
-        link_to(I18n.t('delete'), product_wishlist_path(product, wishlist_id), options.merge!(wishlist_delete_options))
+        [I18n.t('delete'), product_wishlist_path(product, wishlist_id), options.merge!(wishlist_delete_options)]
       else
-        link_to(I18n.t('i_like'), product_wishlists_path(product), options.merge!(method: :post))
+        [I18n.t('i_like'), product_wishlists_path(product), options.merge!(method: :post)]
       end
 
-    (make_tag + link).html_safe
+    link_to link_path, link_options do
+      [make_tag, content_tag(:span, link_body)].join('').html_safe
+    end
   end
 
   def product_price(price, options = {})
@@ -67,18 +69,23 @@ module ProductsHelper
     make_tag :p, I18n.t('views.product.with_currency', coust: price_formatted(with_discount)), options
   end
 
-  def make_tag tag = :i, body = '', options = { class: 'icon icon-i-like' }
+  def make_tag tag = :i, body = '', options = { class: 'fa fa-fw fa-heart' }
     content_tag tag, body, options
   end
 
-  def icon_in_stock(product, classes = nil)
-    in_stock = product.in_stock
-    icon_classes = [('in-stock' if in_stock), 'icon', classes].compact.join(' ').strip
+  def icon_in_stock(in_stock, classes = nil)
+    l_classes = [
+      classes,
+      'l-product-instock',
+      (in_stock ? 'product-in-stock' : 'product-out-off-stock')
+    ].compact.join(' ').strip
 
-    [
-      content_tag(:i, '', class: icon_classes),
-      (content_tag(:span, I18n.t('product_is_availible_to_order'), class: 'out-of-stock') if !in_stock)
-    ].join('').html_safe
+    content_tag :div, class: l_classes do
+      [
+        content_tag(:i, '', class: "fa fa-fw #{(in_stock ? 'fa-check' : 'fa-exclamation-circle')}"),
+        content_tag(:span, product_in_stock_message(in_stock))
+      ].join('').html_safe
+    end
   end
 
   def characteristic_with_unit value, unit
@@ -97,12 +104,17 @@ module ProductsHelper
 
   private
 
+  def product_in_stock_message in_stock
+    in_stock ? I18n.t('in_stock') : I18n.t('product_is_availible_to_order')
+  end
+
   def default_wishlist_options(product)
     {
       data: {
         role: 'add-to-wish',
         id: product.id
-      }
+      },
+      class: 'b-add-to-wishlist'
     }
   end
 

@@ -2,17 +2,6 @@
   @include inline-block();
 }
 
-.in-stock {
-  width: icons-sprite-width('in-stock-big');
-  height: icons-sprite-height('in-stock-big');
-  @include icons-sprite('in-stock-big');
-  &.small {
-    width: icons-sprite-width('in-stock-small');
-    height: icons-sprite-height('in-stock-small');
-    @include icons-sprite('in-stock-small');
-  }
-}
-
 .icon-refresh-captcha {
   width: icons-sprite-width('refresh-captcha');
   height: icons-sprite-height('refresh-captcha');
@@ -29,22 +18,6 @@
 .icon-arrow-top {
   &:before {
     content: '\25B2';
-    color: $blue;
-  }
-}
-
-.icon-i-like {
-  width: icons-sprite-width('heart-blue-micro');
-  height: icons-sprite-height('heart-blue-micro');
-  @include icons-sprite('heart-blue-micro');
-  margin-right: 5px;
-}
-
-.icon-clear {
-  &:before {
-    content: '\00D7';
-    font-weight: bold;
-    margin-right: 5px;
     color: $blue;
   }
 }

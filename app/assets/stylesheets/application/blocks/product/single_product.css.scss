@@ -1,3 +1,9 @@
+// TODO override me, please
+$b-info-main-width: 410px !default;
+$b-info-main-margin-right: 90px !default;
+$b-info-width: $containerWidth - $catalogImageWidth - 27 !default;
+$b-short-info-width: 157px !default;
+
 .b-single-product {
   display: table;
   float: left;
@@ -9,12 +15,6 @@
       &.price {
         color: $moderateReddishOrange;
       }
-    }
-  }
-  .b-commerce {
-    a {
-      text-decoration: none;
-      border-bottom: 1px dotted $blue;
     }
   }
   &.related {
@@ -53,13 +53,13 @@
       margin-right: 25px;
     }
     .b-info {
-      width: $containerWidth - $catalogImageWidth - 27;
+      width: $b-info-width;
       .b-info-main, .b-info-short, .b-commerce {
         float: left;
       }
       .b-info-main {
-        width: 410px;
-        margin-right: 90px;
+        width: $b-info-main-width;
+        margin-right: $b-info-main-margin-right;
         p {
           margin: 12px 0;
           font-size: 14px;
@@ -71,6 +71,7 @@
         }
       }
       .b-info-short {
+        width: $b-short-info-width;
         @import "_price";
         .b-product-ratable-with-reviews {
           margin-top: 30px;

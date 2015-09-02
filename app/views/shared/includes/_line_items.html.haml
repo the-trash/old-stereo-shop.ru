@@ -13,8 +13,7 @@
           - photo = line_item.photos.default
           - if photo
             .e-image{ style: "background-image: url(#{ photo.file_url(:product, :related) })" }
-            %i.icon.icon-clear
-            = link_to t('delete'), line_item, method: :delete
+            = render 'line_items/includes/remove_line_item_link', line_item: line_item
         .b-info
           %p.title= link_to line_item.product_title, line_item.product
           %p.price= I18n.t('views.product.with_currency', coust: price_formatted(line_item.price_with_discount))
