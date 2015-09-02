@@ -159,6 +159,7 @@ ru:
   product_already_exists_in_wishlist: Товар уже существует в списке желаний
   product_category_for_import: Категория продуктов для импорта товаров
   product_in_cart: Товар находится в корзине
+  product_is_availible_to_order: Этот товар доступен под заказ
   product_name: Название товара
   product_price: Цена
   products_from_brand: Все товары бренда

@@ -2,5 +2,6 @@
   - stores.each do |store|
     - stock = class_with_content_for_count_in_stock(store[:store].happens, store[:store_count].count)
     %li{ class: "#{ stock[:class] }" }
-      %p #{ link_or_title_for_store(store[:store]) }
-      %p #{ stock[:content] }
+      = link_or_title_for_store(store[:store])
+      - if stock[:content].presence
+        %p #{ stock[:content] }

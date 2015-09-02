@@ -14,7 +14,8 @@ module ProductsHelper
     klass, text =
       if happens
         if count > 0
-          ['in_store', products_count_in_store(count)]
+          #['in_store', products_count_in_store(count)]
+          ['in_store', nil]
         else
           ['not_in_store', I18n.t('views.product.not_in_store')]
         end
@@ -72,11 +73,12 @@ module ProductsHelper
 
   def icon_in_stock(product, classes = nil)
     in_stock = product.in_stock
-    icon_classes = [(in_stock ? 'in-stock' : 'out-of-stock'), 'icon', classes].compact.join(' ').strip
+    icon_classes = [('in-stock' if in_stock), 'icon', classes].compact.join(' ').strip
 
-    content_tag :i, class: icon_classes do
-      content_tag :span, I18n.t('not_available') if !in_stock
-    end
+    [
+      content_tag(:i, '', class: icon_classes),
+      (content_tag(:span, I18n.t('product_is_availible_to_order'), class: 'out-of-stock') if !in_stock)
+    ].join('').html_safe
   end
 
   def characteristic_with_unit value, unit
