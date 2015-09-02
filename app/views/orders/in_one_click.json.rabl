@@ -1,2 +1,2 @@
 object @order
-attributes :id
+attributes :id, :total_amount

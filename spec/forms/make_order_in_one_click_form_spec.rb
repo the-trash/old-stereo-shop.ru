@@ -43,5 +43,8 @@ describe MakeOrderInOneClickForm do
     let(:params) { {} }
 
     specify { expect(subject).to be_falsy }
+    specify { expect{ subject }.not_to change{ Order.count }.from(0) }
+    specify { expect{ subject }.not_to change{ LineItem.count }.from(0) }
+    specify { expect{ subject }.not_to change{ Cart.count }.from(0) }
   end
 end

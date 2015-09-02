@@ -16,7 +16,7 @@ class ProductsController < FrontController
 
   def show
     @show_presenter = Products::ShowPresenter.new(resource)
-    gon.rabl template: 'app/views/products/show.json'
+    gon.rabl template: 'app/views/products/show.json', as: :product
 
     if params_with_additional_option_value_exists?
       @additional_option_value =
