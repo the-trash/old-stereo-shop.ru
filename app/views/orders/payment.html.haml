@@ -19,7 +19,7 @@
         = f.label :payment_cashless, t('.cashless'), class: 'with-additional-content'
         .l-cashless
           .form-group
-            = f.label :organization_name, t('.organization_name')
+            = f.label :organization_name, t('.organization_name'), class: 'required'
             = f.text_field :organization_name, placeholder: t('.organization_name')
 
           .form-group

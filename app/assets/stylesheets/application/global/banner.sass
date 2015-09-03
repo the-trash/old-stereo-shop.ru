@@ -1,0 +1,25 @@
+$b-banner-width: 875px !default
+$banner-image-height: 125px !default
+
+.banner-wrapper
+  padding-top: 12px
+
+.banner
+  width: $b-banner-width
+  height: $banner-image-height
+  margin: 0 auto
+
+  .sale
+    float: left
+    vertical-align: middle
+    &, & a
+      line-height: $banner-image-height
+    a
+      font-size: $font-size-base * 2
+      font-weight: bold
+      color: $pink
+      i, &:hover i
+        color: $black
+
+      &:hover
+        color: $darkPink

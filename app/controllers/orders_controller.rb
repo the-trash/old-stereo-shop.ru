@@ -1,5 +1,6 @@
 class OrdersController < FrontController
   respond_to :json, only: :in_one_click
+  respond_to :html
   inherit_resources
 
   actions :create, :update, :show
