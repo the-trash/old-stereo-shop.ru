@@ -307,6 +307,7 @@ ru:
         kpp: КПП
         file: Реквизиты
         payment_transaction: Транзакция
+        terms_of_service: Условия оферты
         steps:
           delivery: Выбор доставки
           authentification: Авторизация

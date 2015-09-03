@@ -184,6 +184,7 @@ ru:
   sign_up: Зарегистрироваться
   successfully_add_to_wishlist: Товар успешно добавлен с список желаний
   technical_details: Технические детали
+  terms_of_service_label: "Согласен с условиями <a href=%{link}>Договора-оферты</a>"
   thanks_for_your_order: "Спасибо за Ваш заказ!<br />Оплата прошла успешно..."
   to_subscribe: Подписаться
   total_amount: Общая сумма

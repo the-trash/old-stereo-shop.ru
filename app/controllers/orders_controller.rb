@@ -90,7 +90,7 @@ class OrdersController < FrontController
   end
 
   def payment_permitted_params
-    base_permitted_params + %i(payment file organization_name inn kpp)
+    base_permitted_params + %i(payment file organization_name inn kpp terms_of_service)
   end
 
   def order_step

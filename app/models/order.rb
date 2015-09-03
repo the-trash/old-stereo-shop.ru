@@ -58,8 +58,8 @@ class Order < ActiveRecord::Base
   validates :delivery, inclusion: { in: DELIVERIES }
   validates :payment, inclusion: { in: PAYMENTS }
   validates :user_name, :phone, :city, :email, presence: true, if: [:authentification?, :started?]
-  # TODO fix me, you should check validation in spec
   validates :file, :inn, :kpp, :organization_name, presence: true, if: [:payment?, :cashless?]
+  validates :terms_of_service, acceptance: true, allow_nil: false, if: :payment?
   validate :not_cash_payment, if: [:payment?, :mail?, :receive?]
 
   delegate :total_amount, :line_items, to: :cart, prefix: true
