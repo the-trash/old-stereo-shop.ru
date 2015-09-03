@@ -1,12 +1,12 @@
 ru:
   active_admin:
-    dashboard: "Панель управления"
+    dashboard: Панель управления
     dashboard_welcome:
-      welcome: "Добро пожаловать в Active Admin. Это стандартная страница управления сайтом."
-      call_to_action: "Чтобы добавить сюда что-нибудь загляните в 'app/admin/dashboard.rb'"
-    view: "Открыть"
-    edit: "Изменить"
-    delete: "Удалить"
+      welcome: Добро пожаловать в Active Admin. Это стандартная страница управления сайтом.
+      call_to_action: Чтобы добавить сюда что-нибудь загляните в 'app/admin/dashboard.rb'
+    view: Открыть
+    edit: Изменить
+    delete: Удалить
     send_newletter: Отправить пользователям
     delete_confirmation: "Вы уверены, что хотите удалить это?"
     new_model: "Создать %{model}"
@@ -15,40 +15,40 @@ ru:
     update_model: "Изменить %{model}"
     delete_model: "Удалить %{model}"
     details: "%{model} подробнее"
-    cancel: "Отмена"
-    empty: "Пусто"
-    previous: "Пред."
-    next: "След."
-    download: "Загрузка:"
+    cancel: Отмена
+    empty: Пусто
+    previous: 'Пред.'
+    next: 'След.'
+    download: 'Загрузка:'
     has_many_new: "Добавить %{model}"
-    has_many_delete: "Удалить"
-    has_many_remove: "Убрать"
+    has_many_delete: Удалить
+    has_many_remove: Убрать
     messages:
-      seo_title_message: > 
+      seo_title_message: >
         Для создания Seo настройки, вам необходимо заполнить
-        ИЛИ поле URL, или два поля: <название контроллера> и 
-        <название метода>. Если вы заполните поле <путь URL> 
-        то название контроллера и метода заполнять не нужно, 
+        ИЛИ поле URL, или два поля: <название контроллера> и
+        <название метода>. Если вы заполните поле <путь URL>
+        то название контроллера и метода заполнять не нужно,
         они автоматически будут сгенерированы при создании/обновлении настройки.
     filters:
       buttons:
-        filter: "Фильтровать"
-        clear: "Очистить"
+        filter: Фильтровать
+        clear: Очистить
       predicates:
-        contains: "Содержит"
-        equals: "="
-        starts_with: "Начинается с"
-        ends_with: "Заканчивается"
-        greater_than: "больше"
-        less_than: "меньше"
+        contains: Содержит
+        equals: '='
+        starts_with: Начинается с
+        ends_with: Заканчивается
+        greater_than: больше
+        less_than: меньше
     status_tag:
-      "yes": "Да"
-      "no": "Нет"
+      "yes": Да
+      "no": Нет
     main_content: "Создайте %{model}#main_content для отображения содержимого."
-    logout: "Выйти"
+    logout: Выйти
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
-      filters: "Фильтры"
+      filters: Фильтры
     pagination:
       empty: "%{model} не найдено"
       one: "Результат: <b>1</b> %{model}"
@@ -56,30 +56,35 @@ ru:
       multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
       multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
-        one: "запись"
-        few: "записи"
-        many: "записей"
-        other: "записей"
-    any: "Любой"
+        one: запись
+        few: записи
+        many: записей
+        other: записей
+    any: Любой
     blank_slate:
       content: "Пока нет %{resource_name}."
-      link: "Создать"
+      link: Создать
     dropdown_actions:
-      button_label: "Oперации"
+      button_label: Oперации
     batch_actions:
-      button_label: "Групповые операции"
-      default_confirmation: "Вы уверены, что вы хотите это сделать?"
+      button_label: Групповые операции
+      default_confirmation: Вы уверены, что вы хотите это сделать?
       delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}?"
       succesfully_destroyed:
         one: "Успешно удалено: 1 %{model}"
         few: "Успешно удалено: %{count} %{plural_model}"
         many: "Успешно удалено: %{count} %{plural_model}"
         other: "Успешно удалено: %{count} %{plural_model}"
+      succesfully_updated:
+        one: "Успешно обновлено: 1 %{model}"
+        few: "Успешно обновлено: %{count} %{plural_model}"
+        many: "Успешно обновлено: %{count} %{plural_model}"
+        other: "Успешно обновлено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Отметить всё / Снять выделение)"
-      link: "Создать"
+      link: Создать
       action_label: "%{title} выбранное"
       labels:
-        destroy: "Удалить"
+        destroy: Удалить
         draft: Сделать черновиками
         published: Опубликовать
         removed: Удалить
@@ -87,58 +92,60 @@ ru:
         send_newletters: Разослать пользователям
         import: Импортировать
         super_destroy: Полностью удалить
+        fix_price: Фиксированная цена на
+        add_to_yandex_market: Добавить в Яндекс Маркет
     comments:
-      resource_type: "Тип ресурса"
-      author_type: "Тип автора"
-      body: "Текст"
-      author: "Автор"
-      title: "Комментарий"
-      add: "Добавить Комментарий"
-      resource: "Ресурс"
-      no_comments_yet: "Пока нет комментариев."
-      author_missing: "Аноним"
+      resource_type: Тип ресурса
+      author_type: Тип автора
+      body: Текст
+      author: Автор
+      title: Комментарий
+      add: Добавить Комментарий
+      resource: Ресурс
+      no_comments_yet: Пока нет комментариев.
+      author_missing: Аноним
       title_content: "Комментарии (%{count})"
       errors:
-        empty_text: "Комментарий не сохранен, текст не должен быть пустым."
+        empty_text: Комментарий не сохранен, текст не должен быть пустым.
     devise:
       username:
-        title: "Имя пользователя"
+        title: Имя пользователя
       email:
-        title: "Эл. почта"
+        title: Эл. почта
       subdomain:
-        title: "Поддомен"
+        title: Поддомен
       password:
-        title: "Пароль"
+        title: Пароль
       sign_up:
-        title: "Зарегистрироваться"
-        submit: "Зарегистрироваться"
+        title: Зарегистрироваться
+        submit: Зарегистрироваться
       login:
-        title: "Войти"
-        remember_me: "Запомнить меня"
-        submit: "Войти"
+        title: Войти
+        remember_me: Запомнить меня
+        submit: Войти
       reset_password:
-        title: "Забыли пароль?"
-        submit: "Сбросить пароль"
+        title: Забыли пароль?
+        submit: Сбросить пароль
       change_password:
-        title: "Изменение пароля"
-        submit: "Изменение пароля"
+        title: Изменение пароля
+        submit: Изменение пароля
       unlock:
-        title: "Повторно отправить инструкции по разблокировке"
-        submit: "Повторно отправить инструкции по разблокировке"
+        title: Повторно отправить инструкции по разблокировке
+        submit: Повторно отправить инструкции по разблокировке
       resend_confirmation_instructions:
-        title: "Выслать повторно письмо с активацией"
-        submit: "Выслать повторно письмо с активацией"
+        title: Выслать повторно письмо с активацией
+        submit: Выслать повторно письмо с активацией
       links:
-        sign_in: "Войти"
-        forgot_your_password: "Забыли пароль?"
+        sign_in: Войти
+        forgot_your_password: Забыли пароль?
         sign_in_with_omniauth_provider: "Войти с помощью %{provider}"
     access_denied:
-      message: "Вы не авторизованы для выполнения данного действия."
+      message: Вы не авторизованы для выполнения данного действия.
     index_list:
-      table: "Таблица"
-      block: "Список"
-      grid: "Сетка"
-      blog: "Блог"
+      table: Таблица
+      block: Список
+      grid: Сетка
+      blog: Блог
     custom_menu:
       users: Пользователи
       products: Товары

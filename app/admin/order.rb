@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t('active_admin.custom_menu.orders'), priority: 1
 
-  actions :index, :edit, :update
+  actions :index, :edit, :update, :destroy
 
   permit_params :address, :phone, :user_name, :post_index, :step, :payment, :state,
     :total_amount, :city_id, :delivery, :organization_name, :inn, :kpp, :file, :email,
@@ -38,6 +38,7 @@ ActiveAdmin.register Order do
   end
 
   index do
+    selectable_column
     column :id
     column I18n.t('active_admin.views.main') do |order|
       content_tag :ul do

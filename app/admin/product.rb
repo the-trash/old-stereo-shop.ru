@@ -22,6 +22,18 @@ ActiveAdmin.register Product do
       plural_model: active_admin_config.plural_resource_label(count: ids.count).downcase)
   end
 
+  %i(add_to_yandex_market fix_price).each do |batch_method_name|
+    batch_action batch_method_name do |ids|
+      Product.where(id: ids, batch_method_name => false).update_all batch_method_name => true
+
+      redirect_to active_admin_config.route_collection_path(params),
+        notice: I18n.t("active_admin.batch_actions.succesfully_updated",
+        count: ids.count,
+        model: active_admin_config.resource_label.downcase,
+        plural_model: active_admin_config.plural_resource_label(count: ids.count).downcase)
+    end
+  end
+
   actions :all, except: :destroy
 
   sortable_list
