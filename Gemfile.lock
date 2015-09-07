@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/alekseenkoss77/activeadmin-wysihtml5.git
+  revision: 2247fb841d0d3a3ad4e0ad8f78168903f9d471a3
+  specs:
+    activeadmin-wysihtml5 (1.0.0)
+      activeadmin
+      activeadmin-dragonfly
+
+GIT
   remote: git://github.com/alekseenkoss77/meta-tags.git
   revision: b05ab35795103a181ccd868dd5b9a103e3fb21ad
   specs:
@@ -88,14 +96,6 @@ GIT
       activeadmin
       dragonfly (= 0.9.15)
       rack-cache
-
-GIT
-  remote: git://github.com/stefanoverna/activeadmin-wysihtml5.git
-  revision: 35d1a9411a1c0af61882ef04dcb7cd10600fbdb5
-  specs:
-    activeadmin-wysihtml5 (1.0.0)
-      activeadmin
-      activeadmin-dragonfly
 
 GEM
   remote: http://rubygems.org/
