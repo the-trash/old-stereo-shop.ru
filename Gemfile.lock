@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/alekseenkoss77/activeadmin-wysihtml5.git
+  remote: git://github.com/Stereo-Shop/activeadmin-wysihtml5.git
   revision: 2247fb841d0d3a3ad4e0ad8f78168903f9d471a3
   specs:
     activeadmin-wysihtml5 (1.0.0)
@@ -7,7 +7,7 @@ GIT
       activeadmin-dragonfly
 
 GIT
-  remote: git://github.com/alekseenkoss77/meta-tags.git
+  remote: git://github.com/Stereo-Shop/meta-tags.git
   revision: b05ab35795103a181ccd868dd5b9a103e3fb21ad
   specs:
     meta-tags (2.1.0.dev)
