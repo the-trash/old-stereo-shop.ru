@@ -20,6 +20,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  email         :string(255)
+#  admin_comment :text
 #
 # Indexes
 #

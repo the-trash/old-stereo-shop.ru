@@ -221,3 +221,4 @@ ru:
         inn: '<strong>ИНН:</strong> %{inn}'
         kpp: '<strong>КПП:</strong> %{kpp}'
         file: '<strong>Реквизиты:</strong> <a href="%{href}" target="_blank">реквизиты</a>'
+        admin_comment: '<strong>Комментарий админа:</strong> %{admin_comment}'

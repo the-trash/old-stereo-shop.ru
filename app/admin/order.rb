@@ -3,8 +3,9 @@ ActiveAdmin.register Order do
 
   actions :index, :edit, :update, :destroy
 
-  permit_params :address, :phone, :user_name, :post_index, :step, :payment, :state,
-    :total_amount, :city_id, :delivery, :organization_name, :inn, :kpp, :file, :email,
+  permit_params :address, :phone, :user_name, :post_index, :step, :payment,
+    :total_amount, :city_id, :delivery, :organization_name, :inn, :kpp, :file,
+    :state, :email, :admin_comment,
     line_items_attributes: [:id, :_destroy, :product_id, :quantity, :current_product_price]
 
   controller do
@@ -47,7 +48,8 @@ ActiveAdmin.register Order do
           content_tag(:li, I18n.t('active_admin.views.orders.total_amount', total_amount: order.total_amount).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.city', city_title: (order.city ? order.city_title : '')).html_safe),
           content_tag(:li, I18n.t('active_admin.views.orders.address', address: order.address).html_safe),
-          content_tag(:li, I18n.t('active_admin.views.orders.post_index', post_index: order.post_index).html_safe)
+          content_tag(:li, I18n.t('active_admin.views.orders.post_index', post_index: order.post_index).html_safe),
+          content_tag(:li, I18n.t('active_admin.views.orders.admin_comment', admin_comment: Sanitize.fragment(order.admin_comment)).html_safe)
         ].join('').html_safe
       end
     end
@@ -111,6 +113,7 @@ ActiveAdmin.register Order do
       f.input :user_name
       f.input :post_index
       f.input :total_amount
+      f.input :admin_comment, as: :wysihtml5
     end
     f.inputs do
       f.input :state, as: :select,

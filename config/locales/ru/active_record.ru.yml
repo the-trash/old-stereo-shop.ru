@@ -308,6 +308,7 @@ ru:
         file: Реквизиты
         payment_transaction: Транзакция
         terms_of_service: Условия оферты
+        admin_comment: Комментарий админа
         steps:
           delivery: Выбор доставки
           authentification: Авторизация
