@@ -30,5 +30,19 @@ FactoryGirl.define do
     trait :without_email do
       email nil
     end
+
+    trait :with_line_items do
+      transient do
+        line_item nil
+      end
+
+      after :create do |order, evaluator|
+        if evaluator.line_item
+          order.line_items << evaluator.line_item
+        else
+          create_list :line_item, 1, order: order
+        end
+      end
+    end
   end
 end

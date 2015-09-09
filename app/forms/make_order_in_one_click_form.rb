@@ -72,7 +72,7 @@ class MakeOrderInOneClickForm < Struct.new :current_user, :params
   end
 
   def existed_order
-    @existed_order ||= Order.where(user: current_user, phone: phone).first
+    @existed_order ||= find_orders_by_params.first
   end
 
   def build_attributes
@@ -87,5 +87,12 @@ class MakeOrderInOneClickForm < Struct.new :current_user, :params
       user_name: full_name,
       city: city
     }
+  end
+
+  def find_orders_by_params
+    Order.joins(:line_items).where \
+      user: current_user,
+      phone: phone,
+      line_items: { product_id: product.id }
   end
 end
