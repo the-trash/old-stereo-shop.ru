@@ -1,1 +1,10 @@
-%p= debug @order
+%ul
+  %li
+    %strong #{t 'order_number'} :
+    = link_to @order.id, edit_admin_order_url(@order)
+  %li
+    %strong #{t 'phone_number'} :
+    = @order.phone
+  %li
+    %strong #{ t 'created_at' } :
+    = l @order.created_at, format: :long

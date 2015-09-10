@@ -2,7 +2,7 @@
   .input-group
     %span.input-group-addon
       %i.fa.fa-phone
-    %input.form-control.b-make-order-in-one-click-phone-input{ type: 'tel', name: 'phone', placeholder: I18n.t('enter_your_phone'), pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", maxlength: 12, required: true, data: { error: '123-123-1234' } }
+    %input.form-control.b-make-order-in-one-click-phone-input{ type: 'tel', name: 'phone', placeholder: I18n.t('phone_number'), pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", maxlength: 12, required: true, data: { error: '123-123-1234' } }
     %span.input-group-btn
       %button.btn.btn-pink.b-make-order-in-one-click-send-btn{ type: 'button' }= I18n.t 'waiting_for_call'
   %span.help-block.with-errors

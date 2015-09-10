@@ -101,9 +101,10 @@ ru:
   continue_purchases: Продолжить покупки
   convenience_and_safety: Удобство и безопасность
   cities:
-    spb: Санкт-Петербург
     moscow: Москва
     no_matches_found: Городов не найдено
+    spb: Санкт-Петербург
+  created_at: Время создания
   dealers: Дилерам
   default: По умолчанию
   delete: Удалить
@@ -154,6 +155,7 @@ ru:
   payment_fail: Ошибка оплаты
   payment_success: Успешная оплата
   phone: Телефон
+  phone_number: Номер телефона
   popular: Популярные
   produce: Продукция
   product_actions: Действия с товаром
