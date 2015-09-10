@@ -6,7 +6,7 @@ describe Rating do
   end
 
   context 'validates' do
-    %i(votable user_id score).each do |f|
+    %i(votable score).each do |f|
       it { should validate_presence_of(f) }
     end
   end

@@ -13,7 +13,7 @@ class ProductShowPage
         $('.e-main-image').css('background-image', "url(#{ $(this).data('big-img-url') })")
 
   newReview: ->
-    $('body').on 'click', '.new-review-link', (e) ->
+    $('body').on 'click', '.b-new-review-link', (e) ->
       _this = $(this)
       e.preventDefault()
 

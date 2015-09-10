@@ -6,5 +6,5 @@
     %li= link_to t('views.pages.help'), page_path(:help)
     %li.b-fail-wrong-message= t('shomething_was_wrong')
     - if user_signed_in? && @order
-      %li= t('try_to_play_again', link: order_path(@order)).html_safe
+      %li= t('try_to_pay_again', link: order_path(@order)).html_safe
     %li.b-payment-fail-image

@@ -14,21 +14,4 @@ shared_examples_for 'ratable' do
   #     recalculate_average_score.ratings << rating
   #   end
   # end
-
-  context '#can_vote?' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:user_rating) { FactoryGirl.create(:rating, votable: instance_var, user: user) }
-
-    it 'should return true' do
-      rating
-
-      expect(instance_var.can_vote?(user.id)).to eq(true)
-    end
-
-    it 'should return false' do
-      user_rating
-
-      expect(instance_var.can_vote?(user.id)).to eq(false)
-    end
-  end
 end

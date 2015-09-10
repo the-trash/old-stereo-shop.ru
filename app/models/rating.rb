@@ -12,10 +12,7 @@
 #
 # Indexes
 #
-#  index_ratings_on_user_id                                  (user_id)
-#  index_ratings_on_votable_id_and_votable_type              (votable_id,votable_type)
-#  index_ratings_on_votable_id_and_votable_type_and_score    (votable_id,votable_type,score)
-#  index_ratings_on_votable_id_and_votable_type_and_user_id  (votable_id,votable_type,user_id)
+#  index_ratings_on_votable_id_and_votable_type  (votable_id,votable_type)
 #
 
 class Rating < ActiveRecord::Base
@@ -28,5 +25,5 @@ class Rating < ActiveRecord::Base
 
   has_one :review
 
-  validates :votable, :user_id, :score, presence: true
+  validates :votable, :score, presence: true
 end

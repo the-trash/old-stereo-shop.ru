@@ -16,11 +16,8 @@
 #
 # Indexes
 #
-#  index_reviews_on_rating_id                                      (rating_id)
-#  index_reviews_on_recallable_id_and_recallable_type              (recallable_id,recallable_type)
-#  index_reviews_on_recallable_id_and_recallable_type_and_state    (recallable_id,recallable_type,state)
-#  index_reviews_on_user_id                                        (user_id)
-#  index_reviews_on_user_id_and_recallable_id_and_recallable_type  (user_id,recallable_id,recallable_type) UNIQUE
+#  index_reviews_on_rating_id                          (rating_id)
+#  index_reviews_on_recallable_id_and_recallable_type  (recallable_id,recallable_type)
 #
 
 class Review < ActiveRecord::Base
@@ -35,7 +32,7 @@ class Review < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   belongs_to :rating, dependent: :destroy
 
-  validates :recallable, :body, :user_id, :rating_id, presence: true
+  validates :recallable, :body, :rating_id, presence: true
 
   delegate :score, to: :rating, prefix: true
 end

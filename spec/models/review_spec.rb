@@ -12,7 +12,7 @@ describe Review do
   end
 
   context 'validates' do
-    %i(recallable body user_id rating_id).each do |f|
+    %i(recallable body rating_id).each do |f|
       it { should validate_presence_of(f) }
     end
   end

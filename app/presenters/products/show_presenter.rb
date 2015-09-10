@@ -2,7 +2,7 @@ class Products::ShowPresenter < Struct.new(:product)
   delegate :reviews, :product_category, to: :product
 
   def last_reviews
-    reviews.published.related.includes(:rating, :user)
+    reviews.published.includes(:rating, :user)
   end
 
   def stores

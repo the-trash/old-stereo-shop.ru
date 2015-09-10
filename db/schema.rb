@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909162237) do
+ActiveRecord::Schema.define(version: 20150910070847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -475,9 +475,6 @@ ActiveRecord::Schema.define(version: 20150909162237) do
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
-  add_index "ratings", ["votable_id", "votable_type", "score"], name: "index_ratings_on_votable_id_and_votable_type_and_score", using: :btree
-  add_index "ratings", ["votable_id", "votable_type", "user_id"], name: "index_ratings_on_votable_id_and_votable_type_and_user_id", using: :btree
   add_index "ratings", ["votable_id", "votable_type"], name: "index_ratings_on_votable_id_and_votable_type", using: :btree
 
   create_table "regions", force: true do |t|
@@ -505,10 +502,7 @@ ActiveRecord::Schema.define(version: 20150909162237) do
   end
 
   add_index "reviews", ["rating_id"], name: "index_reviews_on_rating_id", using: :btree
-  add_index "reviews", ["recallable_id", "recallable_type", "state"], name: "index_reviews_on_recallable_id_and_recallable_type_and_state", using: :btree
   add_index "reviews", ["recallable_id", "recallable_type"], name: "index_reviews_on_recallable_id_and_recallable_type", using: :btree
-  add_index "reviews", ["user_id", "recallable_id", "recallable_type"], name: "index_reviews_on_user_id_and_recallable_id_and_recallable_type", unique: true, using: :btree
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "seo_settings", force: true do |t|
     t.string   "controller_name"

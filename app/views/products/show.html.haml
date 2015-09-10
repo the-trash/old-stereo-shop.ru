@@ -68,8 +68,7 @@
       .b-product-characteristics.tab-pane.tab.active#characteristics{ role: 'tabpanel' }
         = render 'products/includes/characteristics', characteristics: @show_presenter.characteristics if @show_presenter.characteristics.present?
       .b-product-review.tab-pane.tab#reviews{ role: 'tabpanel' }
-        = link_to t('views.product.new_review'), [:new_review, resource],
-            class: 'new-review-link' if user_signed_in? && resource.can_vote?(current_user.id)
+        = link_to t('views.product.new_review'), [:new_review, resource], class: 'b-new-review-link btn btn-pink'
 
         = render partial: 'products/includes/review', collection: @show_presenter.last_reviews, as: :review
 

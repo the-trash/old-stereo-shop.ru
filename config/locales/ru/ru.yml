@@ -170,6 +170,7 @@ ru:
   quantity: Количество
   question: Вопрос
   questions: Ваши вопросы
+  rating: Рейтинг
   refund: Возврат
   refund_of_money: Возврат денег
   resellers: Реселлерам
@@ -190,7 +191,7 @@ ru:
   thanks_for_your_order: "Спасибо за Ваш заказ!<br />Оплата прошла успешно..."
   to_subscribe: Подписаться
   total_amount: Общая сумма
-  try_to_play_again: "Пожалуйста, попробуйте <a href=%{link}>оплатить</a> еще раз"
+  try_to_pay_again: "Пожалуйста, попробуйте <a href=%{link}>оплатить</a> еще раз"
   useful_information: 'Полезная информация'
   user_profile_editor: Редактор личного профиля
   waiting_for_call: Жду звонка
@@ -200,4 +201,5 @@ ru:
   you_should_be_logged_in: Вы должны быть авторизованы
   you_watched: Вы смотрели
   your_cart_empty_yet: Пока вы не добавили ни одного товара в вашу корзину
+  your_review: Ваш отзыв
   your_wishlist_is_empty: Ваш список желаний пока пуст
