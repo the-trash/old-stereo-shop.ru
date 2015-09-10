@@ -8,6 +8,7 @@ FactoryGirl.define do
     phone { Faker::PhoneNumber.cell_phone }
     address { Faker::Address.street_name }
     post_index { Faker::Address.postcode }
+    terms_of_service true
 
     trait :with_email do
       before :create do |order|
