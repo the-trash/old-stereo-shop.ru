@@ -10,6 +10,8 @@ Rails.application.config.assets.precompile += %w(
   select2/*.gif
   i18n/translations.js
   modules/order_in_one_click/index.js
+  html5shiv/dist/html5shiv-printshiv.min.js
+  html5shiv/dist/html5shiv.min.js
 )
 
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')

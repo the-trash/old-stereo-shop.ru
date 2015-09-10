@@ -6,11 +6,7 @@
         = build_product_category_ancestry_tree(@front_presenter.product_categories)
 
   .row.dark-gray-bg
-    .container
-      %h2.pull-left
-        = t 'search'
-        %span.icons-arrow-black-right
-      = render 'shared/search_bar'
+    .container.l-footer-search-bar= render 'shared/search_bar'
   .row.who-are-we
     .container
       .pull-left

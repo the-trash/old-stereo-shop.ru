@@ -22,8 +22,7 @@ gem 'autoprefixer-rails'
 gem 'coffee-rails'
 gem 'compass-rails'
 gem 'errgent', github: 'route/errgent' # for error pages
-gem 'html5shiv-js-rails' # TODO install it with bower
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'sprockets-commonjs', github: 'maccman/sprockets-commonjs'
 gem 'uglifier'
 

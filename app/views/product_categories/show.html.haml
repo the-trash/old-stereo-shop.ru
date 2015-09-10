@@ -1,5 +1,5 @@
 .b-product-category
-  %h3 #{ resource.title } (#{ resource.published_products_count })
+  %h1 #{ resource.title } (#{ resource.published_products_count })
 
   = render 'shared/products_filters', form_path: url_for(resource), brands: @brands
 

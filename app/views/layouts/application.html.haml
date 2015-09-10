@@ -5,7 +5,7 @@
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{content: "width=1080", name: "viewport"}
     %meta{ name: 'google-site-verification', content: 'M1fdLzjVUx7M1QYL91iZaGXVsTLPF9ovV-PHAGH2RxY' }
-    
+
     = display_meta_tags site: @settings[:shop_name], reverse: true
 
     - if Rails.env.production?
@@ -14,10 +14,6 @@
     = favicon_link_tag 'favicon.png', type: 'image/png'
     = csrf_meta_tags
     = include_gon(init: true)
-
-    <!--[if lt IE 9]><!-->
-    = javascript_include_tag 'html5shiv-printshiv'
-    <!--<![endif]-->
     = stylesheet_link_tag 'application'
 
   %body
@@ -39,6 +35,10 @@
     = javascript_include_tag 'application'
     = javascript_include_tag 'i18n/translations'
     = render 'shared/includes/i18n'
+    <!--[if lt IE 9]><!-->
+    = javascript_include_tag 'html5shiv/dist/html5shiv-printshiv.min'
+    = javascript_include_tag 'html5shiv/dist/html5shiv.min'
+    <!--<![endif]-->
     = yield :javascripts
 
     - if Rails.env.production?
