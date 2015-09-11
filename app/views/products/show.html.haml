@@ -2,12 +2,11 @@
   = javascript_include_tag 'modules/order_in_one_click/index'
 
 .b-product
-  %h3
-    %span.default.product-title
-      - if @product_new_values.present? && @product_new_values.with_title.any?
-        = @product_new_values.with_title.first.new_value
-      - else
-        = resource.title
+  %h1
+    - if @product_new_values.present? && @product_new_values.with_title.any?
+      = @product_new_values.with_title.first.new_value
+    - else
+      = resource.title
 
   .b-product-top-information
     - if @additional_option_value.present? && @additional_option_value.photos.published.any?

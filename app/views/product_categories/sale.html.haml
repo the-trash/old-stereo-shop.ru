@@ -1,8 +1,9 @@
 .b-product-category
-  - if params[:id].present?
-    %h3= "#{ resource.title } (#{ @products_without_paginate_by_category.size })"
-  - else
-    %h3= t('controllers.product_categories.sale.all_products', count: @products_without_paginate.size)
+  %h1
+    - if params[:id].present?
+      #{ resource.title } (#{ @products_without_paginate_by_category.size })
+    - else
+      = t('controllers.product_categories.sale.all_products', count: @products_without_paginate.size)
 
   = render partial: 'product_categories/includes/sale_nested_tree',
     locals: { product_categories: @front_presenter.product_categories } if @front_presenter.product_categories.any?

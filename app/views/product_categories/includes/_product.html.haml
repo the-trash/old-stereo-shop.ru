@@ -5,7 +5,7 @@
 
   .b-info
     .b-info-main
-      %p.title= link_to product.title, product
+      %h3.title= link_to product.title, product
       - if product.characteristics_products.present?
         %ul.characteristics-list
           = render partial: 'product_categories/includes/characteristic',

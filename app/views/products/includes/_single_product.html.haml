@@ -5,7 +5,7 @@
   - if photo
     .e-image{ style: "background-image: url(#{ photo.file_url(:product, main_class.to_sym) })" }
   .b-info
-    %p.title= link_to product.title, product
+    %h3.title= link_to product.title, product
     %p.price= I18n.t('views.product.with_currency', coust: price_formatted(product.price_with_discount))
     .b-product-ratable-with-reviews.smal
       .ratable.read_only{ data: { score: product.average_score } }

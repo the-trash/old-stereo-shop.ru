@@ -14,7 +14,7 @@ class WishlistsController < FrontController
 
     add_breadcrumb I18n.t('my_wishlist')
 
-    @wishes = (@user || current_user).wishes.products.
+    @wishes = (@user || current_user).wishes.products.published.
       paginate(page: params[:page], per_page: Settings.pagination.products)
   end
 

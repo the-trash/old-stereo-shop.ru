@@ -20,6 +20,7 @@ class UsersController < FrontController
 
     @products =
       Product.where(id: session[:user]['product_ids'].uniq.map(&:to_i)).popular.
+        includes(characteristics_products: :characteristic).
         paginate(page: params[:page], per_page: Settings.pagination.products)
   end
 
