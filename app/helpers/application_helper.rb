@@ -129,8 +129,8 @@ module ApplicationHelper
     ].compact.join ' '
   end
 
-  def background_image_tag(url, options = {})
-    opt = options.with_indifferent_access
+  def background_image_tag url, options = {}
+    opt = { class: 'e-image' }.merge(options).with_indifferent_access
     style = { style: "background-image: url('#{image_url url}'); " }
     style[:style] += opt.delete(:style) if opt.has_key? :style
     content_tag :div, nil, opt.merge(style)

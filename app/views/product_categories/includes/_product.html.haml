@@ -1,6 +1,5 @@
 .b-single-product.catalog
-  = background_image_tag ImageDecorator.decorate(product).photo_url(:product, :similar), class: 'e-image'
-
+  = background_image_tag ImageDecorator.decorate(product).photo_url(:product, :similar)
   .b-info
     .b-info-main
       %h3.title= link_to product.title, product
