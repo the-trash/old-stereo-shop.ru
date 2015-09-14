@@ -1,10 +1,8 @@
 module ReviewHelper
   def review_author(review)
-    author_name = ((review.user.full_name.presence || review.user.email) if review.user) || I18n.t('anonymous_user')
-
     content_tag(:p, class: 'author_name') do
       raw(
-        author_name +
+        review.user_name +
         content_tag(:span, I18n.l(review.created_at, format: :short))
       )
     end

@@ -43,7 +43,7 @@ window.withElement = (selector, callback) ->
   callback selector if $(selector).length
 
 $ ->
-  $('body').find('.ratable').each ->
+  $('body').find('.b-ratable').each ->
     new Ratable(this)
 
   withElement '.b-product', (selector) ->

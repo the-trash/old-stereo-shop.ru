@@ -54,8 +54,6 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show] do
     member do
-      post :add_review
-      get :new_review
       get :more_review
     end
 
@@ -65,6 +63,8 @@ Rails.application.routes.draw do
       resources :additional_options, only: :show
     end
   end
+
+  resources :reviews, only: [:index, :create]
 
   %i(post_categories posts stores).each do |resource|
     resources resource, only: :show

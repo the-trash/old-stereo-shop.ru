@@ -2,6 +2,7 @@
 JsRoutes.setup do |config|
   config.include = [
     /^call_me_feedbacks$/,
-    /^in_one_click_orders$/
+    /^in_one_click_orders$/,
+    /^review(s)?$/
   ]
 end

@@ -134,6 +134,8 @@ ru:
   in_total: Итого
   inconsistency_of_data: Несоответствие данных
   information_about_your_order: Информация о заказе на Вашей почте
+  leave_review: Оставить отзыв
+  leave_anonymous_review: Я хочу оставить отзыв анонимно
   my_profile: Мой профиль
   my_question: Мой вопрос
   my_wishlist: Мой список желаний
@@ -175,6 +177,8 @@ ru:
   refund: Возврат
   refund_of_money: Возврат денег
   resellers: Реселлерам
+  review_success_message: Ваш отзыв отправлен на проверку
+  review_user_name: Как к Вам обращаться
   safety: Безопасность
   sale: Sale
   save: Сохранить

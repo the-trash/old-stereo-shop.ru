@@ -1,0 +1,1 @@
+%h4= I18n.t 'review_success_message'

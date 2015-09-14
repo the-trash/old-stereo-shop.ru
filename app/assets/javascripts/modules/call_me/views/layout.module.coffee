@@ -20,6 +20,7 @@ class CallMeLayout extends Marionette.LayoutView
   renderForm: ->
     @modalContent.show new callMeForm()
 
+  # TODO add common behaviors for showing errors and success messages
   renderSuccessMessage: ->
     @modalContent.show new successMessage()
 

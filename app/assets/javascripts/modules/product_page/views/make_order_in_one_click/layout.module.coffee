@@ -2,7 +2,7 @@ MakeOrderForm = require './form'
 successMessage = require './success_message'
 
 class Layout extends Marionette.LayoutView
-  template: 'order_in_one_click/layout'
+  template: 'product_page/order_in_one_click/layout'
   className: 'b-make-order-in-one-click'
 
   regions:
@@ -14,6 +14,7 @@ class Layout extends Marionette.LayoutView
   onRender: ->
     @mainRegion.show new MakeOrderForm({@model})
 
+  # TODO add common behaviors for showing errors and success messages
   renderSuccessMessage: ->
     @mainRegion.show new successMessage()
 

@@ -1,7 +1,7 @@
 - content_for :javascripts do
-  = javascript_include_tag 'modules/order_in_one_click/index'
+  = javascript_include_tag 'modules/product_page/index'
 
-.b-product
+.b-product.l-product
   %h1
     - if @product_new_values.present? && @product_new_values.with_title.any?
       = @product_new_values.with_title.first.new_value
@@ -28,12 +28,7 @@
         - else
           = price_with_discount(resource.price, resource.price_with_discount)
 
-        .b-product-ratable-with-reviews
-          .ratable.read_only{ data: { score: resource.average_score } }
-          = link_to t('views.product.reviews_count',
-            count: resource.published_reviews_count),
-            product_path(resource, anchor: 'reviews'),
-            class: 'reviews-count'
+        .l-product-ratable-with-reviews
 
         = icon_in_stock(resource.in_stock)
         = render 'products/includes/stores', stores: @show_presenter.stores, product: resource if @show_presenter.stores.present?
@@ -67,7 +62,7 @@
       .b-product-characteristics.tab-pane.tab.active#characteristics{ role: 'tabpanel' }
         = render 'products/includes/characteristics', characteristics: @show_presenter.characteristics if @show_presenter.characteristics.present?
       .b-product-review.tab-pane.tab#reviews{ role: 'tabpanel' }
-        = link_to t('views.product.new_review'), [:new_review, resource], class: 'b-new-review-link btn btn-pink'
+        .l-new-review
 
         = render partial: 'products/includes/review', collection: @show_presenter.last_reviews, as: :review
 

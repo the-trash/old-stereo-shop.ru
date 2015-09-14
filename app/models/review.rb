@@ -13,6 +13,7 @@
 #  state           :integer          default(3)
 #  created_at      :datetime
 #  updated_at      :datetime
+#  user_name       :string(255)
 #
 # Indexes
 #

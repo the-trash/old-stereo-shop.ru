@@ -30,21 +30,6 @@ class ProductsController < FrontController
     show!
   end
 
-  # TODO please, refoctor me
-  def add_review
-    ActiveRecord::Base.transaction do
-      vote = resource.generate_vote(current_user, params[:review][:rating_score].to_i)
-      resource.reviews.create!(permit_review.merge!(rating_id: vote.id))
-    end
-
-    redirect_to :back, flash: :success
-  end
-
-  # TODO remove it and make by REST
-  def new_review
-    render partial: 'products/includes/new_review', layout: false
-  end
-
   # TODO remove it and make by REST
   def more_review
     render partial: 'products/includes/review',
@@ -58,12 +43,6 @@ class ProductsController < FrontController
     if current_user && !session[:user]['product_ids'].include?(resource.id)
       session[:user]['product_ids'] << resource.id
     end
-  end
-
-  # TODO remove it and make by REST
-  def permit_review
-    params.require(:review).permit \
-      :pluses, :cons, :body, :user_id
   end
 
   def check_product_state

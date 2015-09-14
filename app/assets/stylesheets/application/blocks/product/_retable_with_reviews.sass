@@ -1,0 +1,35 @@
+$b-ratable-width: 145px !default
+$b-ratable-width-small: $b-ratable-width - 45 !default
+
+.b-product-ratable-with-reviews
+  margin-top: 10px
+  width: 100%
+
+  .b-ratable
+    width: $b-ratable-width
+    float: left
+    line-height: $font-size-base + 6
+
+  .b-reviews-count
+    margin-left: $b-ratable-width
+    a
+      text-decoration: none
+      border-bottom: 1px dotted $deathlyIndigo
+      color: $deathlyIndigo
+      font-size: $font-size-base + 6
+      +ellipsis
+
+  &.smal
+    margin-top: 0
+    img
+      width: 15px
+      height: 15px
+
+    .b-reviews-count
+      margin-left: $b-ratable-width-small
+      a
+        font-size: $font-size-base
+
+    .b-ratable
+      width: $b-ratable-width-small
+      line-height: $font-size-base

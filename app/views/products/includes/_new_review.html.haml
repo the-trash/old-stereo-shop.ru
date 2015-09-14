@@ -2,7 +2,7 @@
   %h4= t 'your_review'
   .rating
     %p= t 'rating'
-    %p.ratable.new-review
+    %p.b-ratable.new-review
 
   = form_for(Review.new, url: [:add_review, resource], method: :post, html: { class: 'form new-review-form' }) do |f|
     = hidden_field_tag 'review[rating_score]'

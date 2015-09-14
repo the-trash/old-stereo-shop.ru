@@ -1,0 +1,3 @@
+%button.b-new-review-btn.btn.btn-pink{ type: 'button' }= I18n.t 'views.product.new_review'
+.l-new-review-form
+.l-new-review-success-message

@@ -1,5 +1,5 @@
 class MakeOrderForm extends Marionette.ItemView
-  template: 'order_in_one_click/form'
+  template: 'product_page/order_in_one_click/form'
   className: 'b-make-order-in-one-click-form form-inline'
   tagName: 'form'
   attributes:

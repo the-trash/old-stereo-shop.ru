@@ -10,7 +10,7 @@ module Ratable
     before_save :remove_ratings_and_recalculate_score, if: :score_weight_changed?
 
     def generate_vote(user, score)
-      ratings.create(user: user, score: score)
+      ratings.create!(user: user, score: score)
     end
 
     private

@@ -1,6 +1,6 @@
 .b-review
   = review_author(review)
-  .ratable.read_only{ data: { score: review.rating_score } }
+  .b-ratable.read_only{ data: { score: review.rating_score } }
   = review_pluses(review)
   = review_cons(review)
   = review_body(review)

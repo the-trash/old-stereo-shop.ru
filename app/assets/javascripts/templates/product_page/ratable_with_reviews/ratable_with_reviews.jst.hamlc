@@ -1,0 +1,3 @@
+.b-ratable.read_only{ data: { score: gon.product.average_score } }
+.b-reviews-count
+  %a{ href: '#reviews' }= I18n.t 'views.product.reviews_count', count: gon.product.published_reviews_count
