@@ -20,5 +20,9 @@ FactoryGirl.define do
     trait :not_related do
       updated_at 8.days.ago
     end
+
+    trait :without_user do
+      user nil
+    end
   end
 end

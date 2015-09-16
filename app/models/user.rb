@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'stereoshop@ru'
   TEMP_EMAIL_REGEX = /\Astereoshop@ru/
 
-  before_save :set_full_name, if: :generate_full_name?
+  before_save :set_full_name, unless: :full_name?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable and :timeoutable
@@ -124,10 +124,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def generate_full_name?
-    !full_name?
-  end
 
   def set_full_name
     self.full_name =

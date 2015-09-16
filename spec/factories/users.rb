@@ -40,4 +40,11 @@ FactoryGirl.define do
       { unsubscribe: true }
     }
   end
+
+  trait :without_name do
+    first_name ''
+    last_name ''
+    middle_name ''
+    full_name ''
+  end
 end
