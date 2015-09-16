@@ -35,7 +35,7 @@
             = f.file_field :file, accept: Settings.carrierwave.extension_white_list.accept
 
       .form-group.l-checkbox-terms-of-service
-        = f.check_box :terms_of_service, checked: true
+        = f.check_box :terms_of_service, { checked: true }, true, false
         = f.label :terms_of_service, t('terms_of_service_label', link: page_path('help')).html_safe
 
       .b-form-actions.btn-group{ role: 'group' }
