@@ -1,5 +1,6 @@
 When(/^click on call me button$/) do
   find('.b-call-me-button').click
+  wait_for_ajax
 end
 
 Then(/^I should see dialog with phone's input$/) do
@@ -11,6 +12,7 @@ end
 When(/^I click on send phone button$/) do
   within '.l-call-me-from' do
     find('.b-call-me-send-btn').click
+    wait_for_ajax
   end
 end
 

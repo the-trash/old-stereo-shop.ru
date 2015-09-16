@@ -6,6 +6,7 @@ end
 
 When(/^I click on send order's phone button$/) do
   find('.b-make-order-in-one-click-send-btn').click
+  wait_for_ajax
 end
 
 When(/^I fill order's phone input with "(.*?)"$/) do |phone|

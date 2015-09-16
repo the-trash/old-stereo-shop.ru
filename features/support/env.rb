@@ -74,6 +74,13 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :transaction
 
+Capybara.register_driver :poltergeist do |app|
+  options = {
+    js_errors: false
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+# TODO make it through Capybara.configure
 Capybara.javascript_driver = :poltergeist
 Capybara.ignore_hidden_elements = false # default is true
 

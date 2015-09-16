@@ -1,11 +1,11 @@
 class ReviewForm < BaseForm
   attr_accessor :body, :pluses, :cons, :rating_score, :user_name, :leave_anonymous_review,
-    :user, :recallable_id
+    :recallable_id
 
   validates :body, :rating_score, :recallable_id, presence: true
   validates :rating_score, numericality: { greater_than: 0 }
 
-  delegate :correct_user_name, :anonymous_user, to: :model
+  delegate :correct_user_name, :anonymous_user, :user, to: :model
 
   def self.permitted_params
     %i(

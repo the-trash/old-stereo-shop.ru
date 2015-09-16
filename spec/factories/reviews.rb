@@ -24,5 +24,11 @@ FactoryGirl.define do
     trait :without_user do
       user nil
     end
+
+    trait :without_rating do
+      after(:build) do |review|
+        review.rating.destroy
+      end
+    end
   end
 end
