@@ -8,7 +8,7 @@
   .input-group
     .input-group-addon
       %i.fa.fa-fw.fa-plus
-    %input.form-control#review-pluses{ name: 'pluses' }
+    %input.form-control.b-new-review-form-pluses-input#review-pluses{ name: 'pluses' }
   .help-block
     %span= I18n.t('views.product.new_review_examples.pluses')
 
@@ -17,7 +17,7 @@
   .input-group
     .input-group-addon
       %i.fa.fa-fw.fa-minus
-    %input.form-control#review-cons{ name: 'cons' }
+    %input.form-control.b-new-review-form-cons-input#review-cons{ name: 'cons' }
   .help-block
     %span= I18n.t('views.product.new_review_examples.cons')
 
@@ -26,20 +26,20 @@
   .input-group
     .input-group-addon
       %i.fa.fa-fw.fa-user
-    %input.form-control#review-user-name{ name: 'user_name' }
+    %input.form-control.b-new-review-form-user-name-input#review-user-name{ name: 'user_name' }
 
 - # TODO add validation for maxlength
 .form-group
   %label{ for: 'review-body' }
     %span= I18n.t 'body', scope: 'activerecord.attributes.review'
     %span.text-danger *
-  %textarea#review-body.form-control{ required: true, rows: 5, maxlength: 500, name: 'body' }
+  %textarea#review-body.form-control.b-new-review-form-body-input{ required: true, rows: 5, maxlength: 500, name: 'body' }
   .help-block
     %span= I18n.t('views.product.new_review_examples.body')
 
 .form-group.checkbox
   %label
-    %input{ type: 'checkbox', name: 'leave_anonymous_review' }
+    %input.b-new-review-form-anonymous-review-input{ type: 'checkbox', name: 'leave_anonymous_review' }
     %span= I18n.t 'leave_anonymous_review'
 
 .form-group

@@ -54,10 +54,12 @@
     %ul.nav.nav-tabs{ role: 'tablist' }
       %li.active
         = link_to t('technical_details'), '#characteristics',
-          'aria-controls' => 'characteristics', role: :tab, 'data-toggle' => 'tab'
+          'aria-controls' => 'characteristics', role: :tab, data: { toggle: :tab },
+          class: 'b-product-characteristics-tab'
       %li
         = link_to t('views.product.review', count: resource.published_reviews_count),
-          '#reviews', 'aria-controls' => 'reviews', role: :tab, 'data-toggle' => 'tab'
+          '#reviews', 'aria-controls' => 'reviews', role: :tab, data: { toggle: :tab },
+          class: 'b-product-reviews-tab'
     .tab-content
       .b-product-characteristics.tab-pane.tab.active#characteristics{ role: 'tabpanel' }
         = render 'products/includes/characteristics', characteristics: @show_presenter.characteristics if @show_presenter.characteristics.present?
