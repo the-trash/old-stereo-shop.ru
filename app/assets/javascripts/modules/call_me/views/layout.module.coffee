@@ -18,7 +18,7 @@ class CallMeLayout extends Marionette.LayoutView
     'render:success-message' : 'renderSuccessMessage'
 
   renderForm: ->
-    @modalContent.show new callMeForm()
+    @modalContent.show new callMeForm({@model})
 
   # TODO add common behaviors for showing errors and success messages
   renderSuccessMessage: ->

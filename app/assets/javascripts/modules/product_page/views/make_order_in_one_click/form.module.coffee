@@ -2,38 +2,36 @@ class MakeOrderForm extends Marionette.ItemView
   template: 'product_page/order_in_one_click/form'
   className: 'b-make-order-in-one-click-form form-inline'
   tagName: 'form'
-  attributes:
-    'data-toggle': 'validator'
-    role: 'form'
 
   ui:
-    sendFormBtn : '.b-make-order-in-one-click-send-btn'
-    formGroup   : '.form-group'
-    phoneInput  : '.b-make-order-in-one-click-phone-input'
+    sendFormBtn    : '.b-make-order-in-one-click-send-btn'
+    formGroupPhone : '.l-order-in-one-click-form-phone-input'
+    phoneInput     : '.b-make-order-in-one-click-phone-input'
 
   events:
-    'click @ui.sendFormBtn' : 'validateForm sendFrom'
+    'keypress @ui.phoneInput' : 'suppressEnterKeypress validateForm sendFrom'
+    'click @ui.sendFormBtn'   : 'validateForm sendFrom'
+
+  validationPattern: /^\+\d\s\(\d{3}\)\s\d{3}\-\d{4}$/
 
   # TODO add errors messages and show them on front
   onRender: ->
-    @$el.validator()
     @bindDatalinks()
+    @initPhoneValidator()
 
   formValid: ->
-    !@ui.formGroup.hasClass('has-error') && @ui.phoneInput.val().length > 0
-
-  triggerRenderSuccessMessage: ->
-    @.triggerMethod 'render:success-message'
+    @validationPattern.test @ui.phoneInput.val()
 
   validateForm: (event) ->
-    @$el.validator('validate')
-    event.stopImmediatePropagation() unless @formValid()
+    if !@formValid()
+      @ui.formGroupPhone.addClass 'has-error'
+      event.stopImmediatePropagation()
 
   sendFrom: ->
-    @syncFormData()
-    @triggerRenderSuccessMessage()
+    @model.save phone: @ui.phoneInput.val()
+    @triggerMethod 'render:success-message'
 
-  syncFormData: ->
-    @model.save()
+  initPhoneValidator: ->
+    @ui.phoneInput.bfhphone @ui.phoneInput.data()
 
 module.exports = MakeOrderForm

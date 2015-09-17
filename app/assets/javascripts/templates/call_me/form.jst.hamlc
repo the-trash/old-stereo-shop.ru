@@ -4,13 +4,14 @@
   .modal-title
     %h4= I18n.t 'call_me'
 .modal-body
-  %form.form-inline.l-call-me-from{ data: { toggle: 'validator' }, role: 'form' }
+  %form.form-inline.l-call-me-from
     %p= I18n.t 'call_me_user_message'
-    .form-group
+    .form-group.l-call-me-form-phone-input
       .input-group
         %span.input-group-addon
           %i.fa.fa-phone
-        %input.form-control.b-call-me-phone-input{ type: 'tel', name: 'phone', placeholder: I18n.t('enter_your_phone'), pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", maxlength: 12, required: true, data: { error: '123-123-1234' } }
+        %input.form-control.b-call-me-phone-input.bfh-phone{ type: 'tel', name: 'phone', placeholder: I18n.t('enter_your_phone'), maxlength: 17, required: true, data: { format: '+7 (ddd) ddd-dddd' } }
         %span.input-group-btn
           %button.btn.btn-pink.b-call-me-send-btn{ type: 'button' }= I18n.t 'waiting_for_call'
-      %span.help-block.with-errors
+      .help-block
+        %span +7 (123) 123-1234

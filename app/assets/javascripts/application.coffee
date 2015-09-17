@@ -28,6 +28,7 @@
   = require bootstrap-sass/assets/javascripts/bootstrap/modal
 
   = require bootstrap-validator/dist/validator.min
+  = require bootstrap-formhelpers-phone
 
   = require_directory ./application/helpers
   = require_directory ./application/blocks

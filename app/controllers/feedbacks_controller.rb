@@ -14,6 +14,7 @@ class FeedbacksController < FrontController
   end
 
   def call_me
+    # TODO add behavior for errors
     FeedbackMailer.delay.call_me call_me_params
     render nothing: true
   end

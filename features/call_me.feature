@@ -9,6 +9,6 @@ Feature: As an user I want to send message with request call me back
     Then I should see error class on phone's input
     When I fill phone input with "test"
     Then I should see error class on phone's input
-    When I fill phone input with "123-123-1233"
+    When I fill phone input with "+7 (123) 123-1233"
     And I click on send phone button
     Then I should see success user message

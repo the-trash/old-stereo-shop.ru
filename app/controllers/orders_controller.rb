@@ -54,7 +54,6 @@ class OrdersController < FrontController
       respond_with @order
     else
       # TODO add behavior for handling errors
-      # hi five director :)
       render nothing: true
     end
   end
