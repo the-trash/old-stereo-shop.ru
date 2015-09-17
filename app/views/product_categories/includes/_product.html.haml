@@ -2,7 +2,7 @@
   = background_image_tag ImageDecorator.decorate(product).photo_url(:product, :similar)
   .b-info
     .b-info-main
-      %h3.title= link_to product.title, product
+      %h3.title= link_to product.title, product, title: product.title
       - if product.characteristics_products.present?
         %ul.characteristics-list
           = render partial: 'product_categories/includes/characteristic',

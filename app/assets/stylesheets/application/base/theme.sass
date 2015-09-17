@@ -14,13 +14,11 @@ a
     text-decoration: none
 
 h1
-  font-size: 48px
-  font-weight: normal
+  font-size: ($font-size-base * 2) + 10
   margin: 0 0 10px
 
 h2
-  font-size: 37px
-  font-weight: normal
+  font-size: $font-size-base * 2
   color: $lightBlack
 
   [class^="icons-"]
@@ -34,12 +32,10 @@ h2
     height: icons-sprite-height('arrow-black-down')
 
 h3
-  font-size: 30px
-  color: $black
-  font-weight: normal
+  font-size: $font-size-base + 8
   margin: 10px 0
 
-@import "icons"
+@import icons
 
 .blue
   color: $blue

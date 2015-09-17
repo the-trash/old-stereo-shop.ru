@@ -14,10 +14,6 @@ $b-short-info-width: 157px !default
   .b-info
     float: left
 
-    h3
-      font-size: $font-size-base + 8
-      +ellipsis
-
     p
       font-size: $font-size-base + 4
 
@@ -33,6 +29,10 @@ $b-short-info-width: 157px !default
       width: 168px
       height: 108px
       margin-right: 25px
+
+  &.related, &.similar
+    .b-info h3
+      +ellipsis
 
   &.similar
     width: 270px
