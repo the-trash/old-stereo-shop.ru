@@ -13,24 +13,29 @@
         %h2
           = t 'who_we_are'
           %span.icons-arrow-black-down
-        %ul.menu.left-menu
-          %li
-            = link_to I18n.t('views.pages.about'),
-              page_path(:about),
-              class: active_class_for_page(params, 'about')
-          %li= link_to t('brands'), [:brands]
-          %li
-            = link_to I18n.t('views.pages.contacts'),
-              page_path(:contacts),
-              class: active_class_for_page(params, 'contacts')
-            .help-block
-              - split_by_divider(@settings[:shop_phone]).each do |phone|
-                %p= phone
-              %p.pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
-          - if @news
-            %li= link_to @news.title, @news
-          - if @useful_information
-            %li.pull-right= link_to @useful_information.title, @useful_information
+        .l-footer-left-menu
+          .l-footer-left-menu-widget
+            %ul
+              %li= link_to I18n.t('views.pages.about'),
+                page_path(:about),
+                class: active_class_for_page(params, 'about')
+              %li= render 'shared/includes/vk_widget'
+          .l-footer-left-menu-links
+            %ul
+              %li
+                = link_to I18n.t('views.pages.contacts'),
+                  page_path(:contacts),
+                  class: active_class_for_page(params, 'contacts')
+                .help-block
+                  - split_by_divider(@settings[:shop_phone]).each do |phone|
+                    %p= phone
+                  %p.pink= "#{ @settings[:shop_work_start] } - #{ @settings[:shop_work_end] }"
+              %li= link_to t('brands'), [:brands]
+              - if @front_presenter.show_news?
+                %li= link_to @front_presenter.news_category.title, @front_presenter.news_category
+              - if @front_presenter.show_useful_information?
+                %li= link_to @front_presenter.useful_information_category.title, @front_presenter.useful_information_category
+
       .pull-right
         .gray-block
           %ul.menu.right-menu

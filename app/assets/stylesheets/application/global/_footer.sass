@@ -52,13 +52,7 @@ footer
   .who-are-we
     padding-bottom: 50px
 
-    .left-menu
-      width: $left-footer-part-width
-
-      li
-        min-height: 60px
-        width: 49%
-        margin: 0
+    @import application/blocks/footer/left_menu
 
     .right-menu
       width: $right-footer-part-width
@@ -79,7 +73,7 @@ footer
   .subscribe
     p
       margin: 0
-      font-size: 20px
+      font-size: $font-size-base + 6
 
 .gray-block
   width: $right-footer-part-width - (23 * 2)
