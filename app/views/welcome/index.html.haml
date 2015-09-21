@@ -14,7 +14,7 @@
           %h3.blue
             = link_to @front_presenter.news_category.title, @front_presenter.news_category
           %ul
-            = render partial: 'posts/includes/main_news_list', collection: @front_presenter.news_category.with_posts.limit(3), as: :post
+            = render partial: 'posts/includes/main_news_list', collection: @front_presenter.news_category.with_posts.order_desc.limit(3), as: :post
 
       - if @front_presenter.show_useful_information?
         .b-news-one
@@ -22,5 +22,5 @@
             = link_to @front_presenter.useful_information_category.title, @front_presenter.useful_information_category
           %ul
             = render partial: 'posts/includes/main_news_list',
-              collection: @front_presenter.useful_information_category.with_posts.includes(:admin_user).limit(3),
+              collection: @front_presenter.useful_information_category.with_posts.order_desc.includes(:admin_user).limit(3),
               as: :post, locals: { with_author: true }

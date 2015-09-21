@@ -32,6 +32,7 @@ class Post < ActiveRecord::Base
   scope :by_category, -> (category_title) {
     includes(:post_category).where(post_categories: { title: category_title })
   }
+  scope :order_desc, -> { order created_at: :desc }
 
   %i(admin_user post_category).each do |m|
     belongs_to m

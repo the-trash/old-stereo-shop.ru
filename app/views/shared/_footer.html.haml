@@ -35,6 +35,9 @@
                 %li= link_to @front_presenter.news_category.title, @front_presenter.news_category
               - if @front_presenter.show_useful_information?
                 %li= link_to @front_presenter.useful_information_category.title, @front_presenter.useful_information_category
+              %li
+                = link_to 'http://clck.yandex.ru/redir/dtype=stred/pid=47/cid=1248/*http://market.yandex.ru/shop/298524/reviews/add' do
+                  = image_tag 'http://clck.yandex.ru/redir/dtype=stred/pid=47/cid=1248/*http://img.yandex.ru/market/informer2.png', border: 0, alt: t('yandex_banner_alt_message')
 
       .pull-right
         .gray-block
