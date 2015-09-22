@@ -1,17 +1,18 @@
 # A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
-asset 'backbone', '1.2.1'
 asset 'backbone-query-parameters', '0.4.0'
 asset 'backbone.modelbinder', '1.1.0', github: 'theironcook/Backbone.ModelBinder'
+asset 'backbone.paginator', '2.0.2', github: 'backbone-paginator/backbone.paginator'
+asset 'backbone', '1.2.1'
 asset 'bootstrap-sass', '3.3.5'
 asset 'bootstrap-validator', '0.9.0'
 asset 'commonjs', '0.2.0'
 asset 'fontawesome', '4.4.0'
 asset 'gray', github: 'karlhorky/gray'
 asset 'html5shiv', github: 'aFarkas/html5shiv', ref: 'ed28c56c071bddfe7d635ad88995674957a016be'
-asset 'jquery', '2.1.4'
 asset 'jquery-ujs', '1.0.4'
+asset 'jquery', '2.1.4'
 asset 'marionette', '2.4.2'
 asset 'raty', github: 'wbotelhos/raty'
 asset 'respond', '1.4.2', github: 'scottjehl/Respond'

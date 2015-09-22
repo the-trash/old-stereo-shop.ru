@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount AdminApp::Engine => '/administration', as: :admin_app
+
   devise_for :users,
     controllers: {
       omniauth_callbacks: 'users/omniauth_callbacks',
@@ -9,9 +11,11 @@ Rails.application.routes.draw do
       passwords: 'users/passwords'
     }
 
+  # TODO add authenticate layout and remove activeadmin config
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  # TODO transfer it into new admin_app after finishing admin_app
   namespace :admin do
     authenticate :admin_user do
       mount Sidekiq::Web, at: '/sidekiq'

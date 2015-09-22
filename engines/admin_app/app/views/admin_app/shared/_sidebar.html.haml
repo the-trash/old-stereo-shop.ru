@@ -1,0 +1,60 @@
+.b-header-sidebar
+  .navbar.navbar-fixed-top.navbar-inverse
+    .navbar-inner
+      .l-top-navbar
+        .l-top-navbar-left-part
+          - # TODO add current active class for main nav and subnavs
+          %nav.collapse.navbar-collapse{ role: 'navigation' }
+            %ul.nav.navbar-nav
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.products')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.products'), admin_app.products_path
+                  %li= link_to t('admin.brands'), admin_app.brands_path
+                  %li= link_to t('admin.product_categories'), admin_app.product_categories_path
+                  %li= link_to t('admin.stores'), admin_app.stores_path
+                  %li= link_to t('admin.characteristic_categories'), admin_app.characteristic_categories_path
+                  %li= link_to t('admin.characteristics'), admin_app.characteristics_path
+                  %li= link_to t('admin.product_imports'), admin_app.product_imports_path
+                  %li= link_to t('admin.yandex_market_exports'), admin_app.yandex_market_exports_path
+
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.news')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.posts'), admin_app.posts_path
+                  %li= link_to t('admin.post_categories'), admin_app.post_categories_path
+                  %li= link_to t('admin.pages'), admin_app.pages_path
+                  %li= link_to t('admin.newletters'), admin_app.newletters_path
+
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.orders')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.orders'), admin_app.orders_path
+                  %li= link_to t('admin.payment_transactions'), admin_app.payment_transactions_path
+
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.cities')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.cities'), admin_app.cities_path
+                  %li= link_to t('admin.regions'), admin_app.regions_path
+
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.users')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.users'), admin_app.users_path
+                  %li= link_to t('admin.admin_users'), admin_app.admin_users_path
+
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.settings')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.settings'), admin_app.settings_path
+                  %li= link_to t('admin.seo_settings'), admin_app.seo_settings_path
+
+        .l-top-navbar-right-part
+          %nav.collapse.navbar-collapse.navbar-right{ role: 'navigation' }
+            %ul.nav.navbar-nav
+              %li.dropdown
+                = sidebar_dropdown_link t('admin.profile')
+                %ul.dropdown-menu
+                  %li= link_to t('admin.profile'), '#'
+                  %li= link_to t('admin.logout'), destroy_admin_user_session_path, method: :delete

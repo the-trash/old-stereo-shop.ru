@@ -1,0 +1,34 @@
+ru:
+  admin:
+    admin_users: Админы
+    brands: Бренды
+    characteristic_categories: Категории характеристик
+    characteristics: Характеристики
+    cities: Города
+    description: Описание
+    logout: Выйти
+    newletters: Рассылки новостей
+    news: Новости
+    orders: Заказы
+    pages: Страницы
+    payment_transactions: Транзакции
+    post_categories: Категории новостей
+    posts: Посты
+    price: Стоимость
+    product_categories: Категории продуктов
+    product_imports: Импорт продуктов
+    products: Продукты
+    profile: Профиль
+    regions: Регионы
+    seo_settings: SEO настройки
+    settings: Настройки
+    short_info: Краткая информация
+    states:
+      draft: Черновик
+      published: Опубликовано
+      removed: Удалено
+      moderated: На модерации
+    stores: Магазины
+    title: Заголовок
+    users: Пользователи
+    yandex_market_exports: Экспорты в Яндекс Маркет

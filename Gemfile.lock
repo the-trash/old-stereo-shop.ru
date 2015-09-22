@@ -90,6 +90,12 @@ GIT
       dragonfly (= 0.9.15)
       rack-cache
 
+PATH
+  remote: engines/admin_app
+  specs:
+    admin_app (1.0.0)
+      rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -631,6 +637,7 @@ DEPENDENCIES
   activemerchant (= 1.43.3)
   activerecord-import
   acts_as_list
+  admin_app (~> 1.0.0)!
   ancestry
   annotate!
   autoprefixer-rails

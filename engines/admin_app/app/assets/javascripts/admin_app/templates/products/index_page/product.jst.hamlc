@@ -1,0 +1,18 @@
+%td= @id
+%td
+  %a{ target: '_blank', href: @showProductPath }
+    %img.img-thumbnail{ src: @thumbnail_url }
+    %h5= @title
+  %span.label.label-primary= @translated_state
+%td
+  %ul.list-group
+    %li.list-group-item
+      %span.strong #{I18n.t 'admin.product_categories'}:
+      %a{ href: @editProductCategoryPath }= @product_category_title
+    %li.list-group-item
+      %span.strong #{I18n.t 'admin.description'}:
+      != @sanitized_desc
+%td
+  %span.fa.fa-fw.fa-rub
+  %span= @price_with_discount
+%td

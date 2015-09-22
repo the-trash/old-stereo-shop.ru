@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'admin_app/engine'
 
 Bundler.require(*Rails.groups)
 
@@ -8,7 +9,7 @@ module Stereoshop
   class Application < Rails::Application
     config.time_zone = 'Moscow'
 
-    config.i18n.load_path += Dir["config/locales/**/*.{rb,yml}"]
+    config.i18n.load_path += Dir['config/locales/**/*.{rb,yml}']
     config.i18n.available_locales = %i(ru en)
     config.i18n.default_locale = :ru
 

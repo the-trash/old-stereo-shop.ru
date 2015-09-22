@@ -77,3 +77,15 @@ yandex_market:
     currency_id: 'RUR'
     letters_count: 175
     type_name: 'vendor.model'
+
+admin:
+  pagination:
+    products: 10
+    posts: 10
+    users: 10
+    cities: 10
+    orders: 10
+    product_categories: 10
+    post_categories: 10
+    admin_users: 10
+    payment_transactions: 10

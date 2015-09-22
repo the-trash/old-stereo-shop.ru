@@ -1,0 +1,9 @@
+%thead
+  %tr
+    %th #
+    %th= I18n.t 'admin.title'
+    %th= I18n.t 'admin.short_info'
+    %th= I18n.t 'admin.price'
+    %th
+
+%tbody.l-admin-app-products-collection

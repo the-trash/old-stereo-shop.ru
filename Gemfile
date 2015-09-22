@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'admin_app', '~> 1.0.0', path: 'engines/admin_app'
+
 gem 'rails'
 gem 'rails_config', '0.2.5'
 
