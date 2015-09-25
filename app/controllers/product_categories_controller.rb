@@ -12,8 +12,7 @@ class ProductCategoriesController < FrontController
   end
 
   def sale
-    @products = @products_without_paginate.includes(characteristics_products: :characteristic).
-      paginate(page: params[:page], per_page: Settings.pagination.products)
+    @products = @products_without_paginate.paginate(page: params[:page], per_page: Settings.pagination.products)
   end
 
   def sale_product_category

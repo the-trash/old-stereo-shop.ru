@@ -3,10 +3,8 @@
   .b-info
     .b-info-main
       %h3.title= link_to product.title, product, title: product.title
-      - if product.characteristics_products.present?
-        %ul.characteristics-list
-          = render partial: 'product_categories/includes/characteristic',
-            collection: product.characteristics_products, as: :characteristic
+      .l-single-product-description
+        = truncate product.description.html_safe, length: 400
 
     .b-info-short
       = price_with_discount(product.price, product.price_with_discount)
