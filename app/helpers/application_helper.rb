@@ -24,6 +24,12 @@ module ApplicationHelper
     ].join('').html_safe
   end
 
+  def spinner spinner_class_size = '4x'
+    content_tag :div, class: 'l-preloader' do
+      content_tag :i, nil, class: "fa fa-spinner fa-spin fa-#{spinner_class_size}"
+    end
+  end
+
   private
 
   def ancestry_tree_child_class has_items

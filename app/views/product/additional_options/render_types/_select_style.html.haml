@@ -1,6 +1,0 @@
-.b-additional-option-select
-  = select_tag additional_option.slug,
-    options_from_collection_for_select(additional_option.values, :id, :value, params[:additional_option_value].to_i),
-    id: "additional_option_#{counter}",
-    name: 'additional_option_value',
-    prompt: t('default')

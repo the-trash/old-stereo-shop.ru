@@ -6,7 +6,7 @@ ActiveAdmin.register Product::AdditionalOption do
   navigation_menu :default
 
   permit_params :product_id, :title, :slug, :render_type,
-    photos_attributes: [:id, :file, :state, :_destroy],
+    photos_attributes: [:id, :file, :state, :default, :_destroy],
     values_attributes: [
       :id, :value, :state, :_destroy,
       new_values_attributes: [

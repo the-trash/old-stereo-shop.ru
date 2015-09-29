@@ -1,0 +1,44 @@
+.b-product-tabs
+  width: 570px
+  margin: 10px 0
+
+  ul
+    width: 100%
+    li
+      display: inline
+      margin: 10px 0
+      padding-left: 60px
+      a
+        color: $blue
+        font-size: $font-size-base * 2
+        text-decoration: none
+        border-bottom: 1px dotted $blue
+
+      &.active
+        a
+          color: $black
+          border: none
+          cursor: default
+
+      &:first-child
+        padding-left: 0
+
+  .tab-content
+    margin-top: 10px
+    .tab
+      width: 100%
+      display: none
+      &.active
+        display: block
+      table
+        width: 100%
+        tr
+          &:nth-child(odd)
+            background-color: $smokyWhite
+          td
+            width: 50%
+            padding: 5px
+            &:first-child
+              font-weight: bold
+            &:last-child
+              padding-left: 40px

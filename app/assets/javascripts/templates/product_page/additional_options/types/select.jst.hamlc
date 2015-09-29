@@ -1,0 +1,6 @@
+%label.main-label{ for: "select-type-#{@id}" }= @title
+.l-additional-option-select
+  %select.b-additional-option-select{ name: 'select_type', id: "select-type-#{@id}" }
+    %option{ value: 0 }= I18n.t 'default'
+    - for item in @publishedOptions
+      %option{ value: item.get('id') }= item.get('value')

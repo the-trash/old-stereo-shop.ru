@@ -137,12 +137,8 @@ class Product < ActiveRecord::Base
   hstore_accessor :properties,
     weight: :integer
 
-  def price_with_discount(custom_discount = nil)
-    price - (price * (custom_discount.nil? ? discount : custom_discount)) / 100
-  end
-
-  def new_price_with_discount(new_price)
-    [new_price, (new_price - (new_price * discount) / 100)]
+  def price_with_discount
+    price - (price * discount) / 100
   end
 
   private

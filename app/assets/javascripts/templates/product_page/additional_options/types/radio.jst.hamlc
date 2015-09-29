@@ -1,0 +1,8 @@
+%label.main-label= @title
+.l-additional-options-radios
+  %input{ type: 'radio', name: "additional-option-#{@id}", value: 0, id: "additional-option-radio-default-#{@id}" }
+  %label.b-additional-options-clear{ for: "additional-option-radio-default-#{@id}" }= I18n.t 'default'
+
+  - for item in @publishedOptions
+    %input{ type: 'radio', name: "additional-option-#{@id}", value: item.get('id'), id: "additional-option-radio-#{item.get('id')}" }
+    %label{ for: "additional-option-radio-#{item.get('id')}" }= item.get('value')

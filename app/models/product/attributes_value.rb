@@ -24,6 +24,8 @@ class Product::AttributesValue < ActiveRecord::Base
     scope :"with_#{ attr_name }", -> { where(product_attribute: i) }
   end
 
+  scope :by_option_value_id, -> (id) { where additional_options_value_id: id }
+
   belongs_to :value, class_name: 'Product::AdditionalOptionsValue',
     inverse_of: :new_values,
     foreign_key: :additional_options_value_id

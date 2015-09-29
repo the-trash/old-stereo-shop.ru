@@ -58,10 +58,7 @@ Rails.application.routes.draw do
     end
 
     resources :wishlists, only: [:create, :destroy]
-
-    scope module: 'product' do
-      resources :additional_options, only: :show
-    end
+    resources :additional_options, only: :show, module: :product
   end
 
   resources :reviews, only: [:index, :create]

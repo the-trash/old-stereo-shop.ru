@@ -2,53 +2,41 @@
   = javascript_include_tag 'modules/product_page/index'
 
 .b-product.l-product
-  %h1
-    - if @product_new_values.present? && @product_new_values.with_title.any?
-      = @product_new_values.with_title.first.new_value
-    - else
-      = resource.title
+  .b-product-default-title
+    %h1= resource.title
+  .b-product-customized-title
 
   .b-product-top-information
-    - if @additional_option_value.present? && @additional_option_value.photos.published.any?
-      = render 'products/includes/image_gallery_show_product_page', product: resource, photos: @additional_option_value.photos.published
-    - else
+    .b-product-default-gallery
       = render 'products/includes/image_gallery_show_product_page', product: resource, photos: resource.photos.published
+    .b-product-customized-gallery
 
-    .b-product-middle
+    .l-commerce
+      %ul
+        %li= cart_btn resource.id, class: 'btn btn-add-to-cart'
+        - if user_signed_in?
+          %li= add_to_wishlist(resource)
+        %li.l-make-order-in-one-click
+          = spinner
+
+    .l-product-middle
       - if @show_presenter.additional_options.any?
-        .l-additional-options
-          = render @show_presenter.additional_options
+        .l-additional-options= spinner '2x'
 
       .b-product-short-info
-        - if @product_new_values.present? && (@product_new_values.with_price.any? || @product_new_values.with_discount.any?)
-          - if @product_new_values.with_price.any?
-            = price_with_discount(*resource.new_price_with_discount(@product_new_values.with_price.first.new_value.to_i))
-          - else
-            = price_with_discount(resource.price, resource.price_with_discount(@product_new_values.with_discount.new_value))
-        - else
+        .b-product-default-price-with-discount
           = price_with_discount(resource.price, resource.price_with_discount)
+        .b-product-customized-price-with-discount
 
         .l-product-ratable-with-reviews
 
         = icon_in_stock(resource.in_stock)
         = render 'products/includes/stores', stores: @show_presenter.stores, product: resource if @show_presenter.stores.present?
 
-    .b-commerce
-      %ul
-        %li= cart_btn resource.id, class: 'btn btn-add-to-cart'
-        - if user_signed_in?
-          %li= add_to_wishlist(resource)
-        %li.l-make-order-in-one-click
-          .l-preloader
-            %i.fa.fa-spinner.fa-spin.fa-4x
-
   .b-product-description
     %h4= t('about_good')
-    %p.default.product-description
-      - if @product_new_values.present? && @product_new_values.with_description.any?
-        = @product_new_values.with_description.first.new_value
-      - else
-        = raw resource.description
+    .b-product-default-description= resource.description.html_safe
+    .b-product-customized-description
 
   .b-product-tabs.tabs
     %ul.nav.nav-tabs{ role: 'tablist' }

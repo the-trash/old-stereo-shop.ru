@@ -1,8 +1,0 @@
-= hidden_field_tag 'additional_option_value', params[:additional_option_value], class: 'additional-options-radio'
-
-= radio_button_tag "#{additional_option.slug}", 0, params[:additional_option_value].to_i == 0, name: 'additional_option'
-= label_tag "#{additional_option.slug}_0", t('default'), class: 'radio-label'
-
-- additional_option.values.each do |value|
-  = radio_button_tag "#{additional_option.slug}", value.id, params[:additional_option_value].to_i == value.id, id: "#{additional_option.slug}_#{value.value.gsub(' ', '_')}", name: 'additional_option'
-  = label_tag "#{additional_option.slug}_#{value.value}", value.value, class: 'radio-label'

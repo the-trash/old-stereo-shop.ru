@@ -1,0 +1,40 @@
+.categories-list
+  ul.menu
+    display: block
+    @extend .unstyled
+    +clearfix()
+
+    li
+      +inline-block
+      width: $dropDownMenuWidth
+      margin: 0 20px 50px 0
+      font-size: 24px
+      color: $deathlyIndigo
+
+      &:nth-of-type(4n)
+        margin-right: 0
+
+      img
+        width: 260px
+        max-width: 260px
+        border: 5px solid $gray
+
+      a
+        &.b-product-category-parent-link
+          width: $dropDownMenuWidth
+          +inline-block
+
+        &.b-link-with-child
+          width: $dropDownMenuWidth - 20px
+
+        svg
+          opacity: 1
+          +transition(opacity .5s ease)
+
+        &:hover
+          img
+            -webkit-filter: grayscale(0%)
+            filter: none
+
+          svg
+            opacity: 0

@@ -1,0 +1,6 @@
+.price
+  - if @hasDiscount
+    %p.new.product-price-with-discount= I18n.t 'views.product.with_currency', { coust: @priceWithDiscount }
+    %p.old.product-price= I18n.t 'views.product.with_currency', { coust: @newPrice }
+  - else
+    %p.product-price= I18n.t 'views.product.with_currency', { coust: @newPrice }

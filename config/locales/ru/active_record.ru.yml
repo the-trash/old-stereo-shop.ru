@@ -234,6 +234,7 @@ ru:
         weight: Вес
         add_to_yandex_market: Добавить в Яндекс Маркет
         fix_price: Фиксированная цена
+        short_desc: Краткое описание
       product_category:
         <<: *main
         products: Продукты

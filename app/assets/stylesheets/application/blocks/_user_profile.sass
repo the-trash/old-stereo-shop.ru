@@ -1,0 +1,35 @@
+.b-user-profile
+  .user-profile
+    li
+      display: inline-block
+      margin-right: 10px
+
+  .b-user-settings-menu, .b-user-settings-content, .l-user-orders
+    float: left
+
+  .b-user-settings-menu
+    width: $userProfileLeftMenyWidth
+    font-size: 16px
+    .profile-menu
+      li
+        a
+          &:hover
+            color: $black
+            text-decoration: none
+
+        &.active
+          & > a
+            @extend a:hover
+
+      &.settings
+        li
+          margin-left: 10px
+
+  .b-user-settings-content, .l-user-orders
+    width: $containerWidth - $userProfileLeftMenyWidth
+    h4
+      margin-top: 0
+
+  .b-user-settings-content
+    .sybscription-types-list
+      +inline-block()

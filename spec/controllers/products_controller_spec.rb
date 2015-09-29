@@ -41,21 +41,6 @@ describe ProductsController do
     it_behaves_like 'a successful request'
     it_behaves_like 'a successful render show template'
 
-    context 'when params containe additional_option_value' do
-      let(:additional_option_value) { additional_option.values.first }
-      let(:attributes_value) { create :attributes_value, value: additional_option_value }
-
-      before { get :show, id: product.id, additional_option_value: additional_option_value.id }
-
-      it 'assigns @additional_option_value' do
-        expect(assigns(:additional_option_value)).to eq(additional_option_value)
-      end
-
-      it 'assigns @product_new_values' do
-        expect(assigns(:product_new_values)).to include(attributes_value)
-      end
-    end
-
     context 'when user authorized' do
       let(:user) { create :user }
 

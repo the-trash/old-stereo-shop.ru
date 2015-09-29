@@ -1,24 +1,40 @@
 $product-middle-margin-right: 25px !default
 $product-middle-margin-left: 10px !default
+$product-thumbnail-width: 70px !default
+$product-commerce-width: $containerWidth - $productMiddleWidth - $product-middle-margin-right - $product-middle-margin-left * 2 - $product-images-width !default
 
 .b-product-top-information
-  .b-product-images, .e-thumb-image, .b-product-short-info, .b-product-middle, .b-commerce
-    float: left
-
-  @import images
-
-  .b-product-middle
+  .l-photos-thumbnails li
     +inline-block
+  .b-product-images
+    float: left
+    width: $product-images-width
+    img
+      background-size: cover
+    .e-thumb-image, .e-main-image
+      border: 1px solid $gainsborough
+
+    .e-main-image
+      width: $product-images-width
+      height: 368px
+      margin-bottom: 10px
+
+    .e-thumb-image
+      width: $product-thumbnail-width
+      height: 43px
+      margin-right: 25px
+      cursor: pointer
+      &:last-child
+        margin-right: 0
+
+  .l-product-middle
+    margin-left: $product-images-width + $product-middle-margin-left + 10
+    margin-right: $product-commerce-width
+    width: $productMiddleWidth
     .b-product-short-info
-      width: $productMiddleWidth
-      margin: 0 $product-middle-margin-right 0 $product-middle-margin-left
       @import _price
       @import e_stores_list
 
-  .b-commerce
-    width: $containerWidth - $productMiddleWidth - $product-middle-margin-right - $product-middle-margin-left - $product-images-margin-right - $product-images-width
-
-  .l-preloader
-    margin-top: 20px
-    text-align: center
-    width: 100%
+  .l-commerce
+    width: $product-commerce-width
+    float: right

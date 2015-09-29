@@ -18,13 +18,6 @@ class ProductsController < FrontController
     @show_presenter = Products::ShowPresenter.new(resource)
     gon.rabl template: 'app/views/products/show.json', as: :product
 
-    if params_with_additional_option_value_exists?
-      @additional_option_value =
-        resource.additional_options_values.published
-          .find(params[:additional_option_value])
-      @product_new_values = @additional_option_value.new_values
-    end
-
     breadcrumbs_with_ancestors(@show_presenter.product_category, resource)
 
     show!
@@ -57,10 +50,6 @@ class ProductsController < FrontController
 
   def collection
     get_collection_ivar || set_collection_ivar(collection_query_helper.all)
-  end
-
-  def params_with_additional_option_value_exists?
-    params[:additional_option_value].present? && params[:additional_option_value].to_i != 0
   end
 
   def redirect_to_root_with_flash

@@ -1,8 +1,11 @@
-.b-product-images.default
+.b-product-images
   = background_image_tag ImageDecorator.decorate(product).photo_url(:product),
                          class: 'e-main-image'
 
-  - photos.each do |photo|
-    = background_image_tag photo.file.url(:product, :thumb),
-                           class: 'e-thumb-image',
-                           data: { big_img_url: photo.file.url(:product) }
+  - if photos.any?
+    %ul.l-photos-thumbnails
+      - photos.each do |photo|
+        %li
+          = background_image_tag photo.file.url(:product, :thumb),
+                                 class: 'e-thumb-image',
+                                 data: { big_img_url: photo.file.url(:product) }

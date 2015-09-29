@@ -1,5 +1,0 @@
-.b-additional-option
-  = form_tag product_path(resource), method: :get do
-    = label_tag "additional_option_#{additional_option_counter}", additional_option.title, class: 'main-label'
-    = render "product/additional_options/render_types/#{additional_option.render_type}",
-      additional_option: additional_option, counter: additional_option_counter if additional_option.values.any?
