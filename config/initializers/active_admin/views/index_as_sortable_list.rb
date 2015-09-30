@@ -13,7 +13,7 @@ module ActiveAdmin
 
           opts_list.merge!(opts)
 
-          content_tag(:span, icon(:move_vertical, color: '#000'), opts_list)
+          content_tag(:span, "&#8645;".html_safe, opts_list)
         end
       end
     end

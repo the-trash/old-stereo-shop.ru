@@ -160,28 +160,36 @@ ActiveAdmin.register Product do
         f.has_many_photos
       end
 
-      f.inputs I18n.t('active_admin.views.characteristics') do
-        f.has_many :characteristics_products, allow_destroy: true, heading: false do |char|
-          unless char.object.new_record?
-            char.form_buffers.last <<
-              char.template.content_tag(:li, class: 'string input stringish') do
+      if Characteristic.any?
+        f.inputs I18n.t('active_admin.views.characteristics') do
+          f.has_many :characteristics_products, allow_destroy: true, heading: false do |char|
+            unless char.object.new_record?
+              html = "".html_safe
+              html << char.template.content_tag(:li, class: 'string input stringish') do
                 char.template.content_tag(:label, I18n.t('active_admin.views.characteristic_category'), class: 'label') +
-                char.template.content_tag(:p, char.object.characteristic_characteristic_category_title)
+                    char.template.content_tag(:p, char.object.characteristic_characteristic_category_title)
               end
-          end
-            char.input :characteristic, as: :select,
-              collection: option_groups_from_collection_for_select(
-                  CharacteristicCategory.includes(:characteristics).all,
-                  :characteristics, :title, :id, :title, char.object.characteristic_id
-                )
+              char.template.concat(html)
+            end
+            char.input :characteristic,
+                       as: :select,
+                       collection: char.template.option_groups_from_collection_for_select(
+                         CharacteristicCategory.includes(:characteristics).all,
+                         :characteristics,
+                         :title,
+                         :id,
+                         :title,
+                         char.object.characteristic_id
+                       )
             char.input :value
+          end
         end
-      end if Characteristic.any?
+      end
 
       f.inputs I18n.t('active_admin.views.stores') do
         f.has_many :products_stores, allow_destroy: true, heading: false do |pr_store|
           pr_store.input :store, as: :select,
-            collection: options_from_collection_for_select(
+            collection: pr_store.template.options_from_collection_for_select(
               Store.published, :id, :title, pr_store.object.store_id
             )
           pr_store.input :count

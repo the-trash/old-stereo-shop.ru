@@ -17,11 +17,11 @@ ActiveAdmin.register SeoSetting do
   filter :seo_title
 
   form do |f|
-    
     f.inputs do
-      
       f.inputs I18n.t('active_admin.views.main') do
-        f.message_input I18n.t('active_admin.messages.seo_title_message')
+        f.div I18n.t('active_admin.messages.seo_title_message'),
+              class: :active_admin_message_input
+
         f.input :url
         f.input :controller_name
         f.input :action_name

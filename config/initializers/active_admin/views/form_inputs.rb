@@ -30,12 +30,6 @@ module ActiveAdmin
           collection: collection.map_with_state_locale,
           selected: selected
       end
-
-      def message_input(text)
-        input :message_text,
-              label: text,
-              as: :message
-      end
     end
   end
 end

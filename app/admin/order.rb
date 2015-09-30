@@ -102,11 +102,7 @@ ActiveAdmin.register Order do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs I18n.t('active_admin.views.main') do
-      f.form_buffers.last <<
-        f.template.content_tag(:li, class: 'input required stringish') do
-          f.template.content_tag(:label, (I18n.t('activerecord.attributes.order.city') + content_tag(:abbr, '*', title: 'required')).html_safe, class: 'label', for: 'order_city') +
-          f.template.content_tag(:input, nil, type: 'hidden', id: 'order_city', name: 'order[city]', data: { search_path: cities_path, searching: t('searching'), not_found: t('cities.no_matches_found') }, class: 'get-cities', value: resource.city.try(:id))
-        end
+      f.input :city
       f.input :address
       f.input :phone
       f.input :email
@@ -142,11 +138,10 @@ ActiveAdmin.register Order do
         f.input :kpp
         f.input :file
         if f.object.file?
-          f.form_buffers.last <<
-            f.template.content_tag(:li, class: 'string input stringish') do
-              f.template.content_tag(:label, I18n.t('active_admin.views.orders.details'), class: 'label') +
-              f.template.content_tag(:a, I18n.t('active_admin.views.orders.details'), href: f.object.file_url, target: '_blank')
-            end
+          li class: 'string input stringish' do
+            label t('active_admin.views.orders.details'), class: :label
+            a t('active_admin.views.orders.details'), href: f.object.file_url, target: '_blank'
+          end
         end
       end
     end
@@ -154,7 +149,7 @@ ActiveAdmin.register Order do
     f.inputs I18n.t('active_admin.views.line_items') do
       f.has_many :line_items, allow_destroy: true, heading: false do |line|
         line.input :product, as: :select,
-          collection: options_from_collection_for_select(
+          collection: line.template.options_from_collection_for_select(
             Product.published, :id, :title, line.object.product_id
           )
         line.input :quantity

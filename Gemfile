@@ -74,7 +74,7 @@ gem 'sidetiq', '0.6.1'
 # For sidekiq
 gem 'sinatra', require: false
 gem 'slim'
-gem 'state_machine'
+gem 'state_machines-activerecord'
 gem 'unicorn'
 gem 'will_paginate'
 
