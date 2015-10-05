@@ -30,6 +30,7 @@
 #  properties              :hstore
 #  add_to_yandex_market    :boolean          default(TRUE)
 #  fix_price               :boolean          default(FALSE)
+#  short_desc              :text
 #
 # Indexes
 #

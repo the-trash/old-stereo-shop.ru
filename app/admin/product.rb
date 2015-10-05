@@ -40,7 +40,7 @@ ActiveAdmin.register Product do
   config.sort_order = 'position_asc'
 
   permit_params :title, :description, :state, :admin_user_id, :price, :discount, :brand_id, :fix_price,
-    :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price,
+    :product_category_id, :position, :keywords, :seo_description, :seo_title, :sku, :euro_price, :short_desc,
     :weight, :add_to_yandex_market, photos_attributes: [:id, :file, :state, :default, :_destroy],
     characteristics_products_attributes: [:id, :characteristic_id, :value, :_destroy],
     products_stores_attributes: [:id, :count, :store_id, :_destroy],
@@ -130,6 +130,7 @@ ActiveAdmin.register Product do
       f.inputs I18n.t('active_admin.views.main') do
         f.input :title
         f.input :description, as: :wysihtml5
+        f.input :short_desc, as: :wysihtml5
         f.input :price
         f.input :euro_price
         f.input :sku
