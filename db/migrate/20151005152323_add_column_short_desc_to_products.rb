@@ -6,7 +6,7 @@ class AddColumnShortDescToProducts < ActiveRecord::Migration
 
     say_with_time "Copying product's description into short description" do
       Product.find_each do |product|
-        short_desc = Sanitize.fragment truncate(product.description, length: 500)
+        short_desc = truncate Sanitize.fragment(product.description), length: 500
         product.update_column :short_desc, short_desc
       end
     end
