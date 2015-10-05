@@ -242,4 +242,25 @@ describe Product do
     specify { expect(subject).not_to include product_with_fix_price }
     specify { expect(subject).to include product }
   end
+
+  describe '.by_category_ids' do
+    let(:category) { create :product_category }
+    let(:sub_category) { create :product_category, parent: category }
+    let!(:root_products) { create_list(:product, 2, product_category: category) }
+    let!(:sub_products) { create_list(:product, 2, product_category: sub_category) }
+    let!(:product) { create(:product, product_category: sub_category) }
+
+    subject { described_class.by_category_ids(ids) }
+
+    context 'when root category' do
+      let(:ids) { category.subtree_ids }
+      specify { expect(subject.count).to eq 5 }
+    end
+
+    context 'when child category' do
+      let(:ids) { sub_category.subtree_ids }
+      specify { expect(subject.count).to eq 3 }
+      specify { expect(subject).to include product }
+    end
+  end
 end

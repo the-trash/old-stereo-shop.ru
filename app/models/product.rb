@@ -70,7 +70,7 @@ class Product < ActiveRecord::Base
   scope :for_yandex_market, -> { where(add_to_yandex_market: true) }
   scope :by_position, -> (direction = :asc) { order(position: (direction.present? ? direction : :asc)) }
   scope :without_fix_price, -> { where(fix_price: false) }
-
+  scope :by_category_ids, -> (ids) { where product_category_id: ids }
   acts_as_list
 
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?

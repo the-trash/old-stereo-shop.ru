@@ -22,10 +22,7 @@ module AncestryHelper
     end
   end
 
-  def item_photo item
-    image_tag(
-      ImageDecorator.decorate(item).photo_url(:product_category),
-      class: 'grayscale grayscale-fade without-border'
-    )
+  def item_photo item, options = {}
+    image_tag(ImageDecorator.decorate(item).photo_url(:product_category), options)
   end
 end

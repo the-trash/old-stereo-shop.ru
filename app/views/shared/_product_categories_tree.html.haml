@@ -1,7 +1,9 @@
 - categories.each do |item, child_items|
   %li{class: "#{'with-children' if child_items.any?}"}
     - if images
-      = item_photo item
+      = link_to [item], class: 'without-border' do
+        = item_photo item, class: 'grayscale grayscale-fade'
+
     - if child_items.any?
       = link_to item.title,
                 nil,

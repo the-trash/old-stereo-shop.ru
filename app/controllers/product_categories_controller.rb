@@ -36,6 +36,6 @@ class ProductCategoriesController < FrontController
   end
 
   def product_category_products
-    @product_category_products ||= resource.products
+    @product_category_products ||= Product.by_category_ids(resource.subtree_ids)
   end
 end
