@@ -28,16 +28,17 @@ Application.addInitializer ->
   # TODO make ratable in share component
   @ratableWithReviews.show new RatableWithReviewLayout()
   @newReview.show new NewReview model: new Review()
-  @additionalOptions.show new AdditionalOptionsLayout
-    model: new Product(gon.product)
-    regions:
-      defaultTitle: @defaultTitle
-      customizedTitle: @customizedTitle
-      defaultGallery: @defaultGallery
-      customizedGallery: @customizedGallery
-      defaultDescription: @defaultDescription
-      customizedDescription: @customizedDescription
-      defaultPriceWithDiscount: @defaultPriceWithDiscount
-      customizedPriceWithDiscount: @customizedPriceWithDiscount
+  if gon.product.has_additional_options
+    @additionalOptions.show new AdditionalOptionsLayout
+      model: new Product(gon.product)
+      regions:
+        defaultTitle: @defaultTitle
+        customizedTitle: @customizedTitle
+        defaultGallery: @defaultGallery
+        customizedGallery: @customizedGallery
+        defaultDescription: @defaultDescription
+        customizedDescription: @customizedDescription
+        defaultPriceWithDiscount: @defaultPriceWithDiscount
+        customizedPriceWithDiscount: @customizedPriceWithDiscount
 
 module.exports = Application

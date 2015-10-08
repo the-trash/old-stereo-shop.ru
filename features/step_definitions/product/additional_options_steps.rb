@@ -31,3 +31,7 @@ Then(/^I (should|should not) see for choose #{capture_model}$/) do |verb, option
     end
   end
 end
+
+Then(/^I should not see additional options$/) do
+  expect(page).not_to have_css '.l-additional-options'
+end

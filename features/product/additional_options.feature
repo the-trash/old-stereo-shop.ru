@@ -24,3 +24,8 @@ Feature: As a user I want to choose options for product
     And I should not see the option like radio type "Cool radio draft"
     And I should see for choose the additional options value "Published value"
     And I should not see for choose the additional options value "Draft value"
+
+  Scenario: I go to the product page without additional options
+    Given a product exists
+    When I go to the product's page
+    Then I should not see additional options
