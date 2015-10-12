@@ -72,7 +72,9 @@ class Product < ActiveRecord::Base
   scope :by_position, -> (direction = :asc) { order(position: (direction.present? ? direction : :asc)) }
   scope :without_fix_price, -> { where(fix_price: false) }
   scope :by_category_ids, -> (ids) { where product_category_id: ids }
-  acts_as_list
+  scope :by_presence, -> { order in_stock: :desc }
+  
+  acts_as_list scope: :product_category
 
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?
   before_save :recalculate_price_for_the_euro, if: :need_recalculate_price?

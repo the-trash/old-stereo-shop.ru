@@ -26,7 +26,7 @@ class ProductCategoriesController < FrontController
   private
 
   def set_breadcrumbs_and_products_instance
-    @products_without_paginate = Product.published.with_discount
+    @products_without_paginate = Product.by_presence.published.with_discount
 
     add_breadcrumb I18n.t('controllers.product_categories.sale.all_products', count: @products_without_paginate.size), [:sale, :product_categories]
   end

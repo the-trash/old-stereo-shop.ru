@@ -170,6 +170,29 @@ describe Product do
     end
   end
 
+  describe '.by_presence' do
+    let!(:p1) { create :product, in_stock: false, price: 30 }  
+    let!(:p2) { create :product, in_stock: false, price: 20 }  
+    let!(:p3) { create :product, in_stock: true, price: 10 }  
+    let!(:p4) { create :product, in_stock: true, price: 40 }
+
+    subject { described_class.by_presence }
+
+    it 'sorts by presence in the stock' do
+      expect(subject.first).to eq p3
+      expect(subject.second).to eq p4
+    end
+
+    context 'with additional sort condition' do
+      subject { described_class.by_presence.sort_by('price_reduction') }
+
+      it 'sorts by presence firstly' do
+        expect(subject.first).to eq p4
+        expect(subject.second).to eq p3
+      end
+    end
+  end
+
   describe '.by_brand' do
     let!(:brand) { create :brand }
     let!(:product_with_existing_brand) { create :product, brand: brand }

@@ -2,7 +2,8 @@ class Products::IndexQuery < Struct.new(:collection, :params)
   def initialize collection, params
     super
 
-    by_query_string
+    by_presence
+      .by_query_string
       .queried_by_brand
       .sort
   end
@@ -14,6 +15,11 @@ class Products::IndexQuery < Struct.new(:collection, :params)
       .with_price_larger_than_value
       .includes(:photos)
       .paginate(page: params[:page], per_page: Settings.pagination.products)
+  end
+
+  def by_presence
+    @sorted_collection = sorted_collection.by_presence
+    self
   end
 
   def by_query_string
