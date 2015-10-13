@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :newletter do
-    admin_user
+    admin_user { FactoryGirl.shared_admin }
     post_category
     state 1
     subscription_type { Newletter.subscription_types.values.sample }

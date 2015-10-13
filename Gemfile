@@ -4,7 +4,7 @@ gem 'rails'
 gem 'rails_config', '0.2.5'
 
 ## Database adapter
-gem 'pg', '0.18.2'
+gem 'pg'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'gregbell/active_admin'
@@ -14,14 +14,12 @@ gem 'activeadmin-wysihtml5', github: 'Stereo-Shop/activeadmin-wysihtml5'
 
 gem 'carrierwave'
 gem 'carrierwave-size-validator'
-gem 'normalize-rails'
 gem 'rmagick', require: 'RMagick'
 
 ## Assets
 gem 'autoprefixer-rails'
 gem 'coffee-rails'
 gem 'compass-rails'
-gem 'errgent', github: 'route/errgent' # for error pages
 gem 'sass-rails'
 gem 'sprockets-commonjs', github: 'maccman/sprockets-commonjs'
 gem 'uglifier'
@@ -81,8 +79,6 @@ gem 'will_paginate'
 group :development do
   gem 'annotate', github: 'ctran/annotate_models'
   gem 'awesome_print'
-  gem 'better_errors'
-  gem 'binding_of_caller' # need for better_errors
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'capistrano', '~> 3.2.1'
@@ -126,6 +122,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
   gem 'test_after_commit'
+  gem 'webmock'
 end
 
 gem 'seedbank', github: 'james2m/seedbank', group: [:development, :test, :staging]

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :store do
-    admin_user
+    admin_user { FactoryGirl.shared_admin }
     state 1
     title { generate :title }
     description { Faker::Lorem.paragraphs(Random.new.rand(2..5)).join("\r\n") }

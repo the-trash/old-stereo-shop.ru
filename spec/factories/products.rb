@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :product do
-    admin_user
+    admin_user { FactoryGirl.shared_admin } 
     product_category
     brand
     state 1

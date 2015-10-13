@@ -31,4 +31,21 @@ FactoryGirl.define do
       deals: [true, false].sample
     }
   end
+
+  sequence :import_entry_data do
+    {
+      need_update: false,
+      new_product: true,
+      title: Faker::Commerce.product_name,
+      sku: Faker::Code.isbn(3),
+      description: Faker::Lorem.paragraph,
+      stores: 'Store 1:12;Store 2:1',
+      meta: 'keywords:bla bla|bla b|asd;seo_description:bla la;seo_title:asfsdf',
+      brand: 'Brand',
+      price: '10',
+      discount: '1',
+      euro_price: '5',
+      euro_rate: '2'
+    }
+  end
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :page do
-    admin_user
+    admin_user { FactoryGirl.shared_admin }
     state 1
     sequence(:title) { Faker::Lorem.sentence }
     short_text { Faker::Lorem.word }

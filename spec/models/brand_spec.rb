@@ -1,5 +1,5 @@
 describe Brand do
-  let(:brand) { create :brand }
+  let!(:brand) { create :brand }
 
   context 'concerns' do
     %w(friendable statable).each do |concern|

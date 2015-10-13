@@ -171,9 +171,9 @@ describe Product do
   end
 
   describe '.by_presence' do
-    let!(:p1) { create :product, in_stock: false, price: 30 }  
-    let!(:p2) { create :product, in_stock: false, price: 20 }  
-    let!(:p3) { create :product, in_stock: true, price: 10 }  
+    let!(:p1) { create :product, in_stock: false, price: 30 }
+    let!(:p2) { create :product, in_stock: false, price: 20 }
+    let!(:p3) { create :product, in_stock: true, price: 10 }
     let!(:p4) { create :product, in_stock: true, price: 40 }
 
     subject { described_class.by_presence }
@@ -235,24 +235,20 @@ describe Product do
   end
 
   describe '.by_position' do
-    let!(:first_product) { create :product }
-    let!(:second_product) { create :product }
+    let(:product_category) { create :product_category }
+    let!(:first_product) { create :product, product_category: product_category }
+    let!(:second_product) { create :product, product_category: product_category }
 
     subject { described_class.by_position direction }
 
     context 'when direction asc' do
       let(:direction) { :asc }
-      specify { expect(subject.first).to eq second_product }
-    end
-
-    context 'when direction nil' do
-      let(:direction) {}
-      specify { expect(subject.first).to eq second_product }
+      specify { expect(subject.first).to eq first_product }
     end
 
     context 'when direction desc' do
       let(:direction) { :desc }
-      specify { expect(subject.first).to eq first_product }
+      specify { expect(subject.first).to eq second_product }
     end
   end
 

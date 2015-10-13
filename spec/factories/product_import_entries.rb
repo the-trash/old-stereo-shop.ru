@@ -1,21 +1,4 @@
 FactoryGirl.define do
-  sequence :import_entry_data do
-    {
-      need_update: false,
-      new_product: true,
-      title: Faker::Commerce.product_name,
-      sku: Faker::Code.isbn(3),
-      description: Faker::Lorem.paragraph,
-      stores: 'Store 1:12;Store 2:1',
-      meta: 'keywords:bla bla|bla b|asd;seo_description:bla la;seo_title:asfsdf',
-      brand: 'Brand',
-      price: '10',
-      discount: '1',
-      euro_price: '5',
-      euro_rate: '2'
-    }
-  end
-
   factory :product_import_entry, class: 'Product::ImportEntry' do
     association :import, factory: :product_import
     data { generate(:import_entry_data) }
@@ -29,7 +12,7 @@ FactoryGirl.define do
     end
 
     trait :need_update do
-      data FactoryGirl.generate(:import_entry_data).merge(need_update: true)
+      data { generate(:import_entry_data).merge(need_update: true) }
       stores 'Store 2:123'
       price '11'
       discount '2'

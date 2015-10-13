@@ -69,7 +69,7 @@ class Product < ActiveRecord::Base
     .having('SUM(products_stores.count) > 0')
   }
   scope :for_yandex_market, -> { where(add_to_yandex_market: true) }
-  scope :by_position, -> (direction = :asc) { order(position: (direction.present? ? direction : :asc)) }
+  scope :by_position, -> (direction = :asc) { order position: direction }
   scope :without_fix_price, -> { where(fix_price: false) }
   scope :by_category_ids, -> (ids) { where product_category_id: ids }
   scope :by_presence, -> { order in_stock: :desc }

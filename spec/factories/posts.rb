@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :post do
-    admin_user
+    admin_user { FactoryGirl.shared_admin }
     post_category
     state 1
     title { generate :title }

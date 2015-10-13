@@ -9,6 +9,7 @@ require 'capybara/poltergeist'
 require 'capybara-screenshot/cucumber'
 require 'factory_girl_rails'
 require Rails.root.join 'spec/support/factory_girl_sequences'
+require Rails.root.join 'spec/support/factory_girl_extension'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'sidekiq/testing'
@@ -34,6 +35,7 @@ require 'sidekiq/testing'
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
+WebMock.allow_net_connect!
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
