@@ -102,6 +102,12 @@ module ProductsHelper
     end
   end
 
+  def linked_product_preview product, *args
+    link_to [product], title: product.title do
+      background_image_tag ImageDecorator.decorate(product).photo_url *args
+    end
+  end
+
   private
 
   def product_in_stock_message in_stock

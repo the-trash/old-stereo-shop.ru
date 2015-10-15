@@ -1,7 +1,7 @@
 %tr
   %td
     .b-single-product.cart
-      = background_image_tag ImageDecorator.decorate(line_item).photo_url(:product, :related)
+      = linked_product_preview line_item.product, :product, :related
       .b-info
         %p.title= link_to line_item.product_title, line_item.product
         %p.price= t('views.product.with_currency', coust: price_formatted(line_item.price_with_discount))

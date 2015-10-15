@@ -11,6 +11,6 @@ class ImageDecorator < Draper::Decorator
   private
 
   def uploader_default_url(*args)
-    ActionController::Base.helpers.image_path PhotoUploader.new.url *args
+    PhotoUploader.new.url *args
   end
 end

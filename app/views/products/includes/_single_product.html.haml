@@ -1,9 +1,7 @@
 - main_class ||= 'wishlist'
 
 .b-single-product{ class: main_class }
-  - photo = product.photos.first
-  - if photo
-    .e-image{ style: "background-image: url(#{ photo.file_url(:product, main_class.to_sym) })" }
+  = linked_product_preview product, :product, main_class.to_sym
   .b-info
     %h3.title= link_to product.title, product, title: product.title
     %p.price= I18n.t('views.product.with_currency', coust: price_formatted(product.price_with_discount))

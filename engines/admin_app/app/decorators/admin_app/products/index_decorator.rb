@@ -5,7 +5,7 @@ module AdminApp
       delegate_all
 
       def thumbnail_url
-        ImageDecorator.decorate(model).photo_url :product, :related
+        ActionController::Base.helpers.image_path ImageDecorator.decorate(model).photo_url :product, :related
       end
 
       def sanitized_desc

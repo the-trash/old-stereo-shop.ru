@@ -1,9 +1,11 @@
 .b-single-product.catalog
-  = background_image_tag ImageDecorator.decorate(product).photo_url(:product, :similar)
+  = linked_product_preview product, :product, :similar
   .b-info
     .b-info-main
       %h3.title= link_to product.title, product, title: product.title
-      .l-single-product-description= product.short_desc.html_safe
+      .l-single-product-description
+        = link_to '', [product], class: 'b-product-block-link', title: product.title
+        = product.short_desc.html_safe
 
     .b-info-short
       = price_with_discount(product.price, product.price_with_discount)
