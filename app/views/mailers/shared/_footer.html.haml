@@ -1,11 +1,14 @@
-%h4= Settings.shop.default.shop_name
-%ul.b-mail-contacts-list
-  %li
-    Телефон для связи:
-    %span= Settings.shop.default.phone
-  %li
-    E-mail для связи:
-    %span= Settings.shop.default.feedback_email
-  %li= Settings.shop.default.address
-  %li= Settings.shop.default.timetable
-  %li= Rails.application.routes.default_url_options[:host].presence || Settings.shop.default.host
+%footer.l-mail-footer
+  .b-mail-footer
+    %ul.b-mail-contacts-list
+      %li
+        #{Settings.shop.default.shop_name}:
+        = link_to Settings.shop.default.host, root_url
+      %li
+        Наш телефон:
+        %span= Settings.shop.default.phone
+      %li
+        Наша почта:
+        %span= link_to Settings.shop.default.feedback_email, "mailto:#{Settings.shop.default.feedback_email}"
+      %li= Settings.shop.default.address
+      %li= Settings.shop.default.timetable

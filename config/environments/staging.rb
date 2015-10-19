@@ -66,6 +66,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Settings.shop.default.host }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { port: 25 }
+  config.roadie.url_options = config.action_mailer.default_url_options
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

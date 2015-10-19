@@ -1,0 +1,9 @@
+%head
+  %meta{charset: "utf-8"}
+  %title Stereo Shop
+  = stylesheet_link_tag 'mail'
+%body
+  .l-mail
+    = render 'mailers/shared/header'
+    %article= yield
+    = render 'mailers/shared/footer'

@@ -1,6 +1,8 @@
 class OrderMailer < ActionMailer::Base
+  include Roadie::Rails::Automatic
   # TODO remove default 'from' from other mailers and make this setting in application.rb
   default from: Setting.find_by(key: 'shop_mailer_default_from').try(:value) || Settings.shop.default.from
+  layout 'mail'
 
   def notify_admins order
     @order = order
@@ -8,8 +10,7 @@ class OrderMailer < ActionMailer::Base
     mail \
       to: OrderMailer.default_admin_emails,
       subject: make_subject(order),
-      template_path: 'mailers/order_mailer/admin',
-      template_name: order.state
+      template_name: "admin/#{order.state}"
   end
 
   def notify_user order
@@ -18,8 +19,7 @@ class OrderMailer < ActionMailer::Base
     mail \
       to: order.email,
       subject: make_subject(order),
-      template_path: 'mailers/order_mailer/user',
-      template_name: order.state
+      template_name: "user/#{order.state}"
   end
 
   def self.default_admin_emails

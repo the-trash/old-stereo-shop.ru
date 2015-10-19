@@ -11,6 +11,7 @@ Rails.application.config.assets.precompile += %w(
   i18n/translations.js
   modules/product_page/index.js
   ie.js
+  mail.css
 )
 
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
