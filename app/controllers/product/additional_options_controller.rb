@@ -5,7 +5,7 @@ class Product::AdditionalOptionsController < FrontController
   skip_before_filter :set_variables, :store_location
 
   def show
-    @photos = additional_option.photos.published
+    @photos = additional_option_value.photos.published
     @product_attributes = additional_option.product_attributes.published
       .by_option_value_id params[:value].to_i
 
@@ -20,5 +20,9 @@ class Product::AdditionalOptionsController < FrontController
 
   def additional_option
     @additional_option ||= product.additional_options.published.find params[:id]
+  end
+
+  def additional_option_value
+    @additional_option_value ||= additional_option.values.find params[:value].to_i
   end
 end

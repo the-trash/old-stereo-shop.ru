@@ -6,7 +6,11 @@ child @photos => :photos do
   attributes :default
 
   node :big_thumbnail_url do |photo|
-    ImageDecorator.decorate(@product).photo_url :product
+    if photo.default?
+      ImageDecorator.decorate(@additional_option_value).photo_url :product
+    else
+      photo.file.url :product
+    end
   end
 
   node :thumbnail_url do |photo|

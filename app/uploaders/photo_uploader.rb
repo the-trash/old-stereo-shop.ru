@@ -46,7 +46,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   protected
 
   def is_product?(picture)
-    ['Product', 'Product::AdditionalOption'].include? model.photoable_type
+    ['Product', 'Product::AdditionalOptionsValue'].include? model.photoable_type
   end
 
   def is_product_category?(picture)

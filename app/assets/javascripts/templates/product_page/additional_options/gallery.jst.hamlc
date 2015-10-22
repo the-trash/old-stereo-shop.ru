@@ -4,4 +4,4 @@
   %ul.l-photos-thumbnails
     - for photo in @photos
       %li
-        .e-thumb-image{ data: { big_img_url: photo.thumbnail_url }, style: "background-image: url(#{photo.thumbnail_url})" }
+        .e-thumb-image{ data: { 'big-img-url' => photo.big_thumbnail_url }, style: "background-image: url(#{photo.thumbnail_url})" }

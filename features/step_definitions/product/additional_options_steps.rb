@@ -35,3 +35,23 @@ end
 Then(/^I should not see additional options$/) do
   expect(page).not_to have_css '.l-additional-options'
 end
+
+When(/^I am choosing "(.*?)" from select "(.*?)"$/) do |value, from|
+  within '.b-product-additional-options-select-type' do
+    page.select value, from: from
+    wait_for_ajax
+  end
+end
+
+When(/^I am choosing "(.*?)" from radio$/) do |value|
+  within '.l-additional-options-radios' do
+    find('label', text: value).click
+    wait_for_ajax
+  end
+end
+
+Then(/^I should see new (title|description) #{capture_model} for product$/) do |attr, new_value|
+  within ".b-product-customized-#{attr}" do
+    expect(page).to have_content model!(new_value).new_value
+  end
+end

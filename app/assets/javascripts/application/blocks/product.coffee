@@ -1,9 +1,8 @@
+# TODO override me on Marionette.js
 class ProductShowPage
   constructor: ->
     @initGallery()
     @moreReview()
-    @clickOnRadio()
-    @changeAdditionalOptionsSelect()
 
   initGallery: ->
     imagesBlock = $('.b-product-images')
@@ -30,15 +29,5 @@ class ProductShowPage
 
           $(data).insertBefore(_this)
           _this.attr 'data-more', reviewsCount + dataMore
-
-  clickOnRadio: ->
-    $('body').on 'click', '.b-additional-option .radio-label', (e) ->
-      form = $(this).closest('form')
-      $('.additional-options-radio').val form.find('input#' + $(this).attr('for')).val()
-      form.submit()
-
-  changeAdditionalOptionsSelect: ->
-    $('body').on 'change', '.b-additional-option select', (e) ->
-      $(this).closest('form').submit()
 
 @ProductShowPage = ProductShowPage

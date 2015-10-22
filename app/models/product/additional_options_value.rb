@@ -14,7 +14,7 @@
 #
 
 class Product::AdditionalOptionsValue < ActiveRecord::Base
-  include Statable
+  include Statable, Photoable
 
   has_many :new_values, class_name: 'Product::AttributesValue',
     foreign_key: :additional_options_value_id,
@@ -28,6 +28,4 @@ class Product::AdditionalOptionsValue < ActiveRecord::Base
   validates :additional_option, :value, presence: true
 
   accepts_nested_attributes_for :new_values, allow_destroy: true, reject_if: :all_blank
-
-  delegate :photos, to: :additional_option
 end

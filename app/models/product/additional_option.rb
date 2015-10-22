@@ -19,7 +19,7 @@
 #
 
 class Product::AdditionalOption < ActiveRecord::Base
-  include Friendable, Photoable, Statable
+  include Friendable, Statable
 
   RENDER_TYPES = %i(select_style radio)
 

@@ -11,7 +11,8 @@ ActiveAdmin.register Product::AdditionalOption do
       :id, :value, :state, :_destroy,
       new_values_attributes: [
         :id, :new_value, :_destroy, :product_attribute, :state
-      ]
+      ],
+      photos_attributes: [:id, :file, :state, :default, :_destroy]
     ]
 
   actions :all, except: [:show, :destroy]
@@ -72,6 +73,7 @@ ActiveAdmin.register Product::AdditionalOption do
             collection: additional_option.object.class.states.keys.
               map { |k| [I18n.t(k, scope: [:activerecord, :attributes, :states, :state]), k] },
             selected: additional_option.object.state
+          additional_option.has_many_photos
           additional_option.has_many :new_values, allow_destroy: true, heading: false do |option_with_new_value|
             option_with_new_value.input :product_attribute,
               as: :select,
@@ -82,10 +84,6 @@ ActiveAdmin.register Product::AdditionalOption do
             option_with_new_value.states_input(option_with_new_value.object.class.states.keys, option_with_new_value.object.state)
           end
         end
-      end
-
-      f.inputs I18n.t('active_admin.views.photo') do
-        f.has_many_photos
       end
 
       f.actions
