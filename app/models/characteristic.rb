@@ -3,10 +3,10 @@
 # Table name: characteristics
 #
 #  id                         :integer          not null, primary key
-#  title                      :string(255)
+#  title                      :string
 #  position                   :integer          default(0)
 #  characteristic_category_id :integer
-#  unit                       :string(255)
+#  unit                       :string
 #  created_at                 :datetime
 #  updated_at                 :datetime
 #

@@ -4,8 +4,8 @@
 #
 #  id             :integer          not null, primary key
 #  photoable_id   :integer
-#  photoable_type :string(255)
-#  file           :string(255)
+#  photoable_type :string
+#  file           :string
 #  state          :integer          default(1)
 #  position       :integer          default(0)
 #  created_at     :datetime

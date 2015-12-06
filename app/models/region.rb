@@ -3,8 +3,8 @@
 # Table name: regions
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)
-#  slug       :string(255)
+#  title      :string
+#  slug       :string
 #  vk_id      :integer
 #  created_at :datetime
 #  updated_at :datetime

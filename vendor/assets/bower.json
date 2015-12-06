@@ -2,8 +2,8 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "backbone-query-parameters": "0.4.0",
-    "backbone.modelbinder": "git://github.com/theironcook/Backbone.ModelBinder#57aaad268658e1dd9e5d507c4f4576086edbefdf",
-    "backbone.paginator": "2.0.2",
+    "backbone.modelbinder": "git://github.com/theironcook/Backbone.ModelBinder#1.1.0",
+    "backbone.paginator": "git://github.com/backbone-paginator/backbone.paginator#2.0.2",
     "backbone": "1.2.1",
     "bootstrap-sass": "3.3.5",
     "bootstrap-validator": "0.9.0",

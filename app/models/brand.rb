@@ -3,10 +3,10 @@
 # Table name: brands
 #
 #  id            :integer          not null, primary key
-#  title         :string(255)
-#  slug          :string(255)
+#  title         :string
+#  slug          :string
 #  description   :text
-#  site_link     :string(255)
+#  site_link     :string
 #  state         :integer          default(1)
 #  admin_user_id :integer
 #  meta          :hstore

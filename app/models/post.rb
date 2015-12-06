@@ -3,8 +3,8 @@
 # Table name: posts
 #
 #  id               :integer          not null, primary key
-#  title            :string(255)
-#  slug             :string(255)
+#  title            :string
+#  slug             :string
 #  description      :text
 #  full_text        :text
 #  state            :integer          default(1)

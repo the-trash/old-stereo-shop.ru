@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  votable_id   :integer
-#  votable_type :string(255)
+#  votable_type :string
 #  user_id      :integer
 #  score        :integer          not null
 #  created_at   :datetime

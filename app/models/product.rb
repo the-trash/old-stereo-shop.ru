@@ -3,9 +3,9 @@
 # Table name: products
 #
 #  id                      :integer          not null, primary key
-#  title                   :string(255)
-#  sku                     :string(255)
-#  slug                    :string(255)
+#  title                   :string
+#  sku                     :string
+#  slug                    :string
 #  description             :text
 #  state                   :integer          default(1)
 #  price                   :decimal(10, 2)   default(0.0), not null

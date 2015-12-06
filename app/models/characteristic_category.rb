@@ -3,7 +3,7 @@
 # Table name: characteristic_categories
 #
 #  id            :integer          not null, primary key
-#  title         :string(255)
+#  title         :string
 #  admin_user_id :integer
 #  position      :integer          default(0)
 #  created_at    :datetime

@@ -3,11 +3,11 @@
 # Table name: stores
 #
 #  id            :integer          not null, primary key
-#  title         :string(255)
-#  slug          :string(255)
+#  title         :string
+#  slug          :string
 #  description   :text
-#  latitude      :string(255)
-#  longitude     :string(255)
+#  latitude      :string
+#  longitude     :string
 #  happens       :boolean          default(TRUE)
 #  state         :integer          default(1)
 #  position      :integer          default(0)

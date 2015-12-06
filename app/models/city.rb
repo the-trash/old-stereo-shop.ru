@@ -3,8 +3,8 @@
 # Table name: cities
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)
-#  slug       :string(255)
+#  title      :string
+#  slug       :string
 #  vk_id      :integer
 #  region_id  :integer
 #  created_at :datetime

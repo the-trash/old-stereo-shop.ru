@@ -6,7 +6,7 @@
 #  additional_options_value_id :integer
 #  state                       :integer          default(1)
 #  product_attribute           :integer
-#  new_value                   :string(255)
+#  new_value                   :string
 #
 # Indexes
 #

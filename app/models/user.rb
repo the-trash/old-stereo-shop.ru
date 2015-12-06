@@ -4,15 +4,15 @@
 #
 #  id                     :integer          not null, primary key
 #  birthday               :date
-#  phone                  :string(255)
-#  first_name             :string(255)
-#  last_name              :string(255)
-#  middle_name            :string(255)
+#  phone                  :string
+#  first_name             :string
+#  last_name              :string
+#  middle_name            :string
 #  created_at             :datetime
 #  updated_at             :datetime
-#  email                  :string(255)      default(""), not null
-#  encrypted_password     :string(255)      default(""), not null
-#  reset_password_token   :string(255)
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
 #  sign_in_count          :integer          default(0), not null
@@ -20,10 +20,10 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  full_name              :string
 #  reviews_count          :integer          default(0)
-#  full_name              :string(255)
 #  city_id                :integer          default(0)
-#  address                :string(255)
+#  address                :string
 #  index                  :integer
 #  subscription_settings  :hstore
 #
