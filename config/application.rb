@@ -45,14 +45,26 @@ module Stereoshop
         enable_starttls_auto: true
       }
 
-      if Rails.env.production?
+      # if Rails.env.production?
         config.middleware.use ::ExceptionNotification::Rack,
           email: {
             email_prefix:         "[STEREO-SHOP.RU/ERRORS:] ",
             sender_address:       %["server" <ilya-zykin@stereo-shop.ru>],
-            exception_recipients: %w[ ilya-zykin@stereo-shop.ru ]
+            exception_recipients: %w[ ilya-zykin@stereo-shop.ru ],
+
+            smtp_settings: {
+              address: 'smtp.yandex.ru',
+              domain:  'yandex.ru',
+              port:    25,
+
+              user_name: 'ilya-zykin@stereo-shop.ru',
+              password:  'CnthtjCbcntvcGhj',
+
+              authentication: 'plain',
+              enable_starttls_auto: true
+            }
           }
-      end
+      # end
     end
 
     %w(uploaders forms presenters queries workers views/mailers).each do |folder_path|
