@@ -1,0 +1,40 @@
+.ma.mt20.mb20.w1000
+  .clearfix.ffa.fs14.mb20
+    .pull-right
+      span.mr10 элементов на стр:
+      - %w[ 5 10 20 50 100 125 200 300 400 500 ].each do |num|
+        span.mr10= link_to num, url_for(per_page: num)
+
+      span.ml50= link_to 'Сбросить сортировку', url_for( reset_simple_sort )
+
+  .ptz--theme-0
+    .table.w100p.ffa.fs15.ptz--table-0--table
+      .row.ptz--table-0--header
+        .cell.p10.w50.ptz--table-0--cell
+          | Номер
+        .cell.p10.w50.ptz--table-0--cell
+          = link_to 'ID ↕', simple_sort_url(:id)
+        .cell.p10.ptz--table-0--cell
+          = link_to 'Название ↕', simple_sort_url(:title)
+        .cell.p10.ptz--table-0--cell
+          = link_to 'Создан ↕', simple_sort_url(:created_at)
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'В Маркете? ↕', simple_sort_url(:add_to_yandex_market)
+
+      - @products.each_with_index do |product, index|
+        .row.ptz--table-0--row
+          .cell.p10.w50.ptz--table-0--cell
+            = index.next
+          .cell.p10.w50.ptz--table-0--cell
+            = product.id
+          .cell.p10.ptz--table-0--cell.lh120
+            = link_to product.title, product
+          .cell.p10.ptz--table-0--cell.br-off
+            = raw I18n.l(product.created_at, format: raw("%-d %B %Y"))
+          .cell.p10.w40.ptz--table-0--cell
+            = form_tag yandex_market_list_switch_path(product.id), remote: true, method: :put do
+              = hidden_field_tag 'yandex', 0
+              = check_box_tag 'yandex', '1', product.add_to_yandex_market, autocomplete: :off, class: 'ya-market--checkbox'
+
+  .will-paginate-custom.mt20.mb20.ffa
+    = will_paginate @products

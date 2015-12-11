@@ -91,6 +91,33 @@ GIT
       rack-cache
 
 PATH
+  remote: ./X_GEMS/log_js
+  specs:
+    log_js (0.0.2)
+      coffee-rails
+
+PATH
+  remote: ./X_GEMS/pagination
+  specs:
+    pagination (0.0.1)
+      kaminari
+
+PATH
+  remote: ./X_GEMS/simple_sort
+  specs:
+    simple_sort (0.0.2)
+
+PATH
+  remote: X_GEMS/protozaur
+  specs:
+    protozaur (0.1.0)
+
+PATH
+  remote: X_GEMS/protozaur_theme
+  specs:
+    protozaur_theme (0.1.0)
+
+PATH
   remote: engines/admin_app
   specs:
     admin_app (1.0.0)
@@ -688,6 +715,7 @@ DEPENDENCIES
   image_suckr
   js-routes
   letter_opener
+  log_js!
   memoist
   meta-tags!
   meta_request
@@ -695,9 +723,12 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-vkontakte
+  pagination!
   pg
   pickle
   poltergeist
+  protozaur!
+  protozaur_theme!
   pry
   pry-byebug
   pry-rails
@@ -726,6 +757,7 @@ DEPENDENCIES
   sidekiq
   sidetiq (= 0.6.1)
   simple_captcha2
+  simple_sort!
   sinatra
   sitemap_generator
   slim
@@ -741,3 +773,6 @@ DEPENDENCIES
   unicorn
   webmock
   will_paginate
+
+BUNDLED WITH
+   1.10.6

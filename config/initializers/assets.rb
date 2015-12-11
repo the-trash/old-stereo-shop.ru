@@ -12,6 +12,9 @@ Rails.application.config.assets.precompile += %w(
   modules/product_page/index.js
   ie.js
   mail.css
+
+  yandex_market.css
+  yandex_market.js
 )
 
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')

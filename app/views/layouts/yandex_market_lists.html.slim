@@ -1,0 +1,14 @@
+doctype html
+html(lang='en' data-log-js=Rails.env.development?)
+  head
+    meta(charset='utf-8')
+    title Yandex
+
+    = stylesheet_link_tag    :yandex_market, media: :all
+    = javascript_include_tag :yandex_market
+
+    meta(http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1')
+    = csrf_meta_tags
+
+  body
+    = yield

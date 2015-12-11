@@ -1,0 +1,2 @@
+$ ->
+  MarketCheckbox.init()

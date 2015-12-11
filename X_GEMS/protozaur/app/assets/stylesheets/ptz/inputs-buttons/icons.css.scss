@@ -1,0 +1,11 @@
+.ptz--btn--icon{ margin-right: 15px }
+
+$i: 10;
+@while $i <= 25 {
+
+  .ptz--size-#{ $i } .ptz--btn--icon{
+    font-size: #{ $i + 2 }px;
+  }
+
+  $i: $i + 1;
+}

@@ -1,0 +1,94 @@
+// #FFCC00
+// input#test_checkbox.radio-btn(type='checkbox' checked='checked')
+// label(for='test_checkbox')
+.radio-btn
+  display: none
+
+  // DEFAULT
+  &+label
+    color: #999
+    font-size: 13px
+    cursor: pointer
+    position: relative
+    padding-left: 25px
+
+    &:before
+      content: ''
+
+      position: absolute
+      top:    -1px
+      bottom: 0
+      left:   0
+      right:  0
+
+      border-radius: 5px
+      border: 1px solid #999
+
+      width:  15px
+      height: 15px
+      font-size: 24px
+
+  // HOVER
+  &+label:hover
+    color: #999
+
+    &:before
+      color: #999
+      content: '\2713'
+      border: 1px solid #999
+
+  // ACTIVE
+  &:checked+label
+    color: #000
+
+    &:before
+      content: '\2713'
+      border: 1px solid #000
+
+    &:hover:before
+      color: #000
+
+.radio-btn--info-line
+  // DEFAULT
+  &+label
+    color: black
+    display: block
+    font-size: 15px
+    cursor: pointer
+    border-radius: 3px
+    padding: 10px 15px 15px 42px
+    line-height: 140%
+
+    background-color: transparent
+    transition: background-color .3s ease, color .3s ease
+
+    &:before
+      top:  12px
+      left: 15px
+      color: #000
+      border-color: #000
+      line-height: 40%
+
+  // HOVER
+  &+label:hover
+    color: white
+    background: #4b4fe4
+
+    &:before
+      content: ''
+      color: #fff
+      border-color: #fff
+
+  // ACTIVE
+  &:checked+label
+    color: white
+    background: #4b4fe4
+
+    &:before
+      color: #fff
+      border-color: #fff
+
+    &:hover, &:hover:before
+      color: #fff
+      content: '\2713'
+      border-color: #fff

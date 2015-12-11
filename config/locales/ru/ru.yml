@@ -18,6 +18,11 @@ ru:
       seo_description: 'Описание'
 
   views:
+    pagination:
+      truncate: '...'
+      first: Первая
+      last: Последняя
+
     product:
       reviews_count:
         one: 1 отзыв

@@ -3,6 +3,10 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount AdminApp::Engine => '/administration', as: :admin_app
 
+  resources :yandex_market_lists do
+    put :switch
+  end
+
   devise_for :users,
     controllers: {
       omniauth_callbacks: 'users/omniauth_callbacks',

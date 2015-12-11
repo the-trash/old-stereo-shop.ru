@@ -43,6 +43,7 @@
 #
 
 class Product < ActiveRecord::Base
+  include ::SimpleSort::Base
   include Friendable, Seoble, Statable, Photoable, Ratable
 
   HOWSORT = %w(popular new_products price_reduction price_increase)
@@ -73,7 +74,7 @@ class Product < ActiveRecord::Base
   scope :without_fix_price, -> { where(fix_price: false) }
   scope :by_category_ids, -> (ids) { where product_category_id: ids }
   scope :by_presence, -> { order in_stock: :desc }
-  
+
   acts_as_list scope: :product_category
 
   before_save :ensure_not_referenced_by_any_line_items, if: :state_changed?

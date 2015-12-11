@@ -5,6 +5,14 @@ gem 'admin_app', '~> 1.0.0', path: 'engines/admin_app'
 gem 'rails'
 gem 'rails_config', '0.2.5'
 
+## Refactor
+gem 'protozaur', path: './X_GEMS/protozaur'
+gem 'protozaur_theme', path: './X_GEMS/protozaur_theme'
+
+gem 'simple_sort', path: './X_GEMS/simple_sort'
+gem 'pagination', path: './X_GEMS/pagination'
+gem 'log_js', path: './X_GEMS/log_js'
+
 ## Database adapter
 gem 'pg'
 

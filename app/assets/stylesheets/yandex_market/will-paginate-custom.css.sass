@@ -1,0 +1,35 @@
+.b-pagination
+  text-align: center
+  border-radius: 3px
+  background: #e3f2fd
+  box-sizing: border-box
+  padding: 20px
+
+  a, li
+    width:  35px
+    height: 35px
+
+    font-size:   17px
+    line-height: 35px
+    display: inline-block
+
+    &:hover
+      background: #fff
+
+    &.active
+      background: #fff
+
+      &:hover
+        background: #fff
+
+  li.next_page
+    float: right
+
+  li.prev_page
+    float: left
+
+  li.disabled
+    background: transparent
+
+    a:hover
+      background: transparent
