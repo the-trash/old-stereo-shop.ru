@@ -41,3 +41,6 @@ config/environments/*.local.yml
 
 # Bower files
 /vendor/assets/bower_components
+
+config/redis_6400.config
+db/redis_6400.rdb
