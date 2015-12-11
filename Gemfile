@@ -13,6 +13,8 @@ gem 'simple_sort', path: './X_GEMS/simple_sort'
 gem 'pagination', path: './X_GEMS/pagination'
 gem 'log_js', path: './X_GEMS/log_js'
 
+gem 'exception_notification'
+
 ## Database adapter
 gem 'pg'
 
@@ -102,7 +104,7 @@ group :development do
   gem 'capistrano3-unicorn'
   gem 'foreman'
   gem 'fuubar'
-  gem 'letter_opener'
+  # gem 'letter_opener'
   gem 'meta_request'
   gem 'thin'
   gem 'traceroute'

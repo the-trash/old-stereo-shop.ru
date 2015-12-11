@@ -26,6 +26,33 @@ module Stereoshop
       g.view_specs false
       g.controller_spec true
       g.model_spec true
+
+      # MAILER
+
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.raise_delivery_errors = true
+      config.action_mailer.default_url_options = { host: 'stereo-shop.ru' }
+
+      config.action_mailer.smtp_settings = {
+        address: 'smtp.yandex.ru',
+        domain:  'yandex.ru',
+        port:    25,
+
+        user_name: 'ilya-zykin@stereo-shop.ru',
+        password:  'CnthtjCbcntvcGhj',
+
+        authentication: 'plain',
+        enable_starttls_auto: true
+      }
+
+      if Rails.env.production?
+        config.middleware.use ExceptionNotification::Rack,
+          email: {
+            email_prefix:         "[STEREO-SHOP.RU/ERRORS:] ",
+            sender_address:       %["server" <ilya-zykin@stereo-shop.ru>],
+            exception_recipients: %w[ ilya-zykin@stereo-shop.ru ]
+          }
+      end
     end
 
     %w(uploaders forms presenters queries workers views/mailers).each do |folder_path|

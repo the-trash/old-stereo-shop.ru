@@ -308,6 +308,9 @@ GEM
       request_store (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.0.7)
+    exception_notification (4.1.2)
+      actionmailer (~> 4.0)
+      activesupport (~> 4.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -381,8 +384,6 @@ GEM
     kgio (2.9.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.2.0)
-      launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -702,6 +703,7 @@ DEPENDENCIES
   devise!
   devise-async
   draper
+  exception_notification
   factory_girl_rails
   faker
   foreman
@@ -714,7 +716,6 @@ DEPENDENCIES
   i18n-js
   image_suckr
   js-routes
-  letter_opener
   log_js!
   memoist
   meta-tags!
