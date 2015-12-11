@@ -46,7 +46,7 @@ module Stereoshop
       }
 
       if Rails.env.production?
-        config.middleware.use ExceptionNotification::Rack,
+        config.middleware.use ::ExceptionNotification::Rack,
           email: {
             email_prefix:         "[STEREO-SHOP.RU/ERRORS:] ",
             sender_address:       %["server" <ilya-zykin@stereo-shop.ru>],
