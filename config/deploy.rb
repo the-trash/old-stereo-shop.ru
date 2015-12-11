@@ -6,7 +6,8 @@ set :stages, %w(staging, production)
 set :default_stage, 'staging'
 
 set :application, 'stereo_shop'
-set :repo_url, 'git@github.com:Stereo-Shop/Stereo.git'
+# set :repo_url, 'git@github.com:Stereo-Shop/Stereo.git'
+set :repo_url, 'git@bitbucket.org:stereo-shop/stereo-shop-0.git'
 
 set :deploy_to, "/srv/www/#{ fetch :application }/#{ fetch :stage }"
 
