@@ -3,6 +3,11 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount AdminApp::Engine => '/administration', as: :admin_app
 
+  # get '/page_404'  => 'app_errors#page_404', as: :page_404
+  %w[ bug detect_403 detect_404 detect_422 detect_500 ].each do |page|
+    get page => "app_errors##{ page }"
+  end
+
   resources :yandex_market_lists do
     put :switch
   end
