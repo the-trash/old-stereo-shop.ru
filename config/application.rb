@@ -45,7 +45,7 @@ module Stereoshop
         enable_starttls_auto: true
       }
 
-      # if Rails.env.production?
+      if Rails.env.production?
         config.middleware.use ::ExceptionNotification::Rack,
           email: {
             email_prefix:         "[STEREO-SHOP.RU/ERRORS:] ",
@@ -64,7 +64,7 @@ module Stereoshop
               enable_starttls_auto: true
             }
           }
-      # end
+      end
     end
 
     %w(uploaders forms presenters queries workers views/mailers).each do |folder_path|

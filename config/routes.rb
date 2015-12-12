@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :yandex_market_lists do
+    get :export, on: :collection
     put :switch
   end
 

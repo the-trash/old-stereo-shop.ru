@@ -1,4 +1,14 @@
 ru:
+  in_da_stock:
+    true_val: да
+    false_val: нет
+
+  state:
+    draft: Черновик
+    published: Опубликовано
+    removed: Удалено
+    moderated: На модерации
+
   activerecord:
     models:
       setting:

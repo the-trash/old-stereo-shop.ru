@@ -19,3 +19,5 @@ set up your machine with [this script].
 You can generate locales for JS. Just run: `rake i18n:js:export`
 
 [this script]: https://github.com/thoughtbot/laptop
+
+Net::SMTPFatalError: 550 5.1.1 <ilya-zykin@stereo-shop.ru>... User unknown

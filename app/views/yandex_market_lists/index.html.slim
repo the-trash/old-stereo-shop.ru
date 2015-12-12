@@ -1,7 +1,7 @@
 .ma.mt20.mb20.w1000
   .clearfix.ffa.fs14.mb20
     .pull-left
-      = link_to 'Выгрузить в YML', '#', class: 'ptz--btn'
+      = link_to 'Выгрузить в YML', export_yandex_market_lists_path, class: 'ptz--btn'
     .pull-right
       span.mr10 элементов на стр:
       - %w[ 5 10 20 50 100 125 200 300 400 500 ].each do |num|
@@ -20,6 +20,10 @@
           = link_to 'Название ↕', simple_sort_url(:title)
         .cell.p10.ptz--table-0--cell
           = link_to 'Создан ↕', simple_sort_url(:created_at)
+        .cell.p10.ptz--table-0--cell
+          = link_to 'Статус ↕', simple_sort_url(:state)
+        .cell.p10.ptz--table-0--cell
+          = link_to 'В наличии ↕', simple_sort_url(:in_stock)
         .cell.p10.w40.ptz--table-0--cell
           = link_to 'В Маркете? ↕', simple_sort_url(:add_to_yandex_market)
 
@@ -33,6 +37,10 @@
             = link_to product.title, product
           .cell.p10.ptz--table-0--cell.br-off
             = raw I18n.l(product.created_at, format: raw("%-d %B %Y"))
+          .cell.p10.ptz--table-0--cell.lh120
+            = t product.state, scope: :state
+          .cell.p10.ptz--table-0--cell.lh120
+            = t "#{ product.in_stock }_val", scope: :in_da_stock
           .cell.p10.w40.ptz--table-0--cell
             = form_tag yandex_market_list_switch_path(product.id), remote: true, method: :put do
               = hidden_field_tag 'yandex', 0
