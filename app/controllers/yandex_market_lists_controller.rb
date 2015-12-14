@@ -24,6 +24,7 @@ class YandexMarketListsController < ActionController::Base
 
     time_stamp = Time.now.strftime("%Y.%m.%-d_%H.%M")
     send_data(stream, type: "text/xml", filename: "yandex-market-#{ time_stamp }.xml")
+
     # render text: stream
   end
 end

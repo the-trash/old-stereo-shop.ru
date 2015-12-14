@@ -25,6 +25,9 @@ class CentralBankExchangeRates
     doc.search("Valute[ID=#{currency_code}]").children().search('Value').text()
   end
 
+  # daily: 'http://www.cbr.ru/scripts/XML_daily.asp'
+  # range: 'http://www.cbr.ru/scripts/XML_dynamic.asp'
+  # 'R01239'
   def current_euro_rate
     report = get_daily_report(Time.zone.now.to_date)
     report_by_currency(report.body, Settings.central_bank.currency_code.eur).to_f
