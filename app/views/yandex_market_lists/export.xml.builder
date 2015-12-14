@@ -43,7 +43,7 @@ xml.yml_catalog(date: Time.now.strftime("%Y-%m-%d %H:%M")) do
         xml.offer(params) do
           # MUST HAVE
           xml.name        product.title
-          xml.description Sanitize.fragment(product.description).mb_chars[0...175]
+          xml.description Sanitize.fragment(product.short_desc.to_s).mb_chars[0...175]
 
           # PRICE
           if product.discount.zero?
