@@ -20,11 +20,11 @@
     = render 'shared/header'
 
     - if current_page?(root_path)
-      / .banner-wrapper
-      /   = render 'shared/banner'
-      %div{style: 'text-align:center'}
-        = link_to 'http://stereo-shop.ru/product_categories/novyy-god-s-denon' do
-          = image_tag '/images/Denon_1200_770Х125.jpg'
+      .banner-wrapper
+        = render 'shared/banner'
+      / %div{style: 'text-align:center'}
+      /   = link_to 'http://stereo-shop.ru/product_categories/novyy-god-s-denon' do
+      /     = image_tag '/images/Denon_1200_770Х125.jpg'
 
     .container
       #flash_messages= flash_messages :fade
