@@ -108,14 +108,14 @@ PATH
     simple_sort (0.0.2)
 
 PATH
-  remote: X_GEMS/protozaur
-  specs:
-    protozaur (0.1.0)
-
-PATH
   remote: X_GEMS/protozaur_theme
   specs:
     protozaur_theme (0.1.0)
+
+PATH
+  remote: X_GEMS/protozaur
+  specs:
+    protozaur (0.1.0)
 
 PATH
   remote: engines/admin_app
@@ -776,4 +776,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
