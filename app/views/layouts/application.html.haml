@@ -21,10 +21,10 @@
 
     - if current_page?(root_path)
       .banner-wrapper
-        / = render 'shared/banner'
-        %div{style: 'text-align:center'}
-          = link_to 'http://stereo-shop.ru/product_categories/skidki-na-denon' do
-            = image_tag '/images/DENON_770X125.jpg'
+        = render 'shared/banner'
+        / %div{style: 'text-align:center'}
+        /   = link_to 'http://stereo-shop.ru/product_categories/skidki-na-denon' do
+        /     = image_tag '/images/DENON_770X125.jpg'
 
     .container
       #flash_messages= flash_messages :fade
