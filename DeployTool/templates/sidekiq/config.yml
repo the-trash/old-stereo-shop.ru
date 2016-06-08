@@ -1,0 +1,22 @@
+---
+:verbose: true
+:concurrency: 10
+:pidfile: <%= fetch :pids_dir %>/sidekiq.pid
+:logfile: <%= fetch :log_dir  %>/sidekiq.log
+
+:queues:
+  - [default,  5]
+  # - [critical, 7]
+  # - [single,   5]
+  # - [low,      1]
+
+# :limits:
+#   single: 1
+#   low: 1
+
+# sidekiq-limit_fetch
+# :limits:
+#   critical: 5
+#   default:  3
+#   single:   1
+#   low:      1

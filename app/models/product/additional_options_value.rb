@@ -4,7 +4,7 @@
 #
 #  id                           :integer          not null, primary key
 #  product_additional_option_id :integer
-#  value                        :string
+#  value                        :string(255)
 #  state                        :integer          default(1)
 #
 # Indexes

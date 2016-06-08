@@ -1,0 +1,71 @@
+# <% domain = "site.com" %>
+# <% server_addr = "site.com" %>
+configs:
+  domain: <%= domain %>
+
+  branch: production
+  repo: git@github.com:account/repo.git
+  shared_uploads: public/uploads
+  deploy_to: /home/user/www/project_production
+  keep_releases: 10
+
+  web_server: unicorn
+
+  tools:
+    redis:     true
+    sidekiq:   true
+    sphinx:    true
+    whenever:  true
+    new_relic: true
+
+  rvm:
+    ruby:   ruby-2.1.1
+    gemset: cap3
+
+  defaults:
+    ssh: &ssh_defaults
+      password:
+      auth_methods:
+        - publickey
+        - password
+      forward_agent: true
+
+  new_relic:
+    app_name: ProjectName
+    key: some_secret_token
+
+  sphinx:
+    port: 9400
+
+  redis:
+    port: 6400
+    host: localhost
+    namespace: site_com_production
+
+  whenever:
+    namespace: site_com_production
+
+  sidekiq:
+    namespace: site_com_production
+
+  unicorn:
+    socket_name: site_com_ru_socket
+    workers: 15
+
+  role:
+    app:
+      address: <%= server_addr %>
+
+      ssh:
+        <<: *ssh_defaults
+        user: user_login
+        password: secret_password
+
+  db:
+    host:     host01.site.com
+    adapter:  postgresql
+    name:     site_com_production
+    username: site_com_production
+    password: secret_password
+    encoding: utf8
+    pool:     30

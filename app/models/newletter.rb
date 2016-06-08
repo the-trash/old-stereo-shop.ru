@@ -3,7 +3,7 @@
 # Table name: newletters
 #
 #  id                :integer          not null, primary key
-#  title             :string
+#  title             :string(255)
 #  description       :text
 #  admin_user_id     :integer
 #  post_category_id  :integer

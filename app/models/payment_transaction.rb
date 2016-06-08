@@ -11,12 +11,12 @@
 #  shop_sum_bank_paycash      :integer
 #  order_sum_amount           :decimal(10, 2)   default(0.0), not null
 #  shop_sum_amount            :decimal(10, 2)   default(0.0), not null
-#  invoice_id                 :string
-#  payment_payer_code         :string
-#  customer_number            :string
-#  payment_type               :string
-#  cps_user_country_code      :string
-#  md5                        :string
+#  invoice_id                 :string(255)
+#  payment_payer_code         :string(255)
+#  customer_number            :string(255)
+#  payment_type               :string(255)
+#  cps_user_country_code      :string(255)
+#  md5                        :string(255)
 #  request_datetime           :datetime
 #  order_created_datetime     :datetime
 #  created_at                 :datetime

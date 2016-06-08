@@ -12,5 +12,8 @@
   //= require protozaur_theme/theme-0/paginators
   //= require protozaur_theme/theme-0/typos
 
+  //= require ./toastr
+  //= require ./elco_styles
+  //= require ./notifications
   //= require ./will-paginate-custom
 */

@@ -9,8 +9,14 @@ Rails.application.routes.draw do
   end
 
   resources :yandex_market_lists do
-    get :export, on: :collection
+    collection do
+      get :export
+      match :elco_check, via: %w[ get post ]
+      match :elco_import_start, via: %w[ get post ]
+    end
+
     put :switch
+    patch :product_update
   end
 
   devise_for :users,

@@ -1,5 +1,12 @@
 module ProductsHelper
-  def price_with_discount(price, with_discount, options = { default_classes: 'price' })
+  def price_with_discount(product, options = { default_classes: 'price' })
+    price = product.price
+    with_discount = product.price_with_discount
+
+    if product.elco_id.present?
+      return product_price product.total_elco_price
+    end
+
     content_tag(:div, class: options[:default_classes]) do
       if price == with_discount
         product_price(price, { class: 'product-price' })

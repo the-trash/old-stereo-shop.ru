@@ -3,8 +3,8 @@
 # Table name: post_categories
 #
 #  id            :integer          not null, primary key
-#  title         :string
-#  slug          :string
+#  title         :string(255)
+#  slug          :string(255)
 #  description   :text
 #  state         :integer          default(1)
 #  admin_user_id :integer
@@ -12,7 +12,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  position      :integer          default(0)
-#  ancestry      :string
+#  ancestry      :string(255)
 #  depth         :integer
 #
 # Indexes

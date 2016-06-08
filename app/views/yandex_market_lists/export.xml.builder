@@ -46,15 +46,20 @@ xml.yml_catalog(date: Time.now.strftime("%Y-%m-%d %H:%M")) do
           xml.description Sanitize.fragment(product.short_desc.to_s).mb_chars[0...175]
 
           # PRICE
-          if product.discount.zero?
-            # Нет скидки
+          if product.elco_id.present?
             xml.currencyId 'RUR'
-            xml.price product.price.to_f
+            xml.price product.total_elco_price
           else
-            # Есть скидка
-            xml.currencyId 'RUR'
-            xml.oldprice product.price.to_f
-            xml.price    product.price_with_discount.to_f
+            if product.discount.zero?
+              # Нет скидки
+              xml.currencyId 'RUR'
+              xml.price product.price.to_f
+            else
+              # Есть скидка
+              xml.currencyId 'RUR'
+              xml.oldprice product.price.to_f
+              xml.price    product.price_with_discount.to_f
+            end
           end
 
           xml.url         product_url(product)

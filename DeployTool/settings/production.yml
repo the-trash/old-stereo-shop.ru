@@ -1,0 +1,150 @@
+# ip: 104.131.34.236
+# stereo-shop.ru
+
+#################################
+# RUN APP
+#################################
+
+# ssh root@stereo-shop.ru
+# T5jQCbuwBV
+#
+# cd /srv/www/stereo_shop/production/current
+# rvm use ruby-2.2.1@stereoshop
+# bin/rails c production
+
+# cat ~/.ssh/id_rsa.pub | ssh root@stereo-shop.ru 'cat >> ~/.ssh/authorized_keys'
+# T5jQCbuwBV
+
+# RVM_HOOK=false cap production db:dump
+
+#################################
+
+# <% domain = "stereo-shop.ru" %>
+# <% server_addr = "stereo-shop.ru" %>
+
+configs:
+  domain: <%= domain %>
+
+  # master
+  branch: undef
+  repo:   undef
+  deploy_to: /srv/www/stereo_shop/production
+  shared_uploads: public/uploads
+
+  app_secret: undef
+  skip_assets_precompile: false
+  local_backups_dir: /Users/the-teacher/rails/my_projects/DUMPS
+
+  keep_releases: 3
+
+  nginx:
+    ssl: false
+
+  web_server: unicorn
+
+  tools:
+    redis:        false
+    sidekiq:      false
+    sphinx:       false
+    whenever:     false
+    new_relic:    false
+    rails_config: true
+    encryptor:    false
+
+  rvm:
+    ruby:   ruby-2.2.1
+    gemset: stereoshop
+    # gem_version: 1.6.2
+
+  unicorn:
+    socket_name: undef
+    workers: 7
+
+  sphinx:
+    port: 9500
+
+  new_relic:
+    app_name: undef
+    key:  undef
+
+  redis:
+    port: 6450
+    host: localhost
+    namespace: undef
+
+  whenever:
+    namespace: undef
+
+  sidekiq:
+    namespace: undef
+
+  encryptor:
+    algorithm: aes-128-cbc
+    key:  undef
+    iv:   undef
+    salt: undef
+
+  defaults:
+    ssh: &ssh_defaults
+      password:
+      auth_methods:
+        - publickey
+        - password
+      forward_agent: true
+
+  role:
+    app:
+      address: <%= server_addr %>
+
+      ssh:
+        <<: *ssh_defaults
+        user: root
+
+  db:
+    host:     localhost
+    adapter:  postgresql
+    username: stereo_shop
+    name:     stereo_shop_production
+    password: 8D6EtFUu
+    encoding: utf8
+    pool:     30
+
+  mailer:
+    service: smtp
+
+    host: 'undef'
+
+    sandmail:
+      location:  '/usr/sbin/sendmail'
+      arguments: '-i -t'
+
+    smtp:
+      email:    'undef@undef.ru'
+      password: undef
+
+      authentication: plain
+      address: 'smtp.yandex.ru'
+      domain:  'yandex.ru'
+      port:    25
+
+  oauth:
+    vkontakte:
+      app_id:     undef
+      app_secret: undef
+
+    facebook:
+      app_id:     undef
+      app_secret: undef
+
+    twitter:
+      app_id: undef
+      app_secret: undef
+
+    google_oauth2:
+      app_id: 'undef'
+      app_secret: 'undef'
+
+    odnoklassniki:
+      app_id: undef
+      app_secret: undef
+      app_public: undef

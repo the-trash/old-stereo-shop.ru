@@ -11,4 +11,6 @@ html(lang='en' data-log-js=Rails.env.development?)
     = csrf_meta_tags
 
   body
+    / = render partial: 'notifications/form', locals: { object: @pub, format: :json }
+    = render partial: 'notifications/flash', locals: { format: :json }
     = yield

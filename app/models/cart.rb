@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  user_id       :integer
-#  session_token :string           not null
+#  session_token :string(255)      not null
 #  created_at    :datetime
 #  updated_at    :datetime
 #

@@ -3,8 +3,8 @@
 # Table name: product_additional_options
 #
 #  id          :integer          not null, primary key
-#  title       :string
-#  slug        :string
+#  title       :string(255)
+#  slug        :string(255)
 #  render_type :integer          default(0)
 #  state       :integer          default(1)
 #  product_id  :integer

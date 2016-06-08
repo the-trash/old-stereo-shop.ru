@@ -3,9 +3,9 @@
 # Table name: products
 #
 #  id                      :integer          not null, primary key
-#  title                   :string
-#  sku                     :string
-#  slug                    :string
+#  title                   :string(255)
+#  sku                     :string(255)
+#  slug                    :string(255)
 #  description             :text
 #  state                   :integer          default(1)
 #  price                   :decimal(10, 2)   default(0.0), not null
@@ -31,6 +31,14 @@
 #  add_to_yandex_market    :boolean          default(TRUE)
 #  fix_price               :boolean          default(FALSE)
 #  short_desc              :text
+#  elco_id                 :string           default("")
+#  elco_state              :string           default("")
+#  elco_errors             :text
+#  elco_amount_home        :integer
+#  elco_amount_msk         :integer
+#  elco_updated_at         :datetime
+#  elco_price              :decimal(10, 2)   default(0.0), not null
+#  elco_markup             :decimal(8, 2)    default(0.0), not null
 #
 # Indexes
 #
@@ -142,6 +150,10 @@ class Product < ActiveRecord::Base
 
   def price_with_discount
     price - (price * discount) / 100
+  end
+
+  def total_elco_price
+    (elco_price.to_f + (elco_price.to_f * elco_markup.to_f * 0.01)).to_i
   end
 
   private

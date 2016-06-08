@@ -1,0 +1,117 @@
+# cap production sidekiq:init:copy
+# cap production sidekiq:config:copy
+
+# cap production sidekiq:init:show
+# cap production sidekiq:config:show
+
+# cap production sidekiq:start
+# cap production sidekiq:stop
+
+namespace :sidekiq do
+  # cap production sidekiq:log
+  task :log do
+    on roles(:all) do
+      within fetch(:log_dir) do
+        execute :tail, '-f', "./sidekiq.log", '-n', '10'
+      end
+    end
+  end
+
+  namespace :config do
+    desc "cap production sidekiq:config:copy"
+    task :copy do
+      on roles(:all) do
+        template "sidekiq/config.yml", "#{ fetch(:configs_dir) }/#{ fetch :sidekiq_config_file }"
+      end
+    end
+
+    desc "cap production sidekiq:config:show"
+    task :show do
+      on roles(:all) do
+        execute :cat, "#{ fetch :configs_dir }/#{ fetch :sidekiq_config_file }"
+      end
+    end
+  end
+
+  namespace :pid do
+    desc "cap production sidekiq:pid:show"
+    task :show do
+      on roles(:all) do
+        sidekiq_pid = "#{ fetch :pids_dir }/#{ fetch :sidekiq_pid }"
+
+        if remote_file_exists? sidekiq_pid
+          execute :cat, sidekiq_pid
+        end
+      end
+    end
+
+    desc "cap production sidekiq:pid:rm"
+    task :rm do
+      on roles(:all) do
+        sidekiq_pid = "#{ fetch :pids_dir }/sidekiq.pid"
+
+        if remote_file_exists? sidekiq_pid
+          execute :rm, sidekiq_pid
+        end
+      end
+    end
+  end
+
+  namespace :init do
+    desc "cap production sidekiq:init:copy"
+    task :copy do
+      on roles(:all) do
+        execute :mkdir, '-p', "#{ fetch(:configs_dir) }/initializers"
+        template "sidekiq/sidekiq.rb", "#{ fetch(:configs_dir) }/initializers/#{ fetch :sidekiq_init_file }"
+      end
+    end
+
+    desc "cap production sidekiq:init:show"
+    task :show do
+      on roles(:all) do
+        sk_init = "#{ current_path }/config/initializers/#{ fetch :sidekiq_init_file }"
+        sk_src  = "#{ fetch(:configs_dir) }/initializers/#{ fetch :sidekiq_init_file }"
+
+        execute(:cat, sk_src)  if remote_file_exists? sk_src
+        execute(:cat, sk_init) if remote_file_exists? sk_init
+      end
+    end
+  end
+
+  desc "cap production sidekiq:restart"
+  task :restart do
+    on roles(:app) do
+      task! 'sidekiq:stop'
+      task! 'sidekiq:start'
+    end
+  end
+
+  desc "cap production sidekiq:start"
+  task :start do
+    on roles(:app) do
+      within current_path do
+        sidekiq_pid = "#{ fetch :pids_dir }/#{ fetch :sidekiq_pid }"
+
+        unless remote_file_exists? sidekiq_pid
+          execute :bundle, :exec, :sidekiq, "-e #{ fetch :stage } -d -C #{ fetch :configs_dir }/#{ fetch :sidekiq_config_file }"
+        else
+          error "Sidekiq is running"
+          execute :cat, sidekiq_pid
+        end
+      end
+    end
+  end
+
+  desc "cap production sidekiq:stop"
+  task :stop do
+    on roles(:app) do
+      within current_path do
+        sidekiq_pid = "#{ fetch :pids_dir }/#{ fetch :sidekiq_pid }"
+
+        if remote_file_exists? sidekiq_pid
+          execute :bundle, :exec, :'bin/sidekiqctl', :stop, sidekiq_pid
+        end
+      end
+    end
+  end
+end

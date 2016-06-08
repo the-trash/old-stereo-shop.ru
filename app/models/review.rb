@@ -6,14 +6,14 @@
 #  user_id         :integer
 #  rating_id       :integer
 #  body            :text
-#  pluses          :string
-#  cons            :string
+#  pluses          :string(255)
+#  cons            :string(255)
 #  recallable_id   :integer
-#  recallable_type :string
+#  recallable_type :string(255)
 #  state           :integer          default(3)
 #  created_at      :datetime
 #  updated_at      :datetime
-#  user_name       :string
+#  user_name       :string(255)
 #
 # Indexes
 #

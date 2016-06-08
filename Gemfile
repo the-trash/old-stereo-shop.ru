@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'admin_app', '~> 1.0.0', path: 'engines/admin_app'
 
-gem 'rails'
+gem 'rails', '4.2.4'
 gem 'rails_config', '0.2.5'
 
 ## Refactor
@@ -17,6 +17,9 @@ gem 'exception_notification'
 
 ## Database adapter
 gem 'pg'
+
+# SOAP client for ELCO import
+gem 'savon', '2.11.1'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'gregbell/active_admin'

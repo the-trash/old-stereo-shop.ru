@@ -1,7 +1,10 @@
-.ma.mt20.mb20.w1000
+.ma.mt20.mb20.w1400
   .clearfix.ffa.fs14.mb20
     .pull-left
-      = link_to 'Выгрузить в YML', export_yandex_market_lists_path, class: 'ptz--btn'
+      span.ml20.mr40= link_to 'Обновть ELCO', elco_import_start_yandex_market_lists_path, class: 'ptz--btn js--elco-import', remote: true
+      span.mr40.fs26.lh120 &rarr;
+      span.mr40= link_to 'Выгрузить в YML', export_yandex_market_lists_path, class: 'ptz--btn'
+
     .pull-right
       span.mr10 элементов на стр:
       - %w[ 5 10 20 50 100 125 200 300 400 500 ].each do |num|
@@ -20,28 +23,79 @@
           = link_to 'Название ↕', simple_sort_url(:title)
         .cell.p10.ptz--table-0--cell
           = link_to 'Создан ↕', simple_sort_url(:created_at)
+
         .cell.p10.ptz--table-0--cell
           = link_to 'Статус ↕', simple_sort_url(:state)
         .cell.p10.ptz--table-0--cell
           = link_to 'В наличии ↕', simple_sort_url(:in_stock)
+
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'Elco ID ↕', simple_sort_url(:elco_id)
+
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'Elco цена ↕', simple_sort_url(:elco_price)
+
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'Elco наценка %↕', simple_sort_url(:elco_markup)
+
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'Elco UPD ↕', simple_sort_url(:elco_updated_at)
+
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'SPB/MSK'
+
+        .cell.p10.w40.ptz--table-0--cell
+          = link_to 'Elco статус ↕', simple_sort_url(:elco_state)
+
+        .cell.p10.w40.ptz--table-0--cell
+          | Цена
+
         .cell.p10.w40.ptz--table-0--cell
           = link_to 'В Маркете? ↕', simple_sort_url(:add_to_yandex_market)
 
       - @products.each_with_index do |product, index|
         .row.ptz--table-0--row
-          .cell.p10.w50.ptz--table-0--cell
+          .cell.p10.w50.ptz--table-0--cell.vam
             = index.next
-          .cell.p10.w50.ptz--table-0--cell
+          .cell.p10.w50.ptz--table-0--cell.vam
             = product.id
-          .cell.p10.ptz--table-0--cell.lh120
+          .cell.p10.ptz--table-0--cell.lh120.vam
             = link_to product.title, product
-          .cell.p10.ptz--table-0--cell.br-off
+          .cell.p10.ptz--table-0--cell.br-off.vam
             = raw I18n.l(product.created_at, format: raw("%-d %B %Y"))
-          .cell.p10.ptz--table-0--cell.lh120
+          .cell.p10.ptz--table-0--cell.lh120.vam
             = t product.state, scope: :state
-          .cell.p10.ptz--table-0--cell.lh120
+          .cell.p10.ptz--table-0--cell.lh120.vam
             = t "#{ product.in_stock }_val", scope: :in_da_stock
-          .cell.p10.w40.ptz--table-0--cell
+
+          .cell.p10.ptz--table-0--cell.lh120.vam.elco-lb
+            = form_for product, url: yandex_market_list_product_update_path(product.id), remote: true, html: { class: 'js--elco-update-form' } do |f|
+              = f.text_field :elco_id, autocomplete: :off, class: 'ptz--input js--elco-form-submit elco-input ptz--size-12 w80 elco--id'
+
+          .cell.p10.ptz--table-0--cell.lh120.vam
+            = product.elco_price
+
+          .cell.p10.ptz--table-0--cell.lh120.vam
+            = form_for product, url: yandex_market_list_product_update_path(product.id), remote: true, html: { class: 'js--elco-update-form' } do |f|
+              = f.text_field :elco_markup, autocomplete: :off, class: 'ptz--input js--elco-form-submit elco-input ptz--size-12 w60 elco--markup'
+
+          .cell.p10.ptz--table-0--cell.lh120.vam.fs11
+            - if product.elco_updated_at
+              = raw I18n.l(product.elco_updated_at, format: raw("%-d %B %Y %H:%M %S''"))
+
+          .cell.p10.ptz--table-0--cell.lh120.vam
+            - if product.elco_id.present?
+              = product.elco_amount_home
+              |/
+              = product.elco_amount_msk
+
+          .cell.p10.ptz--table-0--cell.lh120.vam.elco-rb
+            = product.elco_state
+
+          .cell.p10.w40.ptz--table-0--cell.vam.elco-rb
+            .br-off= price_with_discount(product)
+
+          .cell.p10.w40.ptz--table-0--cell.vam
             = form_tag yandex_market_list_switch_path(product.id), remote: true, method: :put do
               = hidden_field_tag 'yandex', 0
               = check_box_tag 'yandex', '1', product.add_to_yandex_market, autocomplete: :off, class: 'ya-market--checkbox'

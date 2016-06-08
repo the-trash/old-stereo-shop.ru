@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  product_id        :integer
 #  characteristic_id :integer
-#  value             :string
+#  value             :string(255)
 #
 # Indexes
 #

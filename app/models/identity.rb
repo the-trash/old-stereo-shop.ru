@@ -4,9 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  provider   :string
-#  uid        :string
-#  token      :string
+#  provider   :string(255)
+#  uid        :string(255)
+#  token      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #

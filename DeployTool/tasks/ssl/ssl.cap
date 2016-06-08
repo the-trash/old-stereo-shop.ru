@@ -1,0 +1,82 @@
+namespace :ssl do
+  namespace :cert do
+
+    # RVM_HOOK=false cap production ssl:cert:bundle
+    desc "RVM_HOOK=false cap production ssl:cert:bundle"
+    task :bundle do
+      on roles(:all) do
+        ssl_type = fetch :ssl_type
+
+        case ssl_type
+          when 'comodo_positive_ssl'
+            bundle_comodo_positive_ssl
+          else
+            abort('Undefined way to bundle certificate')
+        end
+      end
+    end
+
+    # RVM_HOOK=false cap production ssl:cert:copy
+    desc "RVM_HOOK=false cap production ssl:cert:copy"
+    task :copy do
+      on roles(:all) do
+        pkey = fetch :ssl_pkey_name
+        bundled_crt_name = fetch :ssl_bundled_crt_name
+
+        remote_ssl_dir = shared_path + 'ssl'
+        execute :mkdir, '-p', remote_ssl_dir
+
+        local_crt  = comodo_positive_ssl_bundled_crt_path
+        local_pkey = comodo_positive_ssl_pkey_path
+
+        remote_crt  = remote_ssl_dir + bundled_crt_name
+        remote_pkey = remote_ssl_dir + pkey
+
+        upload! local_crt,  remote_crt
+        upload! local_pkey, remote_pkey
+      end
+    end
+
+    # ###################################
+    # HELPERS
+    # ###################################
+
+    def ssl_certs_path
+      ssl_dir  = fetch :ssl_dir
+      ssl_type = fetch :ssl_type
+
+      [ CAP3_ROOT, ssl_dir, ssl_type ].join '/'
+    end
+
+    def comodo_positive_ssl_bundled_crt_path
+      bundled_crt_name = fetch :ssl_bundled_crt_name
+      "#{ ssl_certs_path }/#{ bundled_crt_name }"
+    end
+
+    def comodo_positive_ssl_pkey_path
+      pkey = fetch :ssl_pkey_name
+      "#{ ssl_certs_path }/#{ pkey }"
+    end
+
+    def bundle_comodo_positive_ssl
+      ssl_path = ssl_certs_path
+
+      cert_name  = [ ssl_path, fetch(:ssl_cert_name) ].join '/'
+      server_crt = [ ssl_path, 'COMODORSADomainValidationSecureServerCA.crt' ].join '/'
+      trust_crt  = [ ssl_path, 'COMODORSAAddTrustCA.crt' ].join '/'
+      root_crt   = [ ssl_path, 'AddTrustExternalCARoot.crt' ].join '/'
+
+      bundled_crt_path = comodo_positive_ssl_bundled_crt_path
+
+      cmd = "cat #{ cert_name } #{ server_crt } #{ trust_crt } #{ root_crt } > #{ bundled_crt_path }"
+      info cmd
+
+      system cmd
+    end
+
+    # ###################################
+    # ~ HELPERS
+    # ###################################
+
+  end # ssl:cert
+end # ssl

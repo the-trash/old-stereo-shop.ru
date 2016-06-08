@@ -3,8 +3,8 @@
 # Table name: seo_settings
 #
 #  id              :integer          not null, primary key
-#  controller_name :string
-#  action_name     :string
+#  controller_name :string(255)
+#  action_name     :string(255)
 #  meta            :hstore           default({}), not null
 #  created_at      :datetime
 #  updated_at      :datetime

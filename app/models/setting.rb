@@ -3,10 +3,10 @@
 # Table name: settings
 #
 #  id          :integer          not null, primary key
-#  key         :string
-#  value       :string
-#  description :string
-#  group       :string
+#  key         :string(255)
+#  value       :string(255)
+#  description :string(255)
+#  group       :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

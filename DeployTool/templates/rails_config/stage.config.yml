@@ -1,0 +1,51 @@
+rails_shop:
+  currancy:      <%= Configs.rails_shop.currancy %>
+  shop_id:       <%= Configs.rails_shop.shop_id %>
+  scid:          <%= Configs.rails_shop.scid %>
+  shop_password: <%= Configs.rails_shop.shop_password %>
+  payment_url:   <%= Configs.rails_shop.payment_url %>
+
+mailer:
+  service: <%= Configs.mailer.service %>
+  host: "<%= Configs.mailer.host %>"
+
+  smtp:
+    default:
+      address: <%= Configs.mailer.smtp.default.address %>
+      domain:  <%= Configs.mailer.smtp.default.domain %>
+      port:    <%= Configs.mailer.smtp.default.port %>
+
+      user_name: "<%= Configs.mailer.smtp.default.user_name %>"
+      password:  "<%= Configs.mailer.smtp.default.password %>"
+      authentication: plain
+
+    rails_shop:
+      address: <%= Configs.mailer.smtp.rails_shop.address %>
+      domain:  <%= Configs.mailer.smtp.rails_shop.domain %>
+      port:    <%= Configs.mailer.smtp.rails_shop.port %>
+
+      user_name: "<%= Configs.mailer.smtp.rails_shop.user_name %>"
+      password:  "<%= Configs.mailer.smtp.rails_shop.password %>"
+      authentication: plain
+
+oauth:
+  vkontakte:
+    app_id:     "<%= Configs.oauth.vkontakte.app_id %>"
+    app_secret: "<%= Configs.oauth.vkontakte.app_secret %>"
+
+  facebook:
+    app_id:     "<%= Configs.oauth.facebook.app_id %>"
+    app_secret: "<%= Configs.oauth.facebook.app_secret %>"
+
+  twitter:
+    app_id:     "<%= Configs.oauth.twitter.app_id %>"
+    app_secret: "<%= Configs.oauth.twitter.app_secret %>"
+
+  google_oauth2:
+    app_id:     "<%= Configs.oauth.google_oauth2.app_id %>"
+    app_secret: "<%= Configs.oauth.google_oauth2.app_secret %>"
+
+  odnoklassniki:
+    app_id:     "<%= Configs.oauth.odnoklassniki.app_id %>"
+    app_secret: "<%= Configs.oauth.odnoklassniki.app_secret %>"
+    app_public: "<%= Configs.oauth.odnoklassniki.app_public %>"
