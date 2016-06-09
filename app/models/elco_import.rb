@@ -31,7 +31,7 @@ class ElcoImport < ActiveRecord::Base
       convert_request_keys_to :camelcase
     end
 
-    products = ::Product.published.where.not(elco_id: [nil, ''])
+    products = ::Product.where.not(elco_id: [nil, ''])
 
     if products.blank?
       update(state: :finished)
