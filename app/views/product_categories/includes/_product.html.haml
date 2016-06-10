@@ -8,7 +8,7 @@
         = product.short_desc.html_safe
 
     .b-info-short
-      = price_with_discount(product.price, product.price_with_discount)
+      = price_with_discount(product)
       .b-product-ratable-with-reviews.smal
         .b-ratable.read_only{ data: { score: product.average_score } }
         .b-reviews-count
