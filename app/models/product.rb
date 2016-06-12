@@ -182,4 +182,60 @@ class Product < ActiveRecord::Base
   def generate_sku
     self.sku = SecureRandom.uuid
   end
+
+  public
+
+  # ELCO
+  def get_elco_data!(client, msg, elco_import)
+    begin
+      response = client.call(:catalog_product_list, message: msg)
+
+      if response.xpath('//Response/Success').text == 'True'
+        # vendor: response.xpath('//product/vendor').text
+        elco_data = {
+          id:     response.xpath('//product/id').text,
+          name:   response.xpath('//product/name').text,
+          price:  response.xpath('//product/price').text,
+          spb:    response.xpath('//product/quantityInStock').text,
+          msk:    response.xpath('//product/quantityInStock_MOS').text
+        }
+
+        in_stock = (elco_data[:spb].to_i > 0) || (elco_data[:msk].to_i > 0)
+
+        update_columns({
+          in_stock: in_stock,
+          elco_state: :success,
+          elco_amount_home: elco_data[:spb],
+          elco_amount_msk:  elco_data[:msk],
+          elco_price:       elco_data[:price],
+          elco_updated_at:  Time.zone.now,
+          elco_errors: ''
+        })
+
+        return [:success, elco_data]
+      else
+        elco_data = {
+          id: msg[:ELKOcode],
+          message: response.xpath('//Response/Message').text
+        }
+
+        update_columns({
+          elco_state: :failed,
+          elco_errors: elco_data.join
+        })
+
+        return [:error, elco_data]
+      end
+    rescue Exception => e
+      elco_data = {
+        elco_state: :failed,
+        elco_errors: e.message,
+        elco_updated_at: Time.zone.now
+      }
+      update_columns(elco_data)
+
+      return [:error, elco_data]
+    end
+  end
+
 end

@@ -20,6 +20,7 @@ gem 'pg'
 
 # SOAP client for ELCO import
 gem 'savon', '2.11.1'
+gem 'jbuilder'
 
 ## ActiveAdmin
 gem 'activeadmin', github: 'gregbell/active_admin'

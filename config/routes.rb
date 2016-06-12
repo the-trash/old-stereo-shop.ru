@@ -1,6 +1,11 @@
 require 'sidekiq/web'
 
+Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+  username == 'admin' && password == 'admin'
+end
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web, at: '/admin/sidekiq'
   mount AdminApp::Engine => '/administration', as: :admin_app
 
   # get '/page_404'  => 'app_errors#page_404', as: :page_404
@@ -32,11 +37,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # TODO transfer it into new admin_app after finishing admin_app
-  namespace :admin do
-    authenticate :admin_user do
-      mount Sidekiq::Web, at: '/sidekiq'
-    end
-  end
+  # namespace :admin do
+  #   authenticate :admin_user do
+
+  #   end
+  # end
 
   root 'welcome#index'
 

@@ -1,5 +1,24 @@
+@ElcoImport = do ->
+  tracker_start: ->
+    ElcoImport.status_checker ||= setInterval ->
+      $('.js--elco_check').click()
+    , 5000
+
+  tracker_stop: ->
+    log('>>>', ElcoImport.status_checker)
+    clearInterval(ElcoImport.status_checker)
+    ElcoImport.status_checker = null
+
 @ElcoForm = do ->
   init: ->
+    ElcoImport.tracker_start()
+
+    $('.js--elco_check').on 'ajax:success', (xhr, data, status) ->
+      JODY.processor(data)
+
+    $('.js--elco-import').on 'click', ->
+      ElcoImport.tracker_start()
+
     $('.js--elco-import').on 'ajax:success', (xhr, data, status) ->
       JODY.processor(data)
 

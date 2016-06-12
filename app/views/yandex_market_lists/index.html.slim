@@ -1,16 +1,22 @@
 .ma.mt20.mb20.w1400
   .clearfix.ffa.fs14.mb20
     .pull-left
-      span.ml20.mr40= link_to 'Обновть ELCO', elco_import_start_yandex_market_lists_path, class: 'ptz--btn js--elco-import', remote: true
+      span.ml20.mr40
+        = link_to 'Обновть ELCO', elco_import_start_yandex_market_lists_path, class: 'ptz--btn js--elco-import', remote: true
       span.mr40.fs26.lh120 &rarr;
-      span.mr40= link_to 'Выгрузить в YML', export_yandex_market_lists_path, class: 'ptz--btn'
+      span.mr40
+        = link_to 'Выгрузить в YML', export_yandex_market_lists_path, class: 'ptz--btn'
 
     .pull-right
-      span.mr10 элементов на стр:
-      - %w[ 5 10 20 50 100 125 200 300 400 500 ].each do |num|
-        span.mr10= link_to num, url_for(per_page: num)
+      .mr20
+        span.mr10 элементов на стр:
+        - %w[ 5 10 20 50 100 125 200 300 400 500 ].each do |num|
+          span.mr10= link_to num, url_for(per_page: num)
 
-      span.ml50= link_to 'Сбросить сортировку', url_for( reset_simple_sort )
+        span.ml50= link_to 'Сбросить сортировку', url_for( reset_simple_sort )
+
+  = link_to '', elco_check_yandex_market_lists_path, class: 'js--elco_check', remote: true
+  .js--elco-status-block.mb20.ffa.ml20.mr20.hidden
 
   .ptz--theme-0
     .table.w100p.ffa.fs15.ptz--table-0--table

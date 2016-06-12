@@ -33,9 +33,8 @@ class YandexMarketListsController < ActionController::Base
   end
 
   def elco_check
-    render json: {
-      elco_in_progress: !ElcoImport.in_progress.count.zero?
-    }
+    @current_elco_import = ElcoImport.in_progress.last
+    render template: 'yandex_market_lists/elco_check.json.jbuilder', layout: false
   end
 
   def product_update
@@ -50,16 +49,12 @@ class YandexMarketListsController < ActionController::Base
   def elco_import_start
     unless elco_import = ElcoImport.in_progress.first
       elco_import = ElcoImport.create
-      result = elco_import.start_import!
-      notice = 'ELCO обновление завершено'
+      ElcoWorker.perform_async(elco_import.id)
+      notice = 'ELCO обновление запущено. Ожидайте'
     else
-      result = elco_import.state
       notice = 'Процесс уже запущен. Ожидайте'
     end
 
-    render json: {
-      elco: { id: elco_import.id, result: result },
-      flash: { notice: notice }
-    }
+    render json: { flash: { notice: notice }, state: elco_import.state }
   end
 end

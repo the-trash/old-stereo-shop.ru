@@ -2,14 +2,17 @@
 #
 # Table name: elco_imports
 #
-#  id           :integer          not null, primary key
-#  elco_success :text
-#  elco_errors  :text
-#  state        :string           default("pending")
-#  finished_at  :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id               :integer          not null, primary key
+#  elco_success     :text
+#  elco_errors      :text
+#  state            :string           default("pending")
+#  finished_at      :datetime
+#  created_at       :datetime
+#  updated_at       :datetime
+#  items_to_process :integer          default(0)
+#  items_processed  :integer          default(0)
 #
+
 require 'savon'
 
 class ElcoImport < ActiveRecord::Base
@@ -18,7 +21,14 @@ class ElcoImport < ActiveRecord::Base
 
   scope :in_progress, ->{ where(state: :in_progress) }
 
+  # ElcoImport.last.restart_import!
+  def restart_import!
+    update(state: :pending)
+    start_import!
+  end
+
   # 1182555
+  # ElcoImport.last.restart_import!
   def start_import!
     return :already_done if self.state == 'finished'
     return :in_progress  if !ElcoImport.in_progress.count.zero?
@@ -38,9 +48,12 @@ class ElcoImport < ActiveRecord::Base
       return :no_products
     end
 
-    update_column(:state, :in_progress)
+    update_columns({
+      state: :in_progress,
+      items_to_process: products.count
+    })
 
-    products.each do |product|
+    products.each_with_index do |product, index|
       msg = {
         username: LOGIN,
         password: PASSWORD,
@@ -49,50 +62,15 @@ class ElcoImport < ActiveRecord::Base
         VendorCode: ''
       }
 
-      begin
-        response = client.call(:catalog_product_list, message: msg)
+      status, elco_data = product.get_elco_data!(client, msg, elco_import = self)
 
-        if response.xpath('//Response/Success').text == 'True'
-          # vendor: response.xpath('//product/vendor').text
-          elco_data = {
-            id:     response.xpath('//product/id').text,
-            name:   response.xpath('//product/name').text,
-            price:  response.xpath('//product/price').text,
-            spb:    response.xpath('//product/quantityInStock').text,
-            msk:    response.xpath('//product/quantityInStock_MOS').text
-          }
-          success_ary.push(elco_data)
-
-          in_stock = (elco_data[:spb].to_i > 0) || (elco_data[:msk].to_i > 0)
-
-          product.update_columns({
-            in_stock: in_stock,
-            elco_state: :success,
-            elco_amount_home: elco_data[:spb],
-            elco_amount_msk:  elco_data[:msk],
-            elco_price:       elco_data[:price],
-            elco_updated_at:  Time.zone.now,
-            elco_errors: ''
-          })
-        else
-          elco_data = {
-            id: msg[:ELKOcode],
-            message: response.xpath('//Response/Message').text
-          }
-          errors_ary.push(elco_data)
-
-          product.update_columns({
-            elco_state: :failed,
-            elco_errors: elco_data.join
-          })
-        end
-      rescue Exception => e
-        product.update_columns({
-          elco_state: :failed,
-          elco_errors: e.message,
-          elco_updated_at: Time.zone.now
-        })
+      if status == :success
+        success_ary.push(elco_data)
+      else
+        errors_ary.push(elco_data)
       end
+
+      update_column(:items_processed, index.next)
     end
 
     update_columns({

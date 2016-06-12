@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606191211) do
+ActiveRecord::Schema.define(version: 20160612125647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,10 +144,12 @@ ActiveRecord::Schema.define(version: 20160606191211) do
   create_table "elco_imports", force: :cascade do |t|
     t.text     "elco_success"
     t.text     "elco_errors"
-    t.string   "state",        default: "pending"
+    t.string   "state",            default: "pending"
     t.datetime "finished_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "items_to_process", default: 0
+    t.integer  "items_processed",  default: 0
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

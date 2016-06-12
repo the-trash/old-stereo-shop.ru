@@ -375,6 +375,9 @@ GEM
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
+    jbuilder (2.5.0)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -736,6 +739,7 @@ DEPENDENCIES
   hstore_accessor
   i18n-js
   image_suckr
+  jbuilder
   js-routes
   log_js!
   memoist
