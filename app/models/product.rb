@@ -186,7 +186,21 @@ class Product < ActiveRecord::Base
   public
 
   # ELCO
-  def get_elco_data!(client, msg, elco_import)
+  def get_elco_data!
+
+    client = ::Savon.client do
+      wsdl "https://ecom.elko.ru/xml/listener.asmx?WSDL"
+      convert_request_keys_to :camelcase
+    end
+
+    msg = {
+      username: ::ElcoImport::LOGIN,
+      password: ::ElcoImport::PASSWORD,
+      ELKOcode: elco_id,
+      CategoryCode: '',
+      VendorCode: ''
+    }
+
     begin
       response = client.call(:catalog_product_list, message: msg)
 
@@ -201,6 +215,7 @@ class Product < ActiveRecord::Base
         }
 
         in_stock = (elco_data[:spb].to_i > 0) || (elco_data[:msk].to_i > 0)
+        puts in_stock ? "PRODUCT >>> IN STOCK" : "PRODUCT >>> NOT IN STOCK"
 
         update_columns({
           in_stock: in_stock,

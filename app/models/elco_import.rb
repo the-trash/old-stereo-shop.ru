@@ -36,11 +36,6 @@ class ElcoImport < ActiveRecord::Base
     errors_ary  = []
     success_ary = []
 
-    client = ::Savon.client do
-      wsdl "https://ecom.elko.ru/xml/listener.asmx?WSDL"
-      convert_request_keys_to :camelcase
-    end
-
     products = ::Product.where.not(elco_id: [nil, ''])
 
     if products.blank?
@@ -54,15 +49,7 @@ class ElcoImport < ActiveRecord::Base
     })
 
     products.each_with_index do |product, index|
-      msg = {
-        username: LOGIN,
-        password: PASSWORD,
-        ELKOcode: product.elco_id,
-        CategoryCode: '',
-        VendorCode: ''
-      }
-
-      status, elco_data = product.get_elco_data!(client, msg, elco_import = self)
+      status, elco_data = product.get_elco_data!
 
       if status == :success
         success_ary.push(elco_data)
