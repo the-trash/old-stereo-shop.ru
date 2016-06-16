@@ -183,6 +183,10 @@ class Product < ActiveRecord::Base
     self.sku = SecureRandom.uuid
   end
 
+  def elco_to_i(val)
+    val.to_s.gsub('>', '').gsub('<', '').strip.to_i
+  end
+
   public
 
   # ELCO
@@ -210,11 +214,11 @@ class Product < ActiveRecord::Base
           id:     response.xpath('//product/id').text,
           name:   response.xpath('//product/name').text,
           price:  response.xpath('//product/price').text,
-          spb:    response.xpath('//product/quantityInStock').text,
-          msk:    response.xpath('//product/quantityInStock_MOS').text
+          spb:    elco_to_i(response.xpath('//product/quantityInStock').text),
+          msk:    elco_to_i(response.xpath('//product/quantityInStock_MOS').text)
         }
 
-        in_stock = (elco_data[:spb].to_i > 0) || (elco_data[:msk].to_i > 0)
+        in_stock = (elco_data[:spb] > 0) || (elco_data[:msk] > 0)
         puts in_stock ? "PRODUCT >>> IN STOCK" : "PRODUCT >>> NOT IN STOCK"
 
         update_columns({
