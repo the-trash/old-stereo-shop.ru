@@ -6,21 +6,21 @@
 #################################
 
 # ssh root@stereo-shop.ru
-# T5jQCbuwBV
+# T5jQCbuwBV | 9uQHQMjApwnq5v
 #
 # cd /srv/www/stereo_shop/production/current
 # rvm use ruby-2.2.1@stereoshop
 # bin/rails c production
 
 # cat ~/.ssh/id_rsa.pub | ssh root@stereo-shop.ru 'cat >> ~/.ssh/authorized_keys'
-# T5jQCbuwBV
+# T5jQCbuwBV | 9uQHQMjApwnq5v
 
 # RVM_HOOK=false cap production db:dump
 
 #################################
 
-# <% domain = "stereo-shop.ru" %>
-# <% server_addr = "stereo-shop.ru" %>
+# <% domain = "104.131.34.236" %>
+# <% server_addr = "104.131.34.236" %>
 
 configs:
   domain: <%= domain %>
